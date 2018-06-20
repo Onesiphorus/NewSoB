@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Shadows Of Brimstone Companion</string>
+    <string name="action_settings">Settings</string>
+    <string name="class_text">Class</string>
+    <string name="character_text">Character</string>
+    <string name="gear_text">Gear</string>
+    <string name="clothing_text">Clothing</string>
+    <string name="melee_text">Melee Weapons</string>
+    <string name="ranged_text">Ranged Weapons</string>
+    <string name="invalid_text">INVALID ENTRY DETECTED</string>
+</resources>
