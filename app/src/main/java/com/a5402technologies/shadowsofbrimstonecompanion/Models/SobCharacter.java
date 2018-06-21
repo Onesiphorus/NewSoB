@@ -19,20 +19,20 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "character_name")
     private String characterName;
     @ColumnInfo(name = "character_class")
-    private String characterClass;
+    private CharacterClass characterClass;
     //TODO create table to store lists, link lists with keys
     @ColumnInfo(name = "gear_list")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<String> gear = new ArrayList<>();
+    private ArrayList<GearBase> gear = new ArrayList<>();
     @ColumnInfo(name = "clothing_list")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<String> clothing = new ArrayList<>();
+    private ArrayList<Clothing> clothing = new ArrayList<>();
     @ColumnInfo(name = "melee_list")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<String> meleeWeapons = new ArrayList<>();
+    private ArrayList<MeleeWeapon> meleeWeapons = new ArrayList<>();
     @ColumnInfo(name = "ranged_list")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<String> rangedWeapons = new ArrayList<>();
+    private ArrayList<RangedWeapon> rangedWeapons = new ArrayList<>();
     @ColumnInfo(name = "agility_bonus")
     private Integer agilityBonus = 0;
     @ColumnInfo(name = "cunning_bonus")
@@ -98,7 +98,7 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "prehensile_tail_slot")
     private Boolean prehensileTail = false;
 
-    public SobCharacter(@NonNull String characterName, String characterClass) {
+    public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
         this.characterClass = characterClass;
     }
@@ -112,43 +112,43 @@ public class SobCharacter implements Serializable {
         this.characterName = characterName;
     }
 
-    public String getCharacterClass() {
+    public CharacterClass getCharacterClass() {
         return characterClass;
     }
 
-    public void setCharacterClass(String characterClass) {
+    public void setCharacterClass(CharacterClass characterClass) {
         this.characterClass = characterClass;
     }
 
-    public ArrayList<String> getGear() {
+    public ArrayList<GearBase> getGear() {
         return gear;
     }
 
-    public void setGear(ArrayList<String> gear) {
+    public void setGear(ArrayList<GearBase> gear) {
         this.gear = gear;
     }
 
-    public ArrayList<String> getClothing() {
+    public ArrayList<Clothing> getClothing() {
         return clothing;
     }
 
-    public void setClothing(ArrayList<String> clothing) {
+    public void setClothing(ArrayList<Clothing> clothing) {
         this.clothing = clothing;
     }
 
-    public ArrayList<String> getMeleeWeapons() {
+    public ArrayList<MeleeWeapon> getMeleeWeapons() {
         return meleeWeapons;
     }
 
-    public void setMeleeWeapons(ArrayList<String> meleeWeapons) {
+    public void setMeleeWeapons(ArrayList<MeleeWeapon> meleeWeapons) {
         this.meleeWeapons = meleeWeapons;
     }
 
-    public ArrayList<String> getRangedWeapons() {
+    public ArrayList<RangedWeapon> getRangedWeapons() {
         return rangedWeapons;
     }
 
-    public void setRangedWeapons(ArrayList<String> rangedWeapons) {
+    public void setRangedWeapons(ArrayList<RangedWeapon> rangedWeapons) {
         this.rangedWeapons = rangedWeapons;
     }
 
@@ -408,8 +408,36 @@ public class SobCharacter implements Serializable {
         this.prehensileTail = prehensileTail;
     }
 
-    public void addMeleeWeapon(String meleeWeapon) {
+    public void addMeleeWeapon(MeleeWeapon meleeWeapon) {
         this.meleeWeapons.add(meleeWeapon);
+    }
+
+    public void removeMeleeWeapon(MeleeWeapon meleeWeapon) {
+        this.meleeWeapons.remove(meleeWeapon);
+    }
+
+    public void addRangedWeapon(RangedWeapon rangedWeapon) {
+        this.rangedWeapons.add(rangedWeapon);
+    }
+
+    public void removeRangedWeapon(RangedWeapon rangedWeapon) {
+        this.rangedWeapons.remove(rangedWeapon);
+    }
+
+    public void addGear(GearBase gearBase) {
+        this.gear.add(gearBase);
+    }
+
+    public void removeGear(GearBase gearBase) {
+        this.gear.remove(gearBase);
+    }
+
+    public void addClothing(Clothing clothing) {
+        this.clothing.add(clothing);
+    }
+
+    public void removeCothing(Clothing clothing) {
+        this.clothing.remove(clothing);
     }
 }
 

@@ -8,4 +8,23 @@
     <string name="melee_text">Melee Weapons</string>
     <string name="ranged_text">Ranged Weapons</string>
     <string name="invalid_text">INVALID ENTRY DETECTED</string>
+    <string name="products">Product List</string>
+    <string name="debug">Debug</string>
+    <string name="title_activity_create_character">CreateCharacterActivity</string>
+    <string name="hint_enter_name">Enter Character Name</string>
+    <string name="agility">AGILITY</string>
+    <string name="cunning">CUNNING</string>
+    <string name="spirit">SPIRIT</string>
+    <string name="strength">STRENGTH</string>
+    <string name="lore">LORE</string>
+    <string name="luck">LUCK</string>
+    <string name="health">HEALTH</string>
+    <string name="defense">DEFENSE</string>
+    <string name="armor">ARMOR</string>
+    <string name="sanity">SANITY</string>
+    <string name="willpower">WILLPOWER</string>
+    <string name="spirit_armor">SPIRIT ARMOR</string>
+    <string name="title_activity_finish_character">FinishCharacterActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

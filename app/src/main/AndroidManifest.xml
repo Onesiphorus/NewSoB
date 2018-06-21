@@ -33,16 +33,31 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.NewCharacterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.RangedWeaponActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.MeleeWeaponActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.ClothingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.ChooseClassActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.DebugActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CreateCharacterActivity"
+            android:label="@string/title_activity_create_character"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.FinishCharacterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_finish_character"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

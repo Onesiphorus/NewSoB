@@ -2,7 +2,11 @@ package com.a5402technologies.shadowsofbrimstonecompanion;
 
 import android.arch.persistence.room.TypeConverter;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,7 +46,71 @@ public class GithubTypeConverters {
     }
 
     @TypeConverter
-    public static String GearListToString(ArrayList<SobCharacter> sobCharacters) {
-        return gson.toJson(sobCharacters);
+    public static String GearListToString(ArrayList<GearBase> gearBases) {
+        return gson.toJson(gearBases);
+    }
+
+    @TypeConverter
+    public static ArrayList<Clothing> stringToClothingList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<Clothing>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String ClothingListToString(ArrayList<Clothing> clothing) {
+        return gson.toJson(clothing);
+    }
+
+    @TypeConverter
+    public static ArrayList<MeleeWeapon> stringToMeleeList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<MeleeWeapon>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String MeleeListToString(ArrayList<MeleeWeapon> meleeWeapons) {
+        return gson.toJson(meleeWeapons);
+    }
+
+    @TypeConverter
+    public static ArrayList<RangedWeapon> stringToRangedList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<RangedWeapon>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String RangedListToString(ArrayList<RangedWeapon> rangedWeapons) {
+        return gson.toJson(rangedWeapons);
+    }
+
+    @TypeConverter
+    public static CharacterClass stringToCharacterClass(String data) {
+        if (null == data) {
+            return new CharacterClass("null");
+        }
+
+        Type listType = new TypeToken<CharacterClass>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String CharacterClassToString(CharacterClass characterClass) {
+        return gson.toJson(characterClass);
     }
 }

@@ -24,4 +24,7 @@ public interface CharacterClassDao {
     @Query("SELECT * FROM character_class_table ORDER BY class_name ASC")
     LiveData<List<CharacterClass>> getAllCharacterClasses();
 
+    @Query("SELECT * FROM character_class_table WHERE class_name = :name")
+    LiveData<CharacterClass> getCharacterClassByName(String name);
+
 }

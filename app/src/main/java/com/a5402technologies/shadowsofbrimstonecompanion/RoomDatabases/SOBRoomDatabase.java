@@ -1,5 +1,6 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.RoomDatabases;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -365,6 +366,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setDamageBonus(2);
             meleeWeapon.setSet("P");
             mMeleeWeaponDao.insert(meleeWeapon);
+
+            //Test Character
+            mCharacterDao.deleteCharacterByName("Testes");
+            SobCharacter sobCharacter = new SobCharacter("Testes", mCharacterClassDao.getCharacterClassByName("Rancher").getValue());
+            mCharacterDao.insert(sobCharacter);
             return null;
         }
     }

@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-tools:context=".Activities.MainActivity"
+tools:context=".Activities.DebugActivity"
 tools:showIn="@layout/activity_main">
 
 <LinearLayout
@@ -16,20 +16,33 @@ tools:showIn="@layout/activity_main">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_class"
+        android:text="@string/class_text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_character"
         android:text="@string/character_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_product"
-        android:text="@string/products"/>
+        android:id="@+id/btn_gear"
+        android:text="@string/gear_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_debug"
-        android:text="@string/debug"/>
-
-
+        android:id="@+id/btn_clothing"
+        android:text="@string/clothing_text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_melee"
+        android:text="@string/melee_text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_ranged"
+        android:text="@string/ranged_text"/>
 </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

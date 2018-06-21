@@ -208,12 +208,15 @@ public class MeleeWeapon {
     public void setEquipped(@NonNull Boolean equipped) {
         this.equipped = equipped;
     }
+
     public void addRestriction(String restriction) {
         this.restrictions.add(restriction);
     }
+
     public void addModifier(String modifier) {
         this.modifiers.add(modifier);
     }
+
     public void addPenalty(String penalty) {
         this.penalties.add(penalty);
     }

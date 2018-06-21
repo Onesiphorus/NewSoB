@@ -1,6 +1,6 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
-public enum RestrictionEnum {
+public enum TraitsEnum {
     LAW("Law"),
     HOLY("Holy"),
     FRONTIER("Frontier");
@@ -8,7 +8,7 @@ public enum RestrictionEnum {
     private int code;
     private String label;
 
-    RestrictionEnum(String label) {
+    TraitsEnum(String label) {
         this.label = label;
     }
 

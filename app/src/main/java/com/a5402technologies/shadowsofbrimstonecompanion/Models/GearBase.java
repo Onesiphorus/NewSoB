@@ -3,12 +3,9 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RestrictionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.util.ArrayList;
