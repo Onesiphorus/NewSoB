@@ -9,7 +9,8 @@ public enum ModifiersEnum {
     LUCK("Luck"),
     HEALTH("Health"),
     SANITY("Sanity"),
-    INITIATIVE("Initiative");
+    INITIATIVE("Initiative"),
+    MAX_GRIT("Max Grit");
 
 
     private int code;

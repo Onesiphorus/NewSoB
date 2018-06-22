@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingTop="24sp"
         android:layout_gravity="center|center_horizontal">
         <LinearLayout
             android:keepScreenOn="true"
@@ -44,11 +45,13 @@
                     android:textStyle="bold|italic"
                     android:layout_height="wrap_content"
                     android:id="@+id/agility_label"/>
+
                 <TextView
+                    android:id="@+id/agility_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:id="@+id/agility_value"/>
+                    android:textSize="24sp"
+                    android:textAlignment="center" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -68,6 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/cunning_value"/>
             </LinearLayout>
             <LinearLayout
@@ -88,6 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/spirit_value"/>
             </LinearLayout>
         </LinearLayout>
@@ -116,6 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/strength_value"/>
             </LinearLayout>
             <LinearLayout
@@ -136,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/lore_value"/>
             </LinearLayout>
             <LinearLayout
@@ -156,6 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/luck_value"/>
             </LinearLayout>
         </LinearLayout>
@@ -184,6 +192,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/health_value"/>
             </LinearLayout>
             <LinearLayout
@@ -204,6 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/defense_value"/>
             </LinearLayout>
             <LinearLayout
@@ -224,6 +234,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/armor_value"/>
             </LinearLayout>
         </LinearLayout>
@@ -252,6 +263,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/sanity_value"/>
             </LinearLayout>
             <LinearLayout
@@ -271,6 +283,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     android:textAlignment="center"
                     android:id="@+id/willpower_value"/>
             </LinearLayout>
@@ -292,9 +305,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
+                    android:textSize="24sp"
                     android:id="@+id/spirit_armor_value"/>
             </LinearLayout>
+
         </LinearLayout>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_skills"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:textAlignment="center"
+                android:background="@android:color/holo_blue_dark"
+                tools:listitem="@layout/recyclerview_character">
+            </android.support.v7.widget.RecyclerView>
+        </RadioGroup>
     </LinearLayout>
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -312,23 +341,29 @@
             android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="4">
+
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/character_name_value"
-                    android:hint="@string/hint_enter_name"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="@string/hint_enter_name" />
+
+                <Button
+                    android:id="@+id/dummy_button"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/create" />
             </LinearLayout>
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+
 
         </LinearLayout>
     </FrameLayout>

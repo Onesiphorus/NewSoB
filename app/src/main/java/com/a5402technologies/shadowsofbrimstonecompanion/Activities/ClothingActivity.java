@@ -49,10 +49,10 @@ public class ClothingActivity extends AppCompatActivity {
 
         mClothingViewModel = ViewModelProviders.of(this).get(ClothingViewModel.class);
 
-        mClothingViewModel.getAllGear().observe(this, new Observer<List<Clothing>>() {
+        mClothingViewModel.getAllClothing().observe(this, new Observer<List<Clothing>>() {
             @Override
-            public void onChanged(@Nullable List<Clothing> characterClasses) {
-                adapter.setClothing(characterClasses);
+            public void onChanged(@Nullable List<Clothing> clothing) {
+                adapter.setClothing(clothing);
             }
         });
     }

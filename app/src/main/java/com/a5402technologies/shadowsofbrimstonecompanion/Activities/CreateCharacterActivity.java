@@ -2,17 +2,32 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
-public class CreateCharacterActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CreateCharacterActivity extends AppCompatActivity {
+
+    private SkillViewModel mSkillViewModel;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -91,6 +106,27 @@ public class CreateCharacterActivity extends Activity {
 
         CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
+        final SkillListAdapter adapter = new SkillListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mSkillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
+
+        mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
+            @Override
+            public void onChanged(@Nullable List<Skill> skills) {
+                ArrayList<Skill> newList = new ArrayList<>(0);
+                for(Skill skill : skills) {
+                    if(skill.getClassRestriction().equals(characterClass.getClassName())
+                            && skill.getLevel() == 0) {
+                        newList.add(skill);
+                    }
+                }
+                adapter.setSkill(newList);
+            }
+        });
+
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -137,7 +173,6 @@ public class CreateCharacterActivity extends Activity {
         tv.setText("0");
         tv = findViewById(R.id.spirit_armor_value);
         tv.setText("0");
-
     }
 
     @Override

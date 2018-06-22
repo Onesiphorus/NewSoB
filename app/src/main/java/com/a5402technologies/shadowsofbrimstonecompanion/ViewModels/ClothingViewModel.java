@@ -13,19 +13,19 @@ public class ClothingViewModel extends AndroidViewModel {
 
     private ClothingRepository mRepository;
 
-    private LiveData<List<Clothing>> mAllGear;
+    private LiveData<List<Clothing>> mAllClothing;
 
     public ClothingViewModel (Application application) {
         super(application);
         mRepository = new ClothingRepository(application);
-        mAllGear = mRepository.getAllClothing();
+        mAllClothing = mRepository.getAllClothing();
     }
 
-    public LiveData<List<Clothing>> getAllGear() {
-        return mAllGear;
+    public LiveData<List<Clothing>> getAllClothing() {
+        return mAllClothing;
     }
 
-    public void insert(Clothing gearBase) {
-        mRepository.insert(gearBase);
+    public void insert(Clothing clothing) {
+        mRepository.insert(clothing);
     }
 }

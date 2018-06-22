@@ -5,11 +5,11 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
@@ -17,18 +17,20 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.ClothingD
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.GearBaseDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.MeleeWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
+import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 import java.util.ArrayList;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class}, version = 2)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 3)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
@@ -37,6 +39,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract MeleeWeaponDao meleeWeaponDao();
     public abstract RangedWeaponDao rangedWeaponDao();
     public abstract ClothingDao clothingDao();
+    public abstract SkillDao skillDao();
 
     private static SOBRoomDatabase INSTANCE;
 
@@ -46,6 +49,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
                 if (null == INSTANCE) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             SOBRoomDatabase.class, "sob_database")
+                            .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback).build();
                 }
             }
@@ -69,6 +73,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
         private final MeleeWeaponDao mMeleeWeaponDao;
         private final RangedWeaponDao mRangedWeaponDao;
         private final ClothingDao mClothingDao;
+        private final SkillDao mSkillDao;
 
         PopulateDbAsync(SOBRoomDatabase db) {
             mCharacterDao = db.characterDao();
@@ -77,6 +82,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao = db.meleeWeaponDao();
             mRangedWeaponDao = db.rangedWeaponDao();
             mClothingDao = db.clothingDao();
+            mSkillDao = db.skillDao();
         }
 
         @Override
@@ -86,6 +92,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao.deleteAllMeleeWeapons();
             mRangedWeaponDao.deleteAllRangedWeapons();
             mClothingDao.deleteAllClothing();
+            mSkillDao.deleteAllSkill();
             CharacterClass characterClass;
             Clothing clothing;
             GearBase gearBase;
@@ -367,6 +374,28 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setSet("P");
             mMeleeWeaponDao.insert(meleeWeapon);
 
+            Skill skill = new Skill("Guns Blazing", "Outlaw", "Shootin'");
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill.setName("Gunfighter");
+            skill.setLevel(2);
+            skill.addModifier("Max Grit");
+            mSkillDao.insert(skill);
+            skill = new Skill("Wild at Heart", "Outlaw", "Shootin'");
+            skill.setLevel(3);
+            skill.addModifier("Health");
+            skill.addModifier("Health");
+            skill.addModifier("Health");
+            mSkillDao.insert(skill);
+            skill.setName("Yeee-Haww!");
+            skill.setLevel(4);
+            skill.addModifier("Health");
+            skill.addModifier("Health");
+            mSkillDao.insert(skill);
+            skill = new Skill("Outlaw Charm", "Outlaw", "Starting");
+            mSkillDao.insert(skill);
+            skill.setName("Reckless");
+            mSkillDao.insert(skill);
             //Test Character
             mCharacterDao.deleteCharacterByName("Testes");
             SobCharacter sobCharacter = new SobCharacter("Testes", mCharacterClassDao.getCharacterClassByName("Rancher").getValue());
