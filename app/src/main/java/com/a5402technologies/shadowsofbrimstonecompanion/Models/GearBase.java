@@ -8,9 +8,10 @@ import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 @Entity(tableName = "gear_base_table")
-public class GearBase {
+public class GearBase implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "gear_name")

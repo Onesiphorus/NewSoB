@@ -3,10 +3,9 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +13,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
@@ -106,6 +109,8 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
         CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
 
+        //TODO Add Starting Gear to characters here
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
         final SkillListAdapter adapter = new SkillListAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -143,7 +148,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.create_button).setOnTouchListener(mDelayHideTouchListener);
 
 
 
@@ -173,7 +178,23 @@ public class CreateCharacterActivity extends AppCompatActivity {
         tv.setText("0");
         tv = findViewById(R.id.spirit_armor_value);
         tv.setText("0");
+
+        EditText name = findViewById(R.id.character_name_value);
+        Skill startingUpgrade = new Skill("Test Skill", characterClass.getClassName(), "Test Type");//TODO Map starting upgrade to radio group
+
+        //TODO Modify Starting Gear according to starting upgrade
+
+        Button btn = findViewById(R.id.create_button);
+        btn.setOnClickListener((View view) -> {
+            SobCharacter sobCharacter = new SobCharacter(name.getText().toString(), characterClass);
+            sobCharacter.addUpgrade(startingUpgrade);
+            Intent intent = new Intent(this, FinishCharacterActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+        });
     }
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

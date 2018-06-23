@@ -17,7 +17,7 @@ public class CharacterClass implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name="class_name")
-    private String className = "noName";
+    private String className;
     @NonNull
     @ColumnInfo(name="agility")
     private Integer Agility = 0;

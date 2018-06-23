@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context=".Activities.CreateCharacterActivity">
+    tools:context=".Activities.FinishCharacterActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -26,59 +26,23 @@
         android:orientation="vertical"
         android:paddingTop="48dp"
         android:layout_gravity="center|center_horizontal">
-        <include layout="@layout/content_character_stats" />
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/choose_upgrade"
-                android:text="@string/choose_upgrade"
-                android:textAlignment="center"
-                android:textStyle="italic|bold"
-                android:textSize="32sp"/>
-        </LinearLayout>
-
-        <RadioGroup
+            android:id="@+id/tv_character_name"
+            android:hint="@string/character_text"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textStyle="italic|bold"/>
+        <include layout="@layout/content_character_stats"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerview_skills"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible"
-                android:textAlignment="center"
-                android:background="@android:color/holo_blue_dark"
-                tools:listitem="@layout/recyclerview_character">
-            </android.support.v7.widget.RecyclerView>
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom|center_horizontal"
-        android:weightSum="4"
-        android:paddingBottom="48dp">
-
-        <EditText
-            android:id="@+id/character_name_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:hint="@string/hint_enter_name" />
-
-        <Button
-            android:id="@+id/create_button"
-            style="?metaButtonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/create" />
+            android:id="@+id/tv_starting_gear"
+            android:text="@string/starting_gear"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"/>
     </LinearLayout>
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

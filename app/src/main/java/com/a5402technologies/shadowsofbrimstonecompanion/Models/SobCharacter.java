@@ -3,6 +3,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import java.util.ArrayList;
@@ -97,10 +98,18 @@ public class SobCharacter implements Serializable {
     private Boolean hasPTail = false;
     @ColumnInfo(name = "prehensile_tail_slot")
     private Boolean prehensileTail = false;
+    @ColumnInfo(name = "earned_skills")
+    @TypeConverters(GithubTypeConverters.class)
+    private ArrayList<Skill> upgrades;
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
         this.characterClass = characterClass;
+        clothing = new ArrayList<>(0);
+        gear = new ArrayList<>(0);
+        meleeWeapons = new ArrayList<>(0);
+        rangedWeapons = new ArrayList<>(0);
+        upgrades = new ArrayList<>(0);
     }
 
     @NonNull
@@ -438,6 +447,20 @@ public class SobCharacter implements Serializable {
 
     public void removeCothing(Clothing clothing) {
         this.clothing.remove(clothing);
+    }
+
+    public void addUpgrade(Skill skill) {this.upgrades.add(skill);}
+
+    public void removeUpgrade(Skill skill) {
+        this.upgrades.remove(skill);
+    }
+
+    public ArrayList<Skill> getUpgrades() {
+        return upgrades;
+    }
+
+    public void setUpgrades(ArrayList<Skill> upgrades) {
+        this.upgrades = upgrades;
     }
 }
 

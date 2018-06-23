@@ -57,6 +57,11 @@
             android:name=".Activities.FinishCharacterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_finish_character"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".Activities.ShadowsOfBrimstoneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_shadows_of_brimstone"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

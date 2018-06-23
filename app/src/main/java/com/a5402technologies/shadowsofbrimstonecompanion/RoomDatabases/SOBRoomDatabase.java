@@ -18,6 +18,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.GearBaseD
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.MeleeWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
@@ -30,7 +31,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import java.util.ArrayList;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class}, version = 3)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 4)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
@@ -84,6 +85,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao = db.clothingDao();
             mSkillDao = db.skillDao();
         }
+
+        //TODO Move database population and finish
 
         @Override
         protected Void doInBackground(final Void... params) {
@@ -299,7 +302,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setDamageBonus(1);
             rangedWeapon.setWeight(1);
             rangedWeapon.setTwoHanded(true);
-            rangedWeapon.setSet("CH");
+            rangedWeapon.setSet(SetListEnum.CRIMSON_HAND.code());
             rangedWeapon.setSell(400);
             rangedWeapon.setUpgrades(2);
             mRangedWeaponDao.insert(rangedWeapon);
@@ -398,7 +401,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
             //Test Character
             mCharacterDao.deleteCharacterByName("Testes");
-            SobCharacter sobCharacter = new SobCharacter("Testes", mCharacterClassDao.getCharacterClassByName("Rancher").getValue());
+            SobCharacter sobCharacter = new SobCharacter("Testes", characterClass);
             mCharacterDao.insert(sobCharacter);
             return null;
         }

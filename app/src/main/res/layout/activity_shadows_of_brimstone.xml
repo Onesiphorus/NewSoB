@@ -4,41 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context=".Activities.MainActivity">
+    tools:context=".Activities.ShadowsOfBrimstoneActivity">
 
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
     <TextView
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/sob_fullscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal|bottom"
+        android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/shadows"
+        android:text="@string/dummy_content"
         android:textColor="#33b5e5"
         android:textSize="50sp"
-        android:textStyle="bold"
-        android:paddingBottom="96dp"/>
+        android:textStyle="bold" />
     <LinearLayout
-        android:paddingTop="96dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="48dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sob_character_name"
+            android:hint="@string/character_text"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textStyle="italic|bold"
+            android:paddingBottom="12dp"/>
+        <include layout="@layout/content_character_stats"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_character"
-            android:text="@string/character_text"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_product"
-            android:text="@string/products"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_debug"
-            android:text="@string/debug"/>
     </LinearLayout>
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,6 +45,7 @@
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
@@ -53,10 +53,15 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-
-
+            <Button
+                android:id="@+id/dummy_button"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button" />
 
         </LinearLayout>
     </FrameLayout>
-</FrameLayout>
 
+</FrameLayout>

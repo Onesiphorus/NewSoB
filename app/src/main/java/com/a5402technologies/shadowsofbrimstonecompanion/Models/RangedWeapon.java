@@ -8,10 +8,11 @@ import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity(tableName = "ranged_weapon_table")
-public class RangedWeapon {
+public class RangedWeapon implements Serializable{
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "ranged_name")

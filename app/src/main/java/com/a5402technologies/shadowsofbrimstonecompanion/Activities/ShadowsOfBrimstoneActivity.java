@@ -2,25 +2,21 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
-public class MainActivity extends AppCompatActivity {
-
+/**
+ * An example full-screen activity that shows and hides the system UI (i.e.
+ * status bar and navigation/system bar) with user interaction.
+ */
+public class ShadowsOfBrimstoneActivity extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -94,11 +90,53 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.activity_shadows_of_brimstone);
+        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+
+        TextView tv = findViewById(R.id.sob_fullscreen);
+        Integer value;
+        tv.setText(sobCharacter.getCharacterClass().getClassName());
+        tv = findViewById(R.id.strength_value);
+        value = (sobCharacter.getCharacterClass().getStrength()) + (sobCharacter.getStrengthBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.agility_value);
+        value = (sobCharacter.getCharacterClass().getAgility()) + (sobCharacter.getAgilityBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.cunning_value);
+        value = (sobCharacter.getCharacterClass().getCunning()) + (sobCharacter.getCunningBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.spirit_value);
+        value = (sobCharacter.getCharacterClass().getSpirit()) + (sobCharacter.getSpiritBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.lore_value);
+        value = (sobCharacter.getCharacterClass().getLore()) + (sobCharacter.getLoreBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.luck_value);
+        value = (sobCharacter.getCharacterClass().getLuck()) + (sobCharacter.getLuckBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.health_value);
+        value = (sobCharacter.getCharacterClass().getHealth()) + (sobCharacter.getHealthBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.defense_value);
+        value = (sobCharacter.getCharacterClass().getDefense());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.sanity_value);
+        value = (sobCharacter.getCharacterClass().getSanity()) + (sobCharacter.getSanityBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.willpower_value);
+        value = (sobCharacter.getCharacterClass().getWillpower());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.armor_value);
+        tv.setText(String.format(sobCharacter.getArmor().toString()));
+        tv = findViewById(R.id.spirit_armor_value);
+        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
+        tv = findViewById(R.id.sob_character_name);
+        tv.setText(sobCharacter.getCharacterName());
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.sob_fullscreen);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -108,23 +146,11 @@ public class MainActivity extends AppCompatActivity {
                 toggle();
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        findViewById(R.id.btn_character).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.btn_product).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterClassActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.btn_debug).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class);
-            startActivity(intent);
-        });
+        // Upon interacting with UI controls, delay any scheduled hide()
+        // operations to prevent the jarring behavior of controls going away
+        // while interacting with the UI.
+        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override

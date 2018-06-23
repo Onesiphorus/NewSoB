@@ -7,6 +7,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -112,5 +113,21 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String CharacterClassToString(CharacterClass characterClass) {
         return gson.toJson(characterClass);
+    }
+
+    @TypeConverter
+    public static ArrayList<Skill> stringToSkillList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<Skill>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String SkillListToString(ArrayList<Skill> skillList) {
+        return gson.toJson(skillList);
     }
 }
