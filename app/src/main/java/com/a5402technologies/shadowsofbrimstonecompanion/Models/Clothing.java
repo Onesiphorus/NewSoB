@@ -72,6 +72,10 @@ public class Clothing implements Serializable {
     @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = false;
+    @ColumnInfo(name = "armor")
+    private Integer armor;
+    @ColumnInfo(name = "spirit_armor")
+    private Integer spiritArmor;
 
     public Clothing(@NonNull String name) {
         this.name = name;
@@ -275,5 +279,21 @@ public class Clothing implements Serializable {
 
     public void setArtifact(@NonNull Boolean artifact) {
         this.artifact = artifact;
+    }
+
+    public Integer getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Integer armor) {
+        this.armor = armor;
+    }
+
+    public Integer getSpiritArmor() {
+        return spiritArmor;
+    }
+
+    public void setSpiritArmor(Integer spiritArmor) {
+        this.spiritArmor = spiritArmor;
     }
 }

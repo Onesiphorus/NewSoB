@@ -9,6 +9,9 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ClothingSlotsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
@@ -19,6 +22,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.MeleeWeap
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
@@ -28,10 +33,11 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
+import java.security.cert.CertificateEncodingException;
 import java.util.ArrayList;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class}, version = 4)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 7)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
@@ -101,101 +107,297 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             GearBase gearBase;
             MeleeWeapon meleeWeapon;
             RangedWeapon rangedWeapon;
+            Skill skill;
             ArrayList<String> traits = new ArrayList<>(0);
 
             //Initialize Classes
             //Rancher
             traits.add("Frontier");
-            characterClass = new CharacterClass("Rancher", 2, 2, 3, 3, 4, 1, 14, 10, 4, 4, 4, 4, 2, 3, 2, traits);
+            characterClass = new CharacterClass(CharacterClassEnum.RANCHER.male(), 2, 2, 3, 3, 4, 1, 14, 10, 4, 4, 4, 4, 2, 3, 2, traits);
+            rangedWeapon = new RangedWeapon("Hunting Rifle", 12, 1);
+            rangedWeapon.setDamageBonus(2);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setUpgrades(3);
+            rangedWeapon.setSell(350);
+            characterClass.addStartingRanged(rangedWeapon);
+            mRangedWeaponDao.insert(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
             //Drifter
             traits = new ArrayList<>(0);
-            traits.add("Traveler");
-            traits.add("Frintier");
-            traits.add("Strange");
-            characterClass = new CharacterClass("Drifter",2,3,3,2,4,1,10,12,4,3,3,4,2,5,3,traits);
+            traits.add(TraitsEnum.TRAVELER.label());
+            traits.add(TraitsEnum.FRONTIER.label());
+            traits.add(TraitsEnum.STRANGE.label());
+            characterClass = new CharacterClass(CharacterClassEnum.DRIFTER.male(),2,3,3,2,4,1,10,12,4,3,3,4,2,5,3,traits);
+            rangedWeapon = new RangedWeapon("Trusty Pistol", 6, 0);
+            rangedWeapon.setSell(600);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(2);
+            rangedWeapon.addRestriction(TraitsEnum.FRONTIER.label());
+            characterClass.addStartingRanged(rangedWeapon);
+            mRangedWeaponDao.insert(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
             //Outlaw
             traits = new ArrayList<>(0);
-            traits.add("Outlaw");
-            traits.add("Showman");
-            characterClass = new CharacterClass("Outlaw", 3,2,1,2,3,4,12,12,4,4,5,4,2,4,2,traits);
+            traits.add(TraitsEnum.OUTLAW.label());
+            traits.add(TraitsEnum.SHOWMAN.label());
+            characterClass = new CharacterClass(CharacterClassEnum.OUTLAW.male(), 3,2,1,2,3,4,12,12,4,4,5,4,2,4,2,traits);
+            rangedWeapon = new RangedWeapon("Outlaw Pistol", 5, 3);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(3);
+            rangedWeapon.setSell(150);
+            rangedWeapon.setSet(SetListEnum.PROMO.label());
+            rangedWeapon.addRestriction(TraitsEnum.OUTLAW.label());
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
+            clothing = new Clothing("Bandana");
+            clothing.setSell(50);
+            clothing.setFace(true);
+            characterClass.addStartingClothing(clothing);
             mCharacterClassDao.insert(characterClass);
             //Jargono Native
             traits = new ArrayList<>(0);
-            traits.add("OtherWorld");
-            traits.add("Jargono");
-            traits.add("Tribal");
-            characterClass = new CharacterClass("Jargono Native", 4,2,3,3,1,2,11,11,4,4,5,4,2,4,2,traits);
+            traits.add(TraitsEnum.OTHERWORLD.label());
+            traits.add(TraitsEnum.JARGONO.label());
+            traits.add(TraitsEnum.TRIBAL.label());
+            characterClass = new CharacterClass(CharacterClassEnum.JARGONO_NATIVE.male(), 4,2,3,3,1,2,11,11,4,4,5,4,2,4,2,traits);
+            meleeWeapon = new MeleeWeapon("Dark Stone Blade");
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setDarkStone(1);
+            meleeWeapon.setSell(475);
+            meleeWeapon.setCritChance(5);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Tribal Shield");
+            meleeWeapon.setArmor(5);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(650);
+            meleeWeapon.addRestriction(TraitsEnum.TRIBAL.label());
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
+            meleeWeapon = new MeleeWeapon("Dark Stone Daggers");
+            meleeWeapon.setSet("HCJN");
+            meleeWeapon.setCombat(2);
+            meleeWeapon.addModifier(ModifiersEnum.INITIATIVE.label());
+            meleeWeapon.addRestriction(TraitsEnum.TRIBAL.label());
+            meleeWeapon.setTwoHanded(true);
+            meleeWeapon.setUpgrades(2);
+            meleeWeapon.setDarkStone(1);
+            meleeWeapon.setSell(625);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            gearBase = new GearBase("Raptor Tooth Necklace");
+            gearBase.addModifier(ModifiersEnum.CUNNING.label());
+            gearBase.setPersonal(true);
+            gearBase.setSet("HCJN");
+            mGearBaseDao.insert(gearBase);
+            rangedWeapon = new RangedWeapon("Jargono Bow", 7, 1);
+            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setSell(600);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(2);
+            rangedWeapon.setCritChance(5);
+            rangedWeapon.setDamageDie(8);
+            mRangedWeaponDao.insert(rangedWeapon);
             //U.S. Marshal
             traits = new ArrayList<>(0);
-            traits.add("Law");
-            traits.add("Traveler");
-            characterClass = new CharacterClass("U.s. Marshal",3,4,2,2,1,3,10,10,3,4,4,4,2,4,2,traits);
+            traits.add(TraitsEnum.LAW.label());
+            traits.add(TraitsEnum.TRAVELER.label());
+            characterClass = new CharacterClass(CharacterClassEnum.US_MARSHAL.male(),3,4,2,2,1,3,10,10,3,4,4,4,2,4,2,traits);
+            rangedWeapon = new RangedWeapon("Shotgun", 5, 1);
+            rangedWeapon.setToHitDie(8);
+            rangedWeapon.setDamageDie(8);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setSell(300);
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
+            gearBase = new GearBase("Marshal Badge");
+            gearBase.addRestriction(TraitsEnum.LAW.label());
+            mGearBaseDao.insert(gearBase);
+            characterClass.addStartingGear(gearBase);
             mCharacterClassDao.insert(characterClass);
             //Preacher//Nun
             traits = new ArrayList<>(0);
-            traits.add("Holy");
-            characterClass = new CharacterClass("Preacher", 1,2,4,3,3,2,12,10,5,3,5,4,2,2,2,traits);
+            traits.add(TraitsEnum.HOLY.label());
+            characterClass = new CharacterClass(CharacterClassEnum.PREACHER.male(), 1,2,4,3,3,2,12,10,5,3,5,4,2,2,2,traits);
+            meleeWeapon = new MeleeWeapon("Holy Book");
+            meleeWeapon.addModifier(ModifiersEnum.FAITH.label());
+            meleeWeapon.setCombat(1);
+            meleeWeapon.addRestriction(TraitsEnum.HOLY.label());
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setUpgrades(1);
+            meleeWeapon.setSell(300);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
-            characterClass.setClassName("Nun");
+            characterClass.setClassName(CharacterClassEnum.PREACHER.female());
             mCharacterClassDao.insert(characterClass);
             //Lawman
             traits = new ArrayList<>(0);
-            traits.add("Law");
-            traits.add("Frontier");
-            characterClass = new CharacterClass("Lawman", 2,4,1,3,2,3,12,12,4,4,4,4,2,4,2,traits);
+            traits.add(TraitsEnum.LAW.label());
+            traits.add(TraitsEnum.FRONTIER.label());
+            characterClass = new CharacterClass(CharacterClassEnum.LAWMAN.male(), 2,4,1,3,2,3,12,12,4,4,4,4,2,4,2,traits);
+            rangedWeapon = new RangedWeapon("Peacekeeper Pistol", 6, 3);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(1);
+            rangedWeapon.setSell(250);
+            rangedWeapon.addRestriction(TraitsEnum.LAW.label());
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
+            gearBase = new GearBase("Sheriff Badge");
+            gearBase.addRestriction(TraitsEnum.LAW.label());
+            mGearBaseDao.insert(gearBase);
+            characterClass.addStartingGear(gearBase);
             mCharacterClassDao.insert(characterClass);
             //Gunslinger
             traits = new ArrayList<>(0);
-            traits.add("Showman");
-            characterClass = new CharacterClass("Gunslinger", 3,3,2,2,2,4,10,12,5,4,3,5,1,6,2,traits);
+            traits.add(TraitsEnum.SHOWMAN.label());
+            characterClass = new CharacterClass(CharacterClassEnum.GUNSLINGER.male(), 3,3,2,2,2,4,10,12,5,4,3,5,1,6,2,traits);
+            rangedWeapon = new RangedWeapon("Pistol", 6, 2);
+            rangedWeapon.setSell(150);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(2);
+            rangedWeapon.setCost(500);
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
             //Gambler
             traits = new ArrayList<>(0);
-            traits.add("Performer");
-            traits.add("Showman");
-            characterClass = new CharacterClass("Gambler", 3,4,1,2,2,3,10,10,4,4,4,5,2,5,2,traits);
+            traits.add(TraitsEnum.PERFORMER.label());
+            traits.add(TraitsEnum.SHOWMAN.label());
+            characterClass = new CharacterClass(CharacterClassEnum.GAMBLER.male(), 3,4,1,2,2,3,10,10,4,4,4,5,2,5,2,traits);
+            rangedWeapon = mRangedWeaponDao.getByName("Pistol").getValue();
+            characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
             //Dark Stone Shaman
             traits = new ArrayList<>(0);
-            traits.add("Tribal");
-            traits.add("Magik");
-            characterClass = new CharacterClass("Dark Stone Shaman", 2,1,4,2,4,1,10,12,4,3,5,4,2,3,2,traits);
+            traits.add(TraitsEnum.TRIBAL.label());
+            traits.add(TraitsEnum.MAGIK.label());
+            characterClass = new CharacterClass(CharacterClassEnum.DARK_STONE_SHAMAN.male(), 2,1,4,2,4,1,10,12,4,3,5,4,2,3,2,traits);
+            meleeWeapon = new MeleeWeapon("Shaman Staff");
+            meleeWeapon.addModifier(ModifiersEnum.MAGIK.label());
+            meleeWeapon.addRestriction(TraitsEnum.MAGIK.label());
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setDarkStone(1);
+            meleeWeapon.setUpgrades(2);
+            meleeWeapon.setSell(450);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
+            gearBase = new GearBase("Dark Stone Satchel");
+            gearBase.addRestriction(TraitsEnum.MAGIK.label());
+            gearBase.setSell(850);
+            gearBase.setWeight(1);
+            mGearBaseDao.insert(gearBase);
+            characterClass.addStartingGear(gearBase);
             mCharacterClassDao.insert(characterClass);
             //Bandido//Bandida
             traits = new ArrayList<>(0);
-            traits.add("Outlaw");
-            characterClass = new CharacterClass("Bandido", 2,1,3,4,3,2,16,8,4,5,5,4,2,3,2,traits);
+            traits.add(TraitsEnum.OUTLAW.label());
+            characterClass = new CharacterClass(CharacterClassEnum.BANDIDO.male(), 2,1,3,4,3,2,16,8,4,5,5,4,2,3,2,traits);
+            rangedWeapon = mRangedWeaponDao.getByName("Pistol").getValue();
+            characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
-            characterClass.setClassName("Bandida");
+            characterClass.setClassName(CharacterClassEnum.BANDIDO.female());
             mCharacterClassDao.insert(characterClass);
+            gearBase = new GearBase("Dynamite Satchel");
+            gearBase.addRestriction(TraitsEnum.OUTLAW.label());
+            gearBase.setWeight(1);
+            gearBase.setSell(400);
             //Frontier Doc
             traits = new ArrayList<>(0);
-            traits.add("Frontier");
-            traits.add("Medical");
-            characterClass = new CharacterClass("Frontier Doc", 2,4,2,2,3,1,12,12,5,3,5,4,2,4,2,traits);
+            traits.add(TraitsEnum.FRONTIER.label());
+            traits.add(TraitsEnum.MEDICAL.label());
+            characterClass = new CharacterClass(CharacterClassEnum.FRONTIER_DOC.male(), 2,4,2,2,3,1,12,12,5,3,5,4,2,4,2,traits);
+            gearBase = new GearBase("Doctor's Bag");
+            gearBase.addRestriction(TraitsEnum.MEDICAL.label());
+            gearBase.setWeight(1);
+            gearBase.setSell(800);
+            mGearBaseDao.insert(gearBase);
+            characterClass.addStartingGear(gearBase);
             mCharacterClassDao.insert(characterClass);
+            meleeWeapon = new MeleeWeapon("Surgeon's Saw");
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setUpgrades(2);
+            meleeWeapon.setSell(450);
+            meleeWeapon.addRestriction(TraitsEnum.MEDICAL.label());
+            mMeleeWeaponDao.insert(meleeWeapon);
+            gearBase = new GearBase("Collection Jar");
+            gearBase.setSell(800);
+            mGearBaseDao.insert(gearBase);
             //Saloon Girl//Piano Player
             traits = new ArrayList<>(0);
-            traits.add("Performer");
-            characterClass = new CharacterClass("Saloon Girl", 4,3,3,1,2,3,8,14,3,4,4,4,2,5,2,traits);
+            traits.add(TraitsEnum.PERFORMER.label());
+            characterClass = new CharacterClass(CharacterClassEnum.SALOON_GIRL.female(), 4,3,3,1,2,3,8,14,3,4,4,4,2,5,2,traits);
+            rangedWeapon = new RangedWeapon("Hold-Out Pistol", 3, 1);
+            rangedWeapon.setCritChance(5);
+            rangedWeapon.addRestriction(TraitsEnum.PERFORMER.label());
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(1);
+            rangedWeapon.setSell(200);
+            rangedWeapon.setFree(true);
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
-            characterClass.setClassName("Piano Player");
+            characterClass.setClassName(CharacterClassEnum.SALOON_GIRL.male());
             mCharacterClassDao.insert(characterClass);
             //Wandering Samarai
             traits = new ArrayList<>(0);
-            traits.add("Traveler");
-            traits.add("Showman");
-            traits.add("Samarai");
-            characterClass = new CharacterClass("Wandering Samarai", 3,3,2,3,2,2,10,10,3,4,4,3,2,5,2,traits);
+            traits.add(TraitsEnum.SAMARAI.label());
+            traits.add(TraitsEnum.SHOWMAN.label());
+            traits.add(TraitsEnum.TRAVELER.label());
+            characterClass = new CharacterClass(CharacterClassEnum.WANDERING_SAMARAI.male(), 3,3,2,3,2,2,10,10,3,4,4,3,2,5,2,traits);
+            meleeWeapon = new MeleeWeapon("Wanderer's Katana");
+            meleeWeapon.addModifier(ModifiersEnum.MAX_FURY.label());
+            meleeWeapon.addModifier(ModifiersEnum.MAX_FURY.label());
+            meleeWeapon.setTwoHanded(true);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(400);
+            meleeWeapon.setUpgrades(2);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
+            clothing = new Clothing("Ronin's Helmet");
+            clothing.addRestriction(TraitsEnum.SAMARAI.label());
+            clothing.setFace(true);
+            clothing.setHat(true);
+            clothing.setWeight(1);
+            clothing.setUpgrades(1);
+            clothing.setSell(600);
+            mClothingDao.insert(clothing);
+            clothing = new Clothing("Samarai Armor");
+            clothing.addRestriction(TraitsEnum.SAMARAI.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.addPenalty(ModifiersEnum.INITIATIVE.label());
+            clothing.setWeight(1);
+            clothing.setArmor(5);
+            clothing.setUpgrades(2);
+            clothing.setSell(500);
+            mClothingDao.insert(clothing);
             //Indian Scout
             traits = new ArrayList<>(0);
-            traits.add("Scout");
-            traits.add("Tribal");
-            characterClass = new CharacterClass("Indian Scout", 3,2,3,2,3,2,10,10,4,4,4,4,2,5,2,traits);
+            traits.add(TraitsEnum.SCOUT.label());
+            traits.add(TraitsEnum.TRIBAL.label());
+            characterClass = new CharacterClass(CharacterClassEnum.INDIAN_SCOUT.male(), 3,2,3,2,3,2,10,10,4,4,4,4,2,5,2,traits);
+            rangedWeapon = new RangedWeapon("Carbine", 8, 3);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(2);
+            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setSell(400);
+            mRangedWeaponDao.insert(rangedWeapon);
+            characterClass.addStartingRanged(rangedWeapon);
+            meleeWeapon = new MeleeWeapon("Indian Hatchet");
+            meleeWeapon.setDamageBonus(1);
+            meleeWeapon.addRestriction(TraitsEnum.TRIBAL.label());
+            meleeWeapon.addRestriction(TraitsEnum.TRAVELER.label());
+            meleeWeapon.addRestriction(TraitsEnum.FRONTIER.label());
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setUpgrades(2);
+            meleeWeapon.setSell(250);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
 
             //Initialize Starting Gear
@@ -229,12 +431,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setArtifact(true);
             gearBase.setUpgrades(2);
             mGearBaseDao.insert(gearBase);
-            rangedWeapon = new RangedWeapon("Pistol", 6, 2);
-            rangedWeapon.setSell(150);
-            rangedWeapon.setWeight(1);
-            rangedWeapon.setUpgrades(2);
-            rangedWeapon.setCost(500);
-            mRangedWeaponDao.insert(rangedWeapon);
             gearBase = new GearBase("Mark of the Hunter");
             gearBase.setUpgrades(1);
             gearBase.setSell(100);
@@ -272,21 +468,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
             //Jargono Native
-            meleeWeapon = new MeleeWeapon("Dark Stone Daggers");
-            meleeWeapon.setSet("HCJN");
-            meleeWeapon.setCombat(2);
-            meleeWeapon.addModifier("Inititative");
-            meleeWeapon.addRestriction("Tribal");
-            meleeWeapon.setTwoHanded(true);
-            meleeWeapon.setUpgrades(2);
-            meleeWeapon.setDarkStone(1);
-            meleeWeapon.setSell(625);
-            mMeleeWeaponDao.insert(meleeWeapon);
-            gearBase = new GearBase("Raptor Tooth Necklace");
-            gearBase.addModifier("Cunning");
-            gearBase.setPersonal(true);
-            gearBase.setSet("HCJN");
-            mGearBaseDao.insert(gearBase);
+
 
             //Shops
             gearBase = new GearBase("Tomb Chest");
@@ -348,13 +530,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(1);
             mRangedWeaponDao.insert(rangedWeapon);
-            rangedWeapon = new RangedWeapon("Outlaw Pistol", 5, 3);
-            rangedWeapon.setWeight(1);
-            rangedWeapon.setUpgrades(3);
-            rangedWeapon.setSell(150);
-            rangedWeapon.setSet("P");
-            rangedWeapon.addRestriction("Outlaw");
-            mRangedWeaponDao.insert(rangedWeapon);
             gearBase = new GearBase("Red Sash");
             gearBase.setWeight(1);
             gearBase.addModifier("Move");
@@ -377,14 +552,15 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setSet("P");
             mMeleeWeaponDao.insert(meleeWeapon);
 
-            Skill skill = new Skill("Guns Blazing", "Outlaw", "Shootin'");
+            //OUTLAW SHOOTIN' UPGRADES
+            skill = new Skill("Guns Blazing", SkillTypeEnum.SHOOTIN.label());
             skill.setLevel(1);
             mSkillDao.insert(skill);
             skill.setName("Gunfighter");
             skill.setLevel(2);
             skill.addModifier("Max Grit");
             mSkillDao.insert(skill);
-            skill = new Skill("Wild at Heart", "Outlaw", "Shootin'");
+            skill = new Skill("Wild at Heart", SkillTypeEnum.SHOOTIN.label());
             skill.setLevel(3);
             skill.addModifier("Health");
             skill.addModifier("Health");
@@ -395,14 +571,20 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier("Health");
             skill.addModifier("Health");
             mSkillDao.insert(skill);
-            skill = new Skill("Outlaw Charm", "Outlaw", "Starting");
+            //OUTLAW STARTING UPGRADES
+            skill = new Skill("Outlaw Charm", CharacterClassEnum.OUTLAW.male());
             mSkillDao.insert(skill);
             skill.setName("Reckless");
+            mSkillDao.insert(skill);
+            skill.setName("Hitman");
+            skill.addModifier(ModifiersEnum.MOVE.label());
             mSkillDao.insert(skill);
             //Test Character
             mCharacterDao.deleteCharacterByName("Testes");
             SobCharacter sobCharacter = new SobCharacter("Testes", characterClass);
             mCharacterDao.insert(sobCharacter);
+
+
             return null;
         }
     }

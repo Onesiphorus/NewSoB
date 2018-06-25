@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -20,9 +21,14 @@ import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
 import java.util.ArrayList;
@@ -31,6 +37,10 @@ import java.util.List;
 public class CreateCharacterActivity extends AppCompatActivity {
 
     private SkillViewModel mSkillViewModel;
+    private GearBaseViewModel mGearBaseViewModel;
+    private MeleeWeaponViewModel mMeleeWeaponViewModel;
+    private RangedWeaponViewModel mRangedWeaponViewModel;
+    private ClothingViewModel mClothingViewModel;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -111,6 +121,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
         //TODO Add Starting Gear to characters here
 
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
         final SkillListAdapter adapter = new SkillListAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -123,7 +134,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<Skill> skills) {
                 ArrayList<Skill> newList = new ArrayList<>(0);
                 for(Skill skill : skills) {
-                    if(skill.getClassRestriction().equals(characterClass.getClassName())
+                    if(skill.getType().equals(characterClass.getClassName())
                             && skill.getLevel() == 0) {
                         newList.add(skill);
                     }
@@ -180,7 +191,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
         tv.setText("0");
 
         EditText name = findViewById(R.id.character_name_value);
-        Skill startingUpgrade = new Skill("Test Skill", characterClass.getClassName(), "Test Type");//TODO Map starting upgrade to radio group
+        Skill startingUpgrade = new Skill("Test Skill",  "Test Type");//TODO Map starting upgrade to radio group
 
         //TODO Modify Starting Gear according to starting upgrade
 
@@ -248,5 +259,4 @@ public class CreateCharacterActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
-
 }

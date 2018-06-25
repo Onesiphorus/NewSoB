@@ -22,4 +22,7 @@ public interface RangedWeaponDao {
 
     @Query("SELECT * FROM ranged_weapon_table ORDER BY ranged_name ASC")
     LiveData<List<RangedWeapon>> getAllRangedWeapons();
+
+    @Query("SELECT * FROM ranged_weapon_table WHERE ranged_name = :name")
+    LiveData<RangedWeapon> getByName(String name);
 }

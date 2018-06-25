@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion;
 
 import android.arch.persistence.room.TypeConverter;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
@@ -129,5 +130,21 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String SkillListToString(ArrayList<Skill> skillList) {
         return gson.toJson(skillList);
+    }
+
+    @TypeConverter
+    public static CharacterClassEnum stringToCharacterClassEnum(String data) {
+        if (null == data) {
+            return CharacterClassEnum.ANY;
+        }
+
+        Type listType = new TypeToken<CharacterClassEnum>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String CharacterClassEnumToString(CharacterClassEnum characterClassEnum) {
+        return gson.toJson(characterClassEnum);
     }
 }

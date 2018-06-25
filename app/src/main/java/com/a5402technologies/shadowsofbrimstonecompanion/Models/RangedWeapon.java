@@ -70,6 +70,15 @@ public class RangedWeapon implements Serializable{
     @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = false;
+    @NonNull
+    @ColumnInfo(name = "to_hit_die")
+    private Integer toHitDie = 6;
+    @NonNull
+    @ColumnInfo(name = "crit_chance")
+    private Integer critChance = 6;
+    @NonNull
+    @ColumnInfo(name = "free_attack")
+    private Boolean free = false;
 
     public RangedWeapon(@NonNull String name, @NonNull Integer range, @NonNull Integer shots) {
         this.name = name;
@@ -265,5 +274,32 @@ public class RangedWeapon implements Serializable{
 
     public void setArtifact(@NonNull Boolean artifact) {
         this.artifact = artifact;
+    }
+
+    @NonNull
+    public Integer getToHitDie() {
+        return toHitDie;
+    }
+
+    public void setToHitDie(@NonNull Integer toHitDie) {
+        this.toHitDie = toHitDie;
+    }
+
+    @NonNull
+    public Integer getCritChance() {
+        return critChance;
+    }
+
+    public void setCritChance(@NonNull Integer critChance) {
+        this.critChance = critChance;
+    }
+
+    @NonNull
+    public Boolean getFree() {
+        return free;
+    }
+
+    public void setFree(@NonNull Boolean free) {
+        this.free = free;
     }
 }

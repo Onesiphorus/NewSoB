@@ -1,13 +1,18 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Models;
 
+import android.app.job.JobInfo;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+import android.util.Range;
+
 import java.util.ArrayList;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -75,32 +80,32 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "level")
     private Integer level = 1;
     @ColumnInfo(name = "face_slot")
-    private Boolean face = false;
+    private Boolean face = Boolean.FALSE;
     @ColumnInfo(name = "hat_slot")
-    private Boolean hat = false;
+    private Boolean hat = Boolean.FALSE;
     @ColumnInfo(name = "shoulders_slot")
-    private Boolean shoulders = false;
+    private Boolean shoulders = Boolean.FALSE;
     @ColumnInfo(name = "torso_slot")
-    private Boolean torso =false;
+    private Boolean torso = Boolean.FALSE;
     @ColumnInfo(name = "gloves_slot")
-    private Boolean gloves = false;
+    private Boolean gloves = Boolean.FALSE;
     @ColumnInfo(name = "pants_slot")
-    private Boolean pants = false;
+    private Boolean pants = Boolean.FALSE;
     @ColumnInfo(name = "boots_slot")
-    private Boolean boots = false;
+    private Boolean boots = Boolean.FALSE;
     @ColumnInfo(name = "coat_slot")
-    private Boolean coat = false;
-    @ColumnInfo(name = "left_hand_slot")
-    private Boolean leftHand = false;
-    @ColumnInfo(name = "right_hand_slot")
-    private Boolean rightHand = false;
+    private Boolean coat = Boolean.FALSE;
     @ColumnInfo(name = "has_prehensile_tail")
-    private Boolean hasPTail = false;
-    @ColumnInfo(name = "prehensile_tail_slot")
-    private Boolean prehensileTail = false;
+    private Boolean hasPTail = Boolean.FALSE;
     @ColumnInfo(name = "earned_skills")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Skill> upgrades;
+    @NonNull
+    @ColumnInfo(name = "hands_used")
+    private Integer handsUsed = 0;
+    @NonNull
+    @ColumnInfo(name = "move_bonus")
+    private Integer moveBonus = 0;
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
@@ -385,36 +390,12 @@ public class SobCharacter implements Serializable {
         this.coat = coat;
     }
 
-    public Boolean getLeftHand() {
-        return leftHand;
-    }
-
-    public void setLeftHand(Boolean leftHand) {
-        this.leftHand = leftHand;
-    }
-
-    public Boolean getRightHand() {
-        return rightHand;
-    }
-
-    public void setRightHand(Boolean rightHand) {
-        this.rightHand = rightHand;
-    }
-
     public Boolean getHasPTail() {
         return hasPTail;
     }
 
     public void setHasPTail(Boolean hasPTail) {
         this.hasPTail = hasPTail;
-    }
-
-    public Boolean getPrehensileTail() {
-        return prehensileTail;
-    }
-
-    public void setPrehensileTail(Boolean prehensileTail) {
-        this.prehensileTail = prehensileTail;
     }
 
     public void addMeleeWeapon(MeleeWeapon meleeWeapon) {
@@ -461,6 +442,304 @@ public class SobCharacter implements Serializable {
 
     public void setUpgrades(ArrayList<Skill> upgrades) {
         this.upgrades = upgrades;
+    }
+
+    @NonNull
+    public Integer getMoveBonus() {
+        return moveBonus;
+    }
+
+    public void setMoveBonus(@NonNull Integer moveBonus) {
+        this.moveBonus = moveBonus;
+    }
+
+    @NonNull
+    public Integer getHandsUsed() {
+        return handsUsed;
+    }
+
+    public void setHandsUsed(@NonNull Integer handsUsed) {
+        this.handsUsed = handsUsed;
+    }
+
+    public Boolean equipClothing(Clothing clothing) {
+        if(clothing.getHat().equals(Boolean.TRUE)) {
+            if(this.getHat().equals(Boolean.FALSE)) {
+                this.setHat(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getBoots().equals(Boolean.TRUE)) {
+            if(this.getBoots().equals(Boolean.FALSE)) {
+                this.setBoots(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getCoat().equals(Boolean.TRUE)) {
+            if(this.getCoat().equals(Boolean.FALSE)) {
+                this.setCoat(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getFace().equals(Boolean.TRUE)) {
+            if (this.getFace().equals(Boolean.FALSE)) {
+                this.setFace(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            } else return Boolean.FALSE;
+        }
+        if(clothing.getGloves().equals(Boolean.TRUE)) {
+            if(this.getGloves().equals(Boolean.FALSE)) {
+                this.setGloves(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getPants().equals(Boolean.TRUE)) {
+            if(this.getPants().equals(Boolean.FALSE)) {
+                this.setPants(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getShoulders().equals(Boolean.TRUE)) {
+            if(this.getShoulders().equals(Boolean.FALSE)) {
+                this.setShoulders(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+        if(clothing.getTorso().equals(Boolean.TRUE)) {
+            if(this.getTorso().equals(Boolean.FALSE)) {
+                this.setTorso(Boolean.TRUE);
+                clothing.setEquipped(Boolean.TRUE);
+            }
+            else return Boolean.FALSE;
+        }
+            return Boolean.TRUE;
+    }
+
+    public Boolean unequipClothing(Clothing clothing) {
+        if(clothing.getEquipped().equals(Boolean.TRUE)) {
+            if(clothing.getTorso().equals(Boolean.TRUE)) {
+                this.setTorso(Boolean.FALSE);
+            }
+            if(clothing.getShoulders().equals(Boolean.TRUE)) {
+                this.setShoulders(Boolean.FALSE);
+            }
+            if(clothing.getPants().equals(Boolean.TRUE)) {
+                this.setPants(Boolean.FALSE);
+            }
+            if(clothing.getGloves().equals(Boolean.TRUE)) {
+                this.setGloves(Boolean.FALSE);
+            }
+            if(clothing.getFace().equals(Boolean.TRUE)) {
+                this.setFace(Boolean.FALSE);
+            }
+            if(clothing.getCoat().equals(Boolean.TRUE)) {
+                this.setCoat(Boolean.FALSE);
+            }
+            if(clothing.getBoots().equals(Boolean.TRUE)) {
+                this.setBoots(Boolean.FALSE);
+            }
+            if(clothing.getHat().equals(Boolean.TRUE)) {
+                this.setHat(Boolean.FALSE);
+            }
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    private Integer handsFree() {
+        return hasPTail ? (3 - getHandsUsed()) : (2-getHandsUsed());
+    }
+
+    public Boolean equipRanged(RangedWeapon rangedWeapon) {
+        if (rangedWeapon.getTwoHanded().equals(Boolean.TRUE) && this.handsFree() > 1) {
+            setHandsUsed(getHandsUsed() + 2);
+            return Boolean.TRUE;
+        } else if (this.handsFree() > 0){
+            setHandsUsed(getHandsUsed() + 1);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    public Boolean unequipRanged(RangedWeapon rangedWeapon) {
+        if(rangedWeapon.getEquipped().equals(Boolean.TRUE)) {
+            if(rangedWeapon.getTwoHanded().equals(Boolean.TRUE)) {
+                setHandsUsed(getHandsUsed() - 2);
+            } else setHandsUsed(getHandsUsed() -1);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+    public Boolean equipMelee(MeleeWeapon meleeWeapon) {
+        if (meleeWeapon.getTwoHanded().equals(Boolean.TRUE) && this.handsFree() > 1) {
+            setHandsUsed(getHandsUsed() + 2);
+            return Boolean.TRUE;
+        } else if (this.handsFree() > 0){
+            setHandsUsed(getHandsUsed() + 1);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    public Boolean unequipMelee(MeleeWeapon meleeWeapon) {
+        if(meleeWeapon.getEquipped().equals(Boolean.TRUE)) {
+            if(meleeWeapon.getTwoHanded().equals(Boolean.TRUE)) {
+                setHandsUsed(getHandsUsed() - 2);
+            } else setHandsUsed(getHandsUsed() -1);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    public void setBonuses() {
+        resetBonuses();
+        for(Clothing clothing : this.getClothing()) {
+            if(clothing.getEquipped().equals(Boolean.TRUE)) {
+                for (String string : clothing.getModifiers()) {
+                    findBonus(string);
+                }
+                for (String string : clothing.getPenalties()) {
+                    findPenalty(string);
+                }
+            }
+        }
+        for(MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
+            if(meleeWeapon.getEquipped().equals(Boolean.TRUE))
+            setCombat(meleeWeapon);
+        }
+        for(RangedWeapon rangedWeapon : this.getRangedWeapons()) {
+            if(rangedWeapon.getEquipped().equals(Boolean.TRUE))
+            setRanged(rangedWeapon);
+        }
+        for(GearBase gearBase : this.getGear()) {
+            for(String string : gearBase.getModifiers()) {
+                findBonus(string);
+            }
+            for(String string : gearBase.getPenalties()) {
+                findPenalty(string);
+            }
+        }
+    }
+
+    private void setRanged(RangedWeapon rangedWeapon) {
+        for(String string : rangedWeapon.getModifiers()) {
+            findBonus(string);
+        }
+        for(String string : rangedWeapon.getPenalties()) {
+            findPenalty(string);
+        }
+    }
+
+    private void setCombat(MeleeWeapon meleeWeapon) {
+        this.combatBonus += meleeWeapon.getCombat();
+        if(this.meleeDamageDie < meleeWeapon.getDamageDie()) {
+            this.setMeleeDamageDie(meleeWeapon.getDamageDie());
+        }
+        this.meleeDamageBonus += meleeWeapon.getDamageBonus();
+        for(String string : meleeWeapon.getModifiers()) {
+            findBonus(string);
+        }
+        for(String string : meleeWeapon.getPenalties()) {
+            findPenalty(string);
+        }
+    }
+
+    private void findBonus(String modifier) {
+        if(ModifiersEnum.STRENGTH.label().equals(modifier)) {
+            setStrengthBonus(getStrengthBonus() + 1);
+        }
+        else if(ModifiersEnum.AGILITY.label().equals(modifier)) {
+            setAgilityBonus(getAgilityBonus() + 1);
+        }
+        else if(ModifiersEnum.CUNNING.label().equals(modifier)) {
+            setCunningBonus(getCunningBonus() + 1);
+        }
+        else if(ModifiersEnum.SPIRIT.label().equals(modifier)) {
+            setSpiritBonus(getSpiritBonus() + 1);
+        }
+        else if(ModifiersEnum.LORE.label().equals(modifier)) {
+            setLoreBonus(getLoreBonus() + 1);
+        }
+        else if(ModifiersEnum.LUCK.label().equals(modifier)) {
+            setLuckBonus(getLuckBonus() + 1);
+        }
+        else if(ModifiersEnum.MAX_HEALTH.label().equals(modifier)) {
+            setHealthBonus(getHealthBonus() + 1);
+        }
+        else if(ModifiersEnum.MAX_SANITY.label().equals(modifier)) {
+            setSanityBonus(getSanityBonus() + 1);
+        }
+        else if(ModifiersEnum.INITIATIVE.label().equals(modifier)) {
+            setInitiativeBonus(getInitiativeBonus() + 1);
+        }
+        else if(ModifiersEnum.MOVE.label().equals(modifier)) {
+            setMoveBonus(getMoveBonus() + 1);
+        }
+        else if(ModifiersEnum.MAX_GRIT.label().equals(modifier)) {
+            setMaxGritBonus(getMaxGritBonus() + 1);
+        }
+    }
+
+    private void findPenalty(String modifier) {
+        if(ModifiersEnum.STRENGTH.label().equals(modifier)) {
+            setStrengthBonus(getStrengthBonus() - 1);
+        }
+        else if(ModifiersEnum.AGILITY.label().equals(modifier)) {
+            setAgilityBonus(getAgilityBonus() - 1);
+        }
+        else if(ModifiersEnum.CUNNING.label().equals(modifier)) {
+            setCunningBonus(getCunningBonus() - 1);
+        }
+        else if(ModifiersEnum.SPIRIT.label().equals(modifier)) {
+            setSpiritBonus(getSpiritBonus() - 1);
+        }
+        else if(ModifiersEnum.LORE.label().equals(modifier)) {
+            setLoreBonus(getLoreBonus() - 1);
+        }
+        else if(ModifiersEnum.LUCK.label().equals(modifier)) {
+            setLuckBonus(getLuckBonus() - 1);
+        }
+        else if(ModifiersEnum.MAX_HEALTH.label().equals(modifier)) {
+            setHealthBonus(getHealthBonus() - 1);
+        }
+        else if(ModifiersEnum.MAX_SANITY.label().equals(modifier)) {
+            setSanityBonus(getSanityBonus() - 1);
+        }
+        else if(ModifiersEnum.INITIATIVE.label().equals(modifier)) {
+            setInitiativeBonus(getInitiativeBonus() - 1);
+        }
+        else if(ModifiersEnum.MOVE.label().equals(modifier)) {
+            setMoveBonus(getMoveBonus() - 1);
+        }
+        else if(ModifiersEnum.MAX_GRIT.label().equals(modifier)) {
+            setMaxGritBonus(getMaxGritBonus() - 1);
+        }
+    }
+
+    private void resetBonuses() {
+        this.setAgilityBonus(0);
+        this.setCunningBonus(0);
+        this.setSpiritBonus(0);
+        this.setStrengthBonus(0);
+        this.setLoreBonus(0);
+        this.setLuckBonus(0);
+        this.setInitiativeBonus(0);
+        this.setSanityBonus(0);
+        this.setHealthBonus(0);
+        this.setMoveBonus(0);
+        this.setCombatBonus(0);
+        this.setMaxGritBonus(0);
+        this.setMeleeDamageBonus(0);
+        this.setRangedDamageBonus(0);
+        this.setMeleeDamageDie(6);
+        this.setArmor(0);
+        this.setSpiritArmor(0);
     }
 }
 

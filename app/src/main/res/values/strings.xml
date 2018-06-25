@@ -32,6 +32,8 @@
     <string name="choose_class">CHOOSE YOUR CLASS</string>
     <string name="starting_gear">STARTING GEAR</string>
     <string name="shadows">SHADOWS\nOF\nBRIMSTONE</string>
+    <string name="accept">ACCEPT</string>
+    <string name="restart">RESTART</string>
 
     <string name="title_activity_shadows_of_brimstone">ShadowsOfBrimstoneActivity</string>
 </resources>

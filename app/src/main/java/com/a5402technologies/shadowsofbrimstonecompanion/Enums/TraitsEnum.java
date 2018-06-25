@@ -6,7 +6,19 @@ import java.util.Map;
 public enum TraitsEnum {
     LAW("Law","LAW"),
     HOLY("Holy","HOLY"),
-    FRONTIER("Frontier","FRONTIER");
+    FRONTIER("Frontier","FRONTIER"),
+    STRANGE("Strange", "STRANGE"),
+    TRAVELER("Traveler","TRAVELER"),
+    OUTLAW("Outlaw", "OUTLAW"),
+    SHOWMAN("Showman", "SHOWMAN"),
+    TRIBAL("Tribal", "TRIBAL"),
+    JARGONO("Jargono", "JARGONO"),
+    OTHERWORLD("OtherWorld", "OTHERWORLD"),
+    PERFORMER("Performer", "PERFORMER"),
+    MAGIK("Magik", "MAGIK"),
+    MEDICAL("Medical", "MEDICAL"),
+    SAMARAI("Samaria", "SAMARAI"),
+    SCOUT("Scout", "SCOUT");
     //TODO Finish Traits
 
     private String code;

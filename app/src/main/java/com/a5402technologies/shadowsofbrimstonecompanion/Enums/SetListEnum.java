@@ -13,7 +13,8 @@ public enum SetListEnum {
     FERAL_VAMPIRES("Feral Vampires", "FV"),
     WEREWOLVES_DEN("Werewolves Den", "WW"),
     CRIMSON_HAND("Cult of the Crimson Hand", "CH"),
-    HELLFIRE_SUCCUBUS("Hellfire Succubus", "HS");
+    HELLFIRE_SUCCUBUS("Hellfire Succubus", "HS"),
+    PROMO("Promo", "P");
     //TODO finish setLists
 
 

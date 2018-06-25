@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface ClothingDao {
 
     @Query("SELECT * FROM clothing_table ORDER BY clothing_name ASC")
     LiveData<List<Clothing>> getAllClothing();
+
 }

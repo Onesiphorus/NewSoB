@@ -24,9 +24,6 @@ public class Skill implements Serializable{
     @NonNull
     @ColumnInfo(name = "type")
     private String type;
-    @NonNull
-    @ColumnInfo(name = "class_restriction")
-    private String classRestriction;
     @ColumnInfo(name = "modifiers")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> modifiers;
@@ -36,12 +33,15 @@ public class Skill implements Serializable{
     @NonNull
     @ColumnInfo(name = "level")
     private Integer level = 0;
+    @ColumnInfo(name = "armor")
+    private Integer armor;
+    @ColumnInfo(name = "spirit_armor")
+    private Integer spiritArmor;
 
-    public Skill(@NonNull String name, @NonNull String classRestriction, @NonNull String type) {
+    public Skill(@NonNull String name, @NonNull String type) {
         this.name = name;
         this.modifiers = new ArrayList<>(0);
         this.penalties = new ArrayList<>(0);
-        this.classRestriction = classRestriction;
         this.type = type;
     }
 
@@ -61,15 +61,6 @@ public class Skill implements Serializable{
 
     public void setType(@NonNull String type) {
         this.type = type;
-    }
-
-    @NonNull
-    public String getClassRestriction() {
-        return classRestriction;
-    }
-
-    public void setClassRestriction(@NonNull String classRestriction) {
-        this.classRestriction = classRestriction;
     }
 
     public ArrayList<String> getModifiers() {
@@ -101,5 +92,21 @@ public class Skill implements Serializable{
     }
     public void addPenalty(String penalty) {
         this.penalties.add(penalty);
+    }
+
+    public Integer getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Integer armor) {
+        this.armor = armor;
+    }
+
+    public Integer getSpiritArmor() {
+        return spiritArmor;
+    }
+
+    public void setSpiritArmor(Integer spiritArmor) {
+        this.spiritArmor = spiritArmor;
     }
 }

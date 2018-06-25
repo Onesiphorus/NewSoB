@@ -22,11 +22,4 @@ public interface SkillDao {
 
     @Query("SELECT * FROM skill_table ORDER BY skill_name ASC")
     LiveData<List<Skill>> getAllSkill();
-
-    @Query("SELECT * FROM skill_table WHERE class_restriction = :classRestriction")
-    LiveData<List<Skill>> getAllClassSkills(String classRestriction);
-
-    @Query("SELECT * FROM skill_table WHERE class_restriction = :classRestriction AND level = :level")
-    LiveData<List<Skill>> getAllClassSkillsByLevel(String classRestriction, Integer level);
-
 }

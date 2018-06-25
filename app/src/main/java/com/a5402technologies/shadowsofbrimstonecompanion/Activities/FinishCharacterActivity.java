@@ -2,16 +2,25 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+
+import java.util.ArrayList;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -151,6 +160,57 @@ public class FinishCharacterActivity extends AppCompatActivity {
         tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
         tv = findViewById(R.id.tv_character_name);
         tv.setText(sobCharacter.getCharacterName());
+
+        ArrayList<String> startingGear = new ArrayList<>(0);
+        for (GearBase gear : sobCharacter.getCharacterClass().getStartingGear()) {
+            startingGear.add(gear.getName());
+        }
+        for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+            startingGear.add(meleeWeapon.getName());
+        }
+        for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+            startingGear.add(rangedWeapon.getName());
+        }
+        for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+            startingGear.add(clothing.getName());
+        }
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final StringListAdapter adapter = new StringListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter.setString(startingGear);
+
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+            Intent intent = new Intent();
+            for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+                clothing.setEquipped(sobCharacter.equipClothing(clothing));
+                sobCharacter.addClothing(clothing);
+            }
+            for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+                rangedWeapon.setEquipped(sobCharacter.equipRanged(rangedWeapon));
+                sobCharacter.addRangedWeapon(rangedWeapon);
+            }
+            for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+                meleeWeapon.setEquipped(sobCharacter.equipMelee(meleeWeapon));
+                sobCharacter.addMeleeWeapon(meleeWeapon);
+            }
+            for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
+                sobCharacter.addGear(gearBase);
+            }
+        });
+
+        sobCharacter.setBonuses();
+
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+        });
+
+
+
 
 
     }

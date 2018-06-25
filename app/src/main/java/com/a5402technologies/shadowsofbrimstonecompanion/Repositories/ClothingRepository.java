@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.ClothingDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.RoomDatabases.SOBRoomDatabase;
 
 import java.util.List;
@@ -14,11 +15,13 @@ public class ClothingRepository {
 
     private ClothingDao mClothingDao;
     private LiveData<List<Clothing>> mAllClothing;
+    String mEquip;
 
     public ClothingRepository(Application application) {
         SOBRoomDatabase db = SOBRoomDatabase.getDatabase(application);
         mClothingDao = db.clothingDao();
         mAllClothing = mClothingDao.getAllClothing();
+
     }
 
     public LiveData<List<Clothing>> getAllClothing() {

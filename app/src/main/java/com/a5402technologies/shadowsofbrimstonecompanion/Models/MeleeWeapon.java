@@ -64,6 +64,11 @@ public class MeleeWeapon implements Serializable{
     @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = false;
+    @NonNull
+    @ColumnInfo(name = "crit_chance")
+    private Integer critChance = 6;
+    @ColumnInfo(name = "armor")
+    private Integer armor;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -238,5 +243,22 @@ public class MeleeWeapon implements Serializable{
 
     public void setArtifact(@NonNull Boolean artifact) {
         this.artifact = artifact;
+    }
+
+    @NonNull
+    public Integer getCritChance() {
+        return critChance;
+    }
+
+    public void setCritChance(@NonNull Integer critChance) {
+        this.critChance = critChance;
+    }
+
+    public Integer getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Integer armor) {
+        this.armor = armor;
     }
 }
