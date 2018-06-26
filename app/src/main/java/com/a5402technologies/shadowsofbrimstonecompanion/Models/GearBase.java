@@ -51,7 +51,7 @@ public class GearBase implements Serializable {
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = false;
+    private Boolean artifact = Boolean.FALSE;
     @ColumnInfo(name = "armor")
     private Integer armor;
     @ColumnInfo(name = "spirit_armor")
@@ -66,8 +66,8 @@ public class GearBase implements Serializable {
         this.modifiers = new ArrayList<>(0);
         this.restrictions = new ArrayList<>(0);
         this.set = "City of the Ancients";
-        this.personal = false;
-        this.starting = false;
+        this.personal = Boolean.FALSE;
+        this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
     }
 

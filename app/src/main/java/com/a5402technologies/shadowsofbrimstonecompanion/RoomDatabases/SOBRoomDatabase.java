@@ -37,7 +37,7 @@ import java.security.cert.CertificateEncodingException;
 import java.util.ArrayList;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class}, version = 7)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 11)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
@@ -102,6 +102,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao.deleteAllRangedWeapons();
             mClothingDao.deleteAllClothing();
             mSkillDao.deleteAllSkill();
+            mCharacterDao.deleteCharacterByName("Kristal");
+            SobCharacter sobCharacter;
             CharacterClass characterClass;
             Clothing clothing;
             GearBase gearBase;
@@ -169,6 +171,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setCritChance(5);
             mMeleeWeaponDao.insert(meleeWeapon);
             characterClass.addStartingMelee(meleeWeapon);
+            MeleeWeapon testRemove = meleeWeapon;
             meleeWeapon = new MeleeWeapon("Tribal Shield");
             meleeWeapon.setArmor(5);
             meleeWeapon.setWeight(1);
@@ -177,6 +180,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao.insert(meleeWeapon);
             characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
+            characterClass.removeStartingMelee(testRemove);
+            characterClass.removeStartingMelee(meleeWeapon);
             meleeWeapon = new MeleeWeapon("Dark Stone Daggers");
             meleeWeapon.setSet("HCJN");
             meleeWeapon.setCombat(2);
@@ -187,11 +192,20 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setDarkStone(1);
             meleeWeapon.setSell(625);
             mMeleeWeaponDao.insert(meleeWeapon);
+            characterClass.addStartingMelee(meleeWeapon);
+            //Test Character Start
+            sobCharacter = new SobCharacter("Kristal", characterClass);
+            meleeWeapon.setEquipped(Boolean.TRUE);
+            sobCharacter.addMeleeWeapon(meleeWeapon);
+            //End
             gearBase = new GearBase("Raptor Tooth Necklace");
             gearBase.addModifier(ModifiersEnum.CUNNING.label());
             gearBase.setPersonal(true);
             gearBase.setSet("HCJN");
             mGearBaseDao.insert(gearBase);
+            //Test
+            sobCharacter.addGear(gearBase);
+            //End
             rangedWeapon = new RangedWeapon("Jargono Bow", 7, 1);
             rangedWeapon.setTwoHanded(true);
             rangedWeapon.setSell(600);
@@ -450,22 +464,35 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Old Map");
             gearBase.setSell(25);
             mGearBaseDao.insert(gearBase);
+            //Test
+            sobCharacter.addGear(gearBase);
+            //End
             rangedWeapon = new RangedWeapon("Plasma Arc", 8, 1);
             rangedWeapon.setWeight(1);
             rangedWeapon.setSell(675);
             mRangedWeaponDao.insert(rangedWeapon);
+            //Test
+            sobCharacter.addRangedWeapon(rangedWeapon);
+            //End
             gearBase = new GearBase("Void Crystals");
             gearBase.setSell(100);
             mGearBaseDao.insert(gearBase);
+            //Test
+            sobCharacter.addGear(gearBase);
+            //End
 
             //DD
-            gearBase = new GearBase("Traveling Boots");
+            clothing = new Clothing("Traveling Boots");
             gearBase.addModifier("Agility");
             gearBase.setWeight(1);
             gearBase.setUpgrades(1);
             gearBase.setSell(650);
             gearBase.setSet("DD");
-            mGearBaseDao.insert(gearBase);
+            clothing.setBoots(Boolean.TRUE);
+            mClothingDao.insert(clothing);
+            //Test
+            clothing.setEquipped(Boolean.TRUE);
+            sobCharacter.addClothing(clothing);
 
             //Jargono Native
 
@@ -507,6 +534,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setSell(700);
             rangedWeapon.setSet("LA");
             mRangedWeaponDao.insert(rangedWeapon);
+            //Test
+            sobCharacter.addRangedWeapon(rangedWeapon);
+            //End
 
 
             //Promo
@@ -545,12 +575,18 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setSell(225);
             gearBase.setSet("P");
             mGearBaseDao.insert(gearBase);
+            //Test
+            sobCharacter.addGear(gearBase);
+            //End
             meleeWeapon = new MeleeWeapon("Trun Gladius");
             meleeWeapon.setWeight(2);
             meleeWeapon.setTwoHanded(true);
             meleeWeapon.setDamageBonus(2);
             meleeWeapon.setSet("P");
             mMeleeWeaponDao.insert(meleeWeapon);
+            //Test
+            sobCharacter.addMeleeWeapon(meleeWeapon);
+            //End
 
             //OUTLAW SHOOTIN' UPGRADES
             skill = new Skill("Guns Blazing", SkillTypeEnum.SHOOTIN.label());
@@ -579,10 +615,12 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setName("Hitman");
             skill.addModifier(ModifiersEnum.MOVE.label());
             mSkillDao.insert(skill);
-            //Test Character
-            mCharacterDao.deleteCharacterByName("Testes");
-            SobCharacter sobCharacter = new SobCharacter("Testes", characterClass);
+            //Jargono Native Starting Skills
+            skill = new Skill("Serpent Slayer", CharacterClassEnum.JARGONO_NATIVE.male());
+            skill.addModifier(ModifiersEnum.MOVE.label());
+
             mCharacterDao.insert(sobCharacter);
+
 
 
             return null;

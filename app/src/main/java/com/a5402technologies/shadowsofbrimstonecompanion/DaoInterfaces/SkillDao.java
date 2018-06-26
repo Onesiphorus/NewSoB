@@ -22,4 +22,7 @@ public interface SkillDao {
 
     @Query("SELECT * FROM skill_table ORDER BY skill_name ASC")
     LiveData<List<Skill>> getAllSkill();
+
+    @Query("SELECT * FROM skill_table WHERE skill_name = :name")
+    LiveData<Skill> getSkillByName(String name);
 }

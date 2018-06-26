@@ -30,7 +30,7 @@ public class RangedWeapon implements Serializable{
     private Integer range = 0;
     @NonNull
     @ColumnInfo(name = "is_two_handed")
-    private Boolean twoHanded = false;
+    private Boolean twoHanded = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -69,7 +69,7 @@ public class RangedWeapon implements Serializable{
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = false;
+    private Boolean artifact = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "to_hit_die")
     private Integer toHitDie = 6;
@@ -78,7 +78,7 @@ public class RangedWeapon implements Serializable{
     private Integer critChance = 6;
     @NonNull
     @ColumnInfo(name = "free_attack")
-    private Boolean free = false;
+    private Boolean free = Boolean.FALSE;
 
     public RangedWeapon(@NonNull String name, @NonNull Integer range, @NonNull Integer shots) {
         this.name = name;
@@ -86,7 +86,7 @@ public class RangedWeapon implements Serializable{
         this.damageBonus = 0;
         this.shots = shots;
         this.range = range;
-        this.twoHanded = false;
+        this.twoHanded = Boolean.FALSE;
         this.cost = 0;
         this.sell = 0;
         this.weight = 0;
@@ -94,10 +94,10 @@ public class RangedWeapon implements Serializable{
         this.modifiers = new ArrayList<>(0);
         this.restrictions = new ArrayList<>(0);
         this.set = "City of the Ancients";
-        this.personal = false;
-        this.starting = false;
+        this.personal = Boolean.FALSE;
+        this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
-        this.equipped = false;
+        this.equipped = Boolean.FALSE;
     }
 
     @NonNull

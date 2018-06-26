@@ -23,4 +23,7 @@ public interface GearBaseDao {
 
     @Query("SELECT * from gear_base_table ORDER BY gear_name ASC")
     LiveData<List<GearBase>> getAllGear();
+
+    @Query("SELECT * FROM gear_base_table WHERE gear_name = :name")
+    LiveData<GearBase> getGearByName(String name);
 }

@@ -22,4 +22,7 @@ public interface MeleeWeaponDao {
 
     @Query("SELECT * FROM melee_weapon_table ORDER BY melee_name ASC")
     LiveData<List<MeleeWeapon>> getAllMeleeWeapons();
+
+    @Query("SELECT * FROM melee_weapon_table WHERE melee_name = :name")
+    LiveData<MeleeWeapon> getMeleeByName(String name);
 }

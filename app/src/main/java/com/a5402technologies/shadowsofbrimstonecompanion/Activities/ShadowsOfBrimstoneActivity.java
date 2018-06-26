@@ -94,6 +94,8 @@ public class ShadowsOfBrimstoneActivity extends Activity {
         setContentView(R.layout.activity_shadows_of_brimstone);
         SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
+        sobCharacter.setBonuses();
+
         TextView tv = findViewById(R.id.sob_fullscreen);
         Integer value;
         tv.setText(sobCharacter.getCharacterClass().getClassName());

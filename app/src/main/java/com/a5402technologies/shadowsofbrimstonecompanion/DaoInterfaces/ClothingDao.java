@@ -24,4 +24,7 @@ public interface ClothingDao {
     @Query("SELECT * FROM clothing_table ORDER BY clothing_name ASC")
     LiveData<List<Clothing>> getAllClothing();
 
+    @Query("SELECT * FROM clothing_table WHERE clothing_name = :name")
+    LiveData<Clothing> getClothingByName(String name);
+
 }

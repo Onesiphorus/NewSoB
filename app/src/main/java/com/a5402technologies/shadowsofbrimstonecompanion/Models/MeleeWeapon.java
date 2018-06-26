@@ -24,7 +24,7 @@ public class MeleeWeapon implements Serializable{
     @ColumnInfo(name = "melee_die")
     private Integer damageDie = 6;
     @ColumnInfo(name = "is_two_handed")
-    private Boolean twoHanded = false;
+    private Boolean twoHanded = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -48,22 +48,21 @@ public class MeleeWeapon implements Serializable{
     private String set = "City of the Ancients";
     @NonNull
     @ColumnInfo(name = "personal_item")
-    private Boolean personal = false;
+    private Boolean personal = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "starting_gear")
-    private Boolean starting = false;
+    private Boolean starting = Boolean.FALSE;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
-    @NonNull
     @ColumnInfo(name = "equipped")
-    private Boolean equipped = false;
+    private Boolean equipped = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "upgrade_slots")
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = false;
+    private Boolean artifact = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "crit_chance")
     private Integer critChance = 6;
@@ -206,12 +205,12 @@ public class MeleeWeapon implements Serializable{
         this.penalties = penalties;
     }
 
-    @NonNull
+
     public Boolean getEquipped() {
         return equipped;
     }
 
-    public void setEquipped(@NonNull Boolean equipped) {
+    public void setEquipped( Boolean equipped) {
         this.equipped = equipped;
     }
 

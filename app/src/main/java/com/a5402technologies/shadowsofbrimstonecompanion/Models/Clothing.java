@@ -18,24 +18,24 @@ public class Clothing implements Serializable {
     @ColumnInfo(name = "clothing_name")
     private String name;
     @ColumnInfo(name = "face")
-    private Boolean face = false;
+    private Boolean face = Boolean.FALSE;
     @ColumnInfo(name = "hat")
-    private Boolean hat = false;
+    private Boolean hat = Boolean.FALSE;
     @ColumnInfo(name = "shoulders")
-    private Boolean shoulders = false;
+    private Boolean shoulders = Boolean.FALSE;
     @ColumnInfo(name = "torso")
-    private Boolean torso = false;
+    private Boolean torso = Boolean.FALSE;
     @ColumnInfo(name = "gloves")
-    private Boolean gloves = false;
+    private Boolean gloves = Boolean.FALSE;
     @ColumnInfo(name = "pants")
-    private Boolean pants = false;
+    private Boolean pants = Boolean.FALSE;
     @ColumnInfo(name = "boots")
-    private Boolean boots = false;
+    private Boolean boots = Boolean.FALSE;
     @ColumnInfo(name = "coat")
-    private Boolean coat = false;
+    private Boolean coat = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "equipped")
-    private Boolean equipped = false;
+    private Boolean equipped = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -59,10 +59,10 @@ public class Clothing implements Serializable {
     private String set;
     @NonNull
     @ColumnInfo(name = "personal_item")
-    private Boolean personal = false;
+    private Boolean personal = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "starting_gear")
-    private Boolean starting = false;
+    private Boolean starting = Boolean.FALSE;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
@@ -71,7 +71,7 @@ public class Clothing implements Serializable {
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = false;
+    private Boolean artifact = Boolean.FALSE;
     @ColumnInfo(name = "armor")
     private Integer armor;
     @ColumnInfo(name = "spirit_armor")
