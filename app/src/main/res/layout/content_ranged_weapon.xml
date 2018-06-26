@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activities.RangedWeaponActivity"
+    tools:context=".Activities.Main.NewItems.RangedWeaponActivity"
     tools:showIn="@layout/activity_ranged_weapon">
 
     <android.support.v7.widget.RecyclerView

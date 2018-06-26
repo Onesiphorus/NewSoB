@@ -1,12 +1,12 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,22 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.GearListAdapter;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.ClothingListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
 
 import java.util.List;
 
-public class GearBaseActivity extends AppCompatActivity {
+public class ClothingActivity extends AppCompatActivity {
 
     public static final int NEW_CHARACTER_CLASS_ACTIVITY_REQUEST_CODE = 1;
-    private GearBaseViewModel mGearBaseViewModel;
+    private ClothingViewModel mClothingViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gear_base);
+        setContentView(R.layout.activity_character);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,16 +43,16 @@ public class GearBaseActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final GearListAdapter adapter = new GearListAdapter(this);
+        final ClothingListAdapter adapter = new ClothingListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mGearBaseViewModel = ViewModelProviders.of(this).get(GearBaseViewModel.class);
+        mClothingViewModel = ViewModelProviders.of(this).get(ClothingViewModel.class);
 
-        mGearBaseViewModel.getAllGear().observe(this, new Observer<List<GearBase>>() {
+        mClothingViewModel.getAllClothing().observe(this, new Observer<List<Clothing>>() {
             @Override
-            public void onChanged(@Nullable List<GearBase> characterClasses) {
-                adapter.setGearBase(characterClasses);
+            public void onChanged(@Nullable List<Clothing> clothing) {
+                adapter.setClothing(clothing);
             }
         });
     }
@@ -79,3 +79,4 @@ public class GearBaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

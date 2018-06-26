@@ -7,7 +7,9 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Range;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
 import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
 
 @Entity(tableName = "character_table")
 public class SobCharacter implements Serializable {
@@ -106,6 +110,23 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "move_bonus")
     private Integer moveBonus = 0;
+    @ColumnInfo(name = "right_hand")
+    @TypeConverters(GithubTypeConverters.class)
+    private RangedWeapon rightHand;
+    @ColumnInfo(name = "left_hand")
+    @TypeConverters(GithubTypeConverters.class)
+    private RangedWeapon leftHand;
+    @ColumnInfo(name = "prehensile_tail")
+    @TypeConverters(GithubTypeConverters.class)
+    private RangedWeapon prehensileTail;
+    @NonNull
+    @ColumnInfo(name = "melee_to_hit_die")
+    private Integer meleeToHitDie = 6;
+    @NonNull
+    @ColumnInfo(name = "melee_crit_chance")
+    private Integer meleeCritChance = 6;
+
+
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
@@ -556,15 +577,32 @@ public class SobCharacter implements Serializable {
         return hasPTail ? (3 - getHandsUsed()) : (2-getHandsUsed());
     }
 
-    public Boolean equipRanged(RangedWeapon rangedWeapon) {
+    public String equipRanged(RangedWeapon rangedWeapon) {
         if (rangedWeapon.getTwoHanded().equals(Boolean.TRUE) && this.handsFree() > 1) {
             setHandsUsed(getHandsUsed() + 2);
-            return Boolean.TRUE;
+            if(null == this.rightHand || this.rightHand.getName().isEmpty()) {
+                this.rightHand = rangedWeapon;
+                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to both hands.");
+            } else {
+                this.leftHand = rangedWeapon;
+            }
+            return "equipRanged: " + rangedWeapon.getName() + " equipped to both hands.";
         } else if (this.handsFree() > 0){
             setHandsUsed(getHandsUsed() + 1);
-            return Boolean.TRUE;
+            if(null == this.rightHand || this.rightHand.getName().isEmpty()) {
+                this.rightHand = rangedWeapon;
+                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to right hand.");
+                return "equipRanged: " + rangedWeapon.getName() + " equipped to right hand.";
+            } else if (null == this.leftHand || this.leftHand.getName().isEmpty()) {
+                this.leftHand = rangedWeapon;
+                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to left hand.");
+                return "equipRanged: " + rangedWeapon.getName() + " equipped to left hand.";
+            } else {
+                this.prehensileTail = rangedWeapon;
+                return "equipRanged: " + rangedWeapon.getName() + " equipped to tail.";
+            }
         }
-        return Boolean.FALSE;
+        return "No free hands!";
     }
 
     public Boolean unequipRanged(RangedWeapon rangedWeapon) {
@@ -645,6 +683,9 @@ public class SobCharacter implements Serializable {
         for(String string : meleeWeapon.getModifiers()) {
             findBonus(string);
         }
+        if(this.meleeDamageDie < meleeWeapon.getDamageDie()) this.meleeDamageDie = meleeWeapon.getDamageDie();
+        if(this.meleeToHitDie < meleeWeapon.getMeleeToHitDie()) this.meleeToHitDie = meleeWeapon.getMeleeToHitDie();
+        if(this.meleeCritChance > meleeWeapon.getCritChance()) this.meleeCritChance = meleeWeapon.getCritChance();
         for(String string : meleeWeapon.getPenalties()) {
             findPenalty(string);
         }
@@ -740,6 +781,50 @@ public class SobCharacter implements Serializable {
         this.setMeleeDamageDie(6);
         this.setArmor(0);
         this.setSpiritArmor(0);
+        this.setMeleeToHitDie(6);
+        this.setMeleeDamageDie(6);
+    }
+
+    public RangedWeapon getRightHand() {
+        return rightHand;
+    }
+
+    public void setRightHand(RangedWeapon rightHand) {
+        this.rightHand = rightHand;
+    }
+
+    public RangedWeapon getLeftHand() {
+        return leftHand;
+    }
+
+    public void setLeftHand(RangedWeapon leftHand) {
+        this.leftHand = leftHand;
+    }
+
+    public RangedWeapon getPrehensileTail() {
+        return prehensileTail;
+    }
+
+    public void setPrehensileTail(RangedWeapon prehensileTail) {
+        this.prehensileTail = prehensileTail;
+    }
+
+    @NonNull
+    public Integer getMeleeToHitDie() {
+        return meleeToHitDie;
+    }
+
+    public void setMeleeToHitDie(@NonNull Integer meleeToHitDie) {
+        this.meleeToHitDie = meleeToHitDie;
+    }
+
+    @NonNull
+    public Integer getMeleeCritChance() {
+        return meleeCritChance;
+    }
+
+    public void setMeleeCritChance(@NonNull Integer meleeCritChance) {
+        this.meleeCritChance = meleeCritChance;
     }
 }
 

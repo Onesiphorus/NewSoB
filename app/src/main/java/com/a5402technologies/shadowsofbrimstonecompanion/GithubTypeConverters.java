@@ -147,4 +147,20 @@ public class GithubTypeConverters {
     public static String CharacterClassEnumToString(CharacterClassEnum characterClassEnum) {
         return gson.toJson(characterClassEnum);
     }
+
+    @TypeConverter
+    public static RangedWeapon stringToRangedWeapon(String data) {
+        if (null == data) {
+            return new RangedWeapon("",0,0);
+        }
+
+        Type listType = new TypeToken<CharacterClass>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String RangedWeaponToString(RangedWeapon rangedWeapon) {
+        return gson.toJson(rangedWeapon);
+    }
 }

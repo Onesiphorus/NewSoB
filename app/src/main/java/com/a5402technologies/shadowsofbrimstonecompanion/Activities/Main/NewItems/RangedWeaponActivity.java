@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,22 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.CharacterClassListAdapter;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.RangedWeaponListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterClassViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
 
 import java.util.List;
 
-public class ChooseClassActivity extends AppCompatActivity {
+public class RangedWeaponActivity extends AppCompatActivity {
 
     public static final int NEW_CHARACTER_CLASS_ACTIVITY_REQUEST_CODE = 1;
-    private CharacterClassViewModel mCharacterClassViewModel;
+    private RangedWeaponViewModel mRangedWeaponViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character_class);
+        setContentView(R.layout.activity_character);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,16 +43,16 @@ public class ChooseClassActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final CharacterClassListAdapter adapter = new CharacterClassListAdapter(this);
+        final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mCharacterClassViewModel = ViewModelProviders.of(this).get(CharacterClassViewModel.class);
+        mRangedWeaponViewModel = ViewModelProviders.of(this).get(RangedWeaponViewModel.class);
 
-        mCharacterClassViewModel.getAllCharacterClasses().observe(this, new Observer<List<CharacterClass>>() {
+        mRangedWeaponViewModel.getAllRangedWeapons().observe(this, new Observer<List<RangedWeapon>>() {
             @Override
-            public void onChanged(@Nullable List<CharacterClass> characterClasses) {
-                adapter.setCharactersClasses(characterClasses);
+            public void onChanged(@Nullable List<RangedWeapon> characterClasses) {
+                adapter.setRangedWeapons(characterClasses);
             }
         });
     }

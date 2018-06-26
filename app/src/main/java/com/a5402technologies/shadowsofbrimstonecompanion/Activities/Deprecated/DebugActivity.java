@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Deprecated;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.GearBaseActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.ClothingActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.MeleeWeaponActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.RangedWeaponActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class DebugActivity extends AppCompatActivity {

@@ -37,7 +37,7 @@ import java.security.cert.CertificateEncodingException;
 import java.util.ArrayList;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class}, version = 11)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 13)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     public abstract CharacterDao characterDao();
@@ -143,7 +143,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.OUTLAW.label());
             traits.add(TraitsEnum.SHOWMAN.label());
-            characterClass = new CharacterClass(CharacterClassEnum.OUTLAW.male(), 3,2,1,2,3,4,12,12,4,4,5,4,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.OUTLAW.male(), 3,2,1,2,3,4,12,12,4,4,4,5,2,4,2,traits);
             rangedWeapon = new RangedWeapon("Outlaw Pistol", 5, 3);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(3);

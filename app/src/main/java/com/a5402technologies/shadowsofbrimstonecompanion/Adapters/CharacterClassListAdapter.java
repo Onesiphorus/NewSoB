@@ -6,15 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.ChooseClassActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.CreateCharacterActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CreateCharacterActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class CharacterClassListAdapter extends RecyclerView.Adapter<CharacterClassListAdapter.CharacterClassViewHolder> {

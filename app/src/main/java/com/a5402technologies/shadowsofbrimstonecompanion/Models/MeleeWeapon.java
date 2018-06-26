@@ -68,6 +68,9 @@ public class MeleeWeapon implements Serializable{
     private Integer critChance = 6;
     @ColumnInfo(name = "armor")
     private Integer armor;
+    @NonNull
+    @ColumnInfo(name = "melee_to_hit_die")
+    private Integer meleeToHitDie = 6;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -259,5 +262,14 @@ public class MeleeWeapon implements Serializable{
 
     public void setArmor(Integer armor) {
         this.armor = armor;
+    }
+
+    @NonNull
+    public Integer getMeleeToHitDie() {
+        return meleeToHitDie;
+    }
+
+    public void setMeleeToHitDie(@NonNull Integer meleeToHitDie) {
+        this.meleeToHitDie = meleeToHitDie;
     }
 }

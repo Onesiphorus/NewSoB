@@ -1,32 +1,24 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-
-import java.util.ArrayList;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class FinishCharacterActivity extends AppCompatActivity {
+public class ShadowsOfBrimstoneActivity extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -101,13 +93,142 @@ public class FinishCharacterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_finish_character);
-
+        setContentView(R.layout.activity_shadows_of_brimstone);
         SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
+        sobCharacter.setBonuses();
+
+        TextView tv = findViewById(R.id.sob_fullscreen);
+        Integer value;
+        tv.setText(sobCharacter.getCharacterClass().getClassName());
+        tv = findViewById(R.id.strength_value);
+        value = (sobCharacter.getCharacterClass().getStrength())
+                + (sobCharacter.getStrengthBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.agility_value);
+        value = (sobCharacter.getCharacterClass().getAgility())
+                + (sobCharacter.getAgilityBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.cunning_value);
+        value = (sobCharacter.getCharacterClass().getCunning())
+                + (sobCharacter.getCunningBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.spirit_value);
+        value = (sobCharacter.getCharacterClass().getSpirit())
+                + (sobCharacter.getSpiritBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.lore_value);
+        value = (sobCharacter.getCharacterClass().getLore())
+                + (sobCharacter.getLoreBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.luck_value);
+        value = (sobCharacter.getCharacterClass().getLuck())
+                + (sobCharacter.getLuckBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.health_value);
+        value = (sobCharacter.getCharacterClass().getHealth())
+                + (sobCharacter.getHealthBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.defense_value);
+        value = (sobCharacter.getCharacterClass().getDefense());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.sanity_value);
+        value = (sobCharacter.getCharacterClass().getSanity())
+                + (sobCharacter.getSanityBonus());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.willpower_value);
+        value = (sobCharacter.getCharacterClass().getWillpower());
+        tv.setText(String.format(value.toString()));
+        tv = findViewById(R.id.armor_value);
+        tv.setText(String.format(sobCharacter.getArmor().toString()));
+        tv = findViewById(R.id.spirit_armor_value);
+        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
+        tv = findViewById(R.id.sob_character_name);
+        tv.setText(sobCharacter.getCharacterName());
+
+
+        if(sobCharacter.getRightHand() != null) {
+            //TODO logic for two handed
+            tv = findViewById(R.id.right_hand_ranged_weapon);
+            tv.setText(sobCharacter.getRightHand().getName());
+            tv = findViewById(R.id.right_hand_range);
+            tv.setText(String.format(sobCharacter.getRightHand().getRange().toString()));
+            tv = findViewById(R.id.right_hand_damage);
+            String text =
+                    "D"
+                    + sobCharacter.getRightHand().getDamageDie().toString()
+                    + "+"
+                    + sobCharacter.getRightHand().getDamageBonus().toString();
+            tv.setText(text);
+            tv = findViewById(R.id.right_hand_to_hit);
+            text =
+                    "D" + sobCharacter.getRightHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "("
+                    + sobCharacter.getRightHand().getCritChance()
+                    + "+)";
+            tv.setText(text);
+        }
+        if(sobCharacter.getLeftHand() != null) {
+            tv = findViewById(R.id.left_hand_ranged_weapon);
+            tv.setText(sobCharacter.getLeftHand().getName());
+            tv = findViewById(R.id.left_hand_range);
+            tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
+            tv = findViewById(R.id.left_hand_damage);
+            String text =
+                    "D" + sobCharacter.getLeftHand().getDamageDie().toString()
+                    + "+"
+                    + sobCharacter.getLeftHand().getDamageBonus().toString();
+            tv.setText(text);
+            tv = findViewById(R.id.left_hand_to_hit);
+            text =
+                    "D"
+                    + sobCharacter.getLeftHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "("
+                    + sobCharacter.getLeftHand().getCritChance()
+                    + "+)";
+            tv.setText(text);
+            //TODO make invisible when not populated
+        }
+
+        //TODO Logic for populating melee names
+        tv = findViewById(R.id.melee_combat);
+        Integer combat = sobCharacter.getCharacterClass().getCombat() + sobCharacter.getCombatBonus();
+        tv.setText(String.format(combat.toString()));
+        tv = findViewById(R.id.melee_to_hit);
+        String text =
+                "D"
+                + sobCharacter.getMeleeToHitDie()
+                + " : "
+                + sobCharacter.getCharacterClass().getMeleeToHit().toString()
+                + "("
+                + sobCharacter.getMeleeCritChance()
+                + "+)";
+        tv.setText(text);
+        tv = findViewById(R.id.melee_damage);
+        text =
+                sobCharacter.getMeleeDamageDie()
+                + "+"
+                + sobCharacter.getMeleeDamageBonus();
+        tv.setText(text);
+
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$"+sobCharacter.getGold().toString();
+        tv.setText(text);
+
+        findViewById(R.id.btn_sob_gear).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+        });
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.sob_fullscreen);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -121,98 +242,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        TextView tv = findViewById(R.id.fullscreen_content);
-        Integer value;
-        tv.setText(sobCharacter.getCharacterClass().getClassName());
-        tv = findViewById(R.id.strength_value);
-        value = (sobCharacter.getCharacterClass().getStrength()) + (sobCharacter.getStrengthBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.agility_value);
-        value = (sobCharacter.getCharacterClass().getAgility()) + (sobCharacter.getAgilityBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.cunning_value);
-        value = (sobCharacter.getCharacterClass().getCunning()) + (sobCharacter.getCunningBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.spirit_value);
-        value = (sobCharacter.getCharacterClass().getSpirit()) + (sobCharacter.getSpiritBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.lore_value);
-        value = (sobCharacter.getCharacterClass().getLore()) + (sobCharacter.getLoreBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.luck_value);
-        value = (sobCharacter.getCharacterClass().getLuck()) + (sobCharacter.getLuckBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.health_value);
-        value = (sobCharacter.getCharacterClass().getHealth()) + (sobCharacter.getHealthBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.defense_value);
-        value = (sobCharacter.getCharacterClass().getDefense());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.sanity_value);
-        value = (sobCharacter.getCharacterClass().getSanity()) + (sobCharacter.getSanityBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.willpower_value);
-        value = (sobCharacter.getCharacterClass().getWillpower());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.armor_value);
-        tv.setText(String.format(sobCharacter.getArmor().toString()));
-        tv = findViewById(R.id.spirit_armor_value);
-        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
-        tv = findViewById(R.id.tv_character_name);
-        tv.setText(sobCharacter.getCharacterName());
-
-        ArrayList<String> startingGear = new ArrayList<>(0);
-        for (GearBase gear : sobCharacter.getCharacterClass().getStartingGear()) {
-            startingGear.add(gear.getName());
-        }
-        for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
-            startingGear.add(meleeWeapon.getName());
-        }
-        for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
-            startingGear.add(rangedWeapon.getName());
-        }
-        for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
-            startingGear.add(clothing.getName());
-        }
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final StringListAdapter adapter = new StringListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter.setString(startingGear);
-
-        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent();
-            for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
-                clothing.setEquipped(sobCharacter.equipClothing(clothing));
-                sobCharacter.addClothing(clothing);
-            }
-            for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
-                rangedWeapon.setEquipped(sobCharacter.equipRanged(rangedWeapon));
-                sobCharacter.addRangedWeapon(rangedWeapon);
-            }
-            for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
-                meleeWeapon.setEquipped(sobCharacter.equipMelee(meleeWeapon));
-                sobCharacter.addMeleeWeapon(meleeWeapon);
-            }
-            for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
-                sobCharacter.addGear(gearBase);
-            }
-        });
-
-        sobCharacter.setBonuses();
-
-        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-        });
-
-
-
-
-
+        findViewById(R.id.btn_sob_gear).setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override

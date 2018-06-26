@@ -1,47 +1,34 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class CreateCharacterActivity extends AppCompatActivity {
-
-    private SkillViewModel mSkillViewModel;
-    private GearBaseViewModel mGearBaseViewModel;
-    private MeleeWeaponViewModel mMeleeWeaponViewModel;
-    private RangedWeaponViewModel mRangedWeaponViewModel;
-    private ClothingViewModel mClothingViewModel;
-
+/**
+ * An example full-screen activity that shows and hides the system UI (i.e.
+ * status bar and navigation/system bar) with user interaction.
+ */
+public class FinishCharacterActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -115,33 +102,10 @@ public class CreateCharacterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_character);
 
-        CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
+        setContentView(R.layout.activity_finish_character);
 
-        //TODO Add Starting Gear to characters here
-
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
-        final SkillListAdapter adapter = new SkillListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mSkillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
-
-        mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
-            @Override
-            public void onChanged(@Nullable List<Skill> skills) {
-                ArrayList<Skill> newList = new ArrayList<>(0);
-                for(Skill skill : skills) {
-                    if(skill.getType().equals(characterClass.getClassName())
-                            && skill.getLevel() == 0) {
-                        newList.add(skill);
-                    }
-                }
-                adapter.setSkill(newList);
-            }
-        });
+        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -159,53 +123,91 @@ public class CreateCharacterActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.create_button).setOnTouchListener(mDelayHideTouchListener);
-
-
-
         TextView tv = findViewById(R.id.fullscreen_content);
-        tv.setText(characterClass.getClassName());
+        Integer value;
+        tv.setText(sobCharacter.getCharacterClass().getClassName());
         tv = findViewById(R.id.strength_value);
-        tv.setText(String.format(characterClass.getStrength().toString()));
+        value = (sobCharacter.getCharacterClass().getStrength()) + (sobCharacter.getStrengthBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.agility_value);
-        tv.setText(String.format(characterClass.getAgility().toString()));
+        value = (sobCharacter.getCharacterClass().getAgility()) + (sobCharacter.getAgilityBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.cunning_value);
-        tv.setText(String.format(characterClass.getCunning().toString()));
+        value = (sobCharacter.getCharacterClass().getCunning()) + (sobCharacter.getCunningBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.spirit_value);
-        tv.setText(String.format(characterClass.getSpirit().toString()));
+        value = (sobCharacter.getCharacterClass().getSpirit()) + (sobCharacter.getSpiritBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.lore_value);
-        tv.setText(String.format(characterClass.getLore().toString()));
+        value = (sobCharacter.getCharacterClass().getLore()) + (sobCharacter.getLoreBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.luck_value);
-        tv.setText(String.format(characterClass.getLuck().toString()));
+        value = (sobCharacter.getCharacterClass().getLuck()) + (sobCharacter.getLuckBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.health_value);
-        tv.setText(String.format(characterClass.getHealth().toString()));
+        value = (sobCharacter.getCharacterClass().getHealth()) + (sobCharacter.getHealthBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.defense_value);
-        tv.setText(String.format(characterClass.getDefense().toString()));
+        value = (sobCharacter.getCharacterClass().getDefense());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.sanity_value);
-        tv.setText(String.format(characterClass.getSanity().toString()));
+        value = (sobCharacter.getCharacterClass().getSanity()) + (sobCharacter.getSanityBonus());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.willpower_value);
-        tv.setText(String.format(characterClass.getWillpower().toString()));
+        value = (sobCharacter.getCharacterClass().getWillpower());
+        tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.armor_value);
-        tv.setText("0");
+        tv.setText(String.format(sobCharacter.getArmor().toString()));
         tv = findViewById(R.id.spirit_armor_value);
-        tv.setText("0");
+        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
+        tv = findViewById(R.id.tv_character_name);
+        tv.setText(sobCharacter.getCharacterName());
 
-        EditText name = findViewById(R.id.character_name_value);
-        Skill startingUpgrade = new Skill("Test Skill",  "Test Type");//TODO Map starting upgrade to radio group
+        ArrayList<String> startingGear = new ArrayList<>(0);
+        for (GearBase gear : sobCharacter.getCharacterClass().getStartingGear()) {
+            startingGear.add(gear.getName());
+        }
+        for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+            startingGear.add(meleeWeapon.getName());
+        }
+        for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+            startingGear.add(rangedWeapon.getName());
+        }
+        for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+            startingGear.add(clothing.getName());
+        }
 
-        //TODO Modify Starting Gear according to starting upgrade
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final StringListAdapter adapter = new StringListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Button btn = findViewById(R.id.create_button);
-        btn.setOnClickListener((View view) -> {
-            SobCharacter sobCharacter = new SobCharacter(name.getText().toString(), characterClass);
-            sobCharacter.addUpgrade(startingUpgrade);
-            Intent intent = new Intent(this, FinishCharacterActivity.class);
+        adapter.setString(startingGear);
+
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+                clothing.setEquipped(sobCharacter.equipClothing(clothing));
+                sobCharacter.addClothing(clothing);
+            }
+            for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+                rangedWeapon.setEquipped(Boolean.TRUE);
+                sobCharacter.addRangedWeapon(rangedWeapon);
+                String toast = sobCharacter.equipRanged(rangedWeapon);
+                Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+            }
+            for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+                meleeWeapon.setEquipped(sobCharacter.equipMelee(meleeWeapon));
+                sobCharacter.addMeleeWeapon(meleeWeapon);
+            }
+            for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
+                sobCharacter.addGear(gearBase);
+            }
+            sobCharacter.setBonuses();
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
     }
-
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

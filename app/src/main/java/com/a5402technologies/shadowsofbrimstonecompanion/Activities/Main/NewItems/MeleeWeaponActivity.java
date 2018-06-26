@@ -1,12 +1,12 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,17 +14,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.RangedWeaponListAdapter;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.MeleeWeaponListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
 
 import java.util.List;
 
-public class RangedWeaponActivity extends AppCompatActivity {
+public class MeleeWeaponActivity extends AppCompatActivity {
 
     public static final int NEW_CHARACTER_CLASS_ACTIVITY_REQUEST_CODE = 1;
-    private RangedWeaponViewModel mRangedWeaponViewModel;
+    private MeleeWeaponViewModel mMeleeWeaponViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +43,16 @@ public class RangedWeaponActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
+        final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRangedWeaponViewModel = ViewModelProviders.of(this).get(RangedWeaponViewModel.class);
+        mMeleeWeaponViewModel = ViewModelProviders.of(this).get(MeleeWeaponViewModel.class);
 
-        mRangedWeaponViewModel.getAllRangedWeapons().observe(this, new Observer<List<RangedWeapon>>() {
+        mMeleeWeaponViewModel.getAllMeleeWeapons().observe(this, new Observer<List<MeleeWeapon>>() {
             @Override
-            public void onChanged(@Nullable List<RangedWeapon> characterClasses) {
-                adapter.setRangedWeapons(characterClasses);
+            public void onChanged(@Nullable List<MeleeWeapon> characterClasses) {
+                adapter.setMeleeWeapons(characterClasses);
             }
         });
     }
@@ -79,3 +79,4 @@ public class RangedWeaponActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

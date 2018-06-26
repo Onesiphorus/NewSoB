@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.CreateCharacterActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.ShadowsOfBrimstoneActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 

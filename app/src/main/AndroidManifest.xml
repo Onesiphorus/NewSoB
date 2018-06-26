@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.Menu.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,48 +20,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.CharacterClassActivity"
+            android:name=".Activities.Deprecated.CharacterClassActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.CharacterActivity"
+            android:name=".Activities.Menu.CharacterActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.GearBaseActivity"
+            android:name=".Activities.Main.NewItems.GearBaseActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.NewCharacterActivity"
+            android:name=".Activities.Menu.NewCharacterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.RangedWeaponActivity"
+            android:name=".Activities.Main.NewItems.RangedWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.MeleeWeaponActivity"
+            android:name=".Activities.Main.NewItems.MeleeWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.ClothingActivity"
+            android:name=".Activities.Main.NewItems.ClothingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.ChooseClassActivity"
+            android:name=".Activities.Menu.ChooseClassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.DebugActivity"
+            android:name=".Activities.Deprecated.DebugActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.CreateCharacterActivity"
+            android:name=".Activities.Menu.CreateCharacterActivity"
             android:label="@string/title_activity_create_character"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.FinishCharacterActivity"
+            android:name=".Activities.Menu.FinishCharacterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_finish_character"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".Activities.ShadowsOfBrimstoneActivity"
+            android:name=".Activities.Main.ShadowsOfBrimstoneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_shadows_of_brimstone"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".Activities.Main.ManagementMenuActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_management_menu"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

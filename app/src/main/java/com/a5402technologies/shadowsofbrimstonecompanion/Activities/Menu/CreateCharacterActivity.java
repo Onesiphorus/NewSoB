@@ -1,25 +1,43 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class CreateCharacterActivity extends AppCompatActivity {
+
+    private SkillViewModel mSkillViewModel;
+    private GearBaseViewModel mGearBaseViewModel;
+    private MeleeWeaponViewModel mMeleeWeaponViewModel;
+    private RangedWeaponViewModel mRangedWeaponViewModel;
+    private ClothingViewModel mClothingViewModel;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -94,7 +112,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_create_character);
+
+        CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
+
+        //TODO Add Starting Gear to characters here
+
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
+        final SkillListAdapter adapter = new SkillListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mSkillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
+
+        mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
+            @Override
+            public void onChanged(@Nullable List<Skill> skills) {
+                ArrayList<Skill> newList = new ArrayList<>(0);
+                for(Skill skill : skills) {
+                    if(skill.getType().equals(characterClass.getClassName())
+                            && skill.getLevel() == 0) {
+                        newList.add(skill);
+                    }
+                }
+                adapter.setSkill(newList);
+            }
+        });
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -108,24 +152,57 @@ public class MainActivity extends AppCompatActivity {
                 toggle();
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        findViewById(R.id.btn_character).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterActivity.class);
-            startActivity(intent);
-        });
+        // Upon interacting with UI controls, delay any scheduled hide()
+        // operations to prevent the jarring behavior of controls going away
+        // while interacting with the UI.
+        findViewById(R.id.create_button).setOnTouchListener(mDelayHideTouchListener);
 
-        findViewById(R.id.btn_product).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterClassActivity.class);
-            startActivity(intent);
-        });
 
-        findViewById(R.id.btn_debug).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class);
+
+        TextView tv = findViewById(R.id.fullscreen_content);
+        tv.setText(characterClass.getClassName());
+        tv = findViewById(R.id.strength_value);
+        tv.setText(String.format(characterClass.getStrength().toString()));
+        tv = findViewById(R.id.agility_value);
+        tv.setText(String.format(characterClass.getAgility().toString()));
+        tv = findViewById(R.id.cunning_value);
+        tv.setText(String.format(characterClass.getCunning().toString()));
+        tv = findViewById(R.id.spirit_value);
+        tv.setText(String.format(characterClass.getSpirit().toString()));
+        tv = findViewById(R.id.lore_value);
+        tv.setText(String.format(characterClass.getLore().toString()));
+        tv = findViewById(R.id.luck_value);
+        tv.setText(String.format(characterClass.getLuck().toString()));
+        tv = findViewById(R.id.health_value);
+        tv.setText(String.format(characterClass.getHealth().toString()));
+        tv = findViewById(R.id.defense_value);
+        tv.setText(String.format(characterClass.getDefense().toString()));
+        tv = findViewById(R.id.sanity_value);
+        tv.setText(String.format(characterClass.getSanity().toString()));
+        tv = findViewById(R.id.willpower_value);
+        tv.setText(String.format(characterClass.getWillpower().toString()));
+        tv = findViewById(R.id.armor_value);
+        tv.setText("0");
+        tv = findViewById(R.id.spirit_armor_value);
+        tv.setText("0");
+
+        EditText name = findViewById(R.id.character_name_value);
+        Skill startingUpgrade = new Skill("Test Skill",  "Test Type");//TODO Map starting upgrade to radio group
+
+        //TODO Modify Starting Gear according to starting upgrade
+
+        Button btn = findViewById(R.id.create_button);
+        btn.setOnClickListener((View view) -> {
+            SobCharacter sobCharacter = new SobCharacter(name.getText().toString(), characterClass);
+            sobCharacter.addUpgrade(startingUpgrade);
+            Intent intent = new Intent(this, FinishCharacterActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
     }
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
