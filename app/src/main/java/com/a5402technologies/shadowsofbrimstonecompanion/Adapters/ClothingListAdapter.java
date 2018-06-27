@@ -1,6 +1,8 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +22,20 @@ public class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapte
         private ClothingViewHolder(View itemView) {
             super(itemView);
             clothingItemView = itemView.findViewById(R.id.textView);
+
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Clothing> mClothing;
+    private Context mContext;
+    private Activity mActivity;
+    private Integer RESULT_CODE = 1;
 
-    public ClothingListAdapter(Context context) {
+    public ClothingListAdapter(Context context, Activity activity) {
+        mContext = context;
         mInflater = LayoutInflater.from(context);
+        mActivity = activity;
     }
 
     @Override
@@ -44,6 +52,17 @@ public class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapte
         } else {
             holder.clothingItemView.setText("No Clothing");
         }
+
+        holder.clothingItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("serializable_object", mClothing.get(position));
+                mActivity.setResult(RESULT_CODE, intent);
+                mActivity.finishActivity(201);
+                mActivity.finish();
+            }
+        });
     }
 
     public void setClothing(List<Clothing> clothing) {

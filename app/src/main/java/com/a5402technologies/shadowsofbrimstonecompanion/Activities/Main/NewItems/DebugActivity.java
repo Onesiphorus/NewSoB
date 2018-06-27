@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Deprecated;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,49 +8,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.GearBaseActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.ClothingActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.MeleeWeaponActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.RangedWeaponActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class DebugActivity extends AppCompatActivity {
 
+    private SobCharacter sobCharacter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.btn_character).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.btn_class).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterClassActivity.class);
-            startActivity(intent);
-        });
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, GearBaseActivity.class);
+            Intent intent = new Intent(DebugActivity.this, AddGearBaseActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
 
         findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ClothingActivity.class);
+            Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            /*
+            Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
+            startActivityForResult(intent, CLOTHING_REQUEST_CODE);
+            */
         });
 
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, MeleeWeaponActivity.class);
+            Intent intent = new Intent(DebugActivity.this, AddMeleeWeaponActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
 
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, RangedWeaponActivity.class);
+            Intent intent = new Intent(DebugActivity.this, AddRangedWeaponActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
     }
@@ -75,5 +74,13 @@ public class DebugActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        return;
     }
 }

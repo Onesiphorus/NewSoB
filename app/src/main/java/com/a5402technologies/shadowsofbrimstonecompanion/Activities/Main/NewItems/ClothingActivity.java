@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewIte
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.ClothingListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
 
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class ClothingActivity extends AppCompatActivity {
 
-    public static final int NEW_CHARACTER_CLASS_ACTIVITY_REQUEST_CODE = 1;
+    public static final int CLOTHING_REQUEST = 101;
     private ClothingViewModel mClothingViewModel;
 
     @Override
@@ -32,6 +34,8 @@ public class ClothingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_character);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +47,7 @@ public class ClothingActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final ClothingListAdapter adapter = new ClothingListAdapter(this);
+        final ClothingListAdapter adapter = new ClothingListAdapter(this, ClothingActivity.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -77,6 +81,11 @@ public class ClothingActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
 

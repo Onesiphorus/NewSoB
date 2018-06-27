@@ -10,8 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Deprecated.DebugActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.DebugActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Deprecated.CharacterClassActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 

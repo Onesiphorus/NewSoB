@@ -153,6 +153,11 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             tv.setText(sobCharacter.getRightHand().getName());
             tv = findViewById(R.id.right_hand_range);
             tv.setText(String.format(sobCharacter.getRightHand().getRange().toString()));
+            tv = findViewById(R.id.right_hand_shots);
+            Integer shots = (sobCharacter.getRightHand().getName().equals("Trusty Pistol"))
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getRightHand().getShots();
+            tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.right_hand_damage);
             String text =
                     "D"
@@ -165,7 +170,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
                     "D" + sobCharacter.getRightHand().getToHitDie().toString()
                     + " : "
                     + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                    + "("
+                    + "+("
                     + sobCharacter.getRightHand().getCritChance()
                     + "+)";
             tv.setText(text);
@@ -175,6 +180,11 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             tv.setText(sobCharacter.getLeftHand().getName());
             tv = findViewById(R.id.left_hand_range);
             tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
+            tv = findViewById(R.id.left_hand_shots);
+            Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getLeftHand().getShots();
+            tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.left_hand_damage);
             String text =
                     "D" + sobCharacter.getLeftHand().getDamageDie().toString()
@@ -187,7 +197,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
                     + sobCharacter.getLeftHand().getToHitDie().toString()
                     + " : "
                     + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                    + "("
+                    + "+("
                     + sobCharacter.getLeftHand().getCritChance()
                     + "+)";
             tv.setText(text);
@@ -204,7 +214,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
                 + sobCharacter.getMeleeToHitDie()
                 + " : "
                 + sobCharacter.getCharacterClass().getMeleeToHit().toString()
-                + "("
+                + "+("
                 + sobCharacter.getMeleeCritChance()
                 + "+)";
         tv.setText(text);

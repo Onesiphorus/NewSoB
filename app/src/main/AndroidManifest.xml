@@ -41,13 +41,13 @@
             android:name=".Activities.Main.NewItems.MeleeWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.NewItems.ClothingActivity"
+            android:name=".Activities.Main.NewItems.AddClothingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.ChooseClassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Deprecated.DebugActivity"
+            android:name=".Activities.Main.NewItems.DebugActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.CreateCharacterActivity"
@@ -67,7 +67,10 @@
             android:name=".Activities.Main.ManagementMenuActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_management_menu"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".Activities.Main.NewItems.AddGearBaseActivity" />
+        <activity android:name=".Activities.Main.NewItems.AddMeleeWeaponActivity" />
+        <activity android:name=".Activities.Main.NewItems.AddRangedWeaponActivity" />
     </application>
 
 </manifest>

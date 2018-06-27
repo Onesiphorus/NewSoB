@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@android:color/holo_blue_light"
     tools:context=".Activities.Main.ManagementMenuActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -19,11 +19,13 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_change_loadout"
+            android:layout_margin="2dp"
             android:textColor="@android:color/holo_blue_bright"
             android:text="CHANGE LOADOUT"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_new_gear"
             android:textColor="@android:color/holo_blue_bright"
@@ -31,6 +33,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_remove_gear"
             android:textColor="@android:color/holo_blue_bright"
@@ -39,7 +42,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/fullscreen_content_mng_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom|center_horizontal"
@@ -52,29 +55,6 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/accept" />
-
-        </LinearLayout>
-    </FrameLayout>
 
 </FrameLayout>

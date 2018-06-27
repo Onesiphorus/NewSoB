@@ -34,7 +34,8 @@
     <string name="shadows">SHADOWS\nOF\nBRIMSTONE</string>
     <string name="accept">ACCEPT</string>
     <string name="restart">RESTART</string>
-
+    <string name="spoils">SPOILS</string>
+    <string name="cancel">CANCEL</string>
     <string name="title_activity_shadows_of_brimstone">ShadowsOfBrimstoneActivity</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
