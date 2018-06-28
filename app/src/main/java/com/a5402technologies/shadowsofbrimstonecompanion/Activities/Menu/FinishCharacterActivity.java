@@ -206,6 +206,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
             sobCharacter.setBonuses();
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
         });
     }
 

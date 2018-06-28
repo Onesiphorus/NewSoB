@@ -9,13 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -26,11 +26,8 @@ import java.util.List;
 
 public class AddRangedWeaponActivity extends AppCompatActivity {
 
-    public static final int CLOTHING_REQUEST = 101;
-    private List<RangedWeapon> mRangedWeapon;
     private RangedWeaponViewModel mRangedWeaponViewModel;
     private RangedWeapon rangedWeapon;
-    private static final int RESULT_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +52,13 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
 
         findViewById(R.id.ranged_weapon_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, DebugActivity.class    );
-            /*
-            if(rangedWeapon != null) {
-                intent.putExtra("serializable_object", rangedWeapon);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
             if(rangedWeapon != null) {
                 sobCharacter.addRangedWeapon(rangedWeapon);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, rangedWeapon.getName() + "added to inventory.", Toast.LENGTH_LONG);
+                Log.e("SUCCESS: ", rangedWeapon.getName()+" added to inventory.");
             }
             startActivity(intent);
-
+            finish();
         });
     }
 
@@ -87,7 +77,6 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
         private Context mContext;
-        private Integer RESULT_CODE = 1;
 
         public RangedWeaponListAdapter(Context context) {
             mContext = context;

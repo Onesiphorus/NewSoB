@@ -29,12 +29,14 @@ public class DebugActivity extends AppCompatActivity {
             Intent intent = new Intent(DebugActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
         });
 
         findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
             Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
             /*
             Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
             startActivityForResult(intent, CLOTHING_REQUEST_CODE);
@@ -45,12 +47,14 @@ public class DebugActivity extends AppCompatActivity {
             Intent intent = new Intent(DebugActivity.this, AddMeleeWeaponActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
         });
 
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
             Intent intent = new Intent(DebugActivity.this, AddRangedWeaponActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
         });
     }
 

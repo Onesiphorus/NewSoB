@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip.EquipLeftHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -95,7 +97,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
 
         setContentView(R.layout.activity_shadows_of_brimstone);
         SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
-
+        Button btn;
         sobCharacter.setBonuses();
 
         TextView tv = findViewById(R.id.sob_fullscreen);
@@ -146,11 +148,12 @@ public class ShadowsOfBrimstoneActivity extends Activity {
         tv = findViewById(R.id.sob_character_name);
         tv.setText(sobCharacter.getCharacterName());
 
+        Button rightRanged = findViewById(R.id.right_hand_ranged_weapon);
+        Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
 
         if(sobCharacter.getRightHand() != null) {
             //TODO logic for two handed
-            tv = findViewById(R.id.right_hand_ranged_weapon);
-            tv.setText(sobCharacter.getRightHand().getName());
+            rightRanged.setText(sobCharacter.getRightHand().getName());
             tv = findViewById(R.id.right_hand_range);
             tv.setText(String.format(sobCharacter.getRightHand().getRange().toString()));
             tv = findViewById(R.id.right_hand_shots);
@@ -175,9 +178,15 @@ public class ShadowsOfBrimstoneActivity extends Activity {
                     + "+)";
             tv.setText(text);
         }
+        rightRanged.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipRightHandRangedActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
         if(sobCharacter.getLeftHand() != null) {
-            tv = findViewById(R.id.left_hand_ranged_weapon);
-            tv.setText(sobCharacter.getLeftHand().getName());
+            leftRanged = findViewById(R.id.left_hand_ranged_weapon);
+            leftRanged.setText(sobCharacter.getLeftHand().getName());
             tv = findViewById(R.id.left_hand_range);
             tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
             tv = findViewById(R.id.left_hand_shots);
@@ -203,6 +212,12 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             tv.setText(text);
             //TODO make invisible when not populated
         }
+        leftRanged.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipLeftHandRangedActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
         //TODO Logic for populating melee names
         tv = findViewById(R.id.melee_combat);

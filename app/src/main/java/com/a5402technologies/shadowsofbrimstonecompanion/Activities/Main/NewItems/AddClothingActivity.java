@@ -68,7 +68,7 @@ public class AddClothingActivity extends AppCompatActivity {
                 Toast.makeText(this, clothing.getName() + "added to inventory.", Toast.LENGTH_LONG);
             }
             startActivity(intent);
-
+            finish();
         });
     }
 

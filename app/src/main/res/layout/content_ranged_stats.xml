@@ -21,13 +21,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_margin="4dp"
-                    android:layout_weight="1">
+                    android:layout_weight="2">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Right Hand"
                         android:textSize="12sp"/>
-                    <TextView
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/right_hand_ranged_weapon"
@@ -142,14 +142,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:layout_margin="4dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:text="Left Hand"/>
-                    <TextView
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"

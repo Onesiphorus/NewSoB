@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.DebugActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Deprecated.CharacterClassActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -108,11 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_character).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CharacterActivity.class);
-            startActivity(intent);
-        });
-
-        findViewById(R.id.btn_product).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CharacterClassActivity.class);
             startActivity(intent);
         });
 

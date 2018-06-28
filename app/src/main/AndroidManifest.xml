@@ -20,25 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Deprecated.CharacterClassActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.Menu.CharacterActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.NewItems.GearBaseActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.Menu.NewCharacterActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.NewItems.RangedWeaponActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.NewItems.MeleeWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.NewItems.AddClothingActivity"
@@ -71,6 +57,8 @@
         <activity android:name=".Activities.Main.NewItems.AddGearBaseActivity" />
         <activity android:name=".Activities.Main.NewItems.AddMeleeWeaponActivity" />
         <activity android:name=".Activities.Main.NewItems.AddRangedWeaponActivity" />
+        <activity android:name=".Activities.Main.Equip.EquipRightHandRangedActivity" />
+        <activity android:name=".Activities.Main.Equip.EquipLeftHandRangedActivity"></activity>
     </application>
 
 </manifest>

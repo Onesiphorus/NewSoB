@@ -4,6 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context=".Activities.Main.NewItems.DebugActivity"
 tools:showIn="@layout/activity_main">
@@ -11,37 +12,36 @@ tools:showIn="@layout/activity_main">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     android:orientation="vertical">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_class"
-        android:text="@string/class_text"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_character"
-        android:text="@string/character_text"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/btn_gear"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/gear_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_clothing"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/clothing_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_melee"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/melee_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_ranged"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/ranged_text"/>
 </LinearLayout>
 

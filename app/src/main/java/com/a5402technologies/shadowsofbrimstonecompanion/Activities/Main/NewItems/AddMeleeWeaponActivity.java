@@ -68,7 +68,7 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
                 Toast.makeText(this, meleeWeapon.getName() + "added to inventory.", Toast.LENGTH_LONG);
             }
             startActivity(intent);
-
+            finish();
         });
     }
 

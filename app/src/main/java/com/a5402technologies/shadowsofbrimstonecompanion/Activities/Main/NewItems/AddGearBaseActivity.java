@@ -68,7 +68,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 Toast.makeText(this, gearBase.getName() + "added to inventory.", Toast.LENGTH_LONG);
             }
             startActivity(intent);
-
+            finish();
         });
     }
 

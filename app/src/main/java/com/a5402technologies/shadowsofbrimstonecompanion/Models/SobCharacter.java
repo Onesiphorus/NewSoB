@@ -826,5 +826,12 @@ public class SobCharacter implements Serializable {
     public void setMeleeCritChance(@NonNull Integer meleeCritChance) {
         this.meleeCritChance = meleeCritChance;
     }
+
+    public RangedWeapon findRangedWeaponByName(String name) {
+        for (RangedWeapon rangedWeapon : this.rangedWeapons) {
+            if(rangedWeapon.getName().equals(name)) return rangedWeapon;
+        }
+        return null;
+    }
 }
 
