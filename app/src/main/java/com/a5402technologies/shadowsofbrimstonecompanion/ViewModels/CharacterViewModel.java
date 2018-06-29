@@ -28,4 +28,8 @@ public class CharacterViewModel extends AndroidViewModel {
     public LiveData<List<String>> getAllCharacterNames() {return mAllCharacterNames;}
 
     public void insert(SobCharacter character) {mRepository.insert(character);}
+
+    public void delete(SobCharacter sobCharacter) {mRepository.delete(sobCharacter);}
+
+    public void update(SobCharacter sobCharacter) {mRepository.update(sobCharacter);}
 }

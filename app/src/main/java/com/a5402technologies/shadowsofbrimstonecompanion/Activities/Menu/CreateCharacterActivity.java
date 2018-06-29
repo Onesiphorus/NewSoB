@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,21 +12,19 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.SkillListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
 import java.util.ArrayList;
@@ -34,10 +33,6 @@ import java.util.List;
 public class CreateCharacterActivity extends AppCompatActivity {
 
     private SkillViewModel mSkillViewModel;
-    private GearBaseViewModel mGearBaseViewModel;
-    private MeleeWeaponViewModel mMeleeWeaponViewModel;
-    private RangedWeaponViewModel mRangedWeaponViewModel;
-    private ClothingViewModel mClothingViewModel;
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -108,7 +103,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
             return false;
         }
     };
-
+    private Skill skill;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +111,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
         CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
 
-        //TODO Add Starting Gear to characters here
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
@@ -188,21 +182,67 @@ public class CreateCharacterActivity extends AppCompatActivity {
         tv.setText("0");
 
         EditText name = findViewById(R.id.character_name_value);
-        Skill startingUpgrade = new Skill("Test Skill",  "Test Type");//TODO Map starting upgrade to radio group
 
         //TODO Modify Starting Gear according to starting upgrade
 
         Button btn = findViewById(R.id.create_button);
         btn.setOnClickListener((View view) -> {
             SobCharacter sobCharacter = new SobCharacter(name.getText().toString(), characterClass);
-            sobCharacter.addUpgrade(startingUpgrade);
+            sobCharacter.addUpgrade(skill);
             Intent intent = new Intent(this, FinishCharacterActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
     }
 
+    class SkillListAdapter extends RecyclerView.Adapter<SkillListAdapter.SkillViewHolder> {
 
+        class SkillViewHolder extends RecyclerView.ViewHolder {
+            private final RadioButton skillItemView;
+
+            private SkillViewHolder(View itemView) {
+                super(itemView);
+                skillItemView = itemView.findViewById(R.id.radioButton);
+            }
+        }
+
+        private final LayoutInflater mInflater;
+        private List<Skill> mSkill;
+
+        public SkillListAdapter(Context context) {
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public SkillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = mInflater.inflate(R.layout.recyclerview_character, parent, false);
+            return new SkillViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(SkillViewHolder holder, int position) {
+            if (null != mSkill) {
+                Skill current = mSkill.get(position);
+                holder.skillItemView.setText(current.getName());
+            } else {
+                holder.skillItemView.setText("No Skill");
+            }
+            holder.skillItemView.setOnClickListener((View view) -> {
+                skill = mSkill.get(position);
+            });
+        }
+
+        public void setSkill(List<Skill> skill) {
+            mSkill = skill;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            if (null != mSkill) return mSkill.size();
+            else return 0;
+        }
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

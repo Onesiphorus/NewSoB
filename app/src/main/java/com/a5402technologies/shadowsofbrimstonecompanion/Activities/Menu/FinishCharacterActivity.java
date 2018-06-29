@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterViewModel;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,8 @@ public class FinishCharacterActivity extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+
+    CharacterViewModel mCharacterViewModel;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -103,6 +107,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mCharacterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
         setContentView(R.layout.activity_finish_character);
 
         SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
@@ -185,28 +190,31 @@ public class FinishCharacterActivity extends AppCompatActivity {
         adapter.setString(startingGear);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-            for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
-                clothing.setEquipped(sobCharacter.equipClothing(clothing));
-                sobCharacter.addClothing(clothing);
+            try {
+                mCharacterViewModel.insert(sobCharacter);
+                Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+                for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+                    sobCharacter.addClothing(clothing);
+                    sobCharacter.equipClothing(clothing);
+                }
+                for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+                    sobCharacter.addRangedWeapon(rangedWeapon);
+                }
+                for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+                    sobCharacter.addMeleeWeapon(meleeWeapon);
+                }
+                for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
+                    sobCharacter.addGear(gearBase);
+                }
+                mCharacterViewModel.update(sobCharacter);
+                sobCharacter.setBonuses();
+                intent.putExtra("serializable_object", sobCharacter);
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+                Toast.makeText(this, "Failed to create character.", Toast.LENGTH_LONG).show();
             }
-            for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
-                rangedWeapon.setEquipped(Boolean.TRUE);
-                sobCharacter.addRangedWeapon(rangedWeapon);
-                String toast = sobCharacter.equipRanged(rangedWeapon);
-                Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
-            }
-            for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
-                meleeWeapon.setEquipped(sobCharacter.equipMelee(meleeWeapon));
-                sobCharacter.addMeleeWeapon(meleeWeapon);
-            }
-            for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
-                sobCharacter.addGear(gearBase);
-            }
-            sobCharacter.setBonuses();
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
+
         });
     }
 

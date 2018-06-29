@@ -38,6 +38,15 @@
             android:id="@+id/btn_remove_gear"
             android:textColor="@android:color/holo_blue_bright"
             android:text="GET RID OF SOMETHING"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@android:color/holo_blue_dark"
+            android:id="@+id/btn_visit_town"
+            android:textColor="@android:color/holo_blue_bright"
+            android:text="Visit Town"/>
+
 
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -28,13 +28,14 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
 
     private RangedWeaponViewModel mRangedWeaponViewModel;
     private RangedWeapon rangedWeapon;
+    private SobCharacter sobCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranged_weapon);
 
-        SobCharacter sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AddRangedWeaponActivity.RangedWeaponListAdapter adapter = new AddRangedWeaponActivity.RangedWeaponListAdapter(this);
@@ -51,7 +52,7 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.ranged_weapon_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class    );
+            Intent intent = new Intent(this, FoundGearActivity.class    );
             if(rangedWeapon != null) {
                 sobCharacter.addRangedWeapon(rangedWeapon);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -138,6 +139,14 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }
 

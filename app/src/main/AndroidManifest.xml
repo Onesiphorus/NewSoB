@@ -27,13 +27,13 @@
             android:name=".Activities.Menu.NewCharacterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.NewItems.AddClothingActivity"
+            android:name=".Activities.Main.Inventory.AddItems.AddClothingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.ChooseClassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.NewItems.DebugActivity"
+            android:name=".Activities.Main.Inventory.AddItems.FoundGearActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.CreateCharacterActivity"
@@ -54,11 +54,21 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_management_menu"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".Activities.Main.NewItems.AddGearBaseActivity" />
-        <activity android:name=".Activities.Main.NewItems.AddMeleeWeaponActivity" />
-        <activity android:name=".Activities.Main.NewItems.AddRangedWeaponActivity" />
-        <activity android:name=".Activities.Main.Equip.EquipRightHandRangedActivity" />
-        <activity android:name=".Activities.Main.Equip.EquipLeftHandRangedActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddMeleeWeaponActivity" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddRangedWeaponActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipLeftMeleeActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipRightMeleeActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChangeLoadoutActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChangeClothingActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveGearActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveMeleeActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveRangedActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveClothingActivity" />
+        <activity android:name=".Activities.Main.VisitTownActivity"></activity>
     </application>
 
 </manifest>

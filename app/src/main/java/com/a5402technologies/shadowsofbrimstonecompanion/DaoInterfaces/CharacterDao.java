@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
@@ -14,6 +15,9 @@ public interface CharacterDao {
 
     @Insert
     void insert(SobCharacter character);
+
+    @Update
+    void update(SobCharacter character);
 
     @Query("DELETE FROM character_table")
     void deleteAllSobCharacters();

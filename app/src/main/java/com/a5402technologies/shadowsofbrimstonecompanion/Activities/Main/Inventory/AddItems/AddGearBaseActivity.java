@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -27,17 +27,16 @@ import java.util.List;
 public class AddGearBaseActivity extends AppCompatActivity {
 
     public static final int CLOTHING_REQUEST = 101;
-    private List<GearBase> mGearBase;
     private GearBaseViewModel mGearBaseViewModel;
     private GearBase gearBase;
-    private static final int RESULT_CODE = 1;
+    private SobCharacter sobCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gear_base);
 
-        SobCharacter sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AddGearBaseActivity.GearBaseListAdapter adapter = new AddGearBaseActivity.GearBaseListAdapter(this);
@@ -54,7 +53,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.gear_base_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class    );
+            Intent intent = new Intent(this, FoundGearActivity.class    );
             /*
             if(gearBase != null) {
                 intent.putExtra("serializable_object", gearBase);
@@ -65,7 +64,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             if(gearBase != null) {
                 sobCharacter.addGear(gearBase);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, gearBase.getName() + "added to inventory.", Toast.LENGTH_LONG);
+                Toast.makeText(this, gearBase.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();
@@ -149,6 +148,14 @@ public class AddGearBaseActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }
 

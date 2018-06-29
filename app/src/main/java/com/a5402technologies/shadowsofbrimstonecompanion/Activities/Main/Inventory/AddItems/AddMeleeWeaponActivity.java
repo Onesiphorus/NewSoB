@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -26,18 +26,16 @@ import java.util.List;
 
 public class AddMeleeWeaponActivity extends AppCompatActivity {
 
-    public static final int CLOTHING_REQUEST = 101;
-    private List<MeleeWeapon> mMeleeWeapon;
     private MeleeWeaponViewModel mMeleeWeaponViewModel;
     private MeleeWeapon meleeWeapon;
-    private static final int RESULT_CODE = 1;
+    private SobCharacter sobCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_melee_weapon);
 
-        SobCharacter sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AddMeleeWeaponActivity.MeleeWeaponListAdapter adapter = new AddMeleeWeaponActivity.MeleeWeaponListAdapter(this);
@@ -54,7 +52,7 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.melee_weapon_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class    );
+            Intent intent = new Intent(this, FoundGearActivity.class    );
             /*
             if(meleeWeapon != null) {
                 intent.putExtra("serializable_object", meleeWeapon);
@@ -65,7 +63,7 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
             if(meleeWeapon != null) {
                 sobCharacter.addMeleeWeapon(meleeWeapon);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, meleeWeapon.getName() + "added to inventory.", Toast.LENGTH_LONG);
+                Toast.makeText(this, meleeWeapon.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();
@@ -149,6 +147,14 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }
 

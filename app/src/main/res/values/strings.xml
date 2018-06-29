@@ -39,6 +39,10 @@
     <string name="title_activity_shadows_of_brimstone">ShadowsOfBrimstoneActivity</string>
     <string name="choose_weapon">CHOOSE YOUR WEAPON</string>
     <string name="equip">EQUIP</string>
+    <string name="destroy">Destroy</string>
+    <string name="sell">Sell</string>
+    <string name="NA">NA</string>
+    <string name="choose_clothing">Choose Clothing</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

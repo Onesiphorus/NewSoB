@@ -1,7 +1,8 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,19 +23,19 @@ import java.util.List;
 
 public class EquipRightHandRangedActivity extends AppCompatActivity {
     RangedWeapon rangedWeapon;
-
+    SobCharacter sobCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equip_right_hand_ranged);
-        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        setContentView(R.layout.activity_equip);
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for(RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
             if(rangedWeapon.getEquipped().equals(Boolean.FALSE)) RangedWeaponOptions.add(rangedWeapon);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
         final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,22 +44,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if(null != rangedWeapon) {
-                if(null != sobCharacter.getRightHand()) {
-                    sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getRightHand().getName()));
-                }
-                if(rangedWeapon.getTwoHanded().equals(Boolean.TRUE)) {
-                    if(null != sobCharacter.getLeftHand()) {
-                        sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getLeftHand().getName()));
-                        sobCharacter.setLeftHand(null);
-                        //TODO change null for unequipped hands to 'RangedWeapon emptyHand' and 'RangedWeapon twoHanded' placeholders
-                    }
-                }
-                if(null != sobCharacter.getLeftHand() && sobCharacter.getLeftHand().getTwoHanded().equals(Boolean.TRUE)) {
-                    sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getLeftHand().getName()));
-                    sobCharacter.setLeftHand(null);
-                }
-                sobCharacter.equipRanged(rangedWeapon);
-                sobCharacter.setRightHand(rangedWeapon);
+                sobCharacter.equipRightHand(rangedWeapon);
 
                 Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -71,7 +57,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-            intent.putExtra("serializable_extra", sobCharacter);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
@@ -128,5 +114,13 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
             if (null != mRangedWeapon) return mRangedWeapon.size();
             else return 0;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }

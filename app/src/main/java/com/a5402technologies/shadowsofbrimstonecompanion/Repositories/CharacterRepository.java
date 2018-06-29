@@ -36,6 +36,14 @@ public class CharacterRepository {
         new insertAsyncTask(mCharacterDao).execute(character);
     }
 
+    public void delete (SobCharacter character) {
+        new deleteAsyncTask(mCharacterDao).execute(character.getCharacterName());
+    }
+
+    public void update (SobCharacter character) {
+        new updateAsyncTask(mCharacterDao).execute(character);
+    }
+
     private static class insertAsyncTask extends AsyncTask<SobCharacter, Void, Void> {
 
         private CharacterDao mAsyncTaskDao;
@@ -47,6 +55,35 @@ public class CharacterRepository {
         @Override
         protected Void doInBackground(final SobCharacter... params) {
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<SobCharacter, Void, Void> {
+
+        private CharacterDao mAsyncTaskDao;
+
+        updateAsyncTask(CharacterDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final SobCharacter... params) {
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<String, Void, Void> {
+
+        private CharacterDao mAsyncTaskDao;
+
+        deleteAsyncTask(CharacterDao dao) {
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(final String... params) {
+            mAsyncTaskDao.deleteCharacterByName(params[0]);
             return null;
         }
     }

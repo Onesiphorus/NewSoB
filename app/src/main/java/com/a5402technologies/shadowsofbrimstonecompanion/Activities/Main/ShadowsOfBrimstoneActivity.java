@@ -2,30 +2,39 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip.EquipLeftHandRangedActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip.EquipRightHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterViewModel;
+
+import static java.lang.Boolean.TRUE;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class ShadowsOfBrimstoneActivity extends Activity {
+public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
+    CharacterViewModel mCharacterViewModel;
+
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
@@ -90,15 +99,16 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             return false;
         }
     };
-
+    private SobCharacter sobCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mCharacterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
         setContentView(R.layout.activity_shadows_of_brimstone);
-        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
-        Button btn;
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        mCharacterViewModel.update(sobCharacter);
         sobCharacter.setBonuses();
+
 
         TextView tv = findViewById(R.id.sob_fullscreen);
         Integer value;
@@ -149,11 +159,22 @@ public class ShadowsOfBrimstoneActivity extends Activity {
         tv.setText(sobCharacter.getCharacterName());
 
         Button rightRanged = findViewById(R.id.right_hand_ranged_weapon);
+        rightRanged.setHint("empty");
         Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
+        leftRanged.setHint("empty");
+        Button rightMelee = findViewById(R.id.btn_right_melee);
+        rightMelee.setHint("empty");
+        Button leftMelee = findViewById(R.id.btn_left_melee);
+        leftMelee.setHint("empty");
 
         if(sobCharacter.getRightHand() != null) {
             //TODO logic for two handed
             rightRanged.setText(sobCharacter.getRightHand().getName());
+            rightMelee.setHint(sobCharacter.getRightHand().getName());
+            if(sobCharacter.getRightHand().getTwoHanded().equals(TRUE)) {
+                leftRanged.setHint(sobCharacter.getRightHand().getName());
+                leftMelee.setHint(sobCharacter.getRightHand().getName());
+            }
             tv = findViewById(R.id.right_hand_range);
             tv.setText(String.format(sobCharacter.getRightHand().getRange().toString()));
             tv = findViewById(R.id.right_hand_shots);
@@ -171,7 +192,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             tv = findViewById(R.id.right_hand_to_hit);
             text =
                     "D" + sobCharacter.getRightHand().getToHitDie().toString()
-                    + " : "
+                    + ":"
                     + sobCharacter.getCharacterClass().getRangedToHit().toString()
                     + "+("
                     + sobCharacter.getRightHand().getCritChance()
@@ -187,6 +208,11 @@ public class ShadowsOfBrimstoneActivity extends Activity {
         if(sobCharacter.getLeftHand() != null) {
             leftRanged = findViewById(R.id.left_hand_ranged_weapon);
             leftRanged.setText(sobCharacter.getLeftHand().getName());
+            leftMelee.setHint(sobCharacter.getLeftHand().getName());
+            if(sobCharacter.getLeftHand().getTwoHanded().equals(TRUE)) {
+                rightRanged.setHint(sobCharacter.getLeftHand().getName());
+                rightMelee.setHint(sobCharacter.getLeftHand().getName());
+            }
             tv = findViewById(R.id.left_hand_range);
             tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
             tv = findViewById(R.id.left_hand_shots);
@@ -204,7 +230,7 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             text =
                     "D"
                     + sobCharacter.getLeftHand().getToHitDie().toString()
-                    + " : "
+                    + ":"
                     + sobCharacter.getCharacterClass().getRangedToHit().toString()
                     + "+("
                     + sobCharacter.getLeftHand().getCritChance()
@@ -219,7 +245,35 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             finish();
         });
 
-        //TODO Logic for populating melee names
+
+        if(null != sobCharacter.getLeftMelee()) {
+            leftMelee.setText(sobCharacter.getLeftMelee().getName());
+            leftRanged.setHint(sobCharacter.getLeftMelee().getName());
+            if(sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE)) {
+                rightMelee.setHint(sobCharacter.getLeftMelee().getName());
+                rightRanged.setHint(sobCharacter.getLeftMelee().getName());
+            }
+        }
+        leftMelee.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipLeftMeleeActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        if(null != sobCharacter.getRightMelee()) {
+            rightMelee.setText(sobCharacter.getRightMelee().getName());
+            rightRanged.setHint(sobCharacter.getRightMelee().getName());
+            if(sobCharacter.getRightMelee().getTwoHanded().equals(TRUE)) {
+                leftMelee.setHint(sobCharacter.getRightMelee().getName());
+                leftRanged.setHint(sobCharacter.getRightMelee().getName());
+            }
+        }
+        rightMelee.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipRightMeleeActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
         tv = findViewById(R.id.melee_combat);
         Integer combat = sobCharacter.getCharacterClass().getCombat() + sobCharacter.getCombatBonus();
         tv.setText(String.format(combat.toString()));
@@ -250,6 +304,10 @@ public class ShadowsOfBrimstoneActivity extends Activity {
             Intent intent = new Intent(this, ManagementMenuActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+        });
+
+        findViewById(R.id.btn_spoils).setOnClickListener((View view) -> {
+
         });
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -321,5 +379,13 @@ public class ShadowsOfBrimstoneActivity extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //TODO overwrite existing character
+        Intent intent = new Intent(this, CharacterActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

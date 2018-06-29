@@ -5,7 +5,17 @@ import java.util.Map;
 
 public enum ClothingSlotsEnum {
 
-    FACE("Face", "FACE");
+    FACE("Face", "FACE"),
+    HAT("Hat", "HAT"),
+    SHOULDERS("Shoulders", "SHOULDERS"),
+    COAT("Coat", "COAT"),
+    TORSO("Torso", "TORSO"),
+    GLOVES("Gloves", "GLOVES"),
+    BELT("Belt", "BELT"),
+    PANTS("Pants", "PANTS"),
+    BOOTS("Boots", "BOOTS");
+
+
     //TODO finish modifiers
 
 

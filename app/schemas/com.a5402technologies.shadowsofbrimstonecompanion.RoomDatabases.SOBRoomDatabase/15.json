@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 13,
-    "identityHash": "1f446fd1dc5af4086deb5a3e9a1b25cb",
+    "version": 15,
+    "identityHash": "ca71b271cf0800f966669ac048b15e13",
     "entities": [
       {
         "tableName": "character_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_name` TEXT NOT NULL, `character_class` TEXT, `gear_list` TEXT, `clothing_list` TEXT, `melee_list` TEXT, `ranged_list` TEXT, `agility_bonus` INTEGER, `cunning_bonus` INTEGER, `spirit_bonus` INTEGER, `strength_bonus` INTEGER, `lore_bonus` INTEGER, `luck_bonus` INTEGER, `health_bonus` INTEGER, `sanity_bonus` INTEGER, `armor` INTEGER, `spirit_armor` INTEGER, `ranged_damage_die` INTEGER, `ranged_damage_bonus` INTEGER, `melee_damage_bonus` INTEGER, `melee_damage_die` INTEGER, `combat_bonus` INTEGER, `initiative_bonus` INTEGER, `max_grit_bonus` INTEGER, `gold` INTEGER, `experience` INTEGER, `level` INTEGER, `face_slot` INTEGER, `hat_slot` INTEGER, `shoulders_slot` INTEGER, `torso_slot` INTEGER, `gloves_slot` INTEGER, `pants_slot` INTEGER, `boots_slot` INTEGER, `coat_slot` INTEGER, `has_prehensile_tail` INTEGER, `earned_skills` TEXT, `hands_used` INTEGER NOT NULL, `move_bonus` INTEGER NOT NULL, `right_hand` TEXT, `left_hand` TEXT, `right_melee` TEXT, `left_melee` TEXT, `prehensile_tail` TEXT, `melee_to_hit_die` INTEGER NOT NULL, `melee_crit_chance` INTEGER NOT NULL, PRIMARY KEY(`character_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_name` TEXT NOT NULL, `character_class` TEXT, `gear_list` TEXT, `clothing_list` TEXT, `melee_list` TEXT, `ranged_list` TEXT, `agility_bonus` INTEGER, `cunning_bonus` INTEGER, `spirit_bonus` INTEGER, `strength_bonus` INTEGER, `lore_bonus` INTEGER, `luck_bonus` INTEGER, `health_bonus` INTEGER, `sanity_bonus` INTEGER, `armor` INTEGER, `spirit_armor` INTEGER, `ranged_damage_die` INTEGER, `ranged_damage_bonus` INTEGER, `melee_damage_bonus` INTEGER, `melee_damage_die` INTEGER, `combat_bonus` INTEGER, `initiative_bonus` INTEGER, `max_grit_bonus` INTEGER, `gold` INTEGER, `experience` INTEGER, `level` INTEGER, `face_slot` INTEGER, `hat_slot` INTEGER, `shoulders_slot` INTEGER, `torso_slot` INTEGER, `gloves_slot` INTEGER, `pants_slot` INTEGER, `boots_slot` INTEGER, `coat_slot` INTEGER, `belt` INTEGER, `has_prehensile_tail` INTEGER, `earned_skills` TEXT, `hands_used` INTEGER NOT NULL, `move_bonus` INTEGER NOT NULL, `right_hand` TEXT, `left_hand` TEXT, `right_melee` TEXT, `left_melee` TEXT, `tail_melee` TEXT, `prehensile_tail` TEXT, `melee_to_hit_die` INTEGER NOT NULL, `melee_crit_chance` INTEGER NOT NULL, PRIMARY KEY(`character_name`))",
         "fields": [
           {
             "fieldPath": "characterName",
@@ -213,6 +213,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "belt",
+            "columnName": "belt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
             "fieldPath": "hasPTail",
             "columnName": "has_prehensile_tail",
             "affinity": "INTEGER",
@@ -257,6 +263,12 @@
           {
             "fieldPath": "leftMelee",
             "columnName": "left_melee",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prehensileMelee",
+            "columnName": "tail_melee",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -820,7 +832,7 @@
       },
       {
         "tableName": "clothing_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clothing_name` TEXT NOT NULL, `face` INTEGER, `hat` INTEGER, `shoulders` INTEGER, `torso` INTEGER, `gloves` INTEGER, `pants` INTEGER, `boots` INTEGER, `coat` INTEGER, `equipped` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, PRIMARY KEY(`clothing_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clothing_name` TEXT NOT NULL, `face` INTEGER, `belt` INTEGER, `hat` INTEGER, `shoulders` INTEGER, `torso` INTEGER, `gloves` INTEGER, `pants` INTEGER, `boots` INTEGER, `coat` INTEGER, `equipped` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, PRIMARY KEY(`clothing_name`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -831,6 +843,12 @@
           {
             "fieldPath": "face",
             "columnName": "face",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "belt",
+            "columnName": "belt",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -1035,7 +1053,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1f446fd1dc5af4086deb5a3e9a1b25cb\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ca71b271cf0800f966669ac048b15e13\")"
     ]
   }
 }

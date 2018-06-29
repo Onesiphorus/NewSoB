@@ -1,19 +1,14 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Models;
 
-import android.app.job.JobInfo;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.util.Range;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
@@ -21,6 +16,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 @Entity(tableName = "character_table")
 public class SobCharacter implements Serializable {
@@ -84,29 +81,28 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "level")
     private Integer level = 1;
     @ColumnInfo(name = "face_slot")
-    private Boolean face = Boolean.FALSE;
+    private Boolean face = FALSE;
     @ColumnInfo(name = "hat_slot")
-    private Boolean hat = Boolean.FALSE;
+    private Boolean hat = FALSE;
     @ColumnInfo(name = "shoulders_slot")
-    private Boolean shoulders = Boolean.FALSE;
+    private Boolean shoulders = FALSE;
     @ColumnInfo(name = "torso_slot")
-    private Boolean torso = Boolean.FALSE;
+    private Boolean torso = FALSE;
     @ColumnInfo(name = "gloves_slot")
-    private Boolean gloves = Boolean.FALSE;
+    private Boolean gloves = FALSE;
     @ColumnInfo(name = "pants_slot")
-    private Boolean pants = Boolean.FALSE;
+    private Boolean pants = FALSE;
     @ColumnInfo(name = "boots_slot")
-    private Boolean boots = Boolean.FALSE;
+    private Boolean boots = FALSE;
     @ColumnInfo(name = "coat_slot")
-    private Boolean coat = Boolean.FALSE;
+    private Boolean coat = FALSE;
+    @ColumnInfo(name = "belt")
+    private Boolean belt = FALSE;
     @ColumnInfo(name = "has_prehensile_tail")
-    private Boolean hasPTail = Boolean.FALSE;
+    private Boolean hasPTail = FALSE;
     @ColumnInfo(name = "earned_skills")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Skill> upgrades;
-    @NonNull
-    @ColumnInfo(name = "hands_used")
-    private Integer handsUsed = 0;
     @NonNull
     @ColumnInfo(name = "move_bonus")
     private Integer moveBonus = 0;
@@ -116,6 +112,15 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "left_hand")
     @TypeConverters(GithubTypeConverters.class)
     private RangedWeapon leftHand;
+    @ColumnInfo(name = "right_melee")
+    @TypeConverters(GithubTypeConverters.class)
+    private MeleeWeapon rightMelee;
+    @ColumnInfo(name = "left_melee")
+    @TypeConverters(GithubTypeConverters.class)
+    private MeleeWeapon leftMelee;
+    @ColumnInfo(name = "tail_melee")
+    @TypeConverters(GithubTypeConverters.class)
+    private MeleeWeapon prehensileMelee;
     @ColumnInfo(name = "prehensile_tail")
     @TypeConverters(GithubTypeConverters.class)
     private RangedWeapon prehensileTail;
@@ -447,7 +452,7 @@ public class SobCharacter implements Serializable {
         this.clothing.add(clothing);
     }
 
-    public void removeCothing(Clothing clothing) {
+    public void removeClothing(Clothing clothing) {
         this.clothing.remove(clothing);
     }
 
@@ -474,171 +479,176 @@ public class SobCharacter implements Serializable {
         this.moveBonus = moveBonus;
     }
 
-    @NonNull
-    public Integer getHandsUsed() {
-        return handsUsed;
+    public Boolean getBelt() {
+        return belt;
     }
 
-    public void setHandsUsed(@NonNull Integer handsUsed) {
-        this.handsUsed = handsUsed;
+    public void setBelt(Boolean belt) {
+        this.belt = belt;
     }
 
-    public Boolean equipClothing(Clothing clothing) {
-        if(clothing.getHat().equals(Boolean.TRUE)) {
-            if(this.getHat().equals(Boolean.FALSE)) {
-                this.setHat(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+    public void equipClothing(Clothing clothing) {
+        if(clothing.getHat().equals(TRUE)) {
+            this.setHat(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getBoots().equals(Boolean.TRUE)) {
-            if(this.getBoots().equals(Boolean.FALSE)) {
-                this.setBoots(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getBelt().equals(TRUE)) {
+            this.setHat(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getCoat().equals(Boolean.TRUE)) {
-            if(this.getCoat().equals(Boolean.FALSE)) {
-                this.setCoat(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getBoots().equals(TRUE)) {
+            this.setBoots(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getFace().equals(Boolean.TRUE)) {
-            if (this.getFace().equals(Boolean.FALSE)) {
-                this.setFace(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            } else return Boolean.FALSE;
+        if(clothing.getCoat().equals(TRUE)) {
+            this.setCoat(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getGloves().equals(Boolean.TRUE)) {
-            if(this.getGloves().equals(Boolean.FALSE)) {
-                this.setGloves(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getFace().equals(TRUE)) {
+            this.setFace(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getPants().equals(Boolean.TRUE)) {
-            if(this.getPants().equals(Boolean.FALSE)) {
-                this.setPants(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getGloves().equals(TRUE)) {
+            this.setGloves(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getShoulders().equals(Boolean.TRUE)) {
-            if(this.getShoulders().equals(Boolean.FALSE)) {
-                this.setShoulders(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getPants().equals(TRUE)) {
+            this.setPants(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-        if(clothing.getTorso().equals(Boolean.TRUE)) {
-            if(this.getTorso().equals(Boolean.FALSE)) {
-                this.setTorso(Boolean.TRUE);
-                clothing.setEquipped(Boolean.TRUE);
-            }
-            else return Boolean.FALSE;
+        if(clothing.getShoulders().equals(TRUE)) {
+            this.setShoulders(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
-            return Boolean.TRUE;
+        if(clothing.getTorso().equals(TRUE)) {
+            this.setTorso(TRUE);
+            findClothingByName(clothing.getName()).setEquipped(TRUE);
+        }
     }
 
-    public Boolean unequipClothing(Clothing clothing) {
-        if(clothing.getEquipped().equals(Boolean.TRUE)) {
-            if(clothing.getTorso().equals(Boolean.TRUE)) {
-                this.setTorso(Boolean.FALSE);
+    public void unequipClothing(Clothing clothing) {
+        if(null != clothing && null != findClothingByName(clothing.getName())) {
+            findClothingByName(clothing.getName()).setEquipped(FALSE);
+            Log.e("getEquipped: ", clothing.getName() + ": " + findClothingByName(clothing.getName()).getEquipped());
+            if(clothing.getEquipped().equals(TRUE)) {
+                if (clothing.getTorso().equals(TRUE)) {
+                    this.setTorso(FALSE);
+                }
+                if (clothing.getShoulders().equals(TRUE)) {
+                    this.setShoulders(FALSE);
+                }
+                if (clothing.getBelt().equals(TRUE)) {
+                    this.setBelt(FALSE);
+                }
+                if (clothing.getPants().equals(TRUE)) {
+                    this.setPants(FALSE);
+                }
+                if (clothing.getGloves().equals(TRUE)) {
+                    this.setGloves(FALSE);
+                }
+                if (clothing.getFace().equals(TRUE)) {
+                    this.setFace(FALSE);
+                }
+                if (clothing.getCoat().equals(TRUE)) {
+                    this.setCoat(FALSE);
+                }
+                if (clothing.getBoots().equals(TRUE)) {
+                    this.setBoots(FALSE);
+                }
+                if (clothing.getHat().equals(TRUE)) {
+                    this.setHat(FALSE);
+                }
             }
-            if(clothing.getShoulders().equals(Boolean.TRUE)) {
-                this.setShoulders(Boolean.FALSE);
-            }
-            if(clothing.getPants().equals(Boolean.TRUE)) {
-                this.setPants(Boolean.FALSE);
-            }
-            if(clothing.getGloves().equals(Boolean.TRUE)) {
-                this.setGloves(Boolean.FALSE);
-            }
-            if(clothing.getFace().equals(Boolean.TRUE)) {
-                this.setFace(Boolean.FALSE);
-            }
-            if(clothing.getCoat().equals(Boolean.TRUE)) {
-                this.setCoat(Boolean.FALSE);
-            }
-            if(clothing.getBoots().equals(Boolean.TRUE)) {
-                this.setBoots(Boolean.FALSE);
-            }
-            if(clothing.getHat().equals(Boolean.TRUE)) {
-                this.setHat(Boolean.FALSE);
-            }
-            return Boolean.TRUE;
         }
-        return Boolean.FALSE;
     }
 
-    private Integer handsFree() {
-        return hasPTail ? (3 - getHandsUsed()) : (2-getHandsUsed());
+    public void equipRightMelee(MeleeWeapon meleeWeapon) {
+        if(null != rightMelee) {
+            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+        }
+        findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
+        rightMelee = meleeWeapon;
+        if(null != leftMelee && (meleeWeapon.getTwoHanded().equals(TRUE)
+                || leftMelee.getTwoHanded().equals(TRUE))) {
+            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+            leftMelee = null;
+        }
+        if(null != rightHand){
+            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+            rightHand = null;
+        }
+        if(null != leftHand && (leftHand.getTwoHanded().equals(TRUE) || rightMelee.getTwoHanded().equals(TRUE))) {
+            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+            leftHand = null;
+        }
+    }
+    public void equipLeftMelee(MeleeWeapon meleeWeapon) {
+        if(null != leftMelee) {
+            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+        }
+        findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
+        leftMelee = meleeWeapon;
+        if(null != rightMelee && (meleeWeapon.getTwoHanded().equals(TRUE)
+                || rightMelee.getTwoHanded().equals(TRUE))) {
+            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+            rightMelee = null;
+        }
+        if(null != leftHand){
+            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+            leftHand = null;
+        }
+        if(null != rightHand && (rightHand.getTwoHanded().equals(TRUE) || leftMelee.getTwoHanded().equals(TRUE))) {
+            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+            rightHand = null;
+        }
     }
 
-    public String equipRanged(RangedWeapon rangedWeapon) {
-        if (rangedWeapon.getTwoHanded().equals(Boolean.TRUE) && this.handsFree() > 1) {
-            setHandsUsed(getHandsUsed() + 2);
-            if(null == this.rightHand || this.rightHand.getName().isEmpty()) {
-                this.rightHand = rangedWeapon;
-                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to both hands.");
-            } else {
-                this.leftHand = rangedWeapon;
-            }
-            return "equipRanged: " + rangedWeapon.getName() + " equipped to both hands.";
-        } else if (this.handsFree() > 0){
-            setHandsUsed(getHandsUsed() + 1);
-            if(null == this.rightHand || this.rightHand.getName().isEmpty()) {
-                this.rightHand = rangedWeapon;
-                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to right hand.");
-                return "equipRanged: " + rangedWeapon.getName() + " equipped to right hand.";
-            } else if (null == this.leftHand || this.leftHand.getName().isEmpty()) {
-                this.leftHand = rangedWeapon;
-                Log.e(TAG, "equipRanged: " + rangedWeapon.getName() + " equipped to left hand.");
-                return "equipRanged: " + rangedWeapon.getName() + " equipped to left hand.";
-            } else {
-                this.prehensileTail = rangedWeapon;
-                return "equipRanged: " + rangedWeapon.getName() + " equipped to tail.";
-            }
+    public void equipRightHand(RangedWeapon rangedWeapon) {
+        if(null != rightHand) {
+            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
         }
-        return "No free hands!";
+        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
+        rightHand = rangedWeapon;
+        if(null != leftHand && (rangedWeapon.getTwoHanded().equals(TRUE)
+                || leftHand.getTwoHanded().equals(TRUE))) {
+            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+            leftHand = null;
+        }
+        if(null != rightMelee){
+            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+            rightMelee = null;
+        }
+        if(null != leftMelee && (leftMelee.getTwoHanded().equals(TRUE) || rightHand.getTwoHanded().equals(TRUE))) {
+            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+            leftMelee = null;
+        }
     }
 
-    public Boolean unequipRanged(RangedWeapon rangedWeapon) {
-        if(rangedWeapon.getEquipped().equals(Boolean.TRUE)) {
-            if(rangedWeapon.getTwoHanded().equals(Boolean.TRUE)) {
-                setHandsUsed(getHandsUsed() - 2);
-            } else setHandsUsed(getHandsUsed() -1);
-            return Boolean.TRUE;
+    public void equipLeftHand(RangedWeapon rangedWeapon) {
+        if(null != leftHand) {
+            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
         }
-        return Boolean.FALSE;
-    }
-    public Boolean equipMelee(MeleeWeapon meleeWeapon) {
-        if (meleeWeapon.getTwoHanded().equals(Boolean.TRUE) && this.handsFree() > 1) {
-            setHandsUsed(getHandsUsed() + 2);
-            return Boolean.TRUE;
-        } else if (this.handsFree() > 0){
-            setHandsUsed(getHandsUsed() + 1);
-            return Boolean.TRUE;
+        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
+        leftHand = rangedWeapon;
+        if(null != rightHand && (rangedWeapon.getTwoHanded().equals(TRUE)
+                || rightHand.getTwoHanded().equals(TRUE))) {
+            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+            rightHand = null;
         }
-        return Boolean.FALSE;
-    }
-
-    public Boolean unequipMelee(MeleeWeapon meleeWeapon) {
-        if(meleeWeapon.getEquipped().equals(Boolean.TRUE)) {
-            if(meleeWeapon.getTwoHanded().equals(Boolean.TRUE)) {
-                setHandsUsed(getHandsUsed() - 2);
-            } else setHandsUsed(getHandsUsed() -1);
-            return Boolean.TRUE;
+        if(null != leftMelee){
+            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+            leftMelee = null;
         }
-        return Boolean.FALSE;
+        if(null != rightMelee && (rightMelee.getTwoHanded().equals(TRUE) || leftHand.getTwoHanded().equals(TRUE))) {
+            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+            rightMelee = null;
+        }
     }
 
     public void setBonuses() {
         resetBonuses();
         for(Clothing clothing : this.getClothing()) {
-            if(clothing.getEquipped().equals(Boolean.TRUE)) {
+            if(clothing.getEquipped().equals(TRUE)) {
                 for (String string : clothing.getModifiers()) {
                     findBonus(string);
                 }
@@ -648,11 +658,11 @@ public class SobCharacter implements Serializable {
             }
         }
         for(MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
-            if(meleeWeapon.getEquipped().equals(Boolean.TRUE))
+            if(meleeWeapon.getEquipped().equals(TRUE))
             setCombat(meleeWeapon);
         }
         for(RangedWeapon rangedWeapon : this.getRangedWeapons()) {
-            if(rangedWeapon.getEquipped().equals(Boolean.TRUE))
+            if(rangedWeapon.getEquipped().equals(TRUE))
             setRanged(rangedWeapon);
         }
         for(GearBase gearBase : this.getGear()) {
@@ -827,11 +837,56 @@ public class SobCharacter implements Serializable {
         this.meleeCritChance = meleeCritChance;
     }
 
-    public RangedWeapon findRangedWeaponByName(String name) {
+    private RangedWeapon findRangedWeaponByName(String name) {
         for (RangedWeapon rangedWeapon : this.rangedWeapons) {
             if(rangedWeapon.getName().equals(name)) return rangedWeapon;
         }
         return null;
+    }
+
+    private MeleeWeapon findMeleeWeaponByName(String name) {
+        for (MeleeWeapon meleeWeapon : this.meleeWeapons) {
+            if(meleeWeapon.getName().equals(name)) return meleeWeapon;
+        }
+        return null;
+    }
+
+    public MeleeWeapon getRightMelee() {
+        return rightMelee;
+    }
+
+    public void setRightMelee(MeleeWeapon rightMelee) {
+        this.rightMelee = rightMelee;
+    }
+
+    public MeleeWeapon getLeftMelee() {
+        return leftMelee;
+    }
+
+    public void setLeftMelee(MeleeWeapon leftMelee) {
+        this.leftMelee = leftMelee;
+    }
+
+    public MeleeWeapon getPrehensileMelee() {
+        return prehensileMelee;
+    }
+
+    public void setPrehensileMelee(MeleeWeapon prehensileMelee) {
+        this.prehensileMelee = prehensileMelee;
+    }
+
+    public Clothing findClothingByName(String name) {
+        for (Clothing clothing : this.getClothing()) {
+            if(clothing.getName().equals(name)) return clothing;
+        }
+        return null;
+    }
+
+    public void addGold(int gold) {
+        this.gold += gold;
+    }
+    public void addExp(int xp) {
+        this.experience += xp;
     }
 }
 

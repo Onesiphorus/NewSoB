@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activities.Main.Inventory.AddItems.AddClothingActivity"
-    tools:showIn="@layout/activity_gear_base">
+    tools:context=".Activities.Main.Inventory.RemoveItems.RemoveGearActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_remove_gear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            tools:listitem="@layout/recyclerview_item"
+            />
+    </LinearLayout>
+    <FrameLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item"
-        />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:fitsSystemWindows="true"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
@@ -31,20 +35,28 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/gear_base_accept"
+                android:id="@+id/btn_sell"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="24sp"
-                android:text="@string/accept" />
+                android:textSize="16sp"
+                android:text="@string/sell" />
             <Button
-                android:id="@+id/gear_base_cancel"
+                android:id="@+id/btn_destroy"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="24sp"
+                android:textSize="16sp"
+                android:text="@string/destroy" />
+            <Button
+                android:id="@+id/btn_cancel"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
                 android:text="@string/cancel" />
 
         </LinearLayout>

@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Equip;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,20 +22,20 @@ import java.util.List;
 
 public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
-    RangedWeapon rangedWeapon;
-
+    private RangedWeapon rangedWeapon;
+    private SobCharacter sobCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equip_left_hand_ranged);
-        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        setContentView(R.layout.activity_equip);
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for(RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
             if(rangedWeapon.getEquipped().equals(Boolean.FALSE)) RangedWeaponOptions.add(rangedWeapon);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
         final EquipLeftHandRangedActivity.RangedWeaponListAdapter adapter = new EquipLeftHandRangedActivity.RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,22 +44,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if(null != rangedWeapon) {
-                if(null != sobCharacter.getLeftHand()) {
-                    sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getLeftHand().getName()));
-                }
-                if(rangedWeapon.getTwoHanded().equals(Boolean.TRUE)) {
-                    if(null != sobCharacter.getRightHand()) {
-                        sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getRightHand().getName()));
-                        sobCharacter.setRightHand(null);
-                        //TODO change null for unequipped hands to 'RangedWeapon emptyHand' and 'RangedWeapon twoHanded' placeholders
-                    }
-                }
-                if(null != sobCharacter.getRightHand() && sobCharacter.getRightHand().getTwoHanded().equals(Boolean.TRUE)) {
-                    sobCharacter.unequipRanged(sobCharacter.findRangedWeaponByName(sobCharacter.getRightHand().getName()));
-                    sobCharacter.setRightHand(null);
-                }
-                sobCharacter.equipRanged(rangedWeapon);
-                sobCharacter.setLeftHand(rangedWeapon);
+                sobCharacter.equipLeftHand(rangedWeapon);
 
                 Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -72,7 +57,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-            intent.putExtra("serializable_extra", sobCharacter);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
@@ -129,5 +114,13 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
             if (null != mRangedWeapon) return mRangedWeapon.size();
             else return 0;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }

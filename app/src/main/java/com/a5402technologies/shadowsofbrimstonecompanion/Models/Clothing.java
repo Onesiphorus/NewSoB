@@ -19,6 +19,8 @@ public class Clothing implements Serializable {
     private String name;
     @ColumnInfo(name = "face")
     private Boolean face = Boolean.FALSE;
+    @ColumnInfo(name = "belt")
+    private Boolean belt = Boolean.FALSE;
     @ColumnInfo(name = "hat")
     private Boolean hat = Boolean.FALSE;
     @ColumnInfo(name = "shoulders")
@@ -112,6 +114,14 @@ public class Clothing implements Serializable {
 
     public Boolean getShoulders() {
         return shoulders;
+    }
+
+    public Boolean getBelt() {
+        return belt;
+    }
+
+    public void setBelt(Boolean belt) {
+        this.belt = belt;
     }
 
     public void setShoulders(Boolean shoulders) {

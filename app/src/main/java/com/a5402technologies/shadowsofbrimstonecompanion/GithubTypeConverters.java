@@ -154,7 +154,7 @@ public class GithubTypeConverters {
             return new RangedWeapon("",0,0);
         }
 
-        Type listType = new TypeToken<CharacterClass>() {}.getType();
+        Type listType = new TypeToken<RangedWeapon>() {}.getType();
 
         return gson.fromJson(data,listType);
     }
@@ -162,5 +162,21 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String RangedWeaponToString(RangedWeapon rangedWeapon) {
         return gson.toJson(rangedWeapon);
+    }
+
+    @TypeConverter
+    public static MeleeWeapon stringToMeleeWeapon(String data) {
+        if (null == data) {
+            return new MeleeWeapon("");
+        }
+
+        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String MeleeWeaponToString(MeleeWeapon meleeWeapon) {
+        return gson.toJson(meleeWeapon);
     }
 }

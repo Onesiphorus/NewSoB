@@ -1,12 +1,9 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,44 +14,38 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AddClothingActivity extends AppCompatActivity {
-
-    public static final int CLOTHING_REQUEST = 101;
-    private List<Clothing> mClothing;
-    private ClothingViewModel mClothingViewModel;
-    private Clothing clothing;
-    private static final int RESULT_CODE = 1;
+public class RemoveClothingActivity extends AppCompatActivity {
+    SobCharacter sobCharacter;
+    Clothing clothing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clothing);
+        setContentView(R.layout.activity_remove_item);
 
-        SobCharacter sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final ClothingListAdapter adapter = new ClothingListAdapter(this);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_remove_gear);
+        final RemoveClothingActivity.ClothingListAdapter adapter = new RemoveClothingActivity.ClothingListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mClothingViewModel = ViewModelProviders.of(this).get(ClothingViewModel.class);
+        ArrayList<Clothing> clothingList = new ArrayList<>(0);
+        for(Clothing clothing : sobCharacter.getClothing()) {
+            if(clothing.getEquipped().equals(Boolean.FALSE)) clothingList.add(clothing);
+        }
+        adapter.setClothing(clothingList);
 
-        mClothingViewModel.getAllClothing().observe(this, new Observer<List<Clothing>>() {
-            @Override
-            public void onChanged(@Nullable List<Clothing> clothing) {
-                adapter.setClothing(clothing);
-            }
-        });
-
-        findViewById(R.id.clothing_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class    );
+        findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ManagementMenuActivity.class    );
             /*
             if(clothing != null) {
                 intent.putExtra("serializable_object", clothing);
@@ -63,16 +54,39 @@ public class AddClothingActivity extends AppCompatActivity {
             finish();
             */
             if(clothing != null) {
-                sobCharacter.addClothing(clothing);
+                sobCharacter.removeClothing(clothing);
+                sobCharacter.addGold(clothing.getSell());
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, clothing.getName() + "added to inventory.", Toast.LENGTH_LONG);
+                Toast.makeText(this, clothing.getName() + " sold for $" + clothing.getSell() + ".", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();
         });
+
+        findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ManagementMenuActivity.class    );
+            /*
+            if(clothing != null) {
+                intent.putExtra("serializable_object", clothing);
+            }
+            setResult(RESULT_CODE, intent);
+            finish();
+            */
+            if(clothing != null) {
+                sobCharacter.removeClothing(clothing);
+                intent.putExtra("serializable_object", sobCharacter);
+                Toast.makeText(this, clothing.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+            }
+            startActivity(intent);
+            finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
+        });
     }
 
-    class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapter.ClothingViewHolder> {
+    class ClothingListAdapter extends RecyclerView.Adapter<RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder> {
 
         class ClothingViewHolder extends RecyclerView.ViewHolder {
             private final TextView clothingItemView;
@@ -87,7 +101,6 @@ public class AddClothingActivity extends AppCompatActivity {
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
         private Context mContext;
-        private Integer RESULT_CODE = 1;
 
         public ClothingListAdapter(Context context) {
             mContext = context;
@@ -95,16 +108,17 @@ public class AddClothingActivity extends AppCompatActivity {
         }
 
         @Override
-        public ClothingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new ClothingViewHolder(itemView);
+            return new RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(ClothingViewHolder holder, int position) {
+        public void onBindViewHolder(RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder holder, int position) {
             if (null != mClothing) {
                 Clothing current = mClothing.get(position);
-                holder.clothingItemView.setText(current.getName());
+                String text = current.getName() + ": $" + current.getSell();
+                holder.clothingItemView.setText(text);
             } else {
                 holder.clothingItemView.setText("No Clothing");
             }
@@ -150,6 +164,12 @@ public class AddClothingActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
 }
-
-

@@ -3,31 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Main.Equip.EquipRightHandRangedActivity">
+    tools:context=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="48dp"
-        android:layout_gravity="center|center_horizontal">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_rh_ranged_choose"
-        android:text="@string/choose_weapon"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"/>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recyclerview_equip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_bright"
         tools:listitem="@layout/recyclerview_item"
         />
-    </LinearLayout>
 
     <include layout="@layout/content_equip_cancel" />
 

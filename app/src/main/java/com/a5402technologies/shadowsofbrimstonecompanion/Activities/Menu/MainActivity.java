@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems.DebugActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_debug).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, DebugActivity.class);
+            Intent intent = new Intent(this, FoundGearActivity.class);
             startActivity(intent);
         });
     }

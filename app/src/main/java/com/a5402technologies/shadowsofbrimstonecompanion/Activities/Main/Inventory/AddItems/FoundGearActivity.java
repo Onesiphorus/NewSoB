@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NewItems;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,50 +8,50 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
-public class DebugActivity extends AppCompatActivity {
+public class FoundGearActivity extends AppCompatActivity {
 
     private SobCharacter sobCharacter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debug);
+        setContentView(R.layout.activity_found_gear);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
-            Intent intent = new Intent(DebugActivity.this, AddGearBaseActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
 
         findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
-            Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
             /*
-            Intent intent = new Intent(DebugActivity.this, AddClothingActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddClothingActivity.class);
             startActivityForResult(intent, CLOTHING_REQUEST_CODE);
             */
         });
 
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {
-            Intent intent = new Intent(DebugActivity.this, AddMeleeWeaponActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddMeleeWeaponActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
 
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
-            Intent intent = new Intent(DebugActivity.this, AddRangedWeaponActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddRangedWeaponActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -82,9 +82,9 @@ public class DebugActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        Intent intent = new Intent(this, ManagementMenuActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
-        return;
+        finish();
     }
 }
