@@ -6,11 +6,10 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnu
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearUpgrades;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -134,19 +133,19 @@ public class GithubTypeConverters {
     }
 
     @TypeConverter
-    public static ArrayList<GearUpgrades> stringToGearUpgradeList(String data) {
+    public static ArrayList<Attachment> stringToAttachmentList(String data) {
         if (null == data) {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<GearUpgrades>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Attachment>>() {}.getType();
 
         return gson.fromJson(data,listType);
     }
 
     @TypeConverter
-    public static String GearUpgradeListToString(ArrayList<GearUpgrades> gearUpgradesList) {
-        return gson.toJson(gearUpgradesList);
+    public static String AttachmentListToString(ArrayList<Attachment> attachmentList) {
+        return gson.toJson(attachmentList);
     }
 
     @TypeConverter

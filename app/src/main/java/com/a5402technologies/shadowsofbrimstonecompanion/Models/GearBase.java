@@ -6,6 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -21,16 +22,16 @@ public class GearBase implements Serializable {
     private String name;
     @NonNull
     @ColumnInfo(name = "cost")
-    private Integer cost;
+    private Integer cost = 0;
     @NonNull
     @ColumnInfo(name = "sell")
-    private Integer sell;
+    private Integer sell = 0;
     @NonNull
     @ColumnInfo(name = "weight")
-    private Integer weight;
+    private Integer weight = 0;
     @NonNull
     @ColumnInfo(name = "darkStone")
-    private Integer darkStone;
+    private Integer darkStone = 0;
     @ColumnInfo(name = "modifiers")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> modifiers;
@@ -39,13 +40,13 @@ public class GearBase implements Serializable {
     private ArrayList<String> restrictions;
     @NonNull
     @ColumnInfo(name = "set")
-    private String set;
+    private String set = SetListEnum.BASE.code();
     @NonNull
     @ColumnInfo(name = "personal_item")
-    private Boolean personal;
+    private Boolean personal = FALSE;
     @NonNull
     @ColumnInfo(name = "starting_gear")
-    private Boolean starting;
+    private Boolean starting = FALSE;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
@@ -76,19 +77,12 @@ public class GearBase implements Serializable {
     private Boolean derelictArtifact = FALSE;
     @ColumnInfo(name = "attachments")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<GearUpgrades> attachments;
+    private ArrayList<Attachment> attachments;
 
     public GearBase(@NonNull String name) {
         this.name = name;
-        this.cost = 0;
-        this.sell = 0;
-        this.weight = 0;
-        this.darkStone = 0;
         this.modifiers = new ArrayList<>(0);
         this.restrictions = new ArrayList<>(0);
-        this.set = "City of the Ancients";
-        this.personal = Boolean.FALSE;
-        this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
         attachments = new ArrayList<>(0);
     }
@@ -280,20 +274,20 @@ public class GearBase implements Serializable {
         this.derelictArtifact = derelictArtifact;
     }
 
-    private ArrayList<GearUpgrades> getAttachments() {
+    private ArrayList<Attachment> getAttachments() {
         return attachments;
     }
 
-    private void setAttachments(ArrayList<GearUpgrades> attachments) {
+    private void setAttachments(ArrayList<Attachment> attachments) {
         this.attachments = attachments;
     }
 
-    public void addAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.add(gearUpgrades);
+    public void addAttachment(Attachment attachment) {
+        this.attachments.add(attachment);
     }
 
-    public void removeAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.remove(gearUpgrades);
+    public void removeAttachment(Attachment attachment) {
+        this.attachments.remove(attachment);
     }
 }
 

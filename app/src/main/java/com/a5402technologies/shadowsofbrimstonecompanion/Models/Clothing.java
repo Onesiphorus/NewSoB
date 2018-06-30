@@ -20,26 +20,26 @@ public class Clothing implements Serializable {
     @ColumnInfo(name = "clothing_name")
     private String name;
     @ColumnInfo(name = "face")
-    private Boolean face = Boolean.FALSE;
+    private Boolean face = FALSE;
     @ColumnInfo(name = "belt")
-    private Boolean belt = Boolean.FALSE;
+    private Boolean belt = FALSE;
     @ColumnInfo(name = "hat")
-    private Boolean hat = Boolean.FALSE;
+    private Boolean hat = FALSE;
     @ColumnInfo(name = "shoulders")
-    private Boolean shoulders = Boolean.FALSE;
+    private Boolean shoulders = FALSE;
     @ColumnInfo(name = "torso")
-    private Boolean torso = Boolean.FALSE;
+    private Boolean torso = FALSE;
     @ColumnInfo(name = "gloves")
-    private Boolean gloves = Boolean.FALSE;
+    private Boolean gloves = FALSE;
     @ColumnInfo(name = "pants")
-    private Boolean pants = Boolean.FALSE;
+    private Boolean pants = FALSE;
     @ColumnInfo(name = "boots")
-    private Boolean boots = Boolean.FALSE;
+    private Boolean boots = FALSE;
     @ColumnInfo(name = "coat")
-    private Boolean coat = Boolean.FALSE;
+    private Boolean coat = FALSE;
     @NonNull
     @ColumnInfo(name = "equipped")
-    private Boolean equipped = Boolean.FALSE;
+    private Boolean equipped = FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -63,10 +63,10 @@ public class Clothing implements Serializable {
     private String set;
     @NonNull
     @ColumnInfo(name = "personal_item")
-    private Boolean personal = Boolean.FALSE;
+    private Boolean personal = FALSE;
     @NonNull
     @ColumnInfo(name = "starting_gear")
-    private Boolean starting = Boolean.FALSE;
+    private Boolean starting = FALSE;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
@@ -75,7 +75,7 @@ public class Clothing implements Serializable {
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = Boolean.FALSE;
+    private Boolean artifact = FALSE;
     @ColumnInfo(name = "armor")
     private Integer armor;
     @ColumnInfo(name = "spirit_armor")
@@ -97,7 +97,7 @@ public class Clothing implements Serializable {
     private Boolean derelictArtifact = FALSE;
     @ColumnInfo(name = "attachments")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<GearUpgrades> attachments;
+    private ArrayList<Attachment> attachments;
 
     public Clothing(@NonNull String name) {
         this.name = name;
@@ -377,19 +377,19 @@ public class Clothing implements Serializable {
         this.derelictArtifact = derelictArtifact;
     }
 
-    private ArrayList<GearUpgrades> getAttachments() {
+    private ArrayList<Attachment> getAttachments() {
         return attachments;
     }
 
-    private void setAttachments(ArrayList<GearUpgrades> attachments) {
+    private void setAttachments(ArrayList<Attachment> attachments) {
         this.attachments = attachments;
     }
 
-    public void addAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.add(gearUpgrades);
+    public void addAttachment(Attachment attachment) {
+        this.attachments.add(attachment);
     }
 
-    public void removeAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.remove(gearUpgrades);
+    public void removeAttachment(Attachment attachment) {
+        this.attachments.remove(attachment);
     }
 }

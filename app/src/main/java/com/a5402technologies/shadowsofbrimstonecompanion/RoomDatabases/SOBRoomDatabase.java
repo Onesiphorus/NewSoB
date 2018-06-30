@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.view.Display;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.AttachmentDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.ClothingDao;
@@ -23,6 +24,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
@@ -77,6 +79,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
     public abstract SkillDao skillDao();
 
+    public abstract AttachmentDao attachmentDao();
+
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final CharacterDao mCharacterDao;
         private final CharacterClassDao mCharacterClassDao;
@@ -85,6 +89,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
         private final RangedWeaponDao mRangedWeaponDao;
         private final ClothingDao mClothingDao;
         private final SkillDao mSkillDao;
+        private final AttachmentDao mAttacmentDao;
 
         PopulateDbAsync(SOBRoomDatabase db) {
             mCharacterDao = db.characterDao();
@@ -94,6 +99,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao = db.rangedWeaponDao();
             mClothingDao = db.clothingDao();
             mSkillDao = db.skillDao();
+            mAttacmentDao = db.attachmentDao();
         }
 
         //TODO Move database population and finish
@@ -106,6 +112,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao.deleteAllRangedWeapons();
             mClothingDao.deleteAllClothing();
             mSkillDao.deleteAllSkill();
+            mAttacmentDao.deleteAllAttachment();
             mCharacterDao.deleteCharacterByName("Kristal");
             mCharacterDao.deleteCharacterByName("Paul");
             SobCharacter sobCharacter;
@@ -116,6 +123,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             MeleeWeapon meleeWeapon;
             RangedWeapon rangedWeapon;
             Skill skill;
+            Attachment attachment;
             ArrayList<String> traits = new ArrayList<>(0);
 
             //Initialize Classes
@@ -448,10 +456,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             characterClass.addStartingMelee(meleeWeapon);
             mCharacterClassDao.insert(characterClass);
 
-            //Initialize Starting Gear
-            //Cowboy
-
-
             //Initialize Personal Items
             gearBase = new GearBase("Ancient Coin");
             gearBase.setPersonal(TRUE);
@@ -578,11 +582,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setTargaArtifact(TRUE);
             mGearBaseDao.insert(gearBase);
             Cowboy.addGear(gearBase);
-            gearBase = new GearBase("Mark of the Hunter");
-            gearBase.setUpgrades(1);
-            gearBase.setSell(100);
-            gearBase.setDarkStone(1);
-            mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Deflection Field");
             gearBase.setTargaArtifact(TRUE);
             gearBase.setSell(525);
@@ -936,6 +935,78 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setFace(TRUE);
             clothing.setHat(TRUE);
             mClothingDao.insert(clothing);
+
+            //BASE ATTACHMENTS
+            attachment = new Attachment("Rune of Darkness", 1);
+            attachment.setDarkStone(1);
+            attachment.setSell(225);
+            attachment.setRequiredDarkStoneToAttach(1);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Mark of the Damned", 1);
+            attachment.setDarkStone(1);
+            attachment.setSell(150);
+            attachment.setRequiredDarkStoneToAttach(2);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Rune of the Void", 1);
+            attachment.setRequiredDarkStoneToAttach(2);
+            attachment.setDarkStone(1);
+            attachment.setSell(150);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Rune of Shadows", 1);
+            attachment.setDarkStone(1);
+            attachment.setRequiredDarkStoneToAttach(1);
+            attachment.setSell(200);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Mark of the Hunter", 1);
+            attachment.setSell(100);
+            attachment.setDarkStone(1);
+            attachment.setRequiredDarkStoneToAttach(2);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Mark of the Hunter", 2);
+            attachment.setDarkStone(1);
+            attachment.setRequiredDarkStoneToAttach(2);
+            attachment.setSell(50);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Rune of the Traveler", 1);
+            attachment.setDarkStone(1);
+            attachment.setRequiredDarkStoneToAttach(2);
+            attachment.addModifier(ModifiersEnum.MOVE.label());
+            attachment.setSell(175);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Eagle Feather", 1);
+            attachment.setSell(250);
+            attachment.addModifier(ModifiersEnum.AGILITY.label());
+            attachment.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            attachment.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            attachment.addRestriction(TraitsEnum.TRIBAL.label());
+            attachment.addRestriction(TraitsEnum.TRAVELER.label());
+            attachment.addRestriction(TraitsEnum.FRONTIER.label());
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Mark of the Void", 1);
+            attachment.setRequiredDarkStoneToAttach(2);
+            attachment.setDarkStone(1);
+            attachment.setSell(200);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Rattlesnake Fangs", 1);
+            attachment.setSell(225);
+            attachment.addRestriction(TraitsEnum.LAW.label());
+            attachment.addRestriction(TraitsEnum.OUTLAW.label());
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Crisp Rose", 1);
+            attachment.addRestriction(TraitsEnum.PERFORMER.label());
+            attachment.addRestriction(TraitsEnum.SHOWMAN.label());
+            attachment.setSell(325);
+            mAttacmentDao.insert(attachment);
+            attachment = new Attachment("Hangeing Cross", 1);
+            attachment.setSell(200);
+            attachment.addRestriction(TraitsEnum.HOLY.label());
+            attachment.addRestriction(TraitsEnum.FRONTIER.label());
+            attachment.addRestriction(TraitsEnum.OUTLAW.label());
+            attachment.addModifier(ModifiersEnum.SPIRIT.label());
+            attachment.addModifier(ModifiersEnum.MAX_SANITY.label());
+            mAttacmentDao.insert(attachment);
+            
+
 
 
             //DD

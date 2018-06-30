@@ -93,7 +93,7 @@ public class MeleeWeapon implements Serializable {
     private Boolean derelictArtifact = FALSE;
     @ColumnInfo(name = "attachments")
     @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<GearUpgrades> attachments;
+    private ArrayList<Attachment> attachments;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -351,19 +351,19 @@ public class MeleeWeapon implements Serializable {
         this.derelictArtifact = derelictArtifact;
     }
 
-    private ArrayList<GearUpgrades> getAttachments() {
+    private ArrayList<Attachment> getAttachments() {
         return attachments;
     }
 
-    private void setAttachments(ArrayList<GearUpgrades> attachments) {
+    private void setAttachments(ArrayList<Attachment> attachments) {
         this.attachments = attachments;
     }
 
-    public void addAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.add(gearUpgrades);
+    public void addAttachment(Attachment attachment) {
+        this.attachments.add(attachment);
     }
 
-    public void removeAttachment(GearUpgrades gearUpgrades) {
-        this.attachments.remove(gearUpgrades);
+    public void removeAttachment(Attachment attachment) {
+        this.attachments.remove(attachment);
     }
 }

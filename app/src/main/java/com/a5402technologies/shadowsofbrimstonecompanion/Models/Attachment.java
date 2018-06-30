@@ -6,6 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -13,26 +14,12 @@ import java.util.ArrayList;
 
 import static java.lang.Boolean.FALSE;
 
-@Entity(tableName = "ranged_weapon_table")
-public class RangedWeapon implements Serializable {
+@Entity(tableName = "attachment_table")
+public class Attachment implements Serializable {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "ranged_name")
+    @ColumnInfo(name = "attachment_name")
     private String name;
-    @NonNull
-    @ColumnInfo(name = "ranged_die")
-    private Integer damageDie = 6;
-    @ColumnInfo(name = "ranged_bonus")
-    private Integer damageBonus = 0;
-    @NonNull
-    @ColumnInfo(name = "num_shots")
-    private Integer shots = 0;
-    @NonNull
-    @ColumnInfo(name = "weapon_range")
-    private Integer range = 0;
-    @NonNull
-    @ColumnInfo(name = "is_two_handed")
-    private Boolean twoHanded = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -53,34 +40,20 @@ public class RangedWeapon implements Serializable {
     private ArrayList<String> restrictions;
     @NonNull
     @ColumnInfo(name = "set")
-    private String set;
+    private String set = SetListEnum.BASE.code();
     @NonNull
-    @ColumnInfo(name = "personal_item")
-    private Boolean personal;
-    @NonNull
-    @ColumnInfo(name = "starting_gear")
-    private Boolean starting;
+    @ColumnInfo(name = "slots_required")
+    private Integer slotsRequired;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
     @NonNull
-    @ColumnInfo(name = "equipped")
-    private Boolean equipped;
-    @NonNull
-    @ColumnInfo(name = "upgrade_slots")
-    private Integer upgrades = 0;
-    @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = Boolean.FALSE;
-    @NonNull
-    @ColumnInfo(name = "to_hit_die")
-    private Integer toHitDie = 6;
-    @NonNull
-    @ColumnInfo(name = "crit_chance")
-    private Integer critChance = 6;
-    @NonNull
-    @ColumnInfo(name = "free_attack")
-    private Boolean free = Boolean.FALSE;
+    @ColumnInfo(name = "armor")
+    private Integer armor;
+    @ColumnInfo(name = "spirit_armor")
+    private Integer spiritArmor;
     @NonNull
     @ColumnInfo(name = "trederra_artifact")
     private Boolean trederraArtifact = FALSE;
@@ -96,29 +69,16 @@ public class RangedWeapon implements Serializable {
     @NonNull
     @ColumnInfo(name = "derelict_artifact")
     private Boolean derelictArtifact = FALSE;
-    @ColumnInfo(name = "attachments")
-    @TypeConverters(GithubTypeConverters.class)
-    private ArrayList<Attachment> attachments;
+    @NonNull
+    @ColumnInfo(name = "required_darkstone")
+    private Integer requiredDarkStoneToAttach = 0;
 
-    public RangedWeapon(@NonNull String name, @NonNull Integer range, @NonNull Integer shots) {
+    public Attachment(@NonNull String name, @NonNull Integer slotsRequired) {
         this.name = name;
-        this.damageDie = 6;
-        this.damageBonus = 0;
-        this.shots = shots;
-        this.range = range;
-        this.twoHanded = Boolean.FALSE;
-        this.cost = 0;
-        this.sell = 0;
-        this.weight = 0;
-        this.darkStone = 0;
+        this.slotsRequired = slotsRequired;
         this.modifiers = new ArrayList<>(0);
-        this.restrictions = new ArrayList<>(0);
-        this.set = "City of the Ancients";
-        this.personal = Boolean.FALSE;
-        this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
-        this.equipped = Boolean.FALSE;
-        attachments = new ArrayList<>(0);
+        this.restrictions = new ArrayList<>(0);
     }
 
     @NonNull
@@ -128,50 +88,6 @@ public class RangedWeapon implements Serializable {
 
     public void setName(@NonNull String name) {
         this.name = name;
-    }
-
-    @NonNull
-    public Integer getDamageDie() {
-        return damageDie;
-    }
-
-    public void setDamageDie(@NonNull Integer damageDie) {
-        this.damageDie = damageDie;
-    }
-
-    public Integer getDamageBonus() {
-        return damageBonus;
-    }
-
-    public void setDamageBonus(Integer damageBonus) {
-        this.damageBonus = damageBonus;
-    }
-
-    @NonNull
-    public Integer getShots() {
-        return shots;
-    }
-
-    public void setShots(@NonNull Integer shots) {
-        this.shots = shots;
-    }
-
-    @NonNull
-    public Integer getRange() {
-        return range;
-    }
-
-    public void setRange(@NonNull Integer range) {
-        this.range = range;
-    }
-
-    @NonNull
-    public Boolean getTwoHanded() {
-        return twoHanded;
-    }
-
-    public void setTwoHanded(@NonNull Boolean twoHanded) {
-        this.twoHanded = twoHanded;
     }
 
     @NonNull
@@ -236,21 +152,12 @@ public class RangedWeapon implements Serializable {
     }
 
     @NonNull
-    public Boolean getPersonal() {
-        return personal;
+    public Integer getSlotsRequired() {
+        return slotsRequired;
     }
 
-    public void setPersonal(@NonNull Boolean personal) {
-        this.personal = personal;
-    }
-
-    @NonNull
-    public Boolean getStarting() {
-        return starting;
-    }
-
-    public void setStarting(@NonNull Boolean starting) {
-        this.starting = starting;
+    public void setSlotsRequired(@NonNull Integer slotsRequired) {
+        this.slotsRequired = slotsRequired;
     }
 
     public ArrayList<String> getPenalties() {
@@ -262,36 +169,6 @@ public class RangedWeapon implements Serializable {
     }
 
     @NonNull
-    public Boolean getEquipped() {
-        return equipped;
-    }
-
-    public void setEquipped(@NonNull Boolean equipped) {
-        this.equipped = equipped;
-    }
-
-    public void addRestriction(String restriction) {
-        this.restrictions.add(restriction);
-    }
-
-    public void addModifier(String modifier) {
-        this.modifiers.add(modifier);
-    }
-
-    public void addPenalty(String penalty) {
-        this.penalties.add(penalty);
-    }
-
-    @NonNull
-    public Integer getUpgrades() {
-        return upgrades;
-    }
-
-    public void setUpgrades(@NonNull Integer upgrades) {
-        this.upgrades = upgrades;
-    }
-
-    @NonNull
     public Boolean getArtifact() {
         return artifact;
     }
@@ -300,31 +177,20 @@ public class RangedWeapon implements Serializable {
         this.artifact = artifact;
     }
 
-    @NonNull
-    public Integer getToHitDie() {
-        return toHitDie;
+    public Integer getArmor() {
+        return armor;
     }
 
-    public void setToHitDie(@NonNull Integer toHitDie) {
-        this.toHitDie = toHitDie;
+    public void setArmor(Integer armor) {
+        this.armor = armor;
     }
 
-    @NonNull
-    public Integer getCritChance() {
-        return critChance;
+    public Integer getSpiritArmor() {
+        return spiritArmor;
     }
 
-    public void setCritChance(@NonNull Integer critChance) {
-        this.critChance = critChance;
-    }
-
-    @NonNull
-    public Boolean getFree() {
-        return free;
-    }
-
-    public void setFree(@NonNull Boolean free) {
-        this.free = free;
+    public void setSpiritArmor(Integer spiritArmor) {
+        this.spiritArmor = spiritArmor;
     }
 
     @NonNull
@@ -372,19 +238,24 @@ public class RangedWeapon implements Serializable {
         this.derelictArtifact = derelictArtifact;
     }
 
-    private ArrayList<Attachment> getAttachments() {
-        return attachments;
+    @NonNull
+    public Integer getRequiredDarkStoneToAttach() {
+        return requiredDarkStoneToAttach;
     }
 
-    private void setAttachments(ArrayList<Attachment> attachments) {
-        this.attachments = attachments;
+    public void setRequiredDarkStoneToAttach(@NonNull Integer requiredDarkStoneToAttach) {
+        this.requiredDarkStoneToAttach = requiredDarkStoneToAttach;
     }
 
-    public void addAttachment(Attachment attachment) {
-        this.attachments.add(attachment);
+    public void addRestriction(String restriction) {
+        this.restrictions.add(restriction);
     }
 
-    public void removeAttachment(Attachment attachment) {
-        this.attachments.remove(attachment);
+    public void addModifier(String modifier) {
+        this.modifiers.add(modifier);
+    }
+
+    public void addPenalty(String penalty) {
+        this.penalties.add(penalty);
     }
 }

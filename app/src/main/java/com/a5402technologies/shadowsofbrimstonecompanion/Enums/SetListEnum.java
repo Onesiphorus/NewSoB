@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum SetListEnum {
+    BASE("Base", "BASE"),
     TARGA("Targa", "CoA"),
     JARGONO("Jargono", "SoD"),
     CAVERNS_OF_CYNDER("Caverns of Cynder", "CC"),
