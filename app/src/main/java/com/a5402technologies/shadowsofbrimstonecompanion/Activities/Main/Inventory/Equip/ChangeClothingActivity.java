@@ -2,8 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +25,7 @@ import static java.lang.Boolean.TRUE;
 public class ChangeClothingActivity extends AppCompatActivity {
     Clothing clothing;
     SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,8 @@ public class ChangeClothingActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("name");
         String type = getIntent().getStringExtra("type");
         ArrayList<Clothing> ClothingOptions = new ArrayList<>(0);
-        for(Clothing clothing : sobCharacter.getClothing()) {
-            if(((clothing.getFace().equals(TRUE) && type.equals(ClothingSlotsEnum.FACE.label()))
+        for (Clothing clothing : sobCharacter.getClothing()) {
+            if (((clothing.getFace().equals(TRUE) && type.equals(ClothingSlotsEnum.FACE.label()))
                     || (clothing.getBelt().equals(TRUE) && type.equals(ClothingSlotsEnum.BELT.label()))
                     || (clothing.getBoots().equals(TRUE) && type.equals(ClothingSlotsEnum.BOOTS.label()))
                     || (clothing.getHat().equals(TRUE) && type.equals(ClothingSlotsEnum.HAT.label()))
@@ -56,8 +57,8 @@ public class ChangeClothingActivity extends AppCompatActivity {
         adapter.setClothing(ClothingOptions);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
-            if(null != clothing) {
-                if(!(name.isEmpty())) {
+            if (null != clothing) {
+                if (!(name.isEmpty())) {
                     sobCharacter.unequipClothing(sobCharacter.findClothingByName(name));
                 }
                 sobCharacter.equipClothing(clothing);
@@ -78,20 +79,18 @@ public class ChangeClothingActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
     class ClothingListAdapter extends RecyclerView.Adapter<ChangeClothingActivity.ClothingListAdapter.ClothingViewHolder> {
-
-        class ClothingViewHolder extends RecyclerView.ViewHolder {
-            private final Button clothingItemView;
-
-            private ClothingViewHolder(View itemView) {
-                super(itemView);
-                clothingItemView = itemView.findViewById(R.id.textView);
-            }
-        }
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
-
         public ClothingListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
@@ -129,13 +128,14 @@ public class ChangeClothingActivity extends AppCompatActivity {
             if (null != mClothing) return mClothing.size();
             else return 0;
         }
-    }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ChangeLoadoutActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
+        class ClothingViewHolder extends RecyclerView.ViewHolder {
+            private final Button clothingItemView;
+
+            private ClothingViewHolder(View itemView) {
+                super(itemView);
+                clothingItemView = itemView.findViewById(R.id.textView);
+            }
+        }
     }
 }

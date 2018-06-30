@@ -15,7 +15,7 @@ public class SkillViewModel extends AndroidViewModel {
 
     private LiveData<List<Skill>> mAllSkills;
 
-    public SkillViewModel (Application application) {
+    public SkillViewModel(Application application) {
         super(application);
         mRepository = new SkillRepository(application);
         mAllSkills = mRepository.getAllSkill();

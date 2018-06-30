@@ -2,8 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,13 +41,13 @@ public class RemoveMeleeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<MeleeWeapon> meleeList = new ArrayList<>(0);
-        for(MeleeWeapon melee : sobCharacter.getMeleeWeapons()) {
-            if(melee.getEquipped().equals(FALSE)) meleeList.add(melee);
+        for (MeleeWeapon melee : sobCharacter.getMeleeWeapons()) {
+            if (melee.getEquipped().equals(FALSE)) meleeList.add(melee);
         }
         adapter.setMeleeWeapon(meleeList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class    );
+            Intent intent = new Intent(this, ManagementMenuActivity.class);
             /*
             if(meleeWeapon != null) {
                 intent.putExtra("serializable_object", meleeWeapon);
@@ -55,7 +55,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(meleeWeapon != null) {
+            if (meleeWeapon != null) {
                 sobCharacter.removeMeleeWeapon(meleeWeapon);
                 sobCharacter.addGold(meleeWeapon.getSell());
                 intent.putExtra("serializable_object", sobCharacter);
@@ -66,7 +66,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class    );
+            Intent intent = new Intent(this, ManagementMenuActivity.class);
             /*
             if(meleeWeapon != null) {
                 intent.putExtra("serializable_object", meleeWeapon);
@@ -74,7 +74,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(meleeWeapon != null) {
+            if (meleeWeapon != null) {
                 sobCharacter.removeMeleeWeapon(meleeWeapon);
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, meleeWeapon.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
@@ -88,23 +88,42 @@ public class RemoveMeleeActivity extends AppCompatActivity {
         });
     }
 
-    class MeleeWeaponListAdapter extends RecyclerView.Adapter<RemoveMeleeActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final TextView meleeWeaponItemView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            private MeleeWeaponViewHolder(View itemView) {
-                super(itemView);
-                meleeWeaponItemView = itemView.findViewById(R.id.textView);
-
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
+    class MeleeWeaponListAdapter extends RecyclerView.Adapter<RemoveMeleeActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<MeleeWeapon> mMeleeWeapon;
         private Context mContext;
         private Integer RESULT_CODE = 1;
-
         public MeleeWeaponListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -144,35 +163,15 @@ public class RemoveMeleeActivity extends AppCompatActivity {
             if (null != mMeleeWeapon) return mMeleeWeapon.size();
             else return 0;
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
+            private final TextView meleeWeaponItemView;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            private MeleeWeaponViewHolder(View itemView) {
+                super(itemView);
+                meleeWeaponItemView = itemView.findViewById(R.id.textView);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
     }
 }

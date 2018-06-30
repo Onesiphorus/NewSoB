@@ -1,8 +1,8 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,47 +17,48 @@ import static java.lang.Boolean.TRUE;
 public class ChangeLoadoutActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_loadout);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        for(Clothing clothing : sobCharacter.getClothing()) {
-            if(clothing.getEquipped().equals(TRUE)) {
-                if(clothing.getHat().equals(TRUE)) {
+        for (Clothing clothing : sobCharacter.getClothing()) {
+            if (clothing.getEquipped().equals(TRUE)) {
+                if (clothing.getHat().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_hat);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getFace().equals(TRUE)) {
+                if (clothing.getFace().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_face);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getShoulders().equals(TRUE)) {
+                if (clothing.getShoulders().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_shoulders);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getGloves().equals(TRUE)) {
+                if (clothing.getGloves().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_gloves);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getPants().equals(TRUE)) {
+                if (clothing.getPants().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_pants);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getTorso().equals(TRUE)) {
+                if (clothing.getTorso().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_torso);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getBoots().equals(TRUE)) {
+                if (clothing.getBoots().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_boots);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getBelt().equals(TRUE)) {
+                if (clothing.getBelt().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_belt);
                     btn.setText(clothing.getName());
                 }
-                if(clothing.getCoat().equals(TRUE)) {
+                if (clothing.getCoat().equals(TRUE)) {
                     btn = findViewById(R.id.btn_equip_coat);
                     btn.setText(clothing.getName());
                 }

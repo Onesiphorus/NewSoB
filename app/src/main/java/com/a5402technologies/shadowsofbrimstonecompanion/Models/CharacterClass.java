@@ -12,56 +12,56 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-@Entity(tableName="character_class_table")
+@Entity(tableName = "character_class_table")
 public class CharacterClass implements Serializable {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name="class_name")
+    @ColumnInfo(name = "class_name")
     private String className;
     @NonNull
-    @ColumnInfo(name="agility")
+    @ColumnInfo(name = "agility")
     private Integer Agility = 0;
     @NonNull
-    @ColumnInfo(name="cunning")
+    @ColumnInfo(name = "cunning")
     private Integer Cunning = 0;
     @NonNull
-    @ColumnInfo(name="spirit")
+    @ColumnInfo(name = "spirit")
     private Integer Spirit = 0;
     @NonNull
-    @ColumnInfo(name="strength")
+    @ColumnInfo(name = "strength")
     private Integer Strength = 0;
     @NonNull
-    @ColumnInfo(name="lore")
+    @ColumnInfo(name = "lore")
     private Integer Lore = 0;
     @NonNull
-    @ColumnInfo(name="luck")
+    @ColumnInfo(name = "luck")
     private Integer Luck = 0;
     @NonNull
-    @ColumnInfo(name="health")
+    @ColumnInfo(name = "health")
     private Integer Health = 0;
     @NonNull
-    @ColumnInfo(name="sanity")
+    @ColumnInfo(name = "sanity")
     private Integer Sanity = 0;
     @NonNull
-    @ColumnInfo(name="defense")
+    @ColumnInfo(name = "defense")
     private Integer Defense = 0;
     @NonNull
-    @ColumnInfo(name="willpower")
+    @ColumnInfo(name = "willpower")
     private Integer Willpower = 0;
     @NonNull
-    @ColumnInfo(name="ranged_to_hit")
+    @ColumnInfo(name = "ranged_to_hit")
     private Integer RangedToHit = 0;
     @NonNull
-    @ColumnInfo(name="melee_to_hit")
+    @ColumnInfo(name = "melee_to_hit")
     private Integer MeleeToHit = 0;
     @NonNull
-    @ColumnInfo(name="combat")
+    @ColumnInfo(name = "combat")
     private Integer Combat = 0;
     @NonNull
-    @ColumnInfo(name="initiative")
+    @ColumnInfo(name = "initiative")
     private Integer Initiative = 0;
     @NonNull
-    @ColumnInfo(name="max_grit")
+    @ColumnInfo(name = "max_grit")
     private Integer MaxGrit = 0;
     @NonNull
     @ColumnInfo(name = "traits")

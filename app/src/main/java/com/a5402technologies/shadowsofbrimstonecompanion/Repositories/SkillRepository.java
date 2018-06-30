@@ -25,7 +25,7 @@ public class SkillRepository {
         return mAllSkills;
     }
 
-    public void insert (Skill skill) {
+    public void insert(Skill skill) {
         new SkillRepository.insertAsyncTask(mSkillDao).execute(skill);
     }
 

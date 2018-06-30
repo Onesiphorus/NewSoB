@@ -15,7 +15,7 @@ public class ClothingViewModel extends AndroidViewModel {
 
     private LiveData<List<Clothing>> mAllClothing;
 
-    public ClothingViewModel (Application application) {
+    public ClothingViewModel(Application application) {
         super(application);
         mRepository = new ClothingRepository(application);
         mAllClothing = mRepository.getAllClothing();

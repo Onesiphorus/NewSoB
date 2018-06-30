@@ -15,7 +15,7 @@ public class GearBaseViewModel extends AndroidViewModel {
 
     private LiveData<List<GearBase>> mAllGear;
 
-    public GearBaseViewModel (Application application) {
+    public GearBaseViewModel(Application application) {
         super(application);
         mRepository = new GearBaseRepository(application);
         mAllGear = mRepository.getAllGear();

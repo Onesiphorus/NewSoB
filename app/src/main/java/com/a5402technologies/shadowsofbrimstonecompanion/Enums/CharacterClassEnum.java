@@ -1,9 +1,5 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
-import android.support.v4.app.INotificationSideChannel;
-
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,10 +22,6 @@ public enum CharacterClassEnum {
     INDIAN_SCOUT("Indian Scout", "Indian Scout", 16),
     COWBOY("Cowboy", "Cowgirl", 17);
 
-    private String female;
-    private String male;
-    private Integer code;
-
     private static Map<String, CharacterClassEnum> lookupByFemale = new HashMap<>();
     private static Map<String, CharacterClassEnum> lookupByMale = new HashMap<>();
     private static Map<Integer, CharacterClassEnum> lookupByCode = new HashMap<>();
@@ -42,6 +34,10 @@ public enum CharacterClassEnum {
         }
     }
 
+    private String female;
+    private String male;
+    private Integer code;
+
     CharacterClassEnum(String male, String female, Integer code) {
         this.male = male;
         this.female = female;
@@ -51,6 +47,7 @@ public enum CharacterClassEnum {
     public String male() {
         return this.male;
     }
+
     public String female() {
         return this.female;
     }
@@ -75,12 +72,12 @@ public enum CharacterClassEnum {
         return getByFemale(female).male;
     }
 
-    public String getFemaleByMale(String male){
+    public String getFemaleByMale(String male) {
         return getByMale(male).female;
     }
 
     public Integer getCodeByAny(String name) {
-        if(null != getByMale(name).code) return getByMale(name).code;
+        if (null != getByMale(name).code) return getByMale(name).code;
         else return getByFemale(name).code;
     }
 }

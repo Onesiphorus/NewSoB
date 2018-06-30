@@ -1,8 +1,6 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,9 +13,6 @@ public enum SkillTypeEnum {
     //TODO finish setLists
 
 
-    private CharacterClassEnum code;
-    private String label;
-
     private static Map<CharacterClassEnum, SkillTypeEnum> lookupByCode = new HashMap<>();
     private static Map<String, SkillTypeEnum> lookupByLabel = new HashMap<>();
 
@@ -28,6 +23,9 @@ public enum SkillTypeEnum {
         }
     }
 
+    private CharacterClassEnum code;
+    private String label;
+
     SkillTypeEnum(String label, CharacterClassEnum code) {
         this.label = label;
         this.code = code;
@@ -36,6 +34,7 @@ public enum SkillTypeEnum {
     public String label() {
         return this.label;
     }
+
     public CharacterClassEnum code() {
         return this.code;
     }
@@ -52,7 +51,7 @@ public enum SkillTypeEnum {
         return getByCode(code).label;
     }
 
-    public CharacterClassEnum getCodeByLabel(String label){
+    public CharacterClassEnum getCodeByLabel(String label) {
         return getByLabel(label).code;
     }
 }

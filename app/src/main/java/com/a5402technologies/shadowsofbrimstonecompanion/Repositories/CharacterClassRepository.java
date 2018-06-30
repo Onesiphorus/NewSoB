@@ -25,7 +25,7 @@ public class CharacterClassRepository {
         return mAllCharacterClasses;
     }
 
-    public void insert (CharacterClass characterClass) {
+    public void insert(CharacterClass characterClass) {
         new insertAsyncTask(mCharacterClassDao).execute(characterClass);
     }
 

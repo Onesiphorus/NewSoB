@@ -24,6 +24,7 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
 
     MeleeWeapon meleeWeapon;
     SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +32,9 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
-        for(MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
-            if(meleeWeapon.getEquipped().equals(Boolean.FALSE)) MeleeWeaponOptions.add(meleeWeapon);
+        for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
+            if (meleeWeapon.getEquipped().equals(Boolean.FALSE))
+                MeleeWeaponOptions.add(meleeWeapon);
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
@@ -43,7 +45,7 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
         adapter.setMeleeWeapon(MeleeWeaponOptions);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
-            if(null != meleeWeapon) {
+            if (null != meleeWeapon) {
                 sobCharacter.equipRightMelee(meleeWeapon);
                 Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -62,20 +64,18 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
     class MeleeWeaponListAdapter extends RecyclerView.Adapter<EquipRightMeleeActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
-
-        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final Button meleeWeaponItemView;
-
-            private MeleeWeaponViewHolder(View itemView) {
-                super(itemView);
-                meleeWeaponItemView = itemView.findViewById(R.id.textView);
-            }
-        }
 
         private final LayoutInflater mInflater;
         private List<MeleeWeapon> mMeleeWeapon;
-
         public MeleeWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
@@ -113,13 +113,14 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
             if (null != mMeleeWeapon) return mMeleeWeapon.size();
             else return 0;
         }
-    }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
+        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
+            private final Button meleeWeaponItemView;
+
+            private MeleeWeaponViewHolder(View itemView) {
+                super(itemView);
+                meleeWeaponItemView = itemView.findViewById(R.id.textView);
+            }
+        }
     }
 }

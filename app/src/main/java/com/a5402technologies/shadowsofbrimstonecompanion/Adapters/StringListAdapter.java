@@ -13,18 +13,8 @@ import java.util.List;
 
 public class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
 
-    class StringViewHolder extends RecyclerView.ViewHolder {
-        private final Button stringItemView;
-
-        private StringViewHolder(View itemView) {
-            super(itemView);
-            stringItemView = itemView.findViewById(R.id.textView);
-        }
-    }
-
     private final LayoutInflater mInflater;
     private List<String> mString;
-
     public StringListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
@@ -54,5 +44,14 @@ public class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.St
     public int getItemCount() {
         if (null != mString) return mString.size();
         else return 0;
+    }
+
+    class StringViewHolder extends RecyclerView.ViewHolder {
+        private final Button stringItemView;
+
+        private StringViewHolder(View itemView) {
+            super(itemView);
+            stringItemView = itemView.findViewById(R.id.textView);
+        }
     }
 }

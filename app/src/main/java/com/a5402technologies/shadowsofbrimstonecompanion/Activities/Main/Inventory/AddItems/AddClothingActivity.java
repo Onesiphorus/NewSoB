@@ -27,17 +27,18 @@ import java.util.List;
 public class AddClothingActivity extends AppCompatActivity {
 
     public static final int CLOTHING_REQUEST = 101;
+    private static final int RESULT_CODE = 1;
     private List<Clothing> mClothing;
     private ClothingViewModel mClothingViewModel;
     private Clothing clothing;
-    private static final int RESULT_CODE = 1;
     private SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothing);
 
-        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final ClothingListAdapter adapter = new ClothingListAdapter(this);
@@ -54,7 +55,7 @@ public class AddClothingActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.clothing_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class    );
+            Intent intent = new Intent(this, FoundGearActivity.class);
             /*
             if(clothing != null) {
                 intent.putExtra("serializable_object", clothing);
@@ -62,7 +63,7 @@ public class AddClothingActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(clothing != null) {
+            if (clothing != null) {
                 sobCharacter.addClothing(clothing);
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, clothing.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
@@ -72,23 +73,42 @@ public class AddClothingActivity extends AppCompatActivity {
         });
     }
 
-    class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapter.ClothingViewHolder> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        class ClothingViewHolder extends RecyclerView.ViewHolder {
-            private final TextView clothingItemView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            private ClothingViewHolder(View itemView) {
-                super(itemView);
-                clothingItemView = itemView.findViewById(R.id.textView);
-
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
+    class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapter.ClothingViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
         private Context mContext;
         private Integer RESULT_CODE = 1;
-
         public ClothingListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -127,36 +147,16 @@ public class AddClothingActivity extends AppCompatActivity {
             if (null != mClothing) return mClothing.size();
             else return 0;
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        class ClothingViewHolder extends RecyclerView.ViewHolder {
+            private final TextView clothingItemView;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            private ClothingViewHolder(View itemView) {
+                super(itemView);
+                clothingItemView = itemView.findViewById(R.id.textView);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, FoundGearActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
     }
 }
 

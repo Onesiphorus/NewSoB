@@ -16,18 +16,9 @@ import java.util.List;
 
 public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdapter.CharacterViewHolder> {
 
-    class CharacterViewHolder extends RecyclerView.ViewHolder {
-        private final TextView characterItemView;
-
-        private CharacterViewHolder(View itemView) {
-            super(itemView);
-            characterItemView = (TextView) itemView.findViewById(R.id.textView);
-        }
-    }
-    private Context mContext;
     private final LayoutInflater mInflater;
+    private Context mContext;
     private List<SobCharacter> mCharacters; //cached copy
-
     public CharacterListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
@@ -68,5 +59,14 @@ public class CharacterListAdapter extends RecyclerView.Adapter<CharacterListAdap
         if (null != mCharacters)
             return mCharacters.size();
         else return 0;
+    }
+
+    class CharacterViewHolder extends RecyclerView.ViewHolder {
+        private final TextView characterItemView;
+
+        private CharacterViewHolder(View itemView) {
+            super(itemView);
+            characterItemView = (TextView) itemView.findViewById(R.id.textView);
+        }
     }
 }

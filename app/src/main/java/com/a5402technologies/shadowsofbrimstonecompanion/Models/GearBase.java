@@ -10,6 +10,9 @@ import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import static java.lang.Boolean.FALSE;
+
 @Entity(tableName = "gear_base_table")
 public class GearBase implements Serializable {
     @PrimaryKey
@@ -56,6 +59,21 @@ public class GearBase implements Serializable {
     private Integer armor;
     @ColumnInfo(name = "spirit_armor")
     private Integer spiritArmor;
+    @NonNull
+    @ColumnInfo(name = "trederra_artifact")
+    private Boolean trederraArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "cynder_artifact")
+    private Boolean cynderArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "targa_artifact")
+    private Boolean targaArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "jargono_artifact")
+    private Boolean jargonoArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "derelict_artifact")
+    private Boolean derelictArtifact = FALSE;
 
     public GearBase(@NonNull String name) {
         this.name = name;
@@ -166,12 +184,15 @@ public class GearBase implements Serializable {
     public void setPenalties(ArrayList<String> penalties) {
         this.penalties = penalties;
     }
+
     public void addRestriction(String restriction) {
         this.restrictions.add(restriction);
     }
+
     public void addModifier(String modifier) {
         this.modifiers.add(modifier);
     }
+
     public void addPenalty(String penalty) {
         this.penalties.add(penalty);
     }
@@ -208,6 +229,51 @@ public class GearBase implements Serializable {
 
     public void setSpiritArmor(Integer spiritArmor) {
         this.spiritArmor = spiritArmor;
+    }
+
+    @NonNull
+    public Boolean getTrederraArtifact() {
+        return trederraArtifact;
+    }
+
+    public void setTrederraArtifact(@NonNull Boolean trederraArtifact) {
+        this.trederraArtifact = trederraArtifact;
+    }
+
+    @NonNull
+    public Boolean getCynderArtifact() {
+        return cynderArtifact;
+    }
+
+    public void setCynderArtifact(@NonNull Boolean cynderArtifact) {
+        this.cynderArtifact = cynderArtifact;
+    }
+
+    @NonNull
+    public Boolean getTargaArtifact() {
+        return targaArtifact;
+    }
+
+    public void setTargaArtifact(@NonNull Boolean targaArtifact) {
+        this.targaArtifact = targaArtifact;
+    }
+
+    @NonNull
+    public Boolean getJargonoArtifact() {
+        return jargonoArtifact;
+    }
+
+    public void setJargonoArtifact(@NonNull Boolean jargonoArtifact) {
+        this.jargonoArtifact = jargonoArtifact;
+    }
+
+    @NonNull
+    public Boolean getDerelictArtifact() {
+        return derelictArtifact;
+    }
+
+    public void setDerelictArtifact(@NonNull Boolean derelictArtifact) {
+        this.derelictArtifact = derelictArtifact;
     }
 }
 

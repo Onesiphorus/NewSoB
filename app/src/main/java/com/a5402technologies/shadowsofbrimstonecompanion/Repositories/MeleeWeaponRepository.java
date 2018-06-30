@@ -25,7 +25,7 @@ public class MeleeWeaponRepository {
         return mAllMeleeWeapons;
     }
 
-    public void insert (MeleeWeapon meleeWeapon) {
+    public void insert(MeleeWeapon meleeWeapon) {
         new insertAsyncTask(mMeleeWeaponDao).execute(meleeWeapon);
     }
 

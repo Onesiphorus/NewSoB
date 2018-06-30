@@ -19,9 +19,6 @@ public enum ClothingSlotsEnum {
     //TODO finish modifiers
 
 
-    private String code;
-    private String label;
-
     private static Map<String, ClothingSlotsEnum> lookupByCode = new HashMap<>();
     private static Map<String, ClothingSlotsEnum> lookupByLabel = new HashMap<>();
 
@@ -32,6 +29,9 @@ public enum ClothingSlotsEnum {
         }
     }
 
+    private String code;
+    private String label;
+
     ClothingSlotsEnum(String label, String code) {
         this.label = label;
         this.code = code;
@@ -40,6 +40,7 @@ public enum ClothingSlotsEnum {
     public String label() {
         return this.label;
     }
+
     public String code() {
         return this.code;
     }
@@ -56,7 +57,7 @@ public enum ClothingSlotsEnum {
         return getByCode(code).label;
     }
 
-    public String getCodeByLabel(String label){
+    public String getCodeByLabel(String label) {
         return getByLabel(label).code;
     }
 

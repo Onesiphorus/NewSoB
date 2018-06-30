@@ -16,20 +16,30 @@ public class CharacterViewModel extends AndroidViewModel {
     private LiveData<List<SobCharacter>> mAllCharacters;
     private LiveData<List<String>> mAllCharacterNames;
 
-    public CharacterViewModel (Application application) {
+    public CharacterViewModel(Application application) {
         super(application);
         mRepository = new CharacterRepository(application);
         mAllCharacters = mRepository.getAllCharacter();
         mAllCharacterNames = mRepository.getAllCharacterNames();
     }
 
-    public LiveData<List<SobCharacter>> getAllCharacters() {return mAllCharacters;}
+    public LiveData<List<SobCharacter>> getAllCharacters() {
+        return mAllCharacters;
+    }
 
-    public LiveData<List<String>> getAllCharacterNames() {return mAllCharacterNames;}
+    public LiveData<List<String>> getAllCharacterNames() {
+        return mAllCharacterNames;
+    }
 
-    public void insert(SobCharacter character) {mRepository.insert(character);}
+    public void insert(SobCharacter character) {
+        mRepository.insert(character);
+    }
 
-    public void delete(SobCharacter sobCharacter) {mRepository.delete(sobCharacter);}
+    public void delete(SobCharacter sobCharacter) {
+        mRepository.delete(sobCharacter);
+    }
 
-    public void update(SobCharacter sobCharacter) {mRepository.update(sobCharacter);}
+    public void update(SobCharacter sobCharacter) {
+        mRepository.update(sobCharacter);
+    }
 }

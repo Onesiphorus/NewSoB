@@ -32,26 +32,37 @@ import java.util.List;
 
 public class CreateCharacterActivity extends AppCompatActivity {
 
-    private SkillViewModel mSkillViewModel;
-
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
-
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
     /**
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
+        }
+    };
+    private SkillViewModel mSkillViewModel;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -89,28 +100,14 @@ public class CreateCharacterActivity extends AppCompatActivity {
             hide();
         }
     };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
     private Skill skill;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_character);
 
         CharacterClass characterClass = (CharacterClass) getIntent().getSerializableExtra("serializable_object");
-
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_skills);
@@ -124,8 +121,8 @@ public class CreateCharacterActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Skill> skills) {
                 ArrayList<Skill> newList = new ArrayList<>(0);
-                for(Skill skill : skills) {
-                    if(skill.getType().equals(characterClass.getClassName())
+                for (Skill skill : skills) {
+                    if (skill.getType().equals(characterClass.getClassName())
                             && skill.getLevel() == 0) {
                         newList.add(skill);
                     }
@@ -151,7 +148,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.create_button).setOnTouchListener(mDelayHideTouchListener);
-
 
 
         TextView tv = findViewById(R.id.fullscreen_content);
@@ -193,55 +189,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
         });
-    }
-
-    class SkillListAdapter extends RecyclerView.Adapter<SkillListAdapter.SkillViewHolder> {
-
-        class SkillViewHolder extends RecyclerView.ViewHolder {
-            private final RadioButton skillItemView;
-
-            private SkillViewHolder(View itemView) {
-                super(itemView);
-                skillItemView = itemView.findViewById(R.id.radioButton);
-            }
-        }
-
-        private final LayoutInflater mInflater;
-        private List<Skill> mSkill;
-
-        public SkillListAdapter(Context context) {
-            mInflater = LayoutInflater.from(context);
-        }
-
-        @Override
-        public SkillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = mInflater.inflate(R.layout.recyclerview_character, parent, false);
-            return new SkillViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(SkillViewHolder holder, int position) {
-            if (null != mSkill) {
-                Skill current = mSkill.get(position);
-                holder.skillItemView.setText(current.getName());
-            } else {
-                holder.skillItemView.setText("No Skill");
-            }
-            holder.skillItemView.setOnClickListener((View view) -> {
-                skill = mSkill.get(position);
-            });
-        }
-
-        public void setSkill(List<Skill> skill) {
-            mSkill = skill;
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getItemCount() {
-            if (null != mSkill) return mSkill.size();
-            else return 0;
-        }
     }
 
     @Override
@@ -295,5 +242,53 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    class SkillListAdapter extends RecyclerView.Adapter<SkillListAdapter.SkillViewHolder> {
+
+        private final LayoutInflater mInflater;
+        private List<Skill> mSkill;
+        public SkillListAdapter(Context context) {
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public SkillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = mInflater.inflate(R.layout.recyclerview_character, parent, false);
+            return new SkillViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(SkillViewHolder holder, int position) {
+            if (null != mSkill) {
+                Skill current = mSkill.get(position);
+                holder.skillItemView.setText(current.getName());
+            } else {
+                holder.skillItemView.setText("No Skill");
+            }
+            holder.skillItemView.setOnClickListener((View view) -> {
+                skill = mSkill.get(position);
+            });
+        }
+
+        public void setSkill(List<Skill> skill) {
+            mSkill = skill;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            if (null != mSkill) return mSkill.size();
+            else return 0;
+        }
+
+        class SkillViewHolder extends RecyclerView.ViewHolder {
+            private final RadioButton skillItemView;
+
+            private SkillViewHolder(View itemView) {
+                super(itemView);
+                skillItemView = itemView.findViewById(R.id.radioButton);
+            }
+        }
     }
 }

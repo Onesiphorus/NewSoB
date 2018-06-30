@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum SetListEnum {
-    CITY_OF_THE_ANCIENTS("City of the Ancients", "CoA"),
-    SWAMPS_OF_DEATH("Swamps of Death", "SoD"),
+    TARGA("Targa", "CoA"),
+    JARGONO("Jargono", "SoD"),
     CAVERNS_OF_CYNDER("Caverns of Cynder", "CC"),
     TREDERRA("Trederra", "TR"),
     DERELICT_SHIP("Derelict Ship", "DS"),
@@ -15,13 +15,10 @@ public enum SetListEnum {
     CRIMSON_HAND("Cult of the Crimson Hand", "CH"),
     HELLFIRE_SUCCUBUS("Hellfire Succubus", "HS"),
     PROMO("Promo", "P"),
-    JARGONO("Jargono Native", "HCJN"),
+    JARGONO_NATIVE("Jargono Native", "HCJN"),
     COWBOY("Cowboy", "HCC");
     //TODO finish setLists
 
-
-    private String code;
-    private String label;
 
     private static Map<String, SetListEnum> lookupByCode = new HashMap<>();
     private static Map<String, SetListEnum> lookupByLabel = new HashMap<>();
@@ -33,6 +30,9 @@ public enum SetListEnum {
         }
     }
 
+    private String code;
+    private String label;
+
     SetListEnum(String label, String code) {
         this.label = label;
         this.code = code;
@@ -41,6 +41,7 @@ public enum SetListEnum {
     public String label() {
         return this.label;
     }
+
     public String code() {
         return this.code;
     }
@@ -57,7 +58,7 @@ public enum SetListEnum {
         return getByCode(code).label;
     }
 
-    public String getCodeByLabel(String label){
+    public String getCodeByLabel(String label) {
         return getByLabel(label).code;
     }
 }

@@ -25,7 +25,7 @@ public class GearBaseRepository {
         return mAllGear;
     }
 
-    public void insert (GearBase gearBase) {
+    public void insert(GearBase gearBase) {
         new GearBaseRepository.insertAsyncTask(mGearBaseDao).execute(gearBase);
     }
 

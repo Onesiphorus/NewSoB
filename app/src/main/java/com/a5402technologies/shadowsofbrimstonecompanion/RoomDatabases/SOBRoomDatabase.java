@@ -1,18 +1,13 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.RoomDatabases;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.content.RestrictionEntry;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
@@ -21,6 +16,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.GearBaseD
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.MeleeWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
@@ -33,25 +30,23 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
-import java.security.cert.CertificateEncodingException;
 import java.util.ArrayList;
 
 import static java.lang.Boolean.TRUE;
-import static java.lang.Boolean.compare;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class}, version = 16)
+        RangedWeapon.class, Clothing.class, Skill.class}, version = 17)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
-    public abstract CharacterDao characterDao();
-    public abstract CharacterClassDao characterClassDao();
-    public abstract GearBaseDao gearBaseDao();
-    public abstract MeleeWeaponDao meleeWeaponDao();
-    public abstract RangedWeaponDao rangedWeaponDao();
-    public abstract ClothingDao clothingDao();
-    public abstract SkillDao skillDao();
-
     private static SOBRoomDatabase INSTANCE;
+    private static RoomDatabase.Callback sRoomDatabaseCallback =
+            new RoomDatabase.Callback() {
+                @Override
+                public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                    super.onOpen(db);
+                    new PopulateDbAsync(INSTANCE).execute();
+                }
+            };
 
     public static SOBRoomDatabase getDatabase(final Context context) {
         if (null == INSTANCE) {
@@ -67,14 +62,19 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback() {
-                @Override
-                public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                    super.onOpen(db);
-                    new PopulateDbAsync(INSTANCE).execute();
-                }
-            };
+    public abstract CharacterDao characterDao();
+
+    public abstract CharacterClassDao characterClassDao();
+
+    public abstract GearBaseDao gearBaseDao();
+
+    public abstract MeleeWeaponDao meleeWeaponDao();
+
+    public abstract RangedWeaponDao rangedWeaponDao();
+
+    public abstract ClothingDao clothingDao();
+
+    public abstract SkillDao skillDao();
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final CharacterDao mCharacterDao;
@@ -121,7 +121,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Cowboy
             traits.add(TraitsEnum.FRONTIER.label());
             traits.add(TraitsEnum.SHOWMAN.label());
-            characterClass = new CharacterClass(CharacterClassEnum.COWBOY.male(), 2,3,1,4,3,2,14,12,4,4,4,4,2,3,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.COWBOY.male(), 2, 3, 1, 4, 3, 2, 14, 12, 4, 4, 4, 4, 2, 3, 2, traits);
             Cowboy = new SobCharacter("Paul", characterClass);
             gearBase = new GearBase("Lasso");
             gearBase.addRestriction("Cowboy");
@@ -129,7 +129,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             clothing = new Clothing("Bandana");
             clothing.setSell(50);
-            clothing.setFace(true);
+            clothing.setFace(TRUE);
             mClothingDao.insert(clothing);
             characterClass.addStartingGear(gearBase);
             rangedWeapon = new RangedWeapon("Pistol", 6, 2);
@@ -147,7 +147,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon = new RangedWeapon("Hunting Rifle", 12, 1);
             rangedWeapon.setDamageBonus(2);
             rangedWeapon.setWeight(1);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setUpgrades(3);
             rangedWeapon.setSell(350);
             characterClass.addStartingRanged(rangedWeapon);
@@ -158,7 +158,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits.add(TraitsEnum.TRAVELER.label());
             traits.add(TraitsEnum.FRONTIER.label());
             traits.add(TraitsEnum.STRANGE.label());
-            characterClass = new CharacterClass(CharacterClassEnum.DRIFTER.male(),2,3,3,2,4,1,10,12,4,3,3,4,2,5,3,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.DRIFTER.male(), 2, 3, 3, 2, 4, 1, 10, 12, 4, 3, 3, 4, 2, 5, 3, traits);
             rangedWeapon = new RangedWeapon("Trusty Pistol", 6, 0);
             rangedWeapon.setSell(600);
             rangedWeapon.setWeight(1);
@@ -171,7 +171,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.OUTLAW.label());
             traits.add(TraitsEnum.SHOWMAN.label());
-            characterClass = new CharacterClass(CharacterClassEnum.OUTLAW.male(), 3,2,1,2,3,4,12,12,4,4,4,5,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.OUTLAW.male(), 3, 2, 1, 2, 3, 4, 12, 12, 4, 4, 4, 5, 2, 4, 2, traits);
             rangedWeapon = new RangedWeapon("Outlaw Pistol", 5, 3);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(3);
@@ -183,7 +183,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             characterClass.addStartingRanged(rangedWeapon);
             clothing = new Clothing("Bandana");
             clothing.setSell(50);
-            clothing.setFace(true);
+            clothing.setFace(TRUE);
             characterClass.addStartingClothing(clothing);
             mCharacterClassDao.insert(characterClass);
             //Jargono Native
@@ -191,12 +191,13 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits.add(TraitsEnum.OTHERWORLD.label());
             traits.add(TraitsEnum.JARGONO.label());
             traits.add(TraitsEnum.TRIBAL.label());
-            characterClass = new CharacterClass(CharacterClassEnum.JARGONO_NATIVE.male(), 4,2,3,3,1,2,11,11,4,4,5,4,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.JARGONO_NATIVE.male(), 4, 2, 3, 3, 1, 2, 11, 11, 4, 4, 5, 4, 2, 4, 2, traits);
             meleeWeapon = new MeleeWeapon("Dark Stone Blade");
             meleeWeapon.setWeight(1);
             meleeWeapon.setDarkStone(1);
             meleeWeapon.setSell(475);
             meleeWeapon.setCritChance(5);
+            meleeWeapon.setJargonoArtifact(TRUE);
             mMeleeWeaponDao.insert(meleeWeapon);
             characterClass.addStartingMelee(meleeWeapon);
             MeleeWeapon testRemove = meleeWeapon;
@@ -211,11 +212,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             characterClass.removeStartingMelee(testRemove);
             characterClass.removeStartingMelee(meleeWeapon);
             meleeWeapon = new MeleeWeapon("Dark Stone Daggers");
-            meleeWeapon.setSet(SetListEnum.JARGONO.code());
+            meleeWeapon.setSet(SetListEnum.JARGONO_NATIVE.code());
             meleeWeapon.setCombat(2);
             meleeWeapon.addModifier(ModifiersEnum.INITIATIVE.label());
             meleeWeapon.addRestriction(TraitsEnum.TRIBAL.label());
-            meleeWeapon.setTwoHanded(true);
+            meleeWeapon.setTwoHanded(TRUE);
             meleeWeapon.setUpgrades(2);
             meleeWeapon.setDarkStone(1);
             meleeWeapon.setSell(625);
@@ -229,31 +230,31 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //End
             gearBase = new GearBase("Raptor Tooth Necklace");
             gearBase.addModifier(ModifiersEnum.CUNNING.label());
-            gearBase.setPersonal(true);
-            gearBase.setSet(SetListEnum.JARGONO.code());
+            gearBase.setPersonal(TRUE);
+            gearBase.setSet(SetListEnum.JARGONO_NATIVE.code());
             mGearBaseDao.insert(gearBase);
             //Test
             sobCharacter.addGear(gearBase);
             //End
             rangedWeapon = new RangedWeapon("Jargono Bow", 7, 1);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setSell(600);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(2);
             rangedWeapon.setCritChance(5);
             rangedWeapon.setDamageDie(8);
-            rangedWeapon.setSet(SetListEnum.JARGONO.code());
+            rangedWeapon.setSet(SetListEnum.JARGONO_NATIVE.code());
             mRangedWeaponDao.insert(rangedWeapon);
             //U.S. Marshal
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.LAW.label());
             traits.add(TraitsEnum.TRAVELER.label());
-            characterClass = new CharacterClass(CharacterClassEnum.US_MARSHAL.male(),3,4,2,2,1,3,10,10,3,4,4,4,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.US_MARSHAL.male(), 3, 4, 2, 2, 1, 3, 10, 10, 3, 4, 4, 4, 2, 4, 2, traits);
             rangedWeapon = new RangedWeapon("Shotgun", 5, 1);
             rangedWeapon.setToHitDie(8);
             rangedWeapon.setDamageDie(8);
             rangedWeapon.setWeight(1);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setSell(300);
             mRangedWeaponDao.insert(rangedWeapon);
             characterClass.addStartingRanged(rangedWeapon);
@@ -265,7 +266,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Preacher//Nun
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.HOLY.label());
-            characterClass = new CharacterClass(CharacterClassEnum.PREACHER.male(), 1,2,4,3,3,2,12,10,5,3,5,4,2,2,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.PREACHER.male(), 1, 2, 4, 3, 3, 2, 12, 10, 5, 3, 5, 4, 2, 2, 2, traits);
             meleeWeapon = new MeleeWeapon("Holy Book");
             meleeWeapon.addModifier(ModifiersEnum.FAITH.label());
             meleeWeapon.setCombat(1);
@@ -282,7 +283,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.LAW.label());
             traits.add(TraitsEnum.FRONTIER.label());
-            characterClass = new CharacterClass(CharacterClassEnum.LAWMAN.male(), 2,4,1,3,2,3,12,12,4,4,4,4,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.LAWMAN.male(), 2, 4, 1, 3, 2, 3, 12, 12, 4, 4, 4, 4, 2, 4, 2, traits);
             rangedWeapon = new RangedWeapon("Peacekeeper Pistol", 6, 3);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(1);
@@ -298,7 +299,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Gunslinger
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.SHOWMAN.label());
-            characterClass = new CharacterClass(CharacterClassEnum.GUNSLINGER.male(), 3,3,2,2,2,4,10,12,5,4,3,5,1,6,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.GUNSLINGER.male(), 3, 3, 2, 2, 2, 4, 10, 12, 5, 4, 3, 5, 1, 6, 2, traits);
             rangedWeapon = new RangedWeapon("Pistol", 6, 2);
             rangedWeapon.setSell(150);
             rangedWeapon.setWeight(1);
@@ -311,7 +312,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.PERFORMER.label());
             traits.add(TraitsEnum.SHOWMAN.label());
-            characterClass = new CharacterClass(CharacterClassEnum.GAMBLER.male(), 3,4,1,2,2,3,10,10,4,4,4,5,2,5,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.GAMBLER.male(), 3, 4, 1, 2, 2, 3, 10, 10, 4, 4, 4, 5, 2, 5, 2, traits);
             rangedWeapon = mRangedWeaponDao.getByName("Pistol").getValue();
             characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
@@ -319,7 +320,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.TRIBAL.label());
             traits.add(TraitsEnum.MAGIK.label());
-            characterClass = new CharacterClass(CharacterClassEnum.DARK_STONE_SHAMAN.male(), 2,1,4,2,4,1,10,12,4,3,5,4,2,3,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.DARK_STONE_SHAMAN.male(), 2, 1, 4, 2, 4, 1, 10, 12, 4, 3, 5, 4, 2, 3, 2, traits);
             meleeWeapon = new MeleeWeapon("Shaman Staff");
             meleeWeapon.addModifier(ModifiersEnum.MAGIK.label());
             meleeWeapon.addRestriction(TraitsEnum.MAGIK.label());
@@ -339,7 +340,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Bandido//Bandida
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.OUTLAW.label());
-            characterClass = new CharacterClass(CharacterClassEnum.BANDIDO.male(), 2,1,3,4,3,2,16,8,4,5,5,4,2,3,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.BANDIDO.male(), 2, 1, 3, 4, 3, 2, 16, 8, 4, 5, 5, 4, 2, 3, 2, traits);
             rangedWeapon = mRangedWeaponDao.getByName("Pistol").getValue();
             characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
@@ -353,7 +354,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.FRONTIER.label());
             traits.add(TraitsEnum.MEDICAL.label());
-            characterClass = new CharacterClass(CharacterClassEnum.FRONTIER_DOC.male(), 2,4,2,2,3,1,12,12,5,3,5,4,2,4,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.FRONTIER_DOC.male(), 2, 4, 2, 2, 3, 1, 12, 12, 5, 3, 5, 4, 2, 4, 2, traits);
             gearBase = new GearBase("Doctor's Bag");
             gearBase.addRestriction(TraitsEnum.MEDICAL.label());
             gearBase.setWeight(1);
@@ -373,14 +374,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Saloon Girl//Piano Player
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.PERFORMER.label());
-            characterClass = new CharacterClass(CharacterClassEnum.SALOON_GIRL.female(), 4,3,3,1,2,3,8,14,3,4,4,4,2,5,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.SALOON_GIRL.female(), 4, 3, 3, 1, 2, 3, 8, 14, 3, 4, 4, 4, 2, 5, 2, traits);
             rangedWeapon = new RangedWeapon("Hold-Out Pistol", 3, 1);
             rangedWeapon.setCritChance(5);
             rangedWeapon.addRestriction(TraitsEnum.PERFORMER.label());
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(1);
             rangedWeapon.setSell(200);
-            rangedWeapon.setFree(true);
+            rangedWeapon.setFree(TRUE);
             mRangedWeaponDao.insert(rangedWeapon);
             characterClass.addStartingRanged(rangedWeapon);
             mCharacterClassDao.insert(characterClass);
@@ -391,11 +392,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits.add(TraitsEnum.SAMARAI.label());
             traits.add(TraitsEnum.SHOWMAN.label());
             traits.add(TraitsEnum.TRAVELER.label());
-            characterClass = new CharacterClass(CharacterClassEnum.WANDERING_SAMARAI.male(), 3,3,2,3,2,2,10,10,3,4,4,3,2,5,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.WANDERING_SAMARAI.male(), 3, 3, 2, 3, 2, 2, 10, 10, 3, 4, 4, 3, 2, 5, 2, traits);
             meleeWeapon = new MeleeWeapon("Wanderer's Katana");
             meleeWeapon.addModifier(ModifiersEnum.MAX_FURY.label());
             meleeWeapon.addModifier(ModifiersEnum.MAX_FURY.label());
-            meleeWeapon.setTwoHanded(true);
+            meleeWeapon.setTwoHanded(TRUE);
             meleeWeapon.setWeight(1);
             meleeWeapon.setSell(400);
             meleeWeapon.setUpgrades(2);
@@ -404,8 +405,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mCharacterClassDao.insert(characterClass);
             clothing = new Clothing("Ronin's Helmet");
             clothing.addRestriction(TraitsEnum.SAMARAI.label());
-            clothing.setFace(true);
-            clothing.setHat(true);
+            clothing.setFace(TRUE);
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setSell(600);
@@ -424,11 +425,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits = new ArrayList<>(0);
             traits.add(TraitsEnum.SCOUT.label());
             traits.add(TraitsEnum.TRIBAL.label());
-            characterClass = new CharacterClass(CharacterClassEnum.INDIAN_SCOUT.male(), 3,2,3,2,3,2,10,10,4,4,4,4,2,5,2,traits);
+            characterClass = new CharacterClass(CharacterClassEnum.INDIAN_SCOUT.male(), 3, 2, 3, 2, 3, 2, 10, 10, 4, 4, 4, 4, 2, 5, 2, traits);
             rangedWeapon = new RangedWeapon("Carbine", 8, 3);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(2);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setSell(400);
             mRangedWeaponDao.insert(rangedWeapon);
             characterClass.addStartingRanged(rangedWeapon);
@@ -450,14 +451,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
             //Initialize Personal Items
             gearBase = new GearBase("Ancient Coin");
-            gearBase.setPersonal(true);
+            gearBase.setPersonal(TRUE);
             gearBase.addModifier("Lore");
             Cowboy.addGear(gearBase);
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Personal Journal");
             gearBase.addModifier("Spirit");
             gearBase.addModifier("Lore");
-            gearBase.setPersonal(true);
+            gearBase.setPersonal(TRUE);
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Silver Dice");
             gearBase.setPersonal(TRUE);
@@ -537,9 +538,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addModifier(ModifiersEnum.MAX_SANITY.label());
             gearBase.addModifier(ModifiersEnum.MAX_SANITY.label());
             mGearBaseDao.insert(gearBase);
-            
-
-
 
 
             //Initialize Gear by Set
@@ -547,8 +545,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Accentuator Belt");
             gearBase.setWeight(-2);
             gearBase.setSell(350);
-            gearBase.setArtifact(true);
+            gearBase.setArtifact(TRUE);
             gearBase.setUpgrades(2);
+            gearBase.setTargaArtifact(TRUE);
             mGearBaseDao.insert(gearBase);
             Cowboy.addGear(gearBase);
             gearBase = new GearBase("Mark of the Hunter");
@@ -557,7 +556,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setDarkStone(1);
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Deflection Field");
-            gearBase.setArtifact(true);
+            gearBase.setTargaArtifact(TRUE);
             gearBase.setSell(525);
             gearBase.setDarkStone(1);
             gearBase.setWeight(1);
@@ -565,7 +564,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Teleportation Bracelet");
             gearBase.setWeight(1);
             gearBase.setSell(725);
-            gearBase.setArtifact(true);
+            gearBase.setTargaArtifact(TRUE);
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Old Map");
             gearBase.setSell(25);
@@ -575,6 +574,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //End
             gearBase = new GearBase("Void Crystals");
             gearBase.setSell(100);
+            gearBase.setTargaArtifact(TRUE);
             mGearBaseDao.insert(gearBase);
             //Test
             sobCharacter.addGear(gearBase);
@@ -600,11 +600,91 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Pipe");
             gearBase.addModifier(ModifiersEnum.LORE.label());
             gearBase.setSell(75);
+            //Artifact
+            gearBase = new GearBase("Three-Eyed Skull");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(275);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Healing Stone");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(150);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Amulet of Heinghal");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(225);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Amulet of Kotak");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(250);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Tome of Vontarro");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(300);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Soul Parasite");
+            gearBase.setArtifact(TRUE);
+            gearBase.addModifier(ModifiersEnum.INITIATIVE.label());
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Book of the Occult");
+            gearBase.setArtifact(TRUE);
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            gearBase.setWeight(1);
+            gearBase.setUpgrades(1);
+            gearBase.setSell(125);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Ring of Tar'Kul");
+            gearBase.setArtifact(TRUE);
+            gearBase.addModifier(ModifiersEnum.CUNNING.label());
+            gearBase.setSell(200);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Book of the Mad King");
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(725);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Horrific Statue");
+            gearBase.setArtifact(TRUE);
+            gearBase.setDarkStone(1);
+            gearBase.setSell(275);
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            mGearBaseDao.insert(gearBase);
+            //Jargono
+            gearBase = new GearBase("Tribal Necklace");
+            gearBase.setJargonoArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(225);
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Gar'Dhuli Swamp Salve");
+            gearBase.setWeight(1);
+            gearBase.setSell(125);
+            gearBase.setJargonoArtifact(TRUE);
+            mGearBaseDao.insert(gearBase);
+            //Targa
+            gearBase = new GearBase("Frozen Isopod");
+            gearBase.setTargaArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(300);
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            gearBase.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Authority of O'Tar");
+            gearBase.setTargaArtifact(TRUE);
+            gearBase.setSell(425);
+            mGearBaseDao.insert(gearBase);
 
             //BASE RANGED WEAPONS
             rangedWeapon = new RangedWeapon("Plasma Arc", 8, 1);
             rangedWeapon.setWeight(1);
             rangedWeapon.setSell(675);
+            rangedWeapon.setTargaArtifact(TRUE);
             mRangedWeaponDao.insert(rangedWeapon);
             //Test
             sobCharacter.addRangedWeapon(rangedWeapon);
@@ -630,6 +710,41 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setUpgrades(1);
             rangedWeapon.setSell(300);
             mRangedWeaponDao.insert(rangedWeapon);
+            //Artifact
+            rangedWeapon = new RangedWeapon("Void Pistol", 8, 2);
+            rangedWeapon.setArtifact(TRUE);
+            rangedWeapon.setDarkStone(1);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setSell(675);
+            rangedWeapon.setDamageDie(1);
+            mRangedWeaponDao.insert(rangedWeapon);
+            rangedWeapon = new RangedWeapon("Dead Man's Iron", 6, 3);
+            rangedWeapon.setArtifact(TRUE);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setSell(350);
+            mRangedWeaponDao.insert(rangedWeapon);
+            rangedWeapon = new RangedWeapon("Hell Pistol", 6, 2);
+            rangedWeapon.setArtifact(TRUE);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setUpgrades(1);
+            rangedWeapon.setSell(650);
+            mRangedWeaponDao.insert(rangedWeapon);
+            rangedWeapon = new RangedWeapon("The Judge", 6, 3);
+            rangedWeapon.setArtifact(TRUE);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setSell(625);
+            rangedWeapon.setToHitDie(8);
+            mRangedWeaponDao.insert(rangedWeapon);
+            //Targa
+            rangedWeapon = new RangedWeapon("Trun Disintegrator", 8, 1);
+            rangedWeapon.setTargaArtifact(TRUE);
+            rangedWeapon.setWeight(2);
+            rangedWeapon.setTwoHanded(TRUE);
+            rangedWeapon.setSell(800);
+            rangedWeapon.setDamageDie(18);
+            mRangedWeaponDao.insert(rangedWeapon);
+
+
             //BASE MELEE WEAPONS
             meleeWeapon = new MeleeWeapon("Cavalry Sabre");
             meleeWeapon.setWeight(1);
@@ -681,6 +796,54 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setUpgrades(1);
             meleeWeapon.setSell(250);
             mMeleeWeaponDao.insert(meleeWeapon);
+            //Artifact
+            meleeWeapon = new MeleeWeapon("Hell Sword");
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setUpgrades(1);
+            meleeWeapon.setSell(550);
+            meleeWeapon.setArtifact(TRUE);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Void Sword");
+            meleeWeapon.setArtifact(TRUE);
+            meleeWeapon.setDarkStone(1);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setCombat(1);
+            meleeWeapon.setSell(800);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Black Fang Hatchet");
+            meleeWeapon.setArtifact(TRUE);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setUpgrades(1);
+            meleeWeapon.setSell(425);
+            meleeWeapon.setCombat(1);
+            meleeWeapon.addRestriction(TraitsEnum.TRIBAL.label());
+            meleeWeapon.addRestriction(TraitsEnum.TRAVELER.label());
+            meleeWeapon.addRestriction(TraitsEnum.FRONTIER.label());
+            mMeleeWeaponDao.insert(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Orb of Ro'kal");
+            meleeWeapon.setArtifact(TRUE);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(425);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            //Jargono
+            meleeWeapon = new MeleeWeapon("Dark Stone Axe");
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setDarkStone(1);
+            meleeWeapon.setJargonoArtifact(TRUE);
+            meleeWeapon.setTwoHanded(TRUE);
+            meleeWeapon.setSell(375);
+            meleeWeapon.setDamageBonus(2);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Swamp Raptor Claw");
+            meleeWeapon.setFree(TRUE);
+            meleeWeapon.setJargonoArtifact(TRUE);
+            meleeWeapon.setCritChance(4);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(300);
+            meleeWeapon.setCombat(1);
+            mMeleeWeaponDao.insert(meleeWeapon);
+
+
             //BASE CLOTHING
             clothing = new Clothing("Silver Buckle");
             clothing.setBelt(TRUE);
@@ -709,8 +872,34 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setUpgrades(1);
             clothing.setSell(350);
             mClothingDao.insert(clothing);
-
-
+            //Artifact
+            clothing = new Clothing("Dark Stone Gauntlets");
+            clothing.setArtifact(TRUE);
+            clothing.setDarkStone(1);
+            clothing.setWeight(1);
+            clothing.setSell(575);
+            clothing.addModifier(ModifiersEnum.STRENGTH.label());
+            clothing.addModifier(ModifiersEnum.COMBAT.label());
+            mClothingDao.insert(clothing);
+            clothing = new Clothing("Gloves of Chardrin");
+            clothing.setArtifact(TRUE);
+            clothing.setWeight(1);
+            clothing.setSell(175);
+            clothing.addModifier(ModifiersEnum.AGILITY.label());
+            mClothingDao.insert(clothing);
+            //Jargono
+            clothing = new Clothing("Serpent Skin Gloves");
+            clothing.setJargonoArtifact(TRUE);
+            clothing.setWeight(1);
+            clothing.setSell(725);
+            clothing.addModifier(ModifiersEnum.STRENGTH.label());
+            mClothingDao.insert(clothing);
+            clothing = new Clothing("Serpent Skull Helmet");
+            clothing.setJargonoArtifact(TRUE);
+            clothing.setArmor(5);
+            clothing.setWeight(1);
+            clothing.setSell(850);
+            mClothingDao.insert(clothing);
 
 
             //DD
@@ -743,7 +932,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon = new RangedWeapon("Cult Rifle", 8, 2);
             rangedWeapon.setDamageBonus(1);
             rangedWeapon.setWeight(1);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setSet(SetListEnum.CRIMSON_HAND.code());
             rangedWeapon.setSell(400);
             rangedWeapon.setUpgrades(2);
@@ -752,7 +941,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Lost Army
             gearBase = new GearBase("Flag of the Fallen");
             gearBase.setWeight(2);
-            gearBase.setArtifact(true);
+            gearBase.setArtifact(TRUE);
             gearBase.setSell(1250);
             gearBase.setSet(SetListEnum.LOST_ARMY.code());
             mGearBaseDao.insert(gearBase);
@@ -763,10 +952,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setSell(400);
             gearBase.setSet(SetListEnum.LOST_ARMY.code());
             mGearBaseDao.insert(gearBase);
-            rangedWeapon = new RangedWeapon("Lost Army Pistol", 7,1 );
+            rangedWeapon = new RangedWeapon("Lost Army Pistol", 7, 1);
             rangedWeapon.setWeight(1);
             rangedWeapon.setSell(700);
             rangedWeapon.setSet(SetListEnum.LOST_ARMY.code());
+            rangedWeapon.setArtifact(TRUE);
             mRangedWeaponDao.insert(rangedWeapon);
             //Test
             sobCharacter.addRangedWeapon(rangedWeapon);
@@ -778,21 +968,21 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setDamageDie(8);
             rangedWeapon.setToHitDie(8);
             rangedWeapon.setWeight(1);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.setSet(SetListEnum.PROMO.code());
             rangedWeapon.setSell(400);
             mRangedWeaponDao.insert(rangedWeapon);
             Cowboy.addRangedWeapon(rangedWeapon);
             clothing = new Clothing("Badlands Adventure Gear");
             clothing.setWeight(2);
-            clothing.setCoat(true);
+            clothing.setCoat(TRUE);
             clothing.setSell(1250);
             clothing.setSet(SetListEnum.PROMO.code());
             mClothingDao.insert(clothing);
             Cowboy.addClothing(clothing);
             rangedWeapon = new RangedWeapon("Sawed-Off Shotgun", 3, 1);
             rangedWeapon.setDamageDie(8);
-            rangedWeapon.setTwoHanded(true);
+            rangedWeapon.setTwoHanded(TRUE);
             rangedWeapon.addRestriction("Outlaw");
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(1);
@@ -818,9 +1008,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //End
             meleeWeapon = new MeleeWeapon("Trun Gladius");
             meleeWeapon.setWeight(2);
-            meleeWeapon.setTwoHanded(true);
+            meleeWeapon.setTwoHanded(TRUE);
             meleeWeapon.setDamageBonus(2);
             meleeWeapon.setSet(SetListEnum.PROMO.code());
+            meleeWeapon.setTargaArtifact(TRUE);
             mMeleeWeaponDao.insert(meleeWeapon);
             //Test
             sobCharacter.addMeleeWeapon(meleeWeapon);
@@ -865,16 +1056,16 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Serpent Slayer", CharacterClassEnum.JARGONO_NATIVE.male());
             skill.addModifier(ModifiersEnum.MOVE.label());
 
-            for(GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
+            for (GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
                 Cowboy.addGear(gearBase1);
             }
-            for(Clothing clothing1 : Cowboy.getCharacterClass().getStartingClothing()) {
+            for (Clothing clothing1 : Cowboy.getCharacterClass().getStartingClothing()) {
                 Cowboy.addClothing(clothing1);
             }
-            for(RangedWeapon rangedWeapon1 : Cowboy.getCharacterClass().getStartingRanged()) {
+            for (RangedWeapon rangedWeapon1 : Cowboy.getCharacterClass().getStartingRanged()) {
                 Cowboy.addRangedWeapon(rangedWeapon1);
             }
-            for(MeleeWeapon meleeWeapon1 : Cowboy.getCharacterClass().getStartingMelee()) {
+            for (MeleeWeapon meleeWeapon1 : Cowboy.getCharacterClass().getStartingMelee()) {
                 Cowboy.addMeleeWeapon(meleeWeapon1);
             }
             mCharacterDao.insert(sobCharacter);

@@ -25,7 +25,7 @@ public class RangedWeaponRepository {
         return mAllRangedWeapons;
     }
 
-    public void insert (RangedWeapon rangedWeapon) {
+    public void insert(RangedWeapon rangedWeapon) {
         new RangedWeaponRepository.insertAsyncTask(mRangedWeaponDao).execute(rangedWeapon);
     }
 

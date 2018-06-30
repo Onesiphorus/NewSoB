@@ -15,7 +15,7 @@ public class RangedWeaponViewModel extends AndroidViewModel {
 
     private LiveData<List<RangedWeapon>> mAllRangedWeapons;
 
-    public RangedWeaponViewModel (Application application) {
+    public RangedWeaponViewModel(Application application) {
         super(application);
         mRepository = new RangedWeaponRepository(application);
         mAllRangedWeapons = mRepository.getAllRangedWeapons();

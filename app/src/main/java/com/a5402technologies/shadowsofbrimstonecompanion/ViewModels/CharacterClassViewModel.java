@@ -15,7 +15,7 @@ public class CharacterClassViewModel extends AndroidViewModel {
 
     private LiveData<List<CharacterClass>> mAllCharacterClasses;
 
-    public CharacterClassViewModel (Application application) {
+    public CharacterClassViewModel(Application application) {
         super(application);
         mRepository = new CharacterClassRepository(application);
         mAllCharacterClasses = mRepository.getAllCharacterClasses();

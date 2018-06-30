@@ -33,21 +33,32 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
-    CharacterViewModel mCharacterViewModel;
-
-
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
     /**
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
+        }
+    };
+    CharacterViewModel mCharacterViewModel;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -85,21 +96,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             hide();
         }
     };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
     private SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,11 +165,11 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         Button leftMelee = findViewById(R.id.btn_left_melee);
         leftMelee.setHint("empty");
 
-        if(sobCharacter.getRightHand() != null) {
+        if (sobCharacter.getRightHand() != null) {
             //TODO logic for two handed
             rightRanged.setText(sobCharacter.getRightHand().getName());
             rightMelee.setHint(sobCharacter.getRightHand().getName());
-            if(sobCharacter.getRightHand().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getRightHand().getTwoHanded().equals(TRUE)) {
                 leftRanged.setHint(sobCharacter.getRightHand().getName());
                 leftMelee.setHint(sobCharacter.getRightHand().getName());
             }
@@ -185,18 +183,18 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             tv = findViewById(R.id.right_hand_damage);
             String text =
                     "D"
-                    + sobCharacter.getRightHand().getDamageDie().toString()
-                    + "+"
-                    + sobCharacter.getRightHand().getDamageBonus().toString();
+                            + sobCharacter.getRightHand().getDamageDie().toString()
+                            + "+"
+                            + sobCharacter.getRightHand().getDamageBonus().toString();
             tv.setText(text);
             tv = findViewById(R.id.right_hand_to_hit);
             text =
                     "D" + sobCharacter.getRightHand().getToHitDie().toString()
-                    + ":"
-                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                    + "+("
-                    + sobCharacter.getRightHand().getCritChance()
-                    + "+)";
+                            + ":"
+                            + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                            + "+("
+                            + sobCharacter.getRightHand().getCritChance()
+                            + "+)";
             tv.setText(text);
         }
         rightRanged.setOnClickListener((View view) -> {
@@ -205,11 +203,11 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        if(sobCharacter.getLeftHand() != null) {
+        if (sobCharacter.getLeftHand() != null) {
             leftRanged = findViewById(R.id.left_hand_ranged_weapon);
             leftRanged.setText(sobCharacter.getLeftHand().getName());
             leftMelee.setHint(sobCharacter.getLeftHand().getName());
-            if(sobCharacter.getLeftHand().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getLeftHand().getTwoHanded().equals(TRUE)) {
                 rightRanged.setHint(sobCharacter.getLeftHand().getName());
                 rightMelee.setHint(sobCharacter.getLeftHand().getName());
             }
@@ -223,18 +221,18 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             tv = findViewById(R.id.left_hand_damage);
             String text =
                     "D" + sobCharacter.getLeftHand().getDamageDie().toString()
-                    + "+"
-                    + sobCharacter.getLeftHand().getDamageBonus().toString();
+                            + "+"
+                            + sobCharacter.getLeftHand().getDamageBonus().toString();
             tv.setText(text);
             tv = findViewById(R.id.left_hand_to_hit);
             text =
                     "D"
-                    + sobCharacter.getLeftHand().getToHitDie().toString()
-                    + ":"
-                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                    + "+("
-                    + sobCharacter.getLeftHand().getCritChance()
-                    + "+)";
+                            + sobCharacter.getLeftHand().getToHitDie().toString()
+                            + ":"
+                            + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                            + "+("
+                            + sobCharacter.getLeftHand().getCritChance()
+                            + "+)";
             tv.setText(text);
             //TODO make invisible when not populated
         }
@@ -246,10 +244,10 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         });
 
 
-        if(null != sobCharacter.getLeftMelee()) {
+        if (null != sobCharacter.getLeftMelee()) {
             leftMelee.setText(sobCharacter.getLeftMelee().getName());
             leftRanged.setHint(sobCharacter.getLeftMelee().getName());
-            if(sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE)) {
                 rightMelee.setHint(sobCharacter.getLeftMelee().getName());
                 rightRanged.setHint(sobCharacter.getLeftMelee().getName());
             }
@@ -260,10 +258,10 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        if(null != sobCharacter.getRightMelee()) {
+        if (null != sobCharacter.getRightMelee()) {
             rightMelee.setText(sobCharacter.getRightMelee().getName());
             rightRanged.setHint(sobCharacter.getRightMelee().getName());
-            if(sobCharacter.getRightMelee().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getRightMelee().getTwoHanded().equals(TRUE)) {
                 leftMelee.setHint(sobCharacter.getRightMelee().getName());
                 leftRanged.setHint(sobCharacter.getRightMelee().getName());
             }
@@ -280,24 +278,24 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv = findViewById(R.id.melee_to_hit);
         String text =
                 "D"
-                + sobCharacter.getMeleeToHitDie()
-                + " : "
-                + sobCharacter.getCharacterClass().getMeleeToHit().toString()
-                + "+("
-                + sobCharacter.getMeleeCritChance()
-                + "+)";
+                        + sobCharacter.getMeleeToHitDie()
+                        + " : "
+                        + sobCharacter.getCharacterClass().getMeleeToHit().toString()
+                        + "+("
+                        + sobCharacter.getMeleeCritChance()
+                        + "+)";
         tv.setText(text);
         tv = findViewById(R.id.melee_damage);
         text =
                 sobCharacter.getMeleeDamageDie()
-                + "+"
-                + sobCharacter.getMeleeDamageBonus();
+                        + "+"
+                        + sobCharacter.getMeleeDamageBonus();
         tv.setText(text);
 
         tv = findViewById(R.id.sob_xp);
         tv.setText(String.format(sobCharacter.getExperience().toString()));
         tv = findViewById(R.id.sob_money);
-        text = "$"+sobCharacter.getGold().toString();
+        text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
 
         findViewById(R.id.btn_sob_gear).setOnClickListener((View view) -> {

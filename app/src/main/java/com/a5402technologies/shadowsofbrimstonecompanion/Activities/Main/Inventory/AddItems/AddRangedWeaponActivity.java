@@ -4,9 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,7 +35,7 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranged_weapon);
 
-        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AddRangedWeaponActivity.RangedWeaponListAdapter adapter = new AddRangedWeaponActivity.RangedWeaponListAdapter(this);
@@ -52,33 +52,52 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.ranged_weapon_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class    );
-            if(rangedWeapon != null) {
+            Intent intent = new Intent(this, FoundGearActivity.class);
+            if (rangedWeapon != null) {
                 sobCharacter.addRangedWeapon(rangedWeapon);
                 intent.putExtra("serializable_object", sobCharacter);
-                Log.e("SUCCESS: ", rangedWeapon.getName()+" added to inventory.");
+                Log.e("SUCCESS: ", rangedWeapon.getName() + " added to inventory.");
             }
             startActivity(intent);
             finish();
         });
     }
 
-    class RangedWeaponListAdapter extends RecyclerView.Adapter<AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final TextView rangedWeaponItemView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            private RangedWeaponViewHolder(View itemView) {
-                super(itemView);
-                rangedWeaponItemView = itemView.findViewById(R.id.textView);
-
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
+    class RangedWeaponListAdapter extends RecyclerView.Adapter<AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
         private Context mContext;
-
         public RangedWeaponListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -117,36 +136,16 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
             if (null != mRangedWeapon) return mRangedWeapon.size();
             else return 0;
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
+            private final TextView rangedWeaponItemView;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            private RangedWeaponViewHolder(View itemView) {
+                super(itemView);
+                rangedWeaponItemView = itemView.findViewById(R.id.textView);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, FoundGearActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
     }
 }
 

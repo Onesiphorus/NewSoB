@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.FALSE;
 
 @Entity(tableName = "melee_weapon_table")
-public class MeleeWeapon implements Serializable{
+public class MeleeWeapon implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "melee_name")
@@ -76,6 +76,21 @@ public class MeleeWeapon implements Serializable{
     @NonNull
     @ColumnInfo(name = "free_attack")
     private Boolean free = FALSE;
+    @NonNull
+    @ColumnInfo(name = "trederra_artifact")
+    private Boolean trederraArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "cynder_artifact")
+    private Boolean cynderArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "targa_artifact")
+    private Boolean targaArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "jargono_artifact")
+    private Boolean jargonoArtifact = FALSE;
+    @NonNull
+    @ColumnInfo(name = "derelict_artifact")
+    private Boolean derelictArtifact = FALSE;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -218,7 +233,7 @@ public class MeleeWeapon implements Serializable{
         return equipped;
     }
 
-    public void setEquipped( Boolean equipped) {
+    public void setEquipped(Boolean equipped) {
         this.equipped = equipped;
     }
 
@@ -285,5 +300,50 @@ public class MeleeWeapon implements Serializable{
 
     public void setFree(@NonNull Boolean free) {
         this.free = free;
+    }
+
+    @NonNull
+    public Boolean getTrederraArtifact() {
+        return trederraArtifact;
+    }
+
+    public void setTrederraArtifact(@NonNull Boolean trederraArtifact) {
+        this.trederraArtifact = trederraArtifact;
+    }
+
+    @NonNull
+    public Boolean getCynderArtifact() {
+        return cynderArtifact;
+    }
+
+    public void setCynderArtifact(@NonNull Boolean cynderArtifact) {
+        this.cynderArtifact = cynderArtifact;
+    }
+
+    @NonNull
+    public Boolean getTargaArtifact() {
+        return targaArtifact;
+    }
+
+    public void setTargaArtifact(@NonNull Boolean targaArtifact) {
+        this.targaArtifact = targaArtifact;
+    }
+
+    @NonNull
+    public Boolean getJargonoArtifact() {
+        return jargonoArtifact;
+    }
+
+    public void setJargonoArtifact(@NonNull Boolean jargonoArtifact) {
+        this.jargonoArtifact = jargonoArtifact;
+    }
+
+    @NonNull
+    public Boolean getDerelictArtifact() {
+        return derelictArtifact;
+    }
+
+    public void setDerelictArtifact(@NonNull Boolean derelictArtifact) {
+        this.derelictArtifact = derelictArtifact;
     }
 }

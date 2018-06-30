@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum TraitsEnum {
-    LAW("Law","LAW"),
-    HOLY("Holy","HOLY"),
-    FRONTIER("Frontier","FRONTIER"),
+    LAW("Law", "LAW"),
+    HOLY("Holy", "HOLY"),
+    FRONTIER("Frontier", "FRONTIER"),
     STRANGE("Strange", "STRANGE"),
-    TRAVELER("Traveler","TRAVELER"),
+    TRAVELER("Traveler", "TRAVELER"),
     OUTLAW("Outlaw", "OUTLAW"),
     SHOWMAN("Showman", "SHOWMAN"),
     TRIBAL("Tribal", "TRIBAL"),
@@ -21,9 +21,6 @@ public enum TraitsEnum {
     SCOUT("Scout", "SCOUT");
     //TODO Finish Traits
 
-    private String code;
-    private String label;
-
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
     private static Map<String, TraitsEnum> lookupByLabel = new HashMap<>();
 
@@ -34,6 +31,9 @@ public enum TraitsEnum {
         }
     }
 
+    private String code;
+    private String label;
+
     TraitsEnum(String label, String code) {
         this.label = label;
         this.code = code;
@@ -42,6 +42,7 @@ public enum TraitsEnum {
     public String label() {
         return this.label;
     }
+
     public String code() {
         return this.code;
     }
@@ -58,8 +59,8 @@ public enum TraitsEnum {
         return getByCode(code).label;
     }
 
-    public String getCodeByLabel(String label){
+    public String getCodeByLabel(String label) {
         return getByLabel(label).code;
     }
 
-    }
+}

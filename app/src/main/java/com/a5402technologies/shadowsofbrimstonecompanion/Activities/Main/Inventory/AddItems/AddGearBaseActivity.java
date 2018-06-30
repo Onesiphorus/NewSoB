@@ -4,9 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,7 +36,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gear_base);
 
-        sobCharacter = (SobCharacter)getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final AddGearBaseActivity.GearBaseListAdapter adapter = new AddGearBaseActivity.GearBaseListAdapter(this);
@@ -53,7 +53,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.gear_base_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class    );
+            Intent intent = new Intent(this, FoundGearActivity.class);
             /*
             if(gearBase != null) {
                 intent.putExtra("serializable_object", gearBase);
@@ -61,7 +61,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(gearBase != null) {
+            if (gearBase != null) {
                 sobCharacter.addGear(gearBase);
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, gearBase.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
@@ -71,23 +71,42 @@ public class AddGearBaseActivity extends AppCompatActivity {
         });
     }
 
-    class GearBaseListAdapter extends RecyclerView.Adapter<AddGearBaseActivity.GearBaseListAdapter.GearBaseViewHolder> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        class GearBaseViewHolder extends RecyclerView.ViewHolder {
-            private final TextView gearBaseItemView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            private GearBaseViewHolder(View itemView) {
-                super(itemView);
-                gearBaseItemView = itemView.findViewById(R.id.textView);
-
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FoundGearActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
+    class GearBaseListAdapter extends RecyclerView.Adapter<AddGearBaseActivity.GearBaseListAdapter.GearBaseViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<GearBase> mGearBase;
         private Context mContext;
         private Integer RESULT_CODE = 1;
-
         public GearBaseListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -126,36 +145,16 @@ public class AddGearBaseActivity extends AppCompatActivity {
             if (null != mGearBase) return mGearBase.size();
             else return 0;
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        class GearBaseViewHolder extends RecyclerView.ViewHolder {
+            private final TextView gearBaseItemView;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            private GearBaseViewHolder(View itemView) {
+                super(itemView);
+                gearBaseItemView = itemView.findViewById(R.id.textView);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, FoundGearActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
     }
 }
 

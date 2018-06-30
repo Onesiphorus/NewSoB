@@ -14,6 +14,7 @@ public class CharacterRepository {
     private CharacterDao mCharacterDao;
     private LiveData<List<String>> mAllCharacterNames;
     private LiveData<List<SobCharacter>> mAllCharacters;
+
     public CharacterRepository(Application application) {
         SOBRoomDatabase db = SOBRoomDatabase.getDatabase(application);
         mCharacterDao = db.characterDao();
@@ -24,6 +25,7 @@ public class CharacterRepository {
     public LiveData<List<SobCharacter>> getAllCharacter() {
         return mAllCharacters;
     }
+
     public LiveData<List<String>> getAllCharacterNames() {
         return mAllCharacterNames;
     }
@@ -32,15 +34,15 @@ public class CharacterRepository {
         return mCharacterDao.getCharacterByName(name);
     }
 
-    public void insert (SobCharacter character) {
+    public void insert(SobCharacter character) {
         new insertAsyncTask(mCharacterDao).execute(character);
     }
 
-    public void delete (SobCharacter character) {
+    public void delete(SobCharacter character) {
         new deleteAsyncTask(mCharacterDao).execute(character.getCharacterName());
     }
 
-    public void update (SobCharacter character) {
+    public void update(SobCharacter character) {
         new updateAsyncTask(mCharacterDao).execute(character);
     }
 
@@ -81,6 +83,7 @@ public class CharacterRepository {
         deleteAsyncTask(CharacterDao dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Void doInBackground(final String... params) {
             mAsyncTaskDao.deleteCharacterByName(params[0]);

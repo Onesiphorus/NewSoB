@@ -4,19 +4,16 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity(tableName = "skill_table")
-public class Skill implements Serializable{
+public class Skill implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "skill_name")
@@ -87,9 +84,11 @@ public class Skill implements Serializable{
     public void setLevel(@NonNull Integer level) {
         this.level = level;
     }
+
     public void addModifier(String modifier) {
         this.modifiers.add(modifier);
     }
+
     public void addPenalty(String penalty) {
         this.penalties.add(penalty);
     }

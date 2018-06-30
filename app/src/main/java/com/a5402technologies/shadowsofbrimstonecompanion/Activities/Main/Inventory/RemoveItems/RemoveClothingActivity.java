@@ -2,8 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,13 +39,13 @@ public class RemoveClothingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<Clothing> clothingList = new ArrayList<>(0);
-        for(Clothing clothing : sobCharacter.getClothing()) {
-            if(clothing.getEquipped().equals(Boolean.FALSE)) clothingList.add(clothing);
+        for (Clothing clothing : sobCharacter.getClothing()) {
+            if (clothing.getEquipped().equals(Boolean.FALSE)) clothingList.add(clothing);
         }
         adapter.setClothing(clothingList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class    );
+            Intent intent = new Intent(this, ManagementMenuActivity.class);
             /*
             if(clothing != null) {
                 intent.putExtra("serializable_object", clothing);
@@ -53,7 +53,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(clothing != null) {
+            if (clothing != null) {
                 sobCharacter.removeClothing(clothing);
                 sobCharacter.addGold(clothing.getSell());
                 intent.putExtra("serializable_object", sobCharacter);
@@ -64,7 +64,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class    );
+            Intent intent = new Intent(this, ManagementMenuActivity.class);
             /*
             if(clothing != null) {
                 intent.putExtra("serializable_object", clothing);
@@ -72,7 +72,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if(clothing != null) {
+            if (clothing != null) {
                 sobCharacter.removeClothing(clothing);
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, clothing.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
@@ -86,22 +86,41 @@ public class RemoveClothingActivity extends AppCompatActivity {
         });
     }
 
-    class ClothingListAdapter extends RecyclerView.Adapter<RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        class ClothingViewHolder extends RecyclerView.ViewHolder {
-            private final TextView clothingItemView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            private ClothingViewHolder(View itemView) {
-                super(itemView);
-                clothingItemView = itemView.findViewById(R.id.textView);
-
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
+    class ClothingListAdapter extends RecyclerView.Adapter<RemoveClothingActivity.ClothingListAdapter.ClothingViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
         private Context mContext;
-
         public ClothingListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -141,35 +160,15 @@ public class RemoveClothingActivity extends AppCompatActivity {
             if (null != mClothing) return mClothing.size();
             else return 0;
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        class ClothingViewHolder extends RecyclerView.ViewHolder {
+            private final TextView clothingItemView;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            private ClothingViewHolder(View itemView) {
+                super(itemView);
+                clothingItemView = itemView.findViewById(R.id.textView);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
     }
 }
