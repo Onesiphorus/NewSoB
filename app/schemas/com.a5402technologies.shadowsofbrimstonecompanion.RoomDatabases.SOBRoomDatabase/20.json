@@ -1,0 +1,1421 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 20,
+    "identityHash": "8fa1edf02d515668a55305c892be655a",
+    "entities": [
+      {
+        "tableName": "character_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_name` TEXT NOT NULL, `character_class` TEXT, `gear_list` TEXT, `clothing_list` TEXT, `melee_list` TEXT, `ranged_list` TEXT, `agility_bonus` INTEGER, `cunning_bonus` INTEGER, `spirit_bonus` INTEGER, `strength_bonus` INTEGER, `lore_bonus` INTEGER, `luck_bonus` INTEGER, `health_bonus` INTEGER, `sanity_bonus` INTEGER, `armor` INTEGER, `spirit_armor` INTEGER, `ranged_damage_die` INTEGER, `ranged_damage_bonus` INTEGER, `melee_damage_bonus` INTEGER, `melee_damage_die` INTEGER, `combat_bonus` INTEGER, `initiative_bonus` INTEGER, `max_grit_bonus` INTEGER, `gold` INTEGER, `experience` INTEGER, `level` INTEGER, `face_slot` INTEGER, `hat_slot` INTEGER, `shoulders_slot` INTEGER, `torso_slot` INTEGER, `gloves_slot` INTEGER, `pants_slot` INTEGER, `boots_slot` INTEGER, `coat_slot` INTEGER, `belt` INTEGER, `has_prehensile_tail` INTEGER, `earned_skills` TEXT, `move_bonus` INTEGER NOT NULL, `right_hand` TEXT, `left_hand` TEXT, `right_melee` TEXT, `left_melee` TEXT, `tail_melee` TEXT, `prehensile_tail` TEXT, `melee_to_hit_die` INTEGER NOT NULL, `melee_crit_chance` INTEGER NOT NULL, PRIMARY KEY(`character_name`))",
+        "fields": [
+          {
+            "fieldPath": "characterName",
+            "columnName": "character_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterClass",
+            "columnName": "character_class",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gear",
+            "columnName": "gear_list",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "clothing",
+            "columnName": "clothing_list",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meleeWeapons",
+            "columnName": "melee_list",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rangedWeapons",
+            "columnName": "ranged_list",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "agilityBonus",
+            "columnName": "agility_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cunningBonus",
+            "columnName": "cunning_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritBonus",
+            "columnName": "spirit_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strengthBonus",
+            "columnName": "strength_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "loreBonus",
+            "columnName": "lore_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "luckBonus",
+            "columnName": "luck_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "healthBonus",
+            "columnName": "health_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sanityBonus",
+            "columnName": "sanity_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rangedDamageDie",
+            "columnName": "ranged_damage_die",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rangedDamageBonus",
+            "columnName": "ranged_damage_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meleeDamageBonus",
+            "columnName": "melee_damage_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meleeDamageDie",
+            "columnName": "melee_damage_die",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "combatBonus",
+            "columnName": "combat_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "initiativeBonus",
+            "columnName": "initiative_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "maxGritBonus",
+            "columnName": "max_grit_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gold",
+            "columnName": "gold",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "experience",
+            "columnName": "experience",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "face",
+            "columnName": "face_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hat",
+            "columnName": "hat_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shoulders",
+            "columnName": "shoulders_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "torso",
+            "columnName": "torso_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gloves",
+            "columnName": "gloves_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pants",
+            "columnName": "pants_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "boots",
+            "columnName": "boots_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "coat",
+            "columnName": "coat_slot",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "belt",
+            "columnName": "belt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hasPTail",
+            "columnName": "has_prehensile_tail",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "upgrades",
+            "columnName": "earned_skills",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "moveBonus",
+            "columnName": "move_bonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rightHand",
+            "columnName": "right_hand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "leftHand",
+            "columnName": "left_hand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rightMelee",
+            "columnName": "right_melee",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "leftMelee",
+            "columnName": "left_melee",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prehensileMelee",
+            "columnName": "tail_melee",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prehensileTail",
+            "columnName": "prehensile_tail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meleeToHitDie",
+            "columnName": "melee_to_hit_die",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "meleeCritChance",
+            "columnName": "melee_crit_chance",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "character_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "character_class_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`class_name` TEXT NOT NULL, `agility` INTEGER NOT NULL, `cunning` INTEGER NOT NULL, `spirit` INTEGER NOT NULL, `strength` INTEGER NOT NULL, `lore` INTEGER NOT NULL, `luck` INTEGER NOT NULL, `health` INTEGER NOT NULL, `sanity` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `willpower` INTEGER NOT NULL, `ranged_to_hit` INTEGER NOT NULL, `melee_to_hit` INTEGER NOT NULL, `combat` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `max_grit` INTEGER NOT NULL, `traits` TEXT NOT NULL, `start_gear` TEXT NOT NULL, `start_melee` TEXT NOT NULL, `start_ranged` TEXT NOT NULL, `start_clothing` TEXT NOT NULL, `start_skills` TEXT NOT NULL, PRIMARY KEY(`class_name`))",
+        "fields": [
+          {
+            "fieldPath": "className",
+            "columnName": "class_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Agility",
+            "columnName": "agility",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Cunning",
+            "columnName": "cunning",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Spirit",
+            "columnName": "spirit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Strength",
+            "columnName": "strength",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Lore",
+            "columnName": "lore",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Luck",
+            "columnName": "luck",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Health",
+            "columnName": "health",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Sanity",
+            "columnName": "sanity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Defense",
+            "columnName": "defense",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Willpower",
+            "columnName": "willpower",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "RangedToHit",
+            "columnName": "ranged_to_hit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "MeleeToHit",
+            "columnName": "melee_to_hit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Combat",
+            "columnName": "combat",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "Initiative",
+            "columnName": "initiative",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "MaxGrit",
+            "columnName": "max_grit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "traits",
+            "columnName": "traits",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingGear",
+            "columnName": "start_gear",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingMelee",
+            "columnName": "start_melee",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingRanged",
+            "columnName": "start_ranged",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingClothing",
+            "columnName": "start_clothing",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingSkills",
+            "columnName": "start_skills",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "class_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "gear_base_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gear_name` TEXT NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, PRIMARY KEY(`gear_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "gear_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personal",
+            "columnName": "personal_item",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "starting",
+            "columnName": "starting_gear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "upgrades",
+            "columnName": "upgrade_slots",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachments",
+            "columnName": "attachments",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shop",
+            "columnName": "shop",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkstoneCost",
+            "columnName": "darkstone_cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "gear_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "melee_weapon_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`melee_name` TEXT NOT NULL, `combat_bonus` INTEGER, `melee_bonus` INTEGER, `melee_die` INTEGER, `is_two_handed` INTEGER, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `equipped` INTEGER, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `crit_chance` INTEGER NOT NULL, `armor` INTEGER, `melee_to_hit_die` INTEGER NOT NULL, `free_attack` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, PRIMARY KEY(`melee_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "melee_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "combat",
+            "columnName": "combat_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "damageBonus",
+            "columnName": "melee_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "damageDie",
+            "columnName": "melee_die",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "twoHanded",
+            "columnName": "is_two_handed",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personal",
+            "columnName": "personal_item",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "starting",
+            "columnName": "starting_gear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "equipped",
+            "columnName": "equipped",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "upgrades",
+            "columnName": "upgrade_slots",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critChance",
+            "columnName": "crit_chance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meleeToHitDie",
+            "columnName": "melee_to_hit_die",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "free",
+            "columnName": "free_attack",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachments",
+            "columnName": "attachments",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shop",
+            "columnName": "shop",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkstoneCost",
+            "columnName": "darkstone_cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "melee_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ranged_weapon_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ranged_name` TEXT NOT NULL, `ranged_die` INTEGER NOT NULL, `ranged_bonus` INTEGER, `num_shots` INTEGER NOT NULL, `weapon_range` INTEGER NOT NULL, `is_two_handed` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `equipped` INTEGER NOT NULL, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `to_hit_die` INTEGER NOT NULL, `crit_chance` INTEGER NOT NULL, `free_attack` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, PRIMARY KEY(`ranged_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "ranged_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "damageDie",
+            "columnName": "ranged_die",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "damageBonus",
+            "columnName": "ranged_bonus",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shots",
+            "columnName": "num_shots",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "range",
+            "columnName": "weapon_range",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "twoHanded",
+            "columnName": "is_two_handed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personal",
+            "columnName": "personal_item",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "starting",
+            "columnName": "starting_gear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "equipped",
+            "columnName": "equipped",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "upgrades",
+            "columnName": "upgrade_slots",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toHitDie",
+            "columnName": "to_hit_die",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critChance",
+            "columnName": "crit_chance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "free",
+            "columnName": "free_attack",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachments",
+            "columnName": "attachments",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shop",
+            "columnName": "shop",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkstoneCost",
+            "columnName": "darkstone_cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ranged_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "clothing_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clothing_name` TEXT NOT NULL, `face` INTEGER, `belt` INTEGER, `hat` INTEGER, `shoulders` INTEGER, `torso` INTEGER, `gloves` INTEGER, `pants` INTEGER, `boots` INTEGER, `coat` INTEGER, `equipped` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, PRIMARY KEY(`clothing_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "clothing_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "face",
+            "columnName": "face",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "belt",
+            "columnName": "belt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hat",
+            "columnName": "hat",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shoulders",
+            "columnName": "shoulders",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "torso",
+            "columnName": "torso",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gloves",
+            "columnName": "gloves",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pants",
+            "columnName": "pants",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "boots",
+            "columnName": "boots",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "coat",
+            "columnName": "coat",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "equipped",
+            "columnName": "equipped",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personal",
+            "columnName": "personal_item",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "starting",
+            "columnName": "starting_gear",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "upgrades",
+            "columnName": "upgrade_slots",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachments",
+            "columnName": "attachments",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shop",
+            "columnName": "shop",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkstoneCost",
+            "columnName": "darkstone_cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "clothing_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "skill_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`skill_name` TEXT NOT NULL, `type` TEXT NOT NULL, `modifiers` TEXT, `penalties` TEXT, `level` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `ranged_to_hit` INTEGER NOT NULL, `melee_to_hit` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `willpower` INTEGER NOT NULL, PRIMARY KEY(`skill_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "skill_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rangedToHit",
+            "columnName": "ranged_to_hit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "meleeToHit",
+            "columnName": "melee_to_hit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "defense",
+            "columnName": "defense",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "willpower",
+            "columnName": "willpower",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "skill_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "attachment_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attachment_name` TEXT NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `slots_required` INTEGER NOT NULL, `penalties` TEXT, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `required_darkstone` INTEGER NOT NULL, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, PRIMARY KEY(`attachment_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "attachment_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slotsRequired",
+            "columnName": "slots_required",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requiredDarkStoneToAttach",
+            "columnName": "required_darkstone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shop",
+            "columnName": "shop",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkstoneCost",
+            "columnName": "darkstone_cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "attachment_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8fa1edf02d515668a55305c892be655a\")"
+    ]
+  }
+}

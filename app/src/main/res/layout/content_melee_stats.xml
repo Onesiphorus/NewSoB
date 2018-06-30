@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_blue_dark"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,20 +13,16 @@
             android:layout_weight="1"
             android:hint="Right Hand"
             android:paddingRight="4dp"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_blue_light"
             android:gravity="center"
             android:id="@+id/btn_right_melee"/>
         <Button
             android:layout_width="4dp"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"/>
+            />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_light"
-            android:textColor="@android:color/white"
             android:hint="Left Hand"
             android:paddingLeft="4dp"
             android:gravity="center"

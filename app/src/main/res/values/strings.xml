@@ -43,6 +43,13 @@
     <string name="sell">Sell</string>
     <string name="NA">NA</string>
     <string name="choose_clothing">Choose Clothing</string>
+    <string name="settings">Settings</string>
+    <string name="church">Church</string>
+    <string name="general_store">General Store</string>
+    <string name="blacksmith">Blacksmith</string>
+    <string name="docs_office">Doc\'s Office</string>
+    <string name="frontier_outpost">Frontier Outpost</string>
+    <string name="saloon">Saloon</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

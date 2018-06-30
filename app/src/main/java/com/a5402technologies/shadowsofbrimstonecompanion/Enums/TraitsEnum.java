@@ -18,7 +18,10 @@ public enum TraitsEnum {
     MAGIK("Magik", "MAGIK"),
     MEDICAL("Medical", "MEDICAL"),
     SAMARAI("Samaria", "SAMARAI"),
-    SCOUT("Scout", "SCOUT");
+    SCOUT("Scout", "SCOUT"),
+    GUN("Gun", "GUN"),
+    MELEE("Melee", "MELEE"),
+    TRANSPORT("Transport", "TRANSPORT");
     //TODO Finish Traits
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();

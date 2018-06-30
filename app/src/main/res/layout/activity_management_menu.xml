@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
     tools:context=".Activities.Main.ManagementMenuActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -17,34 +16,26 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_change_loadout"
             android:layout_margin="2dp"
-            android:textColor="@android:color/holo_blue_bright"
             android:text="CHANGE LOADOUT"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_new_gear"
-            android:textColor="@android:color/holo_blue_bright"
             android:text="FOUND NEW STUFF"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_remove_gear"
-            android:textColor="@android:color/holo_blue_bright"
             android:text="GET RID OF SOMETHING"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@android:color/holo_blue_dark"
             android:id="@+id/btn_visit_town"
-            android:textColor="@android:color/holo_blue_bright"
             android:text="Visit Town"/>
 
 
@@ -57,7 +48,6 @@
         android:gravity="bottom|center_horizontal"
         android:keepScreenOn="true"
         android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
         android:textSize="50sp"
         android:paddingBottom="32dp"
         android:textStyle="bold" />

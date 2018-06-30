@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -72,6 +73,12 @@ public class Attachment implements Serializable {
     @NonNull
     @ColumnInfo(name = "required_darkstone")
     private Integer requiredDarkStoneToAttach = 0;
+    @NonNull
+    @ColumnInfo(name = "shop")
+    private String shop = ShopEnum.NONE.label();
+    @NonNull
+    @ColumnInfo(name = "darkstone_cost")
+    private Integer darkstoneCost = 0;
 
     public Attachment(@NonNull String name, @NonNull Integer slotsRequired) {
         this.name = name;
@@ -257,5 +264,23 @@ public class Attachment implements Serializable {
 
     public void addPenalty(String penalty) {
         this.penalties.add(penalty);
+    }
+
+    @NonNull
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(@NonNull String shop) {
+        this.shop = shop;
+    }
+
+    @NonNull
+    public Integer getDarkstoneCost() {
+        return darkstoneCost;
+    }
+
+    public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
+        this.darkstoneCost = darkstoneCost;
     }
 }

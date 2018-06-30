@@ -22,7 +22,8 @@ public enum ModifiersEnum {
     MOVE("Move", CharacterClassEnum.ANY),
     COMBAT("Combat", CharacterClassEnum.ANY),
     MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY),
-    RANGED_DAMAGE("Ranged Damage", CharacterClassEnum.ANY);
+    RANGED_DAMAGE("Ranged Damage", CharacterClassEnum.ANY),
+    RANGE("Range", CharacterClassEnum.ANY);
     //TODO finish modifiers
 
 

@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -78,6 +79,12 @@ public class GearBase implements Serializable {
     @ColumnInfo(name = "attachments")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Attachment> attachments;
+    @NonNull
+    @ColumnInfo(name = "shop")
+    private String shop = ShopEnum.NONE.label();
+    @NonNull
+    @ColumnInfo(name = "darkstone_cost")
+    private Integer darkstoneCost = 0;
 
     public GearBase(@NonNull String name) {
         this.name = name;
@@ -288,6 +295,24 @@ public class GearBase implements Serializable {
 
     public void removeAttachment(Attachment attachment) {
         this.attachments.remove(attachment);
+    }
+
+    @NonNull
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(@NonNull String shop) {
+        this.shop = shop;
+    }
+
+    @NonNull
+    public Integer getDarkstoneCost() {
+        return darkstoneCost;
+    }
+
+    public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
+        this.darkstoneCost = darkstoneCost;
     }
 }
 
