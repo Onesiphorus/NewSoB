@@ -74,6 +74,9 @@ public class GearBase implements Serializable {
     @NonNull
     @ColumnInfo(name = "derelict_artifact")
     private Boolean derelictArtifact = FALSE;
+    @ColumnInfo(name = "attachments")
+    @TypeConverters(GithubTypeConverters.class)
+    private ArrayList<GearUpgrades> attachments;
 
     public GearBase(@NonNull String name) {
         this.name = name;
@@ -87,6 +90,7 @@ public class GearBase implements Serializable {
         this.personal = Boolean.FALSE;
         this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
+        attachments = new ArrayList<>(0);
     }
 
     @NonNull
@@ -274,6 +278,22 @@ public class GearBase implements Serializable {
 
     public void setDerelictArtifact(@NonNull Boolean derelictArtifact) {
         this.derelictArtifact = derelictArtifact;
+    }
+
+    private ArrayList<GearUpgrades> getAttachments() {
+        return attachments;
+    }
+
+    private void setAttachments(ArrayList<GearUpgrades> attachments) {
+        this.attachments = attachments;
+    }
+
+    public void addAttachment(GearUpgrades gearUpgrades) {
+        this.attachments.add(gearUpgrades);
+    }
+
+    public void removeAttachment(GearUpgrades gearUpgrades) {
+        this.attachments.remove(gearUpgrades);
     }
 }
 

@@ -1,5 +1,7 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +20,8 @@ public enum ModifiersEnum {
     MAGIK("Magik", CharacterClassEnum.DARK_STONE_SHAMAN),
     MAX_FURY("Max Fury", CharacterClassEnum.WANDERING_SAMARAI),
     MOVE("Move", CharacterClassEnum.ANY),
-    COMBAT("Combat", CharacterClassEnum.ANY);
+    COMBAT("Combat", CharacterClassEnum.ANY),
+    MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY);
     //TODO finish modifiers
 
 

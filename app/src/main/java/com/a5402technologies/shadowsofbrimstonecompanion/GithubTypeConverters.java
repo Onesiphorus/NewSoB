@@ -6,6 +6,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnu
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearUpgrades;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
@@ -130,6 +131,22 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String SkillListToString(ArrayList<Skill> skillList) {
         return gson.toJson(skillList);
+    }
+
+    @TypeConverter
+    public static ArrayList<GearUpgrades> stringToGearUpgradeList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<GearUpgrades>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String GearUpgradeListToString(ArrayList<GearUpgrades> gearUpgradesList) {
+        return gson.toJson(gearUpgradesList);
     }
 
     @TypeConverter

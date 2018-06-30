@@ -8,6 +8,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.view.Display;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
@@ -127,11 +128,12 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addRestriction("Cowboy");
             gearBase.setSet(SetListEnum.COWBOY.code());
             mGearBaseDao.insert(gearBase);
+            characterClass.addStartingGear(gearBase);
             clothing = new Clothing("Bandana");
             clothing.setSell(50);
             clothing.setFace(TRUE);
             mClothingDao.insert(clothing);
-            characterClass.addStartingGear(gearBase);
+            characterClass.addStartingClothing(clothing);
             rangedWeapon = new RangedWeapon("Pistol", 6, 2);
             rangedWeapon.setSell(150);
             rangedWeapon.setWeight(1);
@@ -416,6 +418,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addPenalty(ModifiersEnum.INITIATIVE.label());
+            clothing.setTorso(TRUE);
             clothing.setWeight(1);
             clothing.setArmor(5);
             clothing.setUpgrades(2);
@@ -491,6 +494,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao.insert(clothing);
             clothing = new Clothing("Roughskin Gloves");
             clothing.setPersonal(TRUE);
+            clothing.setGloves(TRUE);
             clothing.addModifier(ModifiersEnum.STRENGTH.label());
             mClothingDao.insert(clothing);
             gearBase = new GearBase("Lucky Charm");
@@ -515,6 +519,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             clothing = new Clothing("Weathered Poncho");
             clothing.setPersonal(TRUE);
+            clothing.setShoulders(TRUE);
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
@@ -538,10 +543,33 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addModifier(ModifiersEnum.MAX_SANITY.label());
             gearBase.addModifier(ModifiersEnum.MAX_SANITY.label());
             mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Heritage Charm");
+            gearBase.setPersonal(TRUE);
+            gearBase.addModifier(ModifiersEnum.LUCK.label());
+            gearBase.addModifier(ModifiersEnum.SPIRIT.label());
+            gearBase.setSet(SetListEnum.JARGONO_NATIVE.code());
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Tribal Tatoos");
+            gearBase.setPersonal(TRUE);
+            gearBase.addModifier(ModifiersEnum.STRENGTH.label());
+            gearBase.setSet(SetListEnum.JARGONO_NATIVE.code());
+            mGearBaseDao.insert(gearBase);
+            clothing = new Clothing("Serpent Skin Loin Cloth");
+            clothing.setPersonal(TRUE);
+            clothing.setSet(SetListEnum.JARGONO_NATIVE.code());
+            clothing.addModifier(ModifiersEnum.AGILITY.label());
+            mClothingDao.insert(clothing);
+            gearBase = new GearBase("Relic Stone");
+            gearBase.setPersonal(TRUE);
+            gearBase.setSet(SetListEnum.JARGONO_NATIVE.code());
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            mGearBaseDao.insert(gearBase);
+
 
 
             //Initialize Gear by Set
             //BASE GEAR
+            //TODO add toggles for loading database. One for if user has set, one for if set is already loaded
             gearBase = new GearBase("Accentuator Belt");
             gearBase.setWeight(-2);
             gearBase.setSell(350);
@@ -855,12 +883,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao.insert(clothing);
             clothing = new Clothing("Lucky Hat");
             clothing.addModifier(ModifiersEnum.LUCK.label());
+            clothing.setHat(TRUE);
             clothing.setSell(150);
             mClothingDao.insert(clothing);
             clothing = new Clothing("Rawhide Chaps");
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setSell(250);
+            clothing.setPants(TRUE);
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addModifier(ModifiersEnum.MOVE.label());
             clothing.addRestriction(TraitsEnum.FRONTIER.label());
@@ -871,27 +901,31 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setSell(350);
+            clothing.setShoulders(TRUE);
             mClothingDao.insert(clothing);
             //Artifact
-            clothing = new Clothing("Dark Stone Gauntlets");
+            clothing = new Clothing("Dark Stone Gloves");
             clothing.setArtifact(TRUE);
             clothing.setDarkStone(1);
             clothing.setWeight(1);
             clothing.setSell(575);
+            clothing.setGloves(TRUE);
             clothing.addModifier(ModifiersEnum.STRENGTH.label());
-            clothing.addModifier(ModifiersEnum.COMBAT.label());
+            clothing.addModifier(ModifiersEnum.MELEE_DAMAGE.label());
             mClothingDao.insert(clothing);
             clothing = new Clothing("Gloves of Chardrin");
             clothing.setArtifact(TRUE);
             clothing.setWeight(1);
             clothing.setSell(175);
             clothing.addModifier(ModifiersEnum.AGILITY.label());
+            clothing.setGloves(TRUE);
             mClothingDao.insert(clothing);
             //Jargono
             clothing = new Clothing("Serpent Skin Gloves");
             clothing.setJargonoArtifact(TRUE);
             clothing.setWeight(1);
             clothing.setSell(725);
+            clothing.setGloves(TRUE);
             clothing.addModifier(ModifiersEnum.STRENGTH.label());
             mClothingDao.insert(clothing);
             clothing = new Clothing("Serpent Skull Helmet");
@@ -899,6 +933,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setArmor(5);
             clothing.setWeight(1);
             clothing.setSell(850);
+            clothing.setFace(TRUE);
+            clothing.setHat(TRUE);
             mClothingDao.insert(clothing);
 
 
@@ -1055,6 +1091,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Jargono Native Starting Skills
             skill = new Skill("Serpent Slayer", CharacterClassEnum.JARGONO_NATIVE.male());
             skill.addModifier(ModifiersEnum.MOVE.label());
+            mSkillDao.insert(skill);
+            //TODO method for changing starting gear
+            skill = new Skill( "Pit Fighter", CharacterClassEnum.JARGONO_NATIVE.male());
+            mSkillDao.insert(skill);
+            skill = new Skill("Treetop Hunter", CharacterClassEnum.JARGONO_NATIVE.male());
+            skill.setRangedToHit(4);
+            mSkillDao.insert(skill);
+
 
             for (GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
                 Cowboy.addGear(gearBase1);

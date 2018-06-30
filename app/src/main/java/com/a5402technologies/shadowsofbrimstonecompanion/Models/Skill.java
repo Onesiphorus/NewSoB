@@ -5,6 +5,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
@@ -34,6 +35,19 @@ public class Skill implements Serializable {
     private Integer armor;
     @ColumnInfo(name = "spirit_armor")
     private Integer spiritArmor;
+    @NonNull
+    @ColumnInfo(name = "ranged_to_hit")
+    private Integer rangedToHit = 0;
+    @NonNull
+    @ColumnInfo(name = "melee_to_hit")
+    private Integer meleeToHit = 0;
+    @NonNull
+    @ColumnInfo(name = "defense")
+    private Integer defense = 0;
+    @NonNull
+    @ColumnInfo(name = "willpower")
+    private Integer willpower = 0;
+
 
     public Skill(@NonNull String name, @NonNull String type) {
         this.name = name;
@@ -107,5 +121,41 @@ public class Skill implements Serializable {
 
     public void setSpiritArmor(Integer spiritArmor) {
         this.spiritArmor = spiritArmor;
+    }
+
+    @NonNull
+    public Integer getRangedToHit() {
+        return rangedToHit;
+    }
+
+    public void setRangedToHit(@NonNull Integer rangedToHit) {
+        this.rangedToHit = rangedToHit;
+    }
+
+    @NonNull
+    public Integer getMeleeToHit() {
+        return meleeToHit;
+    }
+
+    public void setMeleeToHit(@NonNull Integer meleeToHit) {
+        this.meleeToHit = meleeToHit;
+    }
+
+    @NonNull
+    public Integer getDefense() {
+        return defense;
+    }
+
+    public void setDefense(@NonNull Integer defense) {
+        this.defense = defense;
+    }
+
+    @NonNull
+    public Integer getWillpower() {
+        return willpower;
+    }
+
+    public void setWillpower(@NonNull Integer willpower) {
+        this.willpower = willpower;
     }
 }

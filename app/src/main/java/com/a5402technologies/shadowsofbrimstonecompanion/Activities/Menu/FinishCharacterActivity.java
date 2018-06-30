@@ -26,6 +26,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterVie
 
 import java.util.ArrayList;
 
+import static java.lang.Boolean.TRUE;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -191,16 +193,23 @@ public class FinishCharacterActivity extends AppCompatActivity {
                 mCharacterViewModel.insert(sobCharacter);
                 Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
                 for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+                    clothing.setStarting(TRUE);
+                    clothing.setSell(0);
                     sobCharacter.addClothing(clothing);
-                    sobCharacter.equipClothing(clothing);
                 }
                 for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+                    rangedWeapon.setStarting(TRUE);
+                    rangedWeapon.setSell(0);
                     sobCharacter.addRangedWeapon(rangedWeapon);
                 }
                 for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+                    meleeWeapon.setStarting(TRUE);
+                    meleeWeapon.setSell(0);
                     sobCharacter.addMeleeWeapon(meleeWeapon);
                 }
                 for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
+                    gearBase.setStarting(TRUE);
+                    gearBase.setSell(0);
                     sobCharacter.addGear(gearBase);
                 }
                 mCharacterViewModel.update(sobCharacter);

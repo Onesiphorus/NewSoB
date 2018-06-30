@@ -726,6 +726,10 @@ public class SobCharacter implements Serializable {
             setMoveBonus(getMoveBonus() + 1);
         } else if (ModifiersEnum.MAX_GRIT.label().equals(modifier)) {
             setMaxGritBonus(getMaxGritBonus() + 1);
+        } else if (ModifiersEnum.MELEE_DAMAGE.label().equals(modifier)) {
+            setMeleeDamageBonus(getMeleeDamageBonus() + 1);
+        } else if (ModifiersEnum.COMBAT.label().equals(modifier)) {
+            setCombatBonus(getCombatBonus() + 1);
         }
     }
 
@@ -752,6 +756,10 @@ public class SobCharacter implements Serializable {
             setMoveBonus(getMoveBonus() - 1);
         } else if (ModifiersEnum.MAX_GRIT.label().equals(modifier)) {
             setMaxGritBonus(getMaxGritBonus() - 1);
+        } else if (ModifiersEnum.MELEE_DAMAGE.label().equals(modifier)) {
+            setMeleeDamageBonus(getMeleeDamageBonus() - 1);
+        } else if (ModifiersEnum.COMBAT.label().equals(modifier)) {
+            setCombatBonus(getCombatBonus() - 1);
         }
     }
 

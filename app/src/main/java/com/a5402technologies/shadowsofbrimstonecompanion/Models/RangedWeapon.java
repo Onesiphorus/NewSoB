@@ -96,6 +96,9 @@ public class RangedWeapon implements Serializable {
     @NonNull
     @ColumnInfo(name = "derelict_artifact")
     private Boolean derelictArtifact = FALSE;
+    @ColumnInfo(name = "attachments")
+    @TypeConverters(GithubTypeConverters.class)
+    private ArrayList<GearUpgrades> attachments;
 
     public RangedWeapon(@NonNull String name, @NonNull Integer range, @NonNull Integer shots) {
         this.name = name;
@@ -115,6 +118,7 @@ public class RangedWeapon implements Serializable {
         this.starting = Boolean.FALSE;
         this.penalties = new ArrayList<>(0);
         this.equipped = Boolean.FALSE;
+        attachments = new ArrayList<>(0);
     }
 
     @NonNull
@@ -366,5 +370,21 @@ public class RangedWeapon implements Serializable {
 
     public void setDerelictArtifact(@NonNull Boolean derelictArtifact) {
         this.derelictArtifact = derelictArtifact;
+    }
+
+    private ArrayList<GearUpgrades> getAttachments() {
+        return attachments;
+    }
+
+    private void setAttachments(ArrayList<GearUpgrades> attachments) {
+        this.attachments = attachments;
+    }
+
+    public void addAttachment(GearUpgrades gearUpgrades) {
+        this.attachments.add(gearUpgrades);
+    }
+
+    public void removeAttachment(GearUpgrades gearUpgrades) {
+        this.attachments.remove(gearUpgrades);
     }
 }
