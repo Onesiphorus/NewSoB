@@ -22,6 +22,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+
 public class RemoveClothingActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     Clothing clothing;
@@ -40,7 +42,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
 
         ArrayList<Clothing> clothingList = new ArrayList<>(0);
         for (Clothing clothing : sobCharacter.getClothing()) {
-            if (clothing.getEquipped().equals(Boolean.FALSE)) clothingList.add(clothing);
+            if (clothing.getEquipped().equals(FALSE) && clothing.getPersonal().equals(FALSE)) clothingList.add(clothing);
         }
         adapter.setClothing(clothingList);
 

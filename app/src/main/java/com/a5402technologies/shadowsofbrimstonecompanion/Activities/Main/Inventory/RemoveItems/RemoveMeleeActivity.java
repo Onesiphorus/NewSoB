@@ -42,7 +42,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
 
         ArrayList<MeleeWeapon> meleeList = new ArrayList<>(0);
         for (MeleeWeapon melee : sobCharacter.getMeleeWeapons()) {
-            if (melee.getEquipped().equals(FALSE)) meleeList.add(melee);
+            if (melee.getEquipped().equals(FALSE) && melee.getPersonal().equals(FALSE)) meleeList.add(melee);
         }
         adapter.setMeleeWeapon(meleeList);
 

@@ -22,6 +22,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+
 public class RemoveGearActivity extends AppCompatActivity {
 
     SobCharacter sobCharacter;
@@ -41,7 +43,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
         ArrayList<GearBase> gearList = new ArrayList<>(0);
         for (GearBase gear : sobCharacter.getGear()) {
-            gearList.add(gear);
+            if(gear.getPersonal().equals(FALSE)) gearList.add(gear);
         }
         adapter.setGearBase(gearList);
 

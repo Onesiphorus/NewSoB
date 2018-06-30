@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 17,
-    "identityHash": "f94739f3377b8a3a4a72d21a74df4e94",
+    "version": 18,
+    "identityHash": "7a841a9b4b3eb6c1f3123292c9c80fb5",
     "entities": [
       {
         "tableName": "character_table",
@@ -296,7 +296,7 @@
       },
       {
         "tableName": "character_class_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`class_name` TEXT NOT NULL, `agility` INTEGER NOT NULL, `cunning` INTEGER NOT NULL, `spirit` INTEGER NOT NULL, `strength` INTEGER NOT NULL, `lore` INTEGER NOT NULL, `luck` INTEGER NOT NULL, `health` INTEGER NOT NULL, `sanity` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `willpower` INTEGER NOT NULL, `ranged_to_hit` INTEGER NOT NULL, `melee_to_hit` INTEGER NOT NULL, `combat` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `max_grit` INTEGER NOT NULL, `traits` TEXT NOT NULL, `start_gear` TEXT NOT NULL, `start_melee` TEXT NOT NULL, `start_ranged` TEXT NOT NULL, `start_clothing` TEXT NOT NULL, PRIMARY KEY(`class_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`class_name` TEXT NOT NULL, `agility` INTEGER NOT NULL, `cunning` INTEGER NOT NULL, `spirit` INTEGER NOT NULL, `strength` INTEGER NOT NULL, `lore` INTEGER NOT NULL, `luck` INTEGER NOT NULL, `health` INTEGER NOT NULL, `sanity` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `willpower` INTEGER NOT NULL, `ranged_to_hit` INTEGER NOT NULL, `melee_to_hit` INTEGER NOT NULL, `combat` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `max_grit` INTEGER NOT NULL, `traits` TEXT NOT NULL, `start_gear` TEXT NOT NULL, `start_melee` TEXT NOT NULL, `start_ranged` TEXT NOT NULL, `start_clothing` TEXT NOT NULL, `start_skills` TEXT NOT NULL, PRIMARY KEY(`class_name`))",
         "fields": [
           {
             "fieldPath": "className",
@@ -421,6 +421,12 @@
           {
             "fieldPath": "startingClothing",
             "columnName": "start_clothing",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startingSkills",
+            "columnName": "start_skills",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -1217,11 +1223,139 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "attachment_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attachment_name` TEXT NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `slots_required` INTEGER NOT NULL, `penalties` TEXT, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `required_darkstone` INTEGER NOT NULL, PRIMARY KEY(`attachment_name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "attachment_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sell",
+            "columnName": "sell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "darkStone",
+            "columnName": "darkStone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiers",
+            "columnName": "modifiers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "restrictions",
+            "columnName": "trait_restrictions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set",
+            "columnName": "set",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slotsRequired",
+            "columnName": "slots_required",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "penalties",
+            "columnName": "penalties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artifact",
+            "columnName": "artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armor",
+            "columnName": "armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "spiritArmor",
+            "columnName": "spirit_armor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "trederraArtifact",
+            "columnName": "trederra_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cynderArtifact",
+            "columnName": "cynder_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targaArtifact",
+            "columnName": "targa_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jargonoArtifact",
+            "columnName": "jargono_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "derelictArtifact",
+            "columnName": "derelict_artifact",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requiredDarkStoneToAttach",
+            "columnName": "required_darkstone",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "attachment_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f94739f3377b8a3a4a72d21a74df4e94\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7a841a9b4b3eb6c1f3123292c9c80fb5\")"
     ]
   }
 }

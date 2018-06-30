@@ -83,6 +83,9 @@ public class CharacterClass implements Serializable {
     @ColumnInfo(name = "start_clothing")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Clothing> startingClothing;
+    @NonNull
+    @ColumnInfo(name ="start_skills")
+    private ArrayList<Skill> startingSkills;
 
     public CharacterClass(@NonNull String className) {
         this.className = className;
@@ -91,6 +94,7 @@ public class CharacterClass implements Serializable {
         this.startingClothing = new ArrayList<>(0);
         this.startingMelee = new ArrayList<>(0);
         this.startingRanged = new ArrayList<>(0);
+        this.startingSkills = new ArrayList<>(0);
     }
 
     public CharacterClass(@NonNull String className, @NonNull Integer agility, @NonNull Integer cunning,
@@ -120,6 +124,7 @@ public class CharacterClass implements Serializable {
         this.startingClothing = new ArrayList<>(0);
         this.startingMelee = new ArrayList<>(0);
         this.startingRanged = new ArrayList<>(0);
+        this.startingSkills = new ArrayList<>(0);
     }
 
     @NonNull
@@ -348,6 +353,23 @@ public class CharacterClass implements Serializable {
 
     public void removeStartingClothing(Clothing clothing) {
         startingClothing.remove(clothing);
+    }
+
+    @NonNull
+    public ArrayList<Skill> getStartingSkills() {
+        return startingSkills;
+    }
+
+    public void setStartingSkills(@NonNull ArrayList<Skill> startingSkills) {
+        this.startingSkills = startingSkills;
+    }
+
+    public void addStartingSkill(Skill skill) {
+        this.startingSkills.add(skill);
+    }
+
+    public void removeStartingSkill(Skill skill) {
+        this.startingSkills.remove(skill);
     }
 }
 

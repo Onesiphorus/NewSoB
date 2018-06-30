@@ -115,21 +115,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mSkillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
-
-        mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
-            @Override
-            public void onChanged(@Nullable List<Skill> skills) {
-                ArrayList<Skill> newList = new ArrayList<>(0);
-                for (Skill skill : skills) {
-                    if (skill.getType().equals(characterClass.getClassName())
-                            && skill.getLevel() == 0) {
-                        newList.add(skill);
-                    }
-                }
-                adapter.setSkill(newList);
-            }
-        });
+        adapter.setSkill(characterClass.getStartingSkills());
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);

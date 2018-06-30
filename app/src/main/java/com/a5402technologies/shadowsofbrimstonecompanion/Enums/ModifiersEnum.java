@@ -21,7 +21,8 @@ public enum ModifiersEnum {
     MAX_FURY("Max Fury", CharacterClassEnum.WANDERING_SAMARAI),
     MOVE("Move", CharacterClassEnum.ANY),
     COMBAT("Combat", CharacterClassEnum.ANY),
-    MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY);
+    MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY),
+    RANGED_DAMAGE("Ranged Damage", CharacterClassEnum.ANY);
     //TODO finish modifiers
 
 

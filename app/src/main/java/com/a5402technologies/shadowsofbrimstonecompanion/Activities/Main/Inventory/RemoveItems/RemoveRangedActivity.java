@@ -22,6 +22,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+
 public class RemoveRangedActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     RangedWeapon rangedWeapon;
@@ -40,7 +42,7 @@ public class RemoveRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> rangedList = new ArrayList<>(0);
         for (RangedWeapon ranged : sobCharacter.getRangedWeapons()) {
-            if (ranged.getEquipped().equals(Boolean.FALSE)) rangedList.add(ranged);
+            if (ranged.getEquipped().equals(Boolean.FALSE) && ranged.getPersonal().equals(FALSE)) rangedList.add(ranged);
         }
         adapter.setRangedWeapon(rangedList);
 

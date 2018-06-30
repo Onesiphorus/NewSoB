@@ -372,11 +372,11 @@ public class RangedWeapon implements Serializable {
         this.derelictArtifact = derelictArtifact;
     }
 
-    private ArrayList<Attachment> getAttachments() {
+    public ArrayList<Attachment> getAttachments() {
         return attachments;
     }
 
-    private void setAttachments(ArrayList<Attachment> attachments) {
+    public void setAttachments(ArrayList<Attachment> attachments) {
         this.attachments = attachments;
     }
 
