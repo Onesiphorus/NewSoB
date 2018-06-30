@@ -14,7 +14,9 @@ public enum SetListEnum {
     WEREWOLVES_DEN("Werewolves Den", "WW"),
     CRIMSON_HAND("Cult of the Crimson Hand", "CH"),
     HELLFIRE_SUCCUBUS("Hellfire Succubus", "HS"),
-    PROMO("Promo", "P");
+    PROMO("Promo", "P"),
+    JARGONO("Jargono Native", "HCJN"),
+    COWBOY("Cowboy", "HCC");
     //TODO finish setLists
 
 

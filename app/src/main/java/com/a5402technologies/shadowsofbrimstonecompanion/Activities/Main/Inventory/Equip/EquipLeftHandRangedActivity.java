@@ -20,6 +20,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+
 public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
     private RangedWeapon rangedWeapon;
@@ -32,7 +34,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for(RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if(rangedWeapon.getEquipped().equals(Boolean.FALSE)) RangedWeaponOptions.add(rangedWeapon);
+            if(rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)) RangedWeaponOptions.add(rangedWeapon);
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);

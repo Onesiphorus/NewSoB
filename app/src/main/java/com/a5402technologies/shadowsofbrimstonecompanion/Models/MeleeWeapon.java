@@ -11,6 +11,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static java.lang.Boolean.FALSE;
+
 @Entity(tableName = "melee_weapon_table")
 public class MeleeWeapon implements Serializable{
     @PrimaryKey
@@ -24,7 +26,7 @@ public class MeleeWeapon implements Serializable{
     @ColumnInfo(name = "melee_die")
     private Integer damageDie = 6;
     @ColumnInfo(name = "is_two_handed")
-    private Boolean twoHanded = Boolean.FALSE;
+    private Boolean twoHanded = FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -48,21 +50,21 @@ public class MeleeWeapon implements Serializable{
     private String set = "City of the Ancients";
     @NonNull
     @ColumnInfo(name = "personal_item")
-    private Boolean personal = Boolean.FALSE;
+    private Boolean personal = FALSE;
     @NonNull
     @ColumnInfo(name = "starting_gear")
-    private Boolean starting = Boolean.FALSE;
+    private Boolean starting = FALSE;
     @ColumnInfo(name = "penalties")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> penalties;
     @ColumnInfo(name = "equipped")
-    private Boolean equipped = Boolean.FALSE;
+    private Boolean equipped = FALSE;
     @NonNull
     @ColumnInfo(name = "upgrade_slots")
     private Integer upgrades = 0;
     @NonNull
     @ColumnInfo(name = "artifact")
-    private Boolean artifact = Boolean.FALSE;
+    private Boolean artifact = FALSE;
     @NonNull
     @ColumnInfo(name = "crit_chance")
     private Integer critChance = 6;
@@ -71,6 +73,9 @@ public class MeleeWeapon implements Serializable{
     @NonNull
     @ColumnInfo(name = "melee_to_hit_die")
     private Integer meleeToHitDie = 6;
+    @NonNull
+    @ColumnInfo(name = "free_attack")
+    private Boolean free = FALSE;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -271,5 +276,14 @@ public class MeleeWeapon implements Serializable{
 
     public void setMeleeToHitDie(@NonNull Integer meleeToHitDie) {
         this.meleeToHitDie = meleeToHitDie;
+    }
+
+    @NonNull
+    public Boolean getFree() {
+        return free;
+    }
+
+    public void setFree(@NonNull Boolean free) {
+        this.free = free;
     }
 }
