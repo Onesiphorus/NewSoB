@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context=".Activities.Menu.CreateCharacterActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -15,7 +16,7 @@
         android:gravity="center_horizontal|bottom"
         android:keepScreenOn="true"
         android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
+        android:textColor="@android:color/holo_red_light"
         android:textSize="50sp"
         android:textStyle="bold"
         android:paddingBottom="96dp"/>
@@ -35,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/choose_upgrade"
                 android:text="@string/choose_upgrade"
+                android:textColor="@android:color/holo_red_light"
                 android:textAlignment="center"
                 android:textStyle="italic|bold"
                 android:textSize="32sp"/>
@@ -43,11 +45,13 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
             android:visibility="visible">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_skills"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/darker_gray"
                 android:visibility="visible"
                 android:textAlignment="center"
                 tools:listitem="@layout/recyclerview_character">
@@ -68,7 +72,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:hint="@string/hint_enter_name" />
+            android:hint="@string/hint_enter_name"
+            android:textColorHint="@android:color/holo_red_light"/>
 
         <Button
             android:id="@+id/create_button"

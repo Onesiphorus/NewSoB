@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        findViewById(R.id.btn_debug).setOnClickListener((View view) -> {
+        findViewById(R.id.btn_settings).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
             startActivity(intent);
         });

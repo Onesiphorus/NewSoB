@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context=".Activities.Menu.FinishCharacterActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -14,6 +15,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
         android:keepScreenOn="true"
+        android:textColor="@android:color/holo_red_light"
         android:text="@string/dummy_content"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -39,6 +41,7 @@
             android:id="@+id/tv_starting_gear"
             android:text="@string/starting_gear"
             android:textAlignment="center"
+            android:textColor="@android:color/holo_red_light"
             android:textSize="24sp"
             android:textStyle="bold|italic"/>
         <android.support.v7.widget.RecyclerView
@@ -51,11 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@android:color/darker_gray"
             style="?android:borderlessButtonStyle">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/holo_green_dark"
                 android:text="@string/accept"
                 android:id="@+id/btn_accept"
                 style="?android:borderlessButtonStyle"/>
@@ -63,6 +69,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/holo_red_dark"
                 android:text="@string/restart"
                 android:id="@+id/btn_restart"
                 style="?android:borderlessButtonStyle"/>

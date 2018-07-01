@@ -8,7 +8,6 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.telephony.mbms.MbmsDownloadReceiver;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.AttachmentDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
@@ -16,6 +15,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.Character
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.ClothingDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.GearBaseDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.MeleeWeaponDao;
+import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.PermanentConditionDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
@@ -28,6 +28,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
@@ -35,12 +36,11 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 import java.util.ArrayList;
-import java.util.logging.SocketHandler;
 
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class}, version = 20)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 21)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -83,6 +83,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
     public abstract AttachmentDao attachmentDao();
 
+    public abstract PermanentConditionDao permanentConditionDao();
+
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final CharacterDao mCharacterDao;
         private final CharacterClassDao mCharacterClassDao;
@@ -92,6 +94,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
         private final ClothingDao mClothingDao;
         private final SkillDao mSkillDao;
         private final AttachmentDao mAttacmentDao;
+        private final PermanentConditionDao mPermanentConditionDao;
 
         PopulateDbAsync(SOBRoomDatabase db) {
             mCharacterDao = db.characterDao();
@@ -102,6 +105,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao = db.clothingDao();
             mSkillDao = db.skillDao();
             mAttacmentDao = db.attachmentDao();
+            mPermanentConditionDao = db.permanentConditionDao();
         }
 
         //TODO Move database population and finish
@@ -115,8 +119,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao.deleteAllClothing();
             mSkillDao.deleteAllSkill();
             mAttacmentDao.deleteAllAttachment();
+            mPermanentConditionDao.deleteAllCondition();
             mCharacterDao.deleteCharacterByName("Kristal");
             mCharacterDao.deleteCharacterByName("Paul");
+            PermanentCondition permanentCondition;
             SobCharacter sobCharacter;
             SobCharacter Cowboy;
             CharacterClass characterClass;
@@ -1261,7 +1267,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setDarkStone(2);
             meleeWeapon.setWeight(2);
             meleeWeapon.setDamageBonus(3);
-            mClothingDao.insert(clothing);
+            mMeleeWeaponDao.insert(meleeWeapon);
             attachment = new Attachment("Dark Stone Inlay", 1);
             attachment.setShop(ShopEnum.BLACKSMITH.label());
             attachment.addRestriction(TraitsEnum.GUN.label());

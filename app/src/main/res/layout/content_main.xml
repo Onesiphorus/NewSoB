@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Theme.AppCompat"
+    android:background="@android:color/background_dark"
     tools:context=".Activities.Menu.MainActivity">
 
     <TextView
@@ -24,12 +26,18 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_red_light"
+            android:textColorHighlight="@android:color/holo_red_light"
             android:id="@+id/btn_character"
             android:text="@string/character_text"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_debug"
+            android:background="@android:color/background_dark"
+            android:textColorHighlight="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/btn_settings"
             android:text="@string/settings"/>
     </LinearLayout>
     <FrameLayout
