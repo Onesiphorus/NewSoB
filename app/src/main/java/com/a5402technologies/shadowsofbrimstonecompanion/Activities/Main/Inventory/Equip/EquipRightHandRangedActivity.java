@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -42,12 +43,15 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.setRangedWeapon(RangedWeaponOptions);
+        Button btn = findViewById(R.id.btn_unequip);
+        String text = null != sobCharacter.getRightHand() ? "Unequip " + sobCharacter.getRightHand().getName() : "Empty";
+        btn.setText(text);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if(null != rangedWeapon) {
                 sobCharacter.equipRightHand(rangedWeapon);
 
-                Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+                Intent intent = new Intent(this, CombatViewActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);
                 finish();
@@ -56,11 +60,17 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
+            Toast.makeText(this, sobCharacter.getRightHand().getName() + " removed.", Toast.LENGTH_LONG).show();
+            sobCharacter.unequipRightHand();
+            Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
         });
     }
 
@@ -101,6 +111,9 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
+                    Button btn = findViewById(R.id.btn_equip);
+                    String text ="Equip " + rangedWeapon.getName();
+                    btn.setText(text);
                 }
             });
         }
@@ -119,7 +132,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        Intent intent = new Intent(this, CombatViewActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();

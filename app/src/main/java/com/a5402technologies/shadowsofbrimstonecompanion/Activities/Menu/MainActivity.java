@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_settings).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
     }

@@ -22,78 +22,190 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textColorHint="@android:color/darker_gray"
-            android:id="@+id/btn_equip_hat"
-            android:hint="Hat"/>
-        <Button
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textColorHint="@android:color/darker_gray"
+                android:id="@+id/btn_equip_hat"
+                android:hint="Hat"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/num_hats"
+                android:textColor="@android:color/holo_blue_bright"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_face"
-            android:hint="Face"/>
-        <Button
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_face"
+                android:hint="Face"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/num_face"
+                android:textColor="@android:color/holo_blue_bright"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_equip_shoulders"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_dark"
-            android:hint="Shoulders"/>
-        <Button
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_equip_shoulders"
+                android:textColorHint="@android:color/darker_gray"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_dark"
+                android:hint="Shoulders"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/num_shoulers"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_gloves"
-            android:hint="Gloves"/>
-        <Button
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@android:color/darker_gray"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_gloves"
+                android:hint="Gloves"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/num_gloves"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_torso"
-            android:hint="Torso"/>
-        <Button
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_torso"
+                android:hint="Torso"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/num_torso"
+                android:textColor="@android:color/holo_blue_bright"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_belt"
-            android:hint="Belt"/>
-        <Button
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@android:color/darker_gray"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_belt"
+                android:hint="Belt"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/num_belt"
+                android:textColor="@android:color/holo_blue_bright"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_pants"
-            android:hint="Pants"/>
-        <Button
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_pants"
+                android:hint="Pants"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/num_pants"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_boots"
-            android:hint="Boots"/>
-        <Button
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@android:color/darker_gray"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_boots"
+                android:hint="Boots"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/num_boots"
+                android:textColor="@android:color/holo_blue_bright"
+                android:hint="0"
+                android:paddingStart="24dp"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_dark"
-            android:id="@+id/btn_equip_coat"
-            android:hint="Coat"/>
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/holo_blue_dark"
+                android:id="@+id/btn_equip_coat"
+                android:hint="Coat"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/num_coat"
+                android:hint="0"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"

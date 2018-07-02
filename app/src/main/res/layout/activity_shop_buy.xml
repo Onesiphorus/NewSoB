@@ -7,11 +7,12 @@
     android:background="@android:color/background_dark"
     tools:context=".Activities.Main.Town.ShopBuyActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <include layout="@layout/content_resources"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -31,8 +32,9 @@
             android:hint="Gear Type" />
 
         <include layout="@layout/content_choose_item"/>
-        <include layout="@layout/content_accept_cancel"/>
+
 
     </LinearLayout>
+    <include layout="@layout/content_accept_cancel"/>
 
 </android.support.constraint.ConstraintLayout>

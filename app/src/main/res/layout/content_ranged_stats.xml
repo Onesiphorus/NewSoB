@@ -29,7 +29,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:background="@android:color/background_dark"
+                    android:background="@drawable/button_background"
                     android:layout_weight="4"
                     android:textColor="@android:color/holo_blue_bright"
                     android:textColorHint="@android:color/darker_gray"
@@ -167,7 +167,7 @@
                     android:textSize="12sp"
                     android:textColorHint="@android:color/darker_gray"
                     android:textColor="@android:color/holo_blue_bright"
-                    android:background="@android:color/background_dark"
+                    android:background="@drawable/button_background"
                     android:id="@+id/left_hand_ranged_weapon"
                     android:layout_weight="4"
                     android:hint="empty"/>

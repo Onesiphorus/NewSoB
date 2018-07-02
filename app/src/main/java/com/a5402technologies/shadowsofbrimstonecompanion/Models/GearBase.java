@@ -57,10 +57,12 @@ public class GearBase implements Serializable {
     @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = Boolean.FALSE;
+    @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor;
+    private Integer armor=0;
+    @NonNull
     @ColumnInfo(name = "spirit_armor")
-    private Integer spiritArmor;
+    private Integer spiritArmor=0;
     @NonNull
     @ColumnInfo(name = "trederra_artifact")
     private Boolean trederraArtifact = FALSE;

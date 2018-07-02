@@ -19,7 +19,7 @@
                 android:id="@+id/choose_class"
                 android:text="@string/choose_class"
                 android:textAlignment="center"
-                android:background="@android:color/darker_gray"
+                android:background="@android:color/background_dark"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textStyle="italic|bold"
                 android:textSize="32sp"/>

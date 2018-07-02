@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -44,11 +45,15 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
 
         adapter.setMeleeWeapon(MeleeWeaponOptions);
 
+        Button btn = findViewById(R.id.btn_unequip);
+        String text = null != sobCharacter.getLeftMelee() ? "Unequip " + sobCharacter.getLeftMelee().getName() : "Empty";
+        btn.setText(text);
+
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != meleeWeapon) {
                 sobCharacter.equipLeftMelee(meleeWeapon);
 
-                Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+                Intent intent = new Intent(this, CombatViewActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);
                 finish();
@@ -57,17 +62,23 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
+            Toast.makeText(this, sobCharacter.getLeftMelee().getName() + " removed.", Toast.LENGTH_LONG).show();
+            sobCharacter.unequipLeftMelee();
+            Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
         });
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        Intent intent = new Intent(this, CombatViewActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();
@@ -100,6 +111,9 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
+                    Button btn = findViewById(R.id.btn_equip);
+                    String text ="Equip " + meleeWeapon.getName();
+                    btn.setText(text);
                 }
             });
         }

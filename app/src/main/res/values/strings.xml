@@ -39,6 +39,8 @@
     <string name="title_activity_shadows_of_brimstone">ShadowsOfBrimstoneActivity</string>
     <string name="choose_weapon">CHOOSE YOUR WEAPON</string>
     <string name="equip">EQUIP</string>
+    <string name="combat_view">COMBAT VIEW</string>
+    <string name="unequip">UNEQUIP</string>
     <string name="destroy">Destroy</string>
     <string name="sell">Sell</string>
     <string name="NA">NA</string>
@@ -50,6 +52,8 @@
     <string name="docs_office">Doc\'s Office</string>
     <string name="frontier_outpost">Frontier Outpost</string>
     <string name="saloon">Saloon</string>
+    <string name="initiative">INITIATIVE</string>
+    <string name="move">MOVE</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

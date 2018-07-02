@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ClothingSlotsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -69,6 +70,10 @@ public class ChangeClothingActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "No weapon selected, click cancel to return.", Toast.LENGTH_LONG).show();
             }
+        });
+
+        findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
+
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

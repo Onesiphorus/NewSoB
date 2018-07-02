@@ -45,13 +45,13 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
+            android:background="@android:color/background_dark"
             android:visibility="visible">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_skills"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/darker_gray"
+                android:background="@android:color/background_dark"
                 android:visibility="visible"
                 android:textAlignment="center"
                 tools:listitem="@layout/recyclerview_character">
@@ -79,6 +79,7 @@
             android:id="@+id/create_button"
             style="?metaButtonBarButtonStyle"
             android:layout_width="0dp"
+            android:background="@drawable/button_background"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/create" />

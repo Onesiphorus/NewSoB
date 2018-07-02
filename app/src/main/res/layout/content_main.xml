@@ -27,7 +27,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_bright"
             android:textColorHighlight="@android:color/holo_blue_bright"
             android:textSize="24sp"
@@ -36,7 +36,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColorHighlight="@android:color/holo_blue_bright"
             android:textColor="@android:color/holo_blue_bright"
             android:id="@+id/btn_settings"

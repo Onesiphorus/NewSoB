@@ -564,7 +564,10 @@ public class SobCharacter implements Serializable {
     public void unequipClothing(Clothing clothing) {
         if (null != clothing && null != findClothingByName(clothing.getName())) {
             findClothingByName(clothing.getName()).setEquipped(FALSE);
-            Log.e("getEquipped: ", clothing.getName() + ": " + findClothingByName(clothing.getName()).getEquipped());
+            Log.e("getEquipped: ",
+                    clothing.getName()
+                    + ": "
+                    + findClothingByName(clothing.getName()).getEquipped());
             if (clothing.getEquipped().equals(TRUE)) {
                 if (clothing.getTorso().equals(TRUE)) {
                     this.setTorso(FALSE);
@@ -599,85 +602,92 @@ public class SobCharacter implements Serializable {
 
     public void equipRightMelee(MeleeWeapon meleeWeapon) {
         if (null != rightMelee) {
-            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+            unequipRightMelee();
         }
         findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
         rightMelee = meleeWeapon;
         if (null != leftMelee && (meleeWeapon.getTwoHanded().equals(TRUE)
                 || leftMelee.getTwoHanded().equals(TRUE))) {
-            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
-            leftMelee = null;
+            unequipLeftMelee();
         }
         if (null != rightHand) {
-            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
-            rightHand = null;
+            unequipRightHand();
         }
-        if (null != leftHand && (leftHand.getTwoHanded().equals(TRUE) || rightMelee.getTwoHanded().equals(TRUE))) {
-            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
-            leftHand = null;
+        if (null != leftHand && (leftHand.getTwoHanded().equals(TRUE)
+                || rightMelee.getTwoHanded().equals(TRUE))) {
+            unequipLeftHand();
         }
     }
 
     public void equipLeftMelee(MeleeWeapon meleeWeapon) {
         if (null != leftMelee) {
-            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+            unequipLeftMelee();
         }
         findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
         leftMelee = meleeWeapon;
         if (null != rightMelee && (meleeWeapon.getTwoHanded().equals(TRUE)
                 || rightMelee.getTwoHanded().equals(TRUE))) {
-            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
-            rightMelee = null;
+            unequipRightMelee();
         }
         if (null != leftHand) {
-            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
-            leftHand = null;
+            unequipLeftHand();
         }
-        if (null != rightHand && (rightHand.getTwoHanded().equals(TRUE) || leftMelee.getTwoHanded().equals(TRUE))) {
-            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
-            rightHand = null;
+        if (null != rightHand && (rightHand.getTwoHanded().equals(TRUE)
+                || leftMelee.getTwoHanded().equals(TRUE))) {
+            unequipRightHand();
         }
+    }
+
+    public void unequipRightHand() {
+        if(null != rightHand) findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+        rightHand = null;
+    }
+    public void unequipLeftHand() {
+        if(null != leftHand) findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+        leftHand = null;
+    }
+    public void unequipRightMelee() {
+        if(null != rightMelee) findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+        rightMelee = null;
+    }
+    public void unequipLeftMelee() {
+        if(null != leftMelee) findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+        leftMelee = null;
     }
 
     public void equipRightHand(RangedWeapon rangedWeapon) {
         if (null != rightHand) {
-            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+            unequipRightHand();
         }
         findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         rightHand = rangedWeapon;
         if (null != leftHand && (rangedWeapon.getTwoHanded().equals(TRUE)
                 || leftHand.getTwoHanded().equals(TRUE))) {
-            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
-            leftHand = null;
+            unequipLeftHand();
         }
         if (null != rightMelee) {
-            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
-            rightMelee = null;
+            unequipRightMelee();
         }
         if (null != leftMelee && (leftMelee.getTwoHanded().equals(TRUE) || rightHand.getTwoHanded().equals(TRUE))) {
-            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
-            leftMelee = null;
+            unequipLeftMelee();
         }
     }
 
     public void equipLeftHand(RangedWeapon rangedWeapon) {
         if (null != leftHand) {
-            findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+            unequipLeftHand();
         }
         findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         leftHand = rangedWeapon;
         if (null != rightHand && (rangedWeapon.getTwoHanded().equals(TRUE)
                 || rightHand.getTwoHanded().equals(TRUE))) {
-            findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
-            rightHand = null;
+            unequipRightHand();
         }
         if (null != leftMelee) {
-            findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
-            leftMelee = null;
+            unequipLeftMelee();
         }
         if (null != rightMelee && (rightMelee.getTwoHanded().equals(TRUE) || leftHand.getTwoHanded().equals(TRUE))) {
-            findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
-            rightMelee = null;
+            unequipRightMelee();
         }
     }
 

@@ -53,42 +53,62 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_management_menu"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddMeleeWeaponActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.AddItems.AddMeleeWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddRangedWeaponActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.AddItems.AddRangedWeaponActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.EquipLeftMeleeActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.EquipLeftMeleeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.EquipRightMeleeActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.EquipRightMeleeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ChangeLoadoutActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.ChangeLoadoutActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ChangeClothingActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.Equip.ChangeClothingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveGearActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.RemoveItems.RemoveGearActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveMeleeActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.RemoveItems.RemoveMeleeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveRangedActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.RemoveItems.RemoveRangedActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveClothingActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.RemoveItems.RemoveClothingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Town.VisitTownActivity"
+        <activity
+            android:name=".Activities.Main.Town.VisitTownActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Town.VisitShopActivity"
+        <activity
+            android:name=".Activities.Main.Town.VisitShopActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Town.ShopBuyActivity"
+        <activity
+            android:name=".Activities.Main.Town.ShopBuyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.SpoilsActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.SpoilsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.CombatViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

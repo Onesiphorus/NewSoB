@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 23,
-    "identityHash": "7c5abfba0d992cb7cc81d7ff930830f6",
+    "version": 24,
+    "identityHash": "e921303699ee4a891d10eb694ebf44ce",
     "entities": [
       {
         "tableName": "character_table",
@@ -454,7 +454,7 @@
       },
       {
         "tableName": "gear_base_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gear_name` TEXT NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`gear_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gear_name` TEXT NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER NOT NULL, `spirit_armor` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`gear_name`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -538,13 +538,13 @@
             "fieldPath": "armor",
             "columnName": "armor",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "spiritArmor",
             "columnName": "spirit_armor",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "trederraArtifact",
@@ -612,7 +612,7 @@
       },
       {
         "tableName": "melee_weapon_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`melee_name` TEXT NOT NULL, `combat_bonus` INTEGER, `melee_bonus` INTEGER, `melee_die` INTEGER, `is_two_handed` INTEGER, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `equipped` INTEGER, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `crit_chance` INTEGER NOT NULL, `armor` INTEGER, `melee_to_hit_die` INTEGER NOT NULL, `free_attack` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`melee_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`melee_name` TEXT NOT NULL, `combat_bonus` INTEGER, `melee_bonus` INTEGER, `melee_die` INTEGER, `is_two_handed` INTEGER, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `equipped` INTEGER, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `crit_chance` INTEGER NOT NULL, `armor` INTEGER NOT NULL, `melee_to_hit_die` INTEGER NOT NULL, `free_attack` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`melee_name`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -732,7 +732,7 @@
             "fieldPath": "armor",
             "columnName": "armor",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "meleeToHitDie",
@@ -1012,7 +1012,7 @@
       },
       {
         "tableName": "clothing_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clothing_name` TEXT NOT NULL, `face` INTEGER, `belt` INTEGER, `hat` INTEGER, `shoulders` INTEGER, `torso` INTEGER, `gloves` INTEGER, `pants` INTEGER, `boots` INTEGER, `coat` INTEGER, `equipped` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER, `spirit_armor` INTEGER, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`clothing_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`clothing_name` TEXT NOT NULL, `face` INTEGER, `belt` INTEGER, `hat` INTEGER, `shoulders` INTEGER, `torso` INTEGER, `gloves` INTEGER, `pants` INTEGER, `boots` INTEGER, `coat` INTEGER, `equipped` INTEGER NOT NULL, `cost` INTEGER NOT NULL, `sell` INTEGER NOT NULL, `weight` INTEGER NOT NULL, `darkStone` INTEGER NOT NULL, `modifiers` TEXT, `trait_restrictions` TEXT, `set` TEXT NOT NULL, `personal_item` INTEGER NOT NULL, `starting_gear` INTEGER NOT NULL, `penalties` TEXT, `upgrade_slots` INTEGER NOT NULL, `artifact` INTEGER NOT NULL, `armor` INTEGER NOT NULL, `spirit_armor` INTEGER NOT NULL, `trederra_artifact` INTEGER NOT NULL, `cynder_artifact` INTEGER NOT NULL, `targa_artifact` INTEGER NOT NULL, `jargono_artifact` INTEGER NOT NULL, `derelict_artifact` INTEGER NOT NULL, `attachments` TEXT, `shop` TEXT NOT NULL, `darkstone_cost` INTEGER NOT NULL, `traits` TEXT NOT NULL, PRIMARY KEY(`clothing_name`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -1156,13 +1156,13 @@
             "fieldPath": "armor",
             "columnName": "armor",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "spiritArmor",
             "columnName": "spirit_armor",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "trederraArtifact",
@@ -1501,7 +1501,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7c5abfba0d992cb7cc81d7ff930830f6\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e921303699ee4a891d10eb694ebf44ce\")"
     ]
   }
 }

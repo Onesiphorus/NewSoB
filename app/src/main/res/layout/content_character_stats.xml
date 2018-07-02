@@ -6,6 +6,41 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold|italic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:id="@+id/move_value"
+            android:textColorHint="@android:color/darker_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/initiative"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold|italic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:id="@+id/init_value"
+            android:textColorHint="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

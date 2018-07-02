@@ -77,10 +77,12 @@ public class Clothing implements Serializable {
     @NonNull
     @ColumnInfo(name = "artifact")
     private Boolean artifact = FALSE;
+    @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor;
+    private Integer armor = 0;
     @ColumnInfo(name = "spirit_armor")
-    private Integer spiritArmor;
+    @NonNull
+    private Integer spiritArmor = 0;
     @NonNull
     @ColumnInfo(name = "trederra_artifact")
     private Boolean trederraArtifact = FALSE;

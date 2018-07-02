@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 23)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 25)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;

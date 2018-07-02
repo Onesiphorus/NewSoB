@@ -9,6 +9,8 @@
 
     <include layout="@layout/content_choose_item"/>
 
+
+
     <include layout="@layout/content_equip_cancel" />
 
 </android.support.constraint.ConstraintLayout>

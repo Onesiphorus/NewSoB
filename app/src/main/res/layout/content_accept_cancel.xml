@@ -20,10 +20,10 @@
             style="?metaButtonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:textColor="@android:color/holo_blue_bright"
-            android:background="@android:color/holo_blue_dark"
-            android:textSize="24sp"
+            android:background="@drawable/button_background"
+            android:textSize="12sp"
             android:text="@string/accept" />
         <Button
             android:id="@+id/btn_cancel"
@@ -31,9 +31,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_blue_bright"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@drawable/button_background"
             android:layout_weight="1"
-            android:textSize="24sp"
+            android:textSize="12sp"
             android:text="@string/cancel" />
 
     </LinearLayout>

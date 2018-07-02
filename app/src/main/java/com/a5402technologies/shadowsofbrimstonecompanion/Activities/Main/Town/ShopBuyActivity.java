@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -234,6 +235,15 @@ public class ShopBuyActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     gearBase = mGearBase.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Buy " + gearBase.getName() + " for";
+                    if(gearBase.getCost() > 0) {
+                        text += " $" + gearBase.getCost();
+                    }
+                    if(gearBase.getDarkstoneCost() > 0) {
+                        text += " " + gearBase.getDarkstoneCost() + " Dark Stone";
+                    }
+                    btn.setText(text);
                 }
             });
         }
@@ -293,6 +303,15 @@ public class ShopBuyActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Buy " + clothing.getName() + " for";
+                    if(clothing.getCost() > 0) {
+                        text += " $" + clothing.getCost();
+                    }
+                    if(clothing.getDarkstoneCost() > 0) {
+                        text += " " + clothing.getDarkstoneCost() + " Dark Stone";
+                    }
+                    btn.setText(text);
                 }
             });
         }
@@ -352,6 +371,15 @@ public class ShopBuyActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Buy " + meleeWeapon.getName() + " for";
+                    if(meleeWeapon.getCost() > 0) {
+                        text += " $" + meleeWeapon.getCost();
+                    }
+                    if(meleeWeapon.getDarkstoneCost() > 0) {
+                        text += " " + meleeWeapon.getDarkstoneCost() + " Dark Stone";
+                    }
+                    btn.setText(text);
                 }
             });
         }
@@ -410,6 +438,15 @@ public class ShopBuyActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Buy " + rangedWeapon.getName() + " for";
+                    if(rangedWeapon.getCost() > 0) {
+                        text += " $" + rangedWeapon.getCost();
+                    }
+                    if(rangedWeapon.getDarkstoneCost() > 0) {
+                        text += " " + rangedWeapon.getDarkstoneCost() + " Dark Stone";
+                    }
+                    btn.setText(text);
                 }
             });
         }

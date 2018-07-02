@@ -13,24 +13,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
+        <include layout="@layout/content_resources"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_church"
             android:text="@string/church"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_blacksmith"
             android:text="@string/blacksmith"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_saloon"
             android:text="@string/saloon"/>
@@ -38,20 +40,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_frontier_outpost"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:text="@string/frontier_outpost"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_general_store"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:text="@string/general_store"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/button_background"
             android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_docs_office"
             android:text="@string/docs_office"/>
