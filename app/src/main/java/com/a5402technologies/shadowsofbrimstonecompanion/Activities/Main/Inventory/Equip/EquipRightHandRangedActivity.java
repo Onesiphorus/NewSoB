@@ -36,7 +36,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
             if(rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)) RangedWeaponOptions.add(rangedWeapon);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -39,7 +39,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
                 RangedWeaponOptions.add(rangedWeapon);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final EquipLeftHandRangedActivity.RangedWeaponListAdapter adapter = new EquipLeftHandRangedActivity.RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

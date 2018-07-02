@@ -37,7 +37,7 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
                 MeleeWeaponOptions.add(meleeWeapon);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final EquipLeftMeleeActivity.MeleeWeaponListAdapter adapter = new EquipLeftMeleeActivity.MeleeWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

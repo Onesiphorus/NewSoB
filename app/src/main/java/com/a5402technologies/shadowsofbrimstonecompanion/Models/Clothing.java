@@ -105,6 +105,9 @@ public class Clothing implements Serializable {
     @NonNull
     @ColumnInfo(name = "darkstone_cost")
     private Integer darkstoneCost = 0;
+    @NonNull
+    @ColumnInfo(name = "traits")
+    private ArrayList<String> traits;
 
     public Clothing(@NonNull String name) {
         this.name = name;
@@ -113,6 +116,7 @@ public class Clothing implements Serializable {
         this.set = "City of the Ancients";
         this.penalties = new ArrayList<>(0);
         attachments = new ArrayList<>(0);
+        traits = new ArrayList<>(0);
     }
 
 
@@ -416,5 +420,22 @@ public class Clothing implements Serializable {
 
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
+    }
+
+    @NonNull
+    public ArrayList<String> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(@NonNull ArrayList<String> traits) {
+        this.traits = traits;
+    }
+
+    public void addTrait(String trait) {
+        this.traits.add(trait);
+    }
+
+    public void removeTrait(String trait) {
+        this.traits.remove(trait);
     }
 }

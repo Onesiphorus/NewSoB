@@ -21,5 +21,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_choose_item" />
+    <include layout="@layout/content_accept_cancel"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

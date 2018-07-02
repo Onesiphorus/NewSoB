@@ -106,6 +106,9 @@ public class RangedWeapon implements Serializable {
     @NonNull
     @ColumnInfo(name = "darkstone_cost")
     private Integer darkstoneCost = 0;
+    @NonNull
+    @ColumnInfo(name = "traits")
+    private ArrayList<String> traits;
 
     public RangedWeapon(@NonNull String name, @NonNull Integer range, @NonNull Integer shots) {
         this.name = name;
@@ -411,5 +414,21 @@ public class RangedWeapon implements Serializable {
 
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
+    }
+    @NonNull
+    public ArrayList<String> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(@NonNull ArrayList<String> traits) {
+        this.traits = traits;
+    }
+
+    public void addTrait(String trait) {
+        this.traits.add(trait);
+    }
+
+    public void removeTrait(String trait) {
+        this.traits.remove(trait);
     }
 }

@@ -35,7 +35,7 @@ public class RemoveRangedActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_remove_gear);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final RemoveRangedActivity.RangedWeaponListAdapter adapter = new RemoveRangedActivity.RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

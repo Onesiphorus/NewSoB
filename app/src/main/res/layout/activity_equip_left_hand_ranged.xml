@@ -6,30 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="48dp"
-        android:layout_gravity="center|center_horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_rh_ranged_choose"
-            android:text="@string/choose_weapon"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/recyclerview_item"
-            />
-    </LinearLayout>
+    <include layout="@layout/content_choose_item"/>
 
     <include layout="@layout/content_equip_cancel" />
+
 
 
 </android.support.constraint.ConstraintLayout>

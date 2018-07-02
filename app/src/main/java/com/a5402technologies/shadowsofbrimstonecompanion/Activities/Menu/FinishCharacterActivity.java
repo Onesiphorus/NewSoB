@@ -212,6 +212,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
                     gearBase.setSell(0);
                     sobCharacter.addGear(gearBase);
                 }
+                sobCharacter.setTraits(sobCharacter.getCharacterClass().getTraits());
                 mCharacterViewModel.update(sobCharacter);
                 sobCharacter.setBonuses();
                 intent.putExtra("serializable_object", sobCharacter);

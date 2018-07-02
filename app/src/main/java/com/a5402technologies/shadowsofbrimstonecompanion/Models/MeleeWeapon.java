@@ -101,6 +101,9 @@ public class MeleeWeapon implements Serializable {
     @NonNull
     @ColumnInfo(name = "darkstone_cost")
     private Integer darkstoneCost = 0;
+    @NonNull
+    @ColumnInfo(name = "traits")
+    private ArrayList<String> traits;
 
 
     public MeleeWeapon(@NonNull String name) {
@@ -390,5 +393,21 @@ public class MeleeWeapon implements Serializable {
 
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
+    }
+    @NonNull
+    public ArrayList<String> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(@NonNull ArrayList<String> traits) {
+        this.traits = traits;
+    }
+
+    public void addTrait(String trait) {
+        this.traits.add(trait);
+    }
+
+    public void removeTrait(String trait) {
+        this.traits.remove(trait);
     }
 }

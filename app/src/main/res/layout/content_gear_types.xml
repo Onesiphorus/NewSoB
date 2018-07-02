@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-app:layout_behavior="@string/appbar_scrolling_view_behavior"
-tools:context=".Activities.Main.Inventory.AddItems.FoundGearActivity"
-tools:showIn="@layout/activity_main">
 
-<LinearLayout
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
         android:layout_width="match_parent"
@@ -44,4 +36,3 @@ tools:showIn="@layout/activity_main">
         android:text="@string/ranged_text"/>
 </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>

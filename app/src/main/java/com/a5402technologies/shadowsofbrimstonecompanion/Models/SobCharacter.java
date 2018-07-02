@@ -161,6 +161,9 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "darkstone_shards")
     private Integer darkStoneShards = 0;
+    @NonNull
+    @ColumnInfo(name = "traits")
+    private ArrayList<String> traits;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -688,11 +691,20 @@ public class SobCharacter implements Serializable {
                 for (String string : clothing.getPenalties()) {
                     findPenalty(string);
                 }
+                if (clothing.getArmor() > 0 && clothing.getArmor() < this.armor) {
+                    this.armor = clothing.getArmor();
+                }
+                if (clothing.getSpiritArmor() > 0 && clothing.getSpiritArmor() < this.spiritArmor) {
+                    this.spiritArmor = clothing.getSpiritArmor();
+                }
             }
         }
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
             if (meleeWeapon.getEquipped().equals(TRUE))
                 setCombat(meleeWeapon);
+            if (meleeWeapon.getArmor() > 0 && meleeWeapon.getArmor() < this.armor) {
+                this.armor = meleeWeapon.getArmor();
+            }
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
             if (rangedWeapon.getEquipped().equals(TRUE))
@@ -704,6 +716,12 @@ public class SobCharacter implements Serializable {
             }
             for (String string : gearBase.getPenalties()) {
                 findPenalty(string);
+            }
+            if (gearBase.getArmor() > 0 && gearBase.getArmor() < this.armor) {
+                this.armor = gearBase.getArmor();
+            }
+            if (gearBase.getSpiritArmor() > 0 && gearBase.getSpiritArmor() < this.spiritArmor) {
+                this.spiritArmor = gearBase.getSpiritArmor();
             }
         }
     }
@@ -907,7 +925,6 @@ public class SobCharacter implements Serializable {
     }
 
 
-
     @NonNull
     public Integer getDarkStoneShards() {
         return darkStoneShards;
@@ -920,20 +937,42 @@ public class SobCharacter implements Serializable {
     public void addGold(Integer gold) {
         this.gold += gold;
     }
+
     public void removeGold(Integer gold) {
         this.gold -= gold;
     }
+
     public void addExp(Integer exp) {
         this.experience += exp;
     }
-    public void removeExp(Integer exp){
+
+    public void removeExp(Integer exp) {
         this.experience -= exp;
     }
+
     public void addDarkstoneShards(Integer darkStone) {
         this.darkStoneShards += darkStone;
     }
+
     public void removeDarkstoneShards(Integer darkStone) {
         this.darkStoneShards -= darkStone;
+    }
+
+    @NonNull
+    public ArrayList<String> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(@NonNull ArrayList<String> traits) {
+        this.traits = traits;
+    }
+
+    public void addTrait(String trait) {
+        this.traits.add(trait);
+    }
+
+    public void removeTrait(String trait) {
+        this.traits.remove(trait);
     }
 }
 

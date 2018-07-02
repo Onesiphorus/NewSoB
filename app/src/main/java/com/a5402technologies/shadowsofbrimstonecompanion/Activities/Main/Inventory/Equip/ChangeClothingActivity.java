@@ -29,7 +29,7 @@ public class ChangeClothingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equip);
+        setContentView(R.layout.activity_change_clothing);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         String name = getIntent().getStringExtra("name");
         String type = getIntent().getStringExtra("type");
@@ -49,7 +49,7 @@ public class ChangeClothingActivity extends AppCompatActivity {
             }
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_equip);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final ChangeClothingActivity.ClothingListAdapter adapter = new ChangeClothingActivity.ClothingListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

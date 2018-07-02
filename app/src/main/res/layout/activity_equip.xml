@@ -7,12 +7,7 @@
     tools:context=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_equip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/recyclerview_item"
-        />
+    <include layout="@layout/content_choose_item"/>
 
     <include layout="@layout/content_equip_cancel" />
 

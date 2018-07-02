@@ -36,7 +36,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_remove_gear);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final RemoveGearActivity.GearBaseListAdapter adapter = new RemoveGearActivity.GearBaseListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

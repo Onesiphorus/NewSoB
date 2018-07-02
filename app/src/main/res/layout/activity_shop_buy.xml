@@ -31,6 +31,8 @@
             android:hint="Gear Type" />
 
         <include layout="@layout/content_choose_item"/>
+        <include layout="@layout/content_accept_cancel"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

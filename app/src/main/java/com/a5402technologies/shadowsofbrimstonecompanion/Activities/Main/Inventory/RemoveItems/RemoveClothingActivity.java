@@ -35,7 +35,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_remove_gear);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final RemoveClothingActivity.ClothingListAdapter adapter = new RemoveClothingActivity.ClothingListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
