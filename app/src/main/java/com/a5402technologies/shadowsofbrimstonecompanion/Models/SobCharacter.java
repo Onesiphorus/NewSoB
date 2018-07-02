@@ -37,66 +37,97 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "ranged_list")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<RangedWeapon> rangedWeapons = new ArrayList<>();
+    @NonNull
     @ColumnInfo(name = "agility_bonus")
     private Integer agilityBonus = 0;
+    @NonNull
     @ColumnInfo(name = "cunning_bonus")
     private Integer cunningBonus = 0;
+    @NonNull
     @ColumnInfo(name = "spirit_bonus")
     private Integer spiritBonus = 0;
+    @NonNull
     @ColumnInfo(name = "strength_bonus")
     private Integer strengthBonus = 0;
+    @NonNull
     @ColumnInfo(name = "lore_bonus")
     private Integer loreBonus = 0;
+    @NonNull
     @ColumnInfo(name = "luck_bonus")
     private Integer luckBonus = 0;
+    @NonNull
     @ColumnInfo(name = "health_bonus")
     private Integer healthBonus = 0;
+    @NonNull
     @ColumnInfo(name = "sanity_bonus")
     private Integer sanityBonus = 0;
+    @NonNull
     @ColumnInfo(name = "armor")
     private Integer armor = 0;
+    @NonNull
     @ColumnInfo(name = "spirit_armor")
     private Integer spiritArmor = 0;
+    @NonNull
     @ColumnInfo(name = "ranged_damage_die")
     private Integer rangedDamageDie = 6;
+    @NonNull
     @ColumnInfo(name = "ranged_damage_bonus")
     private Integer rangedDamageBonus = 0;
+    @NonNull
     @ColumnInfo(name = "melee_damage_bonus")
     private Integer meleeDamageBonus = 0;
+    @NonNull
     @ColumnInfo(name = "melee_damage_die")
     private Integer meleeDamageDie = 6;
+    @NonNull
     @ColumnInfo(name = "combat_bonus")
     private Integer combatBonus = 0;
+    @NonNull
     @ColumnInfo(name = "initiative_bonus")
     private Integer initiativeBonus = 0;
+    @NonNull
     @ColumnInfo(name = "max_grit_bonus")
     private Integer maxGritBonus = 0;
+    @NonNull
     @ColumnInfo(name = "gold")
     private Integer gold = 0;
+    @NonNull
     @ColumnInfo(name = "experience")
     private Integer experience = 0;
+    @NonNull
     @ColumnInfo(name = "level")
     private Integer level = 1;
+    @NonNull
     @ColumnInfo(name = "face_slot")
     private Boolean face = FALSE;
+    @NonNull
     @ColumnInfo(name = "hat_slot")
     private Boolean hat = FALSE;
+    @NonNull
     @ColumnInfo(name = "shoulders_slot")
     private Boolean shoulders = FALSE;
+    @NonNull
     @ColumnInfo(name = "torso_slot")
     private Boolean torso = FALSE;
+    @NonNull
     @ColumnInfo(name = "gloves_slot")
     private Boolean gloves = FALSE;
+    @NonNull
     @ColumnInfo(name = "pants_slot")
     private Boolean pants = FALSE;
+    @NonNull
     @ColumnInfo(name = "boots_slot")
     private Boolean boots = FALSE;
+    @NonNull
     @ColumnInfo(name = "coat_slot")
     private Boolean coat = FALSE;
+    @NonNull
     @ColumnInfo(name = "belt")
     private Boolean belt = FALSE;
+    @NonNull
     @ColumnInfo(name = "has_prehensile_tail")
     private Boolean hasPTail = FALSE;
+    @NonNull
     @ColumnInfo(name = "earned_skills")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Skill> upgrades;
@@ -127,6 +158,9 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "melee_crit_chance")
     private Integer meleeCritChance = 6;
+    @NonNull
+    @ColumnInfo(name = "darkstone_shards")
+    private Integer darkStoneShards = 0;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -325,7 +359,7 @@ public class SobCharacter implements Serializable {
     }
 
     public Integer getGold() {
-        return gold;
+        return this.gold;
     }
 
     public void setGold(Integer gold) {
@@ -872,12 +906,34 @@ public class SobCharacter implements Serializable {
         return null;
     }
 
-    public void addGold(int gold) {
-        this.gold += gold;
+
+
+    @NonNull
+    public Integer getDarkStoneShards() {
+        return darkStoneShards;
     }
 
-    public void addExp(int xp) {
-        this.experience += xp;
+    public void setDarkStoneShards(@NonNull Integer darkStoneShards) {
+        this.darkStoneShards = darkStoneShards;
+    }
+
+    public void addGold(Integer gold) {
+        this.gold += gold;
+    }
+    public void removeGold(Integer gold) {
+        this.gold -= gold;
+    }
+    public void addExp(Integer exp) {
+        this.experience += exp;
+    }
+    public void removeExp(Integer exp){
+        this.experience -= exp;
+    }
+    public void addDarkstoneShards(Integer darkStone) {
+        this.darkStoneShards += darkStone;
+    }
+    public void removeDarkstoneShards(Integer darkStone) {
+        this.darkStoneShards -= darkStone;
     }
 }
 

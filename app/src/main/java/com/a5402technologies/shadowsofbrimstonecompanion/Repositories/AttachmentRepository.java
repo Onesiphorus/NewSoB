@@ -12,7 +12,6 @@ import java.util.List;
 
 public class AttachmentRepository {
 
-    String mEquip;
     private AttachmentDao mAttachmentDao;
     private LiveData<List<Attachment>> mAllAttachment;
 

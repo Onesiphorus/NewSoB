@@ -12,7 +12,6 @@ import java.util.List;
 
 public class ClothingRepository {
 
-    String mEquip;
     private ClothingDao mClothingDao;
     private LiveData<List<Clothing>> mAllClothing;
 

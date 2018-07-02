@@ -16,6 +16,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -297,15 +298,21 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv = findViewById(R.id.sob_money);
         text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
 
         findViewById(R.id.btn_sob_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ManagementMenuActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
+            finish();
         });
 
         findViewById(R.id.btn_spoils).setOnClickListener((View view) -> {
-
+            Intent intent = new Intent(this, SpoilsActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
         });
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);

@@ -8,6 +8,7 @@ import android.view.View;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town.VisitTownActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 

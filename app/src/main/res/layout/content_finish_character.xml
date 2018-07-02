@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
         android:keepScreenOn="true"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/dummy_content"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
             android:id="@+id/tv_starting_gear"
             android:text="@string/starting_gear"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_blue_bright"
             android:textSize="24sp"
             android:textStyle="bold|italic"/>
         <android.support.v7.widget.RecyclerView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/darker_gray"
-                android:textColor="@android:color/holo_red_dark"
+                android:textColor="@android:color/holo_blue_dark"
                 android:text="@string/restart"
                 android:id="@+id/btn_restart"
                 style="?android:borderlessButtonStyle"/>

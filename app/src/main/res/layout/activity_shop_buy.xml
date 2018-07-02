@@ -4,35 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:background="@android:color/background_dark"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity"
-    tools:showIn="@layout/activity_character">
+    tools:context=".Activities.Main.Town.ShopBuyActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_blue_bright"
-            android:paddingTop="32dp"
             android:textSize="24sp"
-            android:gravity="center"
-            android:text="Pick a Character"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:id="@+id/tv_shop_name"
+            android:hint="Shop Name" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_bright"
-            tools:listitem="@layout/recyclerview_item"
-            />
+            android:id="@+id/tv_gear_type"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:hint="Gear Type" />
+
+        <include layout="@layout/content_choose_item"/>
     </LinearLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context=".Activities.Main.Inventory.AddItems.FoundGearActivity"
 tools:showIn="@layout/activity_main">
@@ -16,22 +17,30 @@ tools:showIn="@layout/activity_main">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/btn_gear"
         android:text="@string/gear_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/btn_clothing"
         android:text="@string/clothing_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/btn_melee"
         android:text="@string/melee_text"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_ranged"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/holo_blue_dark"
         android:text="@string/ranged_text"/>
 </LinearLayout>
 

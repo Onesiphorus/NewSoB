@@ -4,28 +4,28 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
-import com.a5402technologies.shadowsofbrimstonecompanion.Repositories.ClothingRepository;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
+import com.a5402technologies.shadowsofbrimstonecompanion.Repositories.PermanentConditionRepository;
 
 import java.util.List;
 
-public class ClothingViewModel extends AndroidViewModel {
+public class PermanentConditionViewModel extends AndroidViewModel {
 
-    private ClothingRepository mRepository;
+    private PermanentConditionRepository mRepository;
 
-    private LiveData<List<Clothing>> mAllClothing;
+    private LiveData<List<PermanentCondition>> mAllPermanentCondition;
 
-    public ClothingViewModel(Application application) {
+    public PermanentConditionViewModel(Application application) {
         super(application);
-        mRepository = new ClothingRepository(application);
-        mAllClothing = mRepository.getAllClothing();
+        mRepository = new PermanentConditionRepository(application);
+        mAllPermanentCondition = mRepository.getAllPermanentCondition();
     }
 
-    public LiveData<List<Clothing>> getAllClothing() {
-        return mAllClothing;
+    public LiveData<List<PermanentCondition>> getAllPermanentCondition() {
+        return mAllPermanentCondition;
     }
 
-    public void insert(Clothing clothing) {
-        mRepository.insert(clothing);
+    public void insert(PermanentCondition permanentCondition) {
+        mRepository.insert(permanentCondition);
     }
 }

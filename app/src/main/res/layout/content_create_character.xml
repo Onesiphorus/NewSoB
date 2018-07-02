@@ -16,7 +16,7 @@
         android:gravity="center_horizontal|bottom"
         android:keepScreenOn="true"
         android:text="@string/dummy_content"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@android:color/holo_blue_bright"
         android:textSize="50sp"
         android:textStyle="bold"
         android:paddingBottom="96dp"/>
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/choose_upgrade"
                 android:text="@string/choose_upgrade"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_blue_bright"
                 android:textAlignment="center"
                 android:textStyle="italic|bold"
                 android:textSize="32sp"/>
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:hint="@string/hint_enter_name"
-            android:textColorHint="@android:color/holo_red_light"/>
+            android:textColorHint="@android:color/holo_blue_bright"/>
 
         <Button
             android:id="@+id/create_button"

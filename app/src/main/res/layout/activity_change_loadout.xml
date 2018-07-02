@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context=".Activities.Main.Inventory.Equip.ChangeLoadoutActivity">
 
     <TextView
@@ -24,46 +25,64 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_hat"
             android:hint="Hat"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_face"
             android:hint="Face"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_equip_shoulders"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:hint="Shoulders"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_gloves"
             android:hint="Gloves"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_torso"
             android:hint="Torso"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_belt"
             android:hint="Belt"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_pants"
             android:hint="Pants"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_boots"
             android:hint="Boots"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/btn_equip_coat"
             android:hint="Coat"/>
     </LinearLayout>

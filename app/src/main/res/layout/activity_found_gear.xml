@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_found_gear" />
+    <include layout="@layout/content_gear_types" />
 
 </android.support.design.widget.CoordinatorLayout>

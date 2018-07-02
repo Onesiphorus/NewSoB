@@ -52,7 +52,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.gear_base_accept).setOnClickListener((View view) -> {
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
             /*
             if(gearBase != null) {

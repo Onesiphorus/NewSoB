@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity">
 
-    <include layout="@layout/content_found_gear"/>
+    <include layout="@layout/content_gear_types"/>
 
 </android.support.constraint.ConstraintLayout>

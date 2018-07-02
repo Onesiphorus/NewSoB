@@ -37,27 +37,35 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
+                    android:textColor="@android:color/holo_blue_dark"
                     android:paddingRight="4dp"
                     android:text="Money"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_blue_bright"
                     android:id="@+id/sob_money"
                     android:hint="$0"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/sob_character_name"
-                android:textColor="@android:color/holo_red_dark"
-                android:hint="@string/character_text"
-                android:textSize="24sp"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:textStyle="italic|bold"
-                android:paddingBottom="12dp"/>
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:paddingRight="4dp"
+                    android:text="Dark Stone"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:id="@+id/sob_darkstone"
+                    android:hint="0"/>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,18 +74,35 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_blue_bright"
                     android:paddingRight="4dp"
                     android:hint="0"
                     android:id="@+id/sob_xp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
+                    android:textColor="@android:color/holo_blue_dark"
                     android:text="Exp"/>
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sob_character_name"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textColorHint="@android:color/holo_blue_bright"
+            android:hint="@string/character_text"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:textStyle="italic|bold"
+            android:paddingBottom="12dp"/>
 
+        </LinearLayout>
         <include layout="@layout/content_character_stats"/>
         <include layout="@layout/content_ranged_stats"/>
         <include layout="@layout/content_melee_stats"/>
@@ -105,7 +130,7 @@
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_blue_bright"
                 android:background="@android:color/background_dark"
                 android:layout_weight="1"
                 android:textSize="24sp"
@@ -115,7 +140,7 @@
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="@android:color/holo_blue_bright"
                 android:background="@android:color/background_dark"
                 android:layout_weight="1"
                 android:textSize="24sp"

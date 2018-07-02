@@ -12,31 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
+        android:textColor="@android:color/holo_blue_dark"
         android:keepScreenOn="true"
         android:text="@string/shadows"
         android:textSize="50sp"
         android:textStyle="bold"
         android:paddingBottom="96dp"/>
     <LinearLayout
-        android:paddingTop="96dp"
+        android:paddingTop="192dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_dark"
-            android:textColor="@android:color/holo_red_light"
-            android:textColorHighlight="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textColorHighlight="@android:color/holo_blue_bright"
+            android:textSize="24sp"
             android:id="@+id/btn_character"
             android:text="@string/character_text"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_dark"
-            android:textColorHighlight="@android:color/holo_red_light"
-            android:textColor="@android:color/holo_red_light"
+            android:textColorHighlight="@android:color/holo_blue_bright"
+            android:textColor="@android:color/holo_blue_bright"
             android:id="@+id/btn_settings"
             android:text="@string/settings"/>
     </LinearLayout>

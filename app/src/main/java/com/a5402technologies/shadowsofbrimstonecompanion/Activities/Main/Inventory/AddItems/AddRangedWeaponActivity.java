@@ -38,7 +38,7 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final AddRangedWeaponActivity.RangedWeaponListAdapter adapter = new AddRangedWeaponActivity.RangedWeaponListAdapter(this);
+        final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -93,7 +93,7 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         finish();
     }
 
-    class RangedWeaponListAdapter extends RecyclerView.Adapter<AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder> {
+    class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
@@ -104,13 +104,13 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         }
 
         @Override
-        public AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RangedWeaponListAdapter.RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder(itemView);
+            return new RangedWeaponListAdapter.RangedWeaponViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(AddRangedWeaponActivity.RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
+        public void onBindViewHolder(RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
             if (null != mRangedWeapon) {
                 RangedWeapon current = mRangedWeapon.get(position);
                 holder.rangedWeaponItemView.setText(current.getName());

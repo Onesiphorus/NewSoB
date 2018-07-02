@@ -21,6 +21,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@android:color/holo_blue_bright"
+            android:background="@android:color/holo_blue_dark"
             android:textSize="24sp"
             android:text="@string/accept" />
         <Button
@@ -28,6 +30,8 @@
             style="?metaButtonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_blue_bright"
+            android:background="@android:color/holo_blue_dark"
             android:layout_weight="1"
             android:textSize="24sp"
             android:text="@string/cancel" />

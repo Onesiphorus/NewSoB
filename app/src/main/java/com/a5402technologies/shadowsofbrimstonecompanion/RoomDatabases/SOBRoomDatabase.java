@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 21)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 23)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -119,7 +119,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mClothingDao.deleteAllClothing();
             mSkillDao.deleteAllSkill();
             mAttacmentDao.deleteAllAttachment();
-            mPermanentConditionDao.deleteAllCondition();
+            mPermanentConditionDao.deleteAllPermanentCondition();
             mCharacterDao.deleteCharacterByName("Kristal");
             mCharacterDao.deleteCharacterByName("Paul");
             PermanentCondition permanentCondition;
@@ -306,6 +306,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Test
             characterClass.addStartingMelee(meleeWeapon);
             sobCharacter = new SobCharacter("Kristal", characterClass);
+            sobCharacter.addGold(10000);
+            sobCharacter.addDarkstoneShards(31);
             sobCharacter.addMeleeWeapon(meleeWeapon);
             meleeWeapon.setEquipped(TRUE);
             sobCharacter.setRightMelee(meleeWeapon);
