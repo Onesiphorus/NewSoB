@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 toggle();
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         findViewById(R.id.btn_character).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CharacterActivity.class);

@@ -34,5 +34,12 @@
         android:background="@drawable/button_background"
         android:textColor="@android:color/holo_blue_dark"
         android:text="@string/ranged_text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_attachments"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="@string/attachment_text"/>
 </LinearLayout>
 

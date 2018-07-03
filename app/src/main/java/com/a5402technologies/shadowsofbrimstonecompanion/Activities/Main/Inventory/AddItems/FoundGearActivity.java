@@ -20,8 +20,6 @@ public class FoundGearActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_found_gear);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
@@ -52,6 +50,12 @@ public class FoundGearActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddRangedWeaponActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
+            Intent intent = new Intent(FoundGearActivity.this, AddAttachmentActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

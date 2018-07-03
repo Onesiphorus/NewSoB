@@ -54,6 +54,7 @@
     <string name="saloon">Saloon</string>
     <string name="initiative">INITIATIVE</string>
     <string name="move">MOVE</string>
+    <string name="attachment_text">Attachments</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
@@ -25,6 +26,37 @@ public class CombatViewActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
+        Button health;
+        health = findViewById(R.id.valHealth);
+        health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+        Button sanity;
+        sanity = findViewById(R.id.valSanity);
+        sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+
+        findViewById(R.id.negHealth).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
+            health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+        });
+        findViewById(R.id.addHealth).setOnClickListener((View view) -> {
+            if(sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
+                sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
+                health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+            } else {
+                Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
+            }
+        });
+        findViewById(R.id.negSanity).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
+            sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+        });
+        findViewById(R.id.addSanity).setOnClickListener((View view) -> {
+            if(sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
+                sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
+                sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+            } else {
+                Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
+            }
+        });
 
         TextView tv;
 

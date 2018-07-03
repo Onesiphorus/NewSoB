@@ -4,12 +4,11 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,47 +16,55 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.AttachmentViewModel;
 
 import java.util.List;
 
-public class AddRangedWeaponActivity extends AppCompatActivity {
+public class AddAttachmentActivity extends AppCompatActivity {
 
-    private RangedWeaponViewModel mRangedWeaponViewModel;
-    private RangedWeapon rangedWeapon;
+    private AttachmentViewModel mAttachmentViewModel;
+    private Attachment attachment;
     private SobCharacter sobCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranged_weapon);
+        setContentView(R.layout.activity_attachment);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
+        final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRangedWeaponViewModel = ViewModelProviders.of(this).get(RangedWeaponViewModel.class);
+        mAttachmentViewModel = ViewModelProviders.of(this).get(AttachmentViewModel.class);
 
-        mRangedWeaponViewModel.getAllRangedWeapons().observe(this, new Observer<List<RangedWeapon>>() {
+        mAttachmentViewModel.getAllAttachment().observe(this, new Observer<List<Attachment>>() {
             @Override
-            public void onChanged(@Nullable List<RangedWeapon> rangedWeapon) {
-                adapter.setRangedWeapon(rangedWeapon);
+            public void onChanged(@Nullable List<Attachment> attachment) {
+                adapter.setAttachment(attachment);
             }
         });
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            if (rangedWeapon != null) {
-                sobCharacter.addRangedWeapon(rangedWeapon);
+            /*
+            if(attachment != null) {
+                intent.putExtra("serializable_object", attachment);
+            }
+            setResult(RESULT_CODE, intent);
+            finish();
+            */
+            if (attachment != null) {
+                sobCharacter.addAttachment(attachment);
                 intent.putExtra("serializable_object", sobCharacter);
-                Log.e("SUCCESS: ", rangedWeapon.getName() + " added to inventory.");
+                Toast.makeText(this, attachment.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();
@@ -98,62 +105,64 @@ public class AddRangedWeaponActivity extends AppCompatActivity {
         finish();
     }
 
-    class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
+    class AttachmentListAdapter extends RecyclerView.Adapter<AttachmentListAdapter.AttachmentViewHolder> {
 
         private final LayoutInflater mInflater;
-        private List<RangedWeapon> mRangedWeapon;
+        private List<Attachment> mAttachment;
         private Context mContext;
-        public RangedWeaponListAdapter(Context context) {
+        private Integer RESULT_CODE = 1;
+        public AttachmentListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
         }
 
         @Override
-        public RangedWeaponListAdapter.RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public AttachmentListAdapter.AttachmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new RangedWeaponListAdapter.RangedWeaponViewHolder(itemView);
+            return new AttachmentListAdapter.AttachmentViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
-            if (null != mRangedWeapon) {
-                RangedWeapon current = mRangedWeapon.get(position);
-                holder.rangedWeaponItemView.setText(current.getName());
+        public void onBindViewHolder(AttachmentListAdapter.AttachmentViewHolder holder, int position) {
+            if (null != mAttachment) {
+                Attachment current = mAttachment.get(position);
+                holder.attachmentItemView.setText(current.getName());
             } else {
-                holder.rangedWeaponItemView.setText("No RangedWeapon");
+                holder.attachmentItemView.setText("No Attachment");
             }
 
-            holder.rangedWeaponItemView.setOnClickListener(new View.OnClickListener() {
+            holder.attachmentItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    rangedWeapon = mRangedWeapon.get(position);
+                    attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Add " + rangedWeapon.getName() + " to inventory";
+                    String text = "Add " + attachment.getName() + " to inventory";
                     btn.setText(text);
                 }
             });
         }
 
-        public void setRangedWeapon(List<RangedWeapon> rangedWeapon) {
-            mRangedWeapon = rangedWeapon;
+        public void setAttachment(List<Attachment> attachment) {
+            mAttachment = attachment;
             notifyDataSetChanged();
         }
 
         @Override
         public int getItemCount() {
-            if (null != mRangedWeapon) return mRangedWeapon.size();
+            if (null != mAttachment) return mAttachment.size();
             else return 0;
         }
 
-        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final TextView rangedWeaponItemView;
+        class AttachmentViewHolder extends RecyclerView.ViewHolder {
+            private final TextView attachmentItemView;
 
-            private RangedWeaponViewHolder(View itemView) {
+            private AttachmentViewHolder(View itemView) {
                 super(itemView);
-                rangedWeaponItemView = itemView.findViewById(R.id.textView);
+                attachmentItemView = itemView.findViewById(R.id.textView);
 
             }
         }
     }
 }
+
 

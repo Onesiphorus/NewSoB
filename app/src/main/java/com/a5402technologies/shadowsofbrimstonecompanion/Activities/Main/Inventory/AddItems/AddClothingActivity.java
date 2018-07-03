@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +27,6 @@ import java.util.List;
 
 public class AddClothingActivity extends AppCompatActivity {
 
-    public static final int CLOTHING_REQUEST = 101;
-    private static final int RESULT_CODE = 1;
-    private List<Clothing> mClothing;
     private ClothingViewModel mClothingViewModel;
     private Clothing clothing;
     private SobCharacter sobCharacter;
@@ -54,7 +52,7 @@ public class AddClothingActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.clothing_accept).setOnClickListener((View view) -> {
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
             /*
             if(clothing != null) {
@@ -70,6 +68,10 @@ public class AddClothingActivity extends AppCompatActivity {
             }
             startActivity(intent);
             finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
         });
     }
 
@@ -133,6 +135,9 @@ public class AddClothingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Add " + clothing.getName() + " to inventory";
+                    btn.setText(text);
                 }
             });
         }

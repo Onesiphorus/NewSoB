@@ -164,6 +164,16 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "traits")
     private ArrayList<String> traits;
+    @NonNull
+    @ColumnInfo(name = "attachments")
+    private ArrayList<Attachment> attachments;
+    @NonNull
+    @ColumnInfo(name = "current_health")
+    private Integer currentHealth;
+    @NonNull
+    @ColumnInfo(name = "current_sanity")
+    private Integer currentSanity;
+
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -174,6 +184,10 @@ public class SobCharacter implements Serializable {
         meleeWeapons = new ArrayList<>(0);
         rangedWeapons = new ArrayList<>(0);
         upgrades = new ArrayList<>(0);
+        traits = new ArrayList<>(0);
+        attachments = new ArrayList<>(0);
+        currentHealth = characterClass.getHealth();
+        currentSanity = characterClass.getSanity();
     }
 
     @NonNull
@@ -734,6 +748,16 @@ public class SobCharacter implements Serializable {
                 this.spiritArmor = gearBase.getSpiritArmor();
             }
         }
+        for(Attachment attachment : this.getAttachments()) {
+            if(attachment.getEquipped().equals(TRUE)) {
+                for (String string : attachment.getModifiers()) {
+                    findBonus(string);
+                }
+                for (String string : attachment.getPenalties()) {
+                    findPenalty(string);
+                }
+            }
+        }
     }
 
     private void setRanged(RangedWeapon rangedWeapon) {
@@ -933,6 +957,12 @@ public class SobCharacter implements Serializable {
         }
         return null;
     }
+    public Attachment findAttachmentByName(String name) {
+        for (Attachment attachment : this.getAttachments()) {
+            if (attachment.getName().equals(name)) return attachment;
+        }
+        return null;
+    }
 
 
     @NonNull
@@ -983,6 +1013,40 @@ public class SobCharacter implements Serializable {
 
     public void removeTrait(String trait) {
         this.traits.remove(trait);
+    }
+    public void addAttachment(Attachment attachment) {
+        this.attachments.add(attachment);
+    }
+
+    public void removeAttachment(Attachment attachment) {
+        this.attachments.remove(attachment);
+    }
+
+    @NonNull
+    public ArrayList<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(@NonNull ArrayList<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    @NonNull
+    public Integer getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(@NonNull Integer currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    @NonNull
+    public Integer getCurrentSanity() {
+        return currentSanity;
+    }
+
+    public void setCurrentSanity(@NonNull Integer currentSanity) {
+        this.currentSanity = currentSanity;
     }
 }
 

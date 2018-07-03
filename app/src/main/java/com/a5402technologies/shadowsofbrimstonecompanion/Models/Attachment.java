@@ -79,6 +79,9 @@ public class Attachment implements Serializable {
     @NonNull
     @ColumnInfo(name = "darkstone_cost")
     private Integer darkstoneCost = 0;
+    @NonNull
+    @ColumnInfo(name = "equipped")
+    private Boolean equipped = FALSE;
 
     public Attachment(@NonNull String name, @NonNull Integer slotsRequired) {
         this.name = name;
@@ -282,5 +285,14 @@ public class Attachment implements Serializable {
 
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
+    }
+
+    @NonNull
+    public Boolean getEquipped() {
+        return equipped;
+    }
+
+    public void setEquipped(@NonNull Boolean equipped) {
+        this.equipped = equipped;
     }
 }

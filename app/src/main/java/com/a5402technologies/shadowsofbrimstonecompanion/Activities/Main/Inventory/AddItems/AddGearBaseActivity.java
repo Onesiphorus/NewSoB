@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,6 @@ import java.util.List;
 
 public class AddGearBaseActivity extends AppCompatActivity {
 
-    public static final int CLOTHING_REQUEST = 101;
     private GearBaseViewModel mGearBaseViewModel;
     private GearBase gearBase;
     private SobCharacter sobCharacter;
@@ -68,6 +68,10 @@ public class AddGearBaseActivity extends AppCompatActivity {
             }
             startActivity(intent);
             finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
         });
     }
 
@@ -131,6 +135,9 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     gearBase = mGearBase.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Add " + gearBase.getName() + " to inventory";
+                    btn.setText(text);
                 }
             });
         }

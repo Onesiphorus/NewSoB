@@ -57,6 +57,14 @@ public class VisitShopActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ShopBuyActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type",shop);
+            intent.putExtra("gear_type", "attachment");
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ManageItemUpgradesActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town.VisitTownActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -49,6 +50,15 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
+
+        findViewById(R.id.btn_manage_item_upgrades).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+
+
 
     }
 

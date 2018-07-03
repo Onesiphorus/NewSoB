@@ -63,6 +63,7 @@ public class ChangeClothingActivity extends AppCompatActivity {
                     sobCharacter.unequipClothing(sobCharacter.findClothingByName(name));
                 }
                 sobCharacter.equipClothing(clothing);
+                Toast.makeText(this, clothing.getName() + " equipped.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, ChangeLoadoutActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);
@@ -73,7 +74,14 @@ public class ChangeClothingActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-
+            sobCharacter.unequipClothing(sobCharacter.findClothingByName(name));
+            Toast.makeText(this, sobCharacter.findClothingByName(name).getName()
+                    + " removed from "
+                    + type, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
@@ -119,6 +127,9 @@ public class ChangeClothingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
+                    Button btn = findViewById(R.id.btn_equip);
+                    String text = "Equip " + clothing.getName();
+                    btn.setText(text);
                 }
             });
         }

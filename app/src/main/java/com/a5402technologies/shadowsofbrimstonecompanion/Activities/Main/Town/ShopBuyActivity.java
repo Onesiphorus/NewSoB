@@ -18,12 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddGearBaseActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.AttachmentViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.ClothingViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
@@ -44,6 +46,8 @@ public class ShopBuyActivity extends AppCompatActivity {
     private RangedWeapon rangedWeapon;
     private ClothingViewModel mClothingViewModel;
     private Clothing clothing;
+    private AttachmentViewModel mAttachmentViewModel;
+    private Attachment attachment;
     private String logText;
 
     @Override
@@ -133,6 +137,24 @@ public class ShopBuyActivity extends AppCompatActivity {
                     adapter.setRangedWeapon(filteredList);
                 }
             });
+        }else if(type.equals("attachment")) {
+            RecyclerView recyclerView = findViewById(R.id.recyclerview);
+            final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            mAttachmentViewModel = ViewModelProviders.of(this).get(AttachmentViewModel.class);
+
+            mAttachmentViewModel.getAllAttachment().observe(this, new Observer<List<Attachment>>() {
+                @Override
+                public void onChanged(@Nullable List<Attachment> attachments) {
+                    ArrayList<Attachment> filteredList = new ArrayList<>(0);
+                    for(Attachment item : attachments) {
+                        if(item.getShop().equals(shop)) filteredList.add(item);
+                    }
+                    adapter.setAttachment(filteredList);
+                }
+            });
         }
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -192,6 +214,19 @@ public class ShopBuyActivity extends AppCompatActivity {
                 } else {
                     toast = "Can't afford to buy " + clothing.getName();
                 }
+            } else
+            if (attachment != null) {
+                if(sobCharacter.getGold() >= attachment.getCost() && sobCharacter.getDarkStoneShards() >= attachment.getDarkstoneCost()) {
+                    sobCharacter.removeGold(attachment.getCost());
+                    sobCharacter.removeDarkstoneShards(attachment.getDarkstoneCost());
+                    sobCharacter.addAttachment(attachment);
+                    Log.e("SUCCESS: ", attachment.getName() + " purchased and added to inventory.");
+                    toast = attachment.getName() + " purchased and added to inventory.";
+                    startActivity(intent);
+                    finish();
+                } else {
+                    toast = "Can't afford to buy " + attachment.getName();
+                }
             } else {
                 toast = "Nothing selected.";
             }
@@ -224,7 +259,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 GearBase current = mGearBase.get(position);
                 String label = current.getName() + ": $" + current.getCost();
                 if(current.getDarkstoneCost() > 0) {
-                    label += " +" + current.getDarkstoneCost() + " DS";
+                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
                 }
                 holder.gearBaseItemView.setText(label);
             } else {
@@ -292,7 +327,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 Clothing current = mClothing.get(position);
                 String label = current.getName() + ": $" + current.getCost();
                 if(current.getDarkstoneCost() > 0) {
-                    label += " +" + current.getDarkstoneCost() + " DS";
+                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
                 }
                 holder.clothingItemView.setText(label);
             } else {
@@ -360,7 +395,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 MeleeWeapon current = mMeleeWeapon.get(position);
                 String label = current.getName() + ": $" + current.getCost();
                 if(current.getDarkstoneCost() > 0) {
-                    label += " +" + current.getDarkstoneCost() + " DS";
+                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
                 }
                 holder.meleeWeaponItemView.setText(label);
             } else {
@@ -427,7 +462,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 RangedWeapon current = mRangedWeapon.get(position);
                 String label = current.getName() + ": $" + current.getCost();
                 if(current.getDarkstoneCost() > 0) {
-                    label += " +" + current.getDarkstoneCost() + " DS";
+                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
                 }
                 holder.rangedWeaponItemView.setText(label);
             } else {
@@ -468,6 +503,74 @@ public class ShopBuyActivity extends AppCompatActivity {
             private RangedWeaponViewHolder(View itemView) {
                 super(itemView);
                 rangedWeaponItemView = itemView.findViewById(R.id.textView);
+
+            }
+        }
+    }
+    class AttachmentListAdapter extends RecyclerView.Adapter<AttachmentListAdapter.AttachmentViewHolder> {
+
+        private final LayoutInflater mInflater;
+        private List<Attachment> mAttachment;
+        private Context mContext;
+        private Integer RESULT_CODE = 1;
+        public AttachmentListAdapter(Context context) {
+            mContext = context;
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public AttachmentListAdapter.AttachmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+            return new AttachmentListAdapter.AttachmentViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(AttachmentListAdapter.AttachmentViewHolder holder, int position) {
+            if (null != mAttachment) {
+                Attachment current = mAttachment.get(position);
+                String label = current.getName() + ": $" + current.getCost();
+                if(current.getDarkstoneCost() > 0) {
+                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
+                }
+                holder.attachmentItemView.setText(label);
+            } else {
+                holder.attachmentItemView.setText("No Gear for sale.");
+            }
+
+            holder.attachmentItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    attachment = mAttachment.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Buy " + attachment.getName() + " for";
+                    if(attachment.getCost() > 0) {
+                        text += " $" + attachment.getCost();
+                    }
+                    if(attachment.getDarkstoneCost() > 0) {
+                        text += " " + attachment.getDarkstoneCost() + " Dark Stone";
+                    }
+                    btn.setText(text);
+                }
+            });
+        }
+
+        public void setAttachment(List<Attachment> attachment) {
+            mAttachment = attachment;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            if (null != mAttachment) return mAttachment.size();
+            else return 0;
+        }
+
+        class AttachmentViewHolder extends RecyclerView.ViewHolder {
+            private final TextView attachmentItemView;
+
+            private AttachmentViewHolder(View itemView) {
+                super(itemView);
+                attachmentItemView = itemView.findViewById(R.id.textView);
 
             }
         }

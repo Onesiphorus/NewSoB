@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.melee_weapon_accept).setOnClickListener((View view) -> {
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
             /*
             if(meleeWeapon != null) {
@@ -67,6 +68,10 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
             }
             startActivity(intent);
             finish();
+        });
+
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
+            onBackPressed();
         });
     }
 
@@ -130,6 +135,9 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
+                    Button btn = findViewById(R.id.btn_accept);
+                    String text = "Add " + meleeWeapon.getName() + " to inventory";
+                    btn.setText(text);
                 }
             });
         }

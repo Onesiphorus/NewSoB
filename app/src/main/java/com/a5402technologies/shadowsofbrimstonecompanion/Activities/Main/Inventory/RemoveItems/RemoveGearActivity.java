@@ -49,13 +49,6 @@ public class RemoveGearActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ManagementMenuActivity.class);
-            /*
-            if(gearBase != null) {
-                intent.putExtra("serializable_object", gearBase);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
             if (gearBase != null) {
                 sobCharacter.removeGear(gearBase);
                 sobCharacter.addGold(gearBase.getSell());

@@ -36,22 +36,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.CreateCharacterActivity"
-            android:label="@string/title_activity_create_character"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.FinishCharacterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_finish_character"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.ShadowsOfBrimstoneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_shadows_of_brimstone"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.ManagementMenuActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_management_menu"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity"
@@ -107,8 +103,12 @@
         <activity
             android:name=".Activities.Main.Inventory.SpoilsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.CombatViewActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activities.Main.CombatViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddAttachmentActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity"></activity>
     </application>
 
 </manifest>
