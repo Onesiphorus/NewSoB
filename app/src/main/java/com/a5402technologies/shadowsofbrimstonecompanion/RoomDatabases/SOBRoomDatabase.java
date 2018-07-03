@@ -136,6 +136,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
             //Initialize Classes
             //Cowboy
+            //TODO check starting gear is inserted properly
             traits.add(TraitsEnum.FRONTIER.label());
             traits.add(TraitsEnum.SHOWMAN.label());
             characterClass = new CharacterClass(CharacterClassEnum.COWBOY.male(), 2, 3, 1, 4, 3, 2, 14, 12, 4, 4, 4, 4, 2, 3, 2, traits);
@@ -419,6 +420,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits.add(TraitsEnum.SHOWMAN.label());
             characterClass = new CharacterClass(CharacterClassEnum.GUNSLINGER.male(), 3, 3, 2, 2, 2, 4, 10, 12, 5, 4, 3, 5, 1, 6, 2, traits);
             rangedWeapon = new RangedWeapon("Pistol", 6, 2);
+            rangedWeapon.setShop(ShopEnum.GENERAL_STORE.label());
             rangedWeapon.setSell(150);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(2);
@@ -1347,7 +1349,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setCost(4800);
             meleeWeapon.setUpgrades(2);
             meleeWeapon.setWeight(1);
-            //Todo hardcode bonus for Tools of Science : combat = cunning
+            //TODO hardcode bonus for Tools of Science : combat = cunning
             mMeleeWeaponDao.insert(meleeWeapon);
             clothing = new Clothing("Field Surgeon's Apron");
             clothing.setCost(925);
@@ -1637,6 +1639,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             }
             mCharacterDao.insert(sobCharacter);
             mCharacterDao.insert(Cowboy);
+
             return null;
         }
     }

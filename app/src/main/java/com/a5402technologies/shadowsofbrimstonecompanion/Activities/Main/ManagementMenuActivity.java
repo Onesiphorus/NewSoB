@@ -30,13 +30,6 @@ public class ManagementMenuActivity extends Activity {
             finish();
         });
 
-        findViewById(R.id.btn_change_loadout).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ChangeLoadoutActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
-
         findViewById(R.id.btn_remove_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ChooseTypeToRemoveActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
@@ -50,16 +43,6 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
-
-        findViewById(R.id.btn_manage_item_upgrades).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
-
-
-
     }
 
     @Override

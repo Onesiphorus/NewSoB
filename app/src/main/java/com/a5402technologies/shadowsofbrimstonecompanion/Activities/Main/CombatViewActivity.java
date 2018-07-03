@@ -12,6 +12,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -19,12 +21,15 @@ import static java.lang.Boolean.TRUE;
 
 public class CombatViewActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
+    TextView tv;
+    String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combat_view);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        sobCharacter.setBonuses();
 
         Button health;
         health = findViewById(R.id.valHealth);
@@ -58,8 +63,6 @@ public class CombatViewActivity extends AppCompatActivity {
             }
         });
 
-        TextView tv;
-
         Button rightRanged = findViewById(R.id.right_hand_ranged_weapon);
         rightRanged.setHint("empty");
         Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
@@ -70,7 +73,6 @@ public class CombatViewActivity extends AppCompatActivity {
         leftMelee.setHint("empty");
 
         if (sobCharacter.getRightHand() != null) {
-            //TODO logic for two handed
             rightRanged.setText(sobCharacter.getRightHand().getName());
             rightMelee.setHint(sobCharacter.getRightHand().getName());
             if (sobCharacter.getRightHand().getTwoHanded().equals(TRUE)) {
@@ -78,14 +80,23 @@ public class CombatViewActivity extends AppCompatActivity {
                 leftMelee.setHint(sobCharacter.getRightHand().getName());
             }
             tv = findViewById(R.id.right_hand_range);
-            tv.setText(String.format(sobCharacter.getRightHand().getRange().toString()));
-            tv = findViewById(R.id.right_hand_shots);
-            Integer shots = (sobCharacter.getRightHand().getName().equals("Trusty Pistol"))
+            Integer range = sobCharacter.getRightHand().getRange();
+            Integer shots = (sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label()))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getRightHand().getShots();
+            for(Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
+                if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                } else if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_BARREL.label())){
+                    range += 4;
+                }
+            }
+            tv.setText(String.format(range.toString()));
+            tv = findViewById(R.id.right_hand_shots);
+
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.right_hand_damage);
-            String text =
+            text =
                     "D"
                             + sobCharacter.getRightHand().getDamageDie().toString()
                             + "+"
@@ -121,6 +132,11 @@ public class CombatViewActivity extends AppCompatActivity {
             Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getLeftHand().getShots();
+            for(Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
+                if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                }
+            }
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.left_hand_damage);
             String text =
@@ -138,7 +154,6 @@ public class CombatViewActivity extends AppCompatActivity {
                             + sobCharacter.getLeftHand().getCritChance()
                             + "+)";
             tv.setText(text);
-            //TODO make invisible when not populated
         }
         leftRanged.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, EquipLeftHandRangedActivity.class);
@@ -146,10 +161,6 @@ public class CombatViewActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-        //TODO add Initiative with modifiers to CombatView
-
-
         if (null != sobCharacter.getLeftMelee()) {
             leftMelee.setText(sobCharacter.getLeftMelee().getName());
             leftRanged.setHint(sobCharacter.getLeftMelee().getName());
@@ -178,25 +189,51 @@ public class CombatViewActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+
         tv = findViewById(R.id.melee_combat);
-        Integer combat = sobCharacter.getCharacterClass().getCombat() + sobCharacter.getCombatBonus();
+        Integer combat = calculateMeleeCombat();
         tv.setText(String.format(combat.toString()));
+
         tv = findViewById(R.id.melee_to_hit);
-        String text =
-                "D"
-                        + sobCharacter.getMeleeToHitDie()
-                        + " : "
-                        + sobCharacter.getCharacterClass().getMeleeToHit().toString()
-                        + "+("
-                        + sobCharacter.getMeleeCritChance()
-                        + "+)";
+        text = calculateMeleeHitDie();
         tv.setText(text);
+
         tv = findViewById(R.id.melee_damage);
-        text =
-                sobCharacter.getMeleeDamageDie()
-                        + "+"
-                        + sobCharacter.getMeleeDamageBonus();
+        text = calculateMeleeDamageDie();
         tv.setText(text);
+    }
+
+    private String calculateMeleeHitDie() {
+        return "D"
+                + sobCharacter.getMeleeToHitDie()
+                + " : "
+                + sobCharacter.getCharacterClass().getMeleeToHit().toString()
+                + "+("
+                + sobCharacter.getMeleeCritChance()
+                + "+)";
+    }
+
+    private String calculateMeleeDamageDie() {
+        return sobCharacter.getMeleeDamageDie()
+                + "+"
+                + sobCharacter.getMeleeDamageBonus();
+    }
+
+    private Integer calculateMeleeCombat() {
+        Integer combat;
+        combat = sobCharacter.getRightMelee() != null ?
+                sobCharacter.getRightMelee().getName().equals(RuleExceptionEnum.TOOLS_OF_SCIENCE.label()) ?
+                        sobCharacter.getCharacterClass().getCunning() + sobCharacter.getCunningBonus()
+                        : sobCharacter.getCharacterClass().getCombat()
+                : sobCharacter.getLeftMelee() != null ?
+                sobCharacter.getLeftMelee().getName().equals(RuleExceptionEnum.TOOLS_OF_SCIENCE.label()) ?
+                        sobCharacter.getCharacterClass().getCunning() + sobCharacter.getCunningBonus()
+                        : sobCharacter.getCharacterClass().getCombat()
+                : sobCharacter.getCharacterClass().getCombat();
+
+        combat += sobCharacter.getCombatBonus();
+        return combat;
     }
 
     @Override

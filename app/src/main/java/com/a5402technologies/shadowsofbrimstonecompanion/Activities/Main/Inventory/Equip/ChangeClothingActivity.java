@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -56,7 +57,9 @@ public class ChangeClothingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.setClothing(ClothingOptions);
-
+        Button btn = findViewById(R.id.btn_unequip);
+        String text = "Unequip " + sobCharacter.findClothingByName(name).getName();
+        btn.setText(text);
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != clothing) {
                 if (!(name.isEmpty())) {

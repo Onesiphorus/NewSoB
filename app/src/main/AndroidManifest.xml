@@ -110,7 +110,9 @@
         <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity" />
         <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity" />
         <activity android:name=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment"></activity>
+        <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment" />
+        <activity android:name=".Activities.Main.LevelUpActivity" />
+        <activity android:name=".Activities.Main.Inventory.ExamineInventoryActivity"></activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
@@ -18,6 +19,19 @@ public class VisitTownActivity extends AppCompatActivity {
         setContentView(R.layout.activity_visit_town);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+
+        String text;
+        TextView tv;
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$" + sobCharacter.getGold().toString();
+        tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+
+        tv = findViewById(R.id.sob_level);
+        tv.setText(String.format(sobCharacter.getLevel().toString()));
 
         findViewById(R.id.btn_church).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, VisitShopActivity.class);

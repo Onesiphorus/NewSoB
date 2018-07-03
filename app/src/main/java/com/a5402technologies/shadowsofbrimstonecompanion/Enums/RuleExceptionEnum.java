@@ -5,7 +5,10 @@ import java.util.Map;
 
 public enum RuleExceptionEnum {
 
-    DARK_STONE_GRIP("Dark Stone Grip");
+    DARK_STONE_GRIP("Dark Stone Grip"),
+    DARK_STONE_BARREL("Dark Stone Barrel"),
+    TRUSTY_PISTOL("Trusty Pistol"),
+    TOOLS_OF_SCIENCE("Tools of Science");
     //TODO put DSG exception in CombatViewActivity
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 

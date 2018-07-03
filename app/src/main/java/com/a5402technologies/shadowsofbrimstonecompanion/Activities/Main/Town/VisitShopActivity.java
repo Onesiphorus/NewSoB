@@ -24,6 +24,17 @@ public class VisitShopActivity extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.tv_shop_name);
         tv.setText(shop);
+        String text;
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$" + sobCharacter.getGold().toString();
+        tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+
+        tv = findViewById(R.id.sob_level);
+        tv.setText(String.format(sobCharacter.getLevel().toString()));
 
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);

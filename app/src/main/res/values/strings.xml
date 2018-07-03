@@ -55,6 +55,8 @@
     <string name="initiative">INITIATIVE</string>
     <string name="move">MOVE</string>
     <string name="attachment_text">Attachments</string>
+    <string name="clothing">Clothing</string>
+    <string name="loadout">Loadout</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

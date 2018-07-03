@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -24,7 +25,6 @@ public class SobCharacter implements Serializable {
     private String characterName;
     @ColumnInfo(name = "character_class")
     private CharacterClass characterClass;
-    //TODO create table to store lists, link lists with keys
     @ColumnInfo(name = "gear_list")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<GearBase> gear = new ArrayList<>();
@@ -724,8 +724,9 @@ public class SobCharacter implements Serializable {
             }
         }
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
-            if (meleeWeapon.getEquipped().equals(TRUE))
-                setCombat(meleeWeapon);
+            if (meleeWeapon.getEquipped().equals(TRUE)) {
+                this.setCombat(meleeWeapon);
+            }
             if (meleeWeapon.getArmor() > 0 && meleeWeapon.getArmor() < this.armor) {
                 this.armor = meleeWeapon.getArmor();
             }
@@ -771,6 +772,11 @@ public class SobCharacter implements Serializable {
 
     private void setCombat(MeleeWeapon meleeWeapon) {
         this.combatBonus += meleeWeapon.getCombat();
+        for(Attachment attachment : meleeWeapon.getAttachments()) {
+            if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                this.combatBonus++;
+            }
+        }
         if (this.meleeDamageDie < meleeWeapon.getDamageDie()) {
             this.setMeleeDamageDie(meleeWeapon.getDamageDie());
         }

@@ -46,7 +46,7 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
 
         ArrayList<Attachment> attachmentList = new ArrayList<>(0);
         for (Attachment attachment : sobCharacter.getAttachments()) {
-            attachmentList.add(attachment);
+            if(attachment.getEquipped().equals(FALSE)) attachmentList.add(attachment);
         }
         adapter.setAttachment(attachmentList);
 
@@ -101,7 +101,7 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ManagementMenuActivity.class);
+        Intent intent = new Intent(this, ChangeLoadoutActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();
@@ -129,8 +129,6 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
                 Attachment current = mAttachment.get(position);
                 String text = current.getName();
                 holder.attachmentItemView.setText(text);
-                if(current.getEquipped().equals(TRUE)) holder.attachmentItemView.setTextColor(Color.parseColor("#00FF00"));
-                else holder.attachmentItemView.setTextColor(Color.parseColor("#FF0000"));
             } else {
                 holder.attachmentItemView.setText("No Attachment");
             }
@@ -141,8 +139,7 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
                     attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text;
-                    if(attachment.getEquipped().equals(TRUE)) text = "Unequip " + attachment.getName();
-                    else text = "Equip " + attachment.getName();
+                    text = "Attach " + attachment.getName();
                     btn.setText(text);
                 }
             });

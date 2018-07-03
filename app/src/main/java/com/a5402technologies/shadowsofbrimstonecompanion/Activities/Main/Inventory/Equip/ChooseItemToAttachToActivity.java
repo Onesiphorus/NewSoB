@@ -58,7 +58,6 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attach_item);
-        //TODO add character money/ds/xp to shop tabs
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         type = getIntent().getStringExtra("type");
@@ -73,7 +72,12 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
 
             ArrayList<GearBase> filteredList = new ArrayList<>(0);
             for(GearBase item : sobCharacter.getGear()) {
-                if(item.getUpgrades() > item.getAttachments().size()) {
+                Integer slotsUsed = 0;
+                for(Attachment attachment : item.getAttachments())
+                {
+                    slotsUsed += attachment.getSlotsRequired();
+                }
+                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -86,7 +90,12 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
 
             ArrayList<Clothing> filteredList = new ArrayList<>(0);
             for(Clothing item : sobCharacter.getClothing()) {
-                if(item.getUpgrades() > item.getAttachments().size()) {
+                Integer slotsUsed = 0;
+                for(Attachment attachment : item.getAttachments())
+                {
+                    slotsUsed += attachment.getSlotsRequired();
+                }
+                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -99,7 +108,12 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
 
             ArrayList<MeleeWeapon> filteredList = new ArrayList<>(0);
             for(MeleeWeapon item : sobCharacter.getMeleeWeapons()) {
-                if(item.getUpgrades() > item.getAttachments().size()) {
+                Integer slotsUsed = 0;
+                for(Attachment attachment : item.getAttachments())
+                {
+                    slotsUsed += attachment.getSlotsRequired();
+                }
+                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -112,7 +126,12 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
 
             ArrayList<RangedWeapon> filteredList = new ArrayList<>(0);
             for(RangedWeapon item : sobCharacter.getRangedWeapons()) {
-                if(item.getUpgrades() > item.getAttachments().size()) {
+                Integer slotsUsed = 0;
+                for(Attachment attachment : item.getAttachments())
+                {
+                    slotsUsed += attachment.getSlotsRequired();
+                }
+                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }

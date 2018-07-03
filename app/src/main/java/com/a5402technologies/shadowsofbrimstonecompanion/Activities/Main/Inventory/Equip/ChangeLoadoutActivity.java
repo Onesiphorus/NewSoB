@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ClothingSlotsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -41,6 +42,13 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
         setClothing(sobCharacter.getClothing());
         setViews();
         setOnClickButtons();
+
+        findViewById(R.id.btn_manage_item_upgrades).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     public void setViews() {
@@ -231,7 +239,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ManagementMenuActivity.class);
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();

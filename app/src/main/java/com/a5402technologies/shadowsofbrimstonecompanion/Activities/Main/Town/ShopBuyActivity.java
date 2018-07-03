@@ -53,7 +53,6 @@ public class ShopBuyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_buy);
-        //TODO add character money/ds/xp to shop tabs
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         shop = getIntent().getStringExtra("shop_type");
@@ -63,6 +62,18 @@ public class ShopBuyActivity extends AppCompatActivity {
         tv.setText(shop);
         tv = findViewById(R.id.tv_gear_type);
         tv.setText(type);
+        String text;
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$" + sobCharacter.getGold().toString();
+        tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+
+        tv = findViewById(R.id.sob_level);
+        tv.setText(String.format(sobCharacter.getLevel().toString()));
+
 
         if(type.equals("gear")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);

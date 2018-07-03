@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
@@ -41,7 +42,12 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
         setStats();
 
-
+        findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
 
         findViewById(R.id.btn_sob_gear).setOnClickListener((View view) -> {
