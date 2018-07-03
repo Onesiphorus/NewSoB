@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,9 +35,12 @@ import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeapon
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopBuyActivity extends AppCompatActivity {
+import static java.lang.Boolean.TRUE;
+
+public class ChooseItemToAttachToActivity extends AppCompatActivity {
+
     private SobCharacter sobCharacter;
-    private String shop;
+    private Attachment sentAttachment;
     private String type;
     private GearBaseViewModel mGearBaseViewModel;
     private GearBase gearBase;
@@ -52,17 +57,13 @@ public class ShopBuyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_buy);
+        setContentView(R.layout.activity_attach_item);
         //TODO add character money/ds/xp to shop tabs
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
-        shop = getIntent().getStringExtra("shop_type");
-        type = getIntent().getStringExtra("gear_type");
+        type = getIntent().getStringExtra("type");
+        sentAttachment = (Attachment) getIntent().getSerializableExtra("attachment");
 
-        TextView tv = findViewById(R.id.tv_shop_name);
-        tv.setText(shop);
-        tv = findViewById(R.id.tv_gear_type);
-        tv.setText(type);
 
         if(type.equals("gear")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -70,166 +71,84 @@ public class ShopBuyActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            mGearBaseViewModel = ViewModelProviders.of(this).get(GearBaseViewModel.class);
-
-            mGearBaseViewModel.getAllGear().observe(this, new Observer<List<GearBase>>() {
-                @Override
-                public void onChanged(@Nullable List<GearBase> gearBase) {
-                    ArrayList<GearBase> filteredList = new ArrayList<>(0);
-                    for(GearBase item : gearBase) {
-                        if(item.getShop().equals(shop)) filteredList.add(item);
-                    }
-                    adapter.setGearBase(filteredList);
+            ArrayList<GearBase> filteredList = new ArrayList<>(0);
+            for(GearBase item : sobCharacter.getGear()) {
+                if(item.getUpgrades() > item.getAttachments().size()) {
+                    filteredList.add(item);
                 }
-            });
+            }
+            adapter.setGearBase(filteredList);
         } else if(type.equals("clothing")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final ClothingListAdapter adapter = new ClothingListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            mClothingViewModel = ViewModelProviders.of(this).get(ClothingViewModel.class);
-
-            mClothingViewModel.getAllClothing().observe(this, new Observer<List<Clothing>>() {
-                @Override
-                public void onChanged(@Nullable List<Clothing> clothing) {
-                    ArrayList<Clothing> filteredList = new ArrayList<>(0);
-                    for(Clothing item : clothing) {
-                        if(item.getShop().equals(shop)) filteredList.add(item);
-                    }
-                    adapter.setClothing(filteredList);
+            ArrayList<Clothing> filteredList = new ArrayList<>(0);
+            for(Clothing item : sobCharacter.getClothing()) {
+                if(item.getUpgrades() > item.getAttachments().size()) {
+                    filteredList.add(item);
                 }
-            });
+            }
+            adapter.setClothing(filteredList);
         } else if(type.equals("melee")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            mMeleeWeaponViewModel = ViewModelProviders.of(this).get(MeleeWeaponViewModel.class);
-
-            mMeleeWeaponViewModel.getAllMeleeWeapons().observe(this, new Observer<List<MeleeWeapon>>() {
-                @Override
-                public void onChanged(@Nullable List<MeleeWeapon> meleeWeapon) {
-                    ArrayList<MeleeWeapon> filteredList = new ArrayList<>(0);
-                    for(MeleeWeapon item : meleeWeapon) {
-                        if(item.getShop().equals(shop)) filteredList.add(item);
-                    }
-                    adapter.setMeleeWeapon(filteredList);
+            ArrayList<MeleeWeapon> filteredList = new ArrayList<>(0);
+            for(MeleeWeapon item : sobCharacter.getMeleeWeapons()) {
+                if(item.getUpgrades() > item.getAttachments().size()) {
+                    filteredList.add(item);
                 }
-            });
+            }
+            adapter.setMeleeWeapon(filteredList);
         } else if(type.equals("ranged")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            mRangedWeaponViewModel = ViewModelProviders.of(this).get(RangedWeaponViewModel.class);
-
-            mRangedWeaponViewModel.getAllRangedWeapons().observe(this, new Observer<List<RangedWeapon>>() {
-                @Override
-                public void onChanged(@Nullable List<RangedWeapon> rangedWeapon) {
-                    ArrayList<RangedWeapon> filteredList = new ArrayList<>(0);
-                    for(RangedWeapon item : rangedWeapon) {
-                        if(item.getShop().equals(shop)) filteredList.add(item);
-                    }
-                    adapter.setRangedWeapon(filteredList);
+            ArrayList<RangedWeapon> filteredList = new ArrayList<>(0);
+            for(RangedWeapon item : sobCharacter.getRangedWeapons()) {
+                if(item.getUpgrades() > item.getAttachments().size()) {
+                    filteredList.add(item);
                 }
-            });
-        }else if(type.equals("attachment")) {
-            RecyclerView recyclerView = findViewById(R.id.recyclerview);
-            final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            mAttachmentViewModel = ViewModelProviders.of(this).get(AttachmentViewModel.class);
-
-            mAttachmentViewModel.getAllAttachment().observe(this, new Observer<List<Attachment>>() {
-                @Override
-                public void onChanged(@Nullable List<Attachment> attachments) {
-                    ArrayList<Attachment> filteredList = new ArrayList<>(0);
-                    for(Attachment item : attachments) {
-                        if(item.getShop().equals(shop)) filteredList.add(item);
-                    }
-                    adapter.setAttachment(filteredList);
-                }
-            });
+            }
+            adapter.setRangedWeapon(filteredList);
         }
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ShopBuyActivity.class);
+            Integer ds = sobCharacter.getDarkStoneShards();
+            Integer cost = sentAttachment.getRequiredDarkStoneToAttach();
+            Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("gear_type", type);
-            intent.putExtra("shop_type", shop);
             String toast;
-            if (rangedWeapon != null) {
-                if(sobCharacter.getGold() >= rangedWeapon.getCost() && sobCharacter.getDarkStoneShards() >= rangedWeapon.getDarkstoneCost()) {
-                    sobCharacter.removeGold(rangedWeapon.getCost());
-                    sobCharacter.removeDarkstoneShards(rangedWeapon.getDarkstoneCost());
-                    sobCharacter.addRangedWeapon(rangedWeapon);
-                    Log.e("SUCCESS: ", rangedWeapon.getName() + " purchased and added to inventory.");
-                    startActivity(intent);
-                    toast = rangedWeapon.getName() + " purchased and added to inventory.";
-                    finish();
+            if(cost <= ds) {
+                sobCharacter.setDarkStoneShards(ds - cost);
+                sobCharacter.findAttachmentByName(sentAttachment.getName()).setEquipped(TRUE);
+                if (rangedWeapon != null) {
+                    rangedWeapon.addAttachment(sentAttachment);
+                    toast = sentAttachment.getName() + " attached to " + rangedWeapon.getName();
+                } else
+                if (meleeWeapon != null) {
+                    meleeWeapon.addAttachment(sentAttachment);
+                    toast = sentAttachment.getName() + " attached to " + meleeWeapon.getName();
+                } else
+                if (gearBase != null) {
+                    gearBase.addAttachment(sentAttachment);
+                    toast = sentAttachment.getName() + " attached to " + gearBase.getName();
+                } else
+                if (clothing != null) {
+                    clothing.addAttachment(sentAttachment);
+                    toast = sentAttachment.getName() + " attached to " + clothing.getName();
                 } else {
-                    toast = "Can't afford to buy " + rangedWeapon.getName();
+                    toast = "Nothing selected.";
                 }
-            } else
-            if (meleeWeapon != null) {
-                if(sobCharacter.getGold() >= meleeWeapon.getCost() && sobCharacter.getDarkStoneShards() >= meleeWeapon.getDarkstoneCost()) {
-                    sobCharacter.removeGold(meleeWeapon.getCost());
-                    sobCharacter.removeDarkstoneShards(meleeWeapon.getDarkstoneCost());
-                    sobCharacter.addMeleeWeapon(meleeWeapon);
-                    Log.e("SUCCESS: ", meleeWeapon.getName() + " purchased and added to inventory.");
-                    toast = meleeWeapon.getName() + " purchased and added to inventory.";
-                    startActivity(intent);
-                    finish();
-                } else {
-                    toast = "Can't afford to buy " + meleeWeapon.getName();
-                }
-            } else
-            if (gearBase != null) {
-                if(sobCharacter.getGold() >= gearBase.getCost() && sobCharacter.getDarkStoneShards() >= gearBase.getDarkstoneCost()) {
-                    sobCharacter.removeGold(gearBase.getCost());
-                    sobCharacter.removeDarkstoneShards(gearBase.getDarkstoneCost());
-                    sobCharacter.addGear(gearBase);
-                    Log.e("SUCCESS: ", gearBase.getName() + " purchased and added to inventory.");
-                    toast = gearBase.getName() + " purchased and added to inventory.";
-                    startActivity(intent);
-                    finish();
-                } else {
-                    toast = "Can't afford to buy " + gearBase.getName();
-                }
-            } else
-            if (clothing != null) {
-                if(sobCharacter.getGold() >= clothing.getCost() && sobCharacter.getDarkStoneShards() >= clothing.getDarkstoneCost()) {
-                    sobCharacter.removeGold(clothing.getCost());
-                    sobCharacter.removeDarkstoneShards(clothing.getDarkstoneCost());
-                    sobCharacter.addClothing(clothing);
-                    Log.e("SUCCESS: ", clothing.getName() + " purchased and added to inventory.");
-                    toast = clothing.getName() + " purchased and added to inventory.";
-                    startActivity(intent);
-                    finish();
-                } else {
-                    toast = "Can't afford to buy " + clothing.getName();
-                }
-            } else
-            if (attachment != null) {
-                if(sobCharacter.getGold() >= attachment.getCost() && sobCharacter.getDarkStoneShards() >= attachment.getDarkstoneCost()) {
-                    sobCharacter.removeGold(attachment.getCost());
-                    sobCharacter.removeDarkstoneShards(attachment.getDarkstoneCost());
-                    sobCharacter.addAttachment(attachment);
-                    Log.e("SUCCESS: ", attachment.getName() + " purchased and added to inventory.");
-                    toast = attachment.getName() + " purchased and added to inventory.";
-                    startActivity(intent);
-                    finish();
-                } else {
-                    toast = "Can't afford to buy " + attachment.getName();
-                }
-            } else {
-                toast = "Nothing selected.";
-            }
+            } else toast = "Need more Dark Stone!";
             Toast.makeText(this, toast, Toast.LENGTH_LONG).show();
+            startActivity(intent);
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> onBackPressed());
@@ -256,11 +175,7 @@ public class ShopBuyActivity extends AppCompatActivity {
         public void onBindViewHolder(GearBaseListAdapter.GearBaseViewHolder holder, int position) {
             if (null != mGearBase) {
                 GearBase current = mGearBase.get(position);
-                String label = current.getName() + ": $" + current.getCost();
-                if(current.getDarkstoneCost() > 0) {
-                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
-                }
-                holder.gearBaseItemView.setText(label);
+                holder.gearBaseItemView.setText(current.getName());
             } else {
                 holder.gearBaseItemView.setText("No Gear for sale.");
             }
@@ -270,13 +185,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     gearBase = mGearBase.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + gearBase.getName() + " for";
-                    if(gearBase.getCost() > 0) {
-                        text += " $" + gearBase.getCost();
-                    }
-                    if(gearBase.getDarkstoneCost() > 0) {
-                        text += " " + gearBase.getDarkstoneCost() + " Dark Stone";
-                    }
+                    String text = "Attach " + sentAttachment.getName() + " to " + gearBase.getName();
                     btn.setText(text);
                 }
             });
@@ -324,11 +233,7 @@ public class ShopBuyActivity extends AppCompatActivity {
         public void onBindViewHolder(ClothingViewHolder holder, int position) {
             if (null != mClothing) {
                 Clothing current = mClothing.get(position);
-                String label = current.getName() + ": $" + current.getCost();
-                if(current.getDarkstoneCost() > 0) {
-                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
-                }
-                holder.clothingItemView.setText(label);
+                holder.clothingItemView.setText(current.getName());
             } else {
                 holder.clothingItemView.setText("No Clothing for sale.");
             }
@@ -338,13 +243,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + clothing.getName() + " for";
-                    if(clothing.getCost() > 0) {
-                        text += " $" + clothing.getCost();
-                    }
-                    if(clothing.getDarkstoneCost() > 0) {
-                        text += " " + clothing.getDarkstoneCost() + " Dark Stone";
-                    }
+                    String text = "Attach " + sentAttachment.getName() + " to " + clothing.getName();
                     btn.setText(text);
                 }
             });
@@ -392,11 +291,7 @@ public class ShopBuyActivity extends AppCompatActivity {
         public void onBindViewHolder(MeleeWeaponListAdapter.MeleeWeaponViewHolder holder, int position) {
             if (null != mMeleeWeapon) {
                 MeleeWeapon current = mMeleeWeapon.get(position);
-                String label = current.getName() + ": $" + current.getCost();
-                if(current.getDarkstoneCost() > 0) {
-                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
-                }
-                holder.meleeWeaponItemView.setText(label);
+                holder.meleeWeaponItemView.setText(current.getName());
             } else {
                 holder.meleeWeaponItemView.setText("No Melee Weapon for sale.");
             }
@@ -406,13 +301,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + meleeWeapon.getName() + " for";
-                    if(meleeWeapon.getCost() > 0) {
-                        text += " $" + meleeWeapon.getCost();
-                    }
-                    if(meleeWeapon.getDarkstoneCost() > 0) {
-                        text += " " + meleeWeapon.getDarkstoneCost() + " Dark Stone";
-                    }
+                    String text = "Attach " + sentAttachment.getName() + " to " + meleeWeapon.getName();
                     btn.setText(text);
                 }
             });
@@ -459,11 +348,7 @@ public class ShopBuyActivity extends AppCompatActivity {
         public void onBindViewHolder(RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
             if (null != mRangedWeapon) {
                 RangedWeapon current = mRangedWeapon.get(position);
-                String label = current.getName() + ": $" + current.getCost();
-                if(current.getDarkstoneCost() > 0) {
-                    label += " + " + current.getDarkstoneCost() + " Dark Stone";
-                }
-                holder.rangedWeaponItemView.setText(label);
+                holder.rangedWeaponItemView.setText(current.getName());
             } else {
                 holder.rangedWeaponItemView.setText("No Ranged Weapons for sale");
             }
@@ -473,13 +358,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + rangedWeapon.getName() + " for";
-                    if(rangedWeapon.getCost() > 0) {
-                        text += " $" + rangedWeapon.getCost();
-                    }
-                    if(rangedWeapon.getDarkstoneCost() > 0) {
-                        text += " " + rangedWeapon.getDarkstoneCost() + " Dark Stone";
-                    }
+                    String text = "Attach " + sentAttachment.getName() + " to " + rangedWeapon.getName();
                     btn.setText(text);
                 }
             });
@@ -541,7 +420,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + attachment.getName() + " for";
+                    String text = attachment.getName();
                     if(attachment.getCost() > 0) {
                         text += " $" + attachment.getCost();
                     }
@@ -577,9 +456,9 @@ public class ShopBuyActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, VisitShopActivity.class);
+        Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
         intent.putExtra("serializable_object", sobCharacter);
-        intent.putExtra("shop_type", shop);
+        intent.putExtra("attachment", sentAttachment);
         startActivity(intent);
         finish();
     }

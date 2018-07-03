@@ -48,7 +48,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
         adapter.setRangedWeapon(RangedWeaponOptions);
 
         Button btn = findViewById(R.id.btn_unequip);
-        String text = null != sobCharacter.getRightHand() ? "Unequip " + sobCharacter.getRightHand().getName() : "Empty";
+        String text = null != sobCharacter.getLeftHand() ? "Unequip " + sobCharacter.getLeftHand().getName() : "Empty";
         btn.setText(text);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    tools:context=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/content_resources"/>
+
+
+        <include layout="@layout/content_choose_item"/>
+
+
+    </LinearLayout>
+    <include layout="@layout/content_accept_cancel"/>
+
+</android.support.constraint.ConstraintLayout>

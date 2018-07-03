@@ -51,7 +51,9 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
         adapter.setAttachment(attachmentList);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
+            Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("attachment", attachment);
             /*
             if(attachment != null) {
                 intent.putExtra("serializable_object", attachment);
@@ -60,10 +62,11 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
             finish();
             */
             if (attachment != null) {
-                if(attachment.getEquipped().equals(FALSE)) sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(TRUE);
+                /*if(attachment.getEquipped().equals(FALSE)) sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(TRUE);
                 else sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(FALSE);
                 //TODO finish attachment checks
-                intent.putExtra("serializable_object", sobCharacter);
+                intent.putExtra("serializable_object", sobCharacter);*/
+
             }
             startActivity(intent);
             finish();

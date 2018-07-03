@@ -108,7 +108,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.Main.Inventory.AddItems.AddAttachmentActivity" />
         <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment"></activity>
     </application>
 
 </manifest>
