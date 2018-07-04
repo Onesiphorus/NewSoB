@@ -52,6 +52,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
                     new PopulateDbAsync(INSTANCE).execute();
+                    //TODO Divide DB by Sets and use flags here
                 }
             };
 
@@ -847,6 +848,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Artifact
             gearBase = new GearBase("Three-Eyed Skull");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.SKULL.label());
             gearBase.setArtifact(TRUE);
             gearBase.setWeight(1);
@@ -854,6 +856,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Healing Stone");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.MAGIK.label());
             gearBase.setArtifact(TRUE);
             gearBase.setWeight(1);
@@ -861,6 +864,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Amulet of Heinghal");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.MAGIK.label());
             gearBase.addTrait(TraitsEnum.AMULET.label());
             gearBase.setArtifact(TRUE);
@@ -869,6 +873,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Amulet of Kotak");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.MAGIK.label());
             gearBase.addTrait(TraitsEnum.AMULET.label());
             gearBase.setArtifact(TRUE);
@@ -877,6 +882,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Tome of Vontarro");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.OCCULT.label());
             gearBase.addTrait(TraitsEnum.BOOK.label());
             gearBase.setArtifact(TRUE);
@@ -885,6 +891,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Soul Parasite");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.VOID.label());
             meleeWeapon.addTrait(TraitsEnum.CREATURE.label());
             gearBase.setArtifact(TRUE);
@@ -894,6 +901,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Book of the Occult");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.BOOK.label());
             gearBase.addTrait(TraitsEnum.OCCULT.label());
             gearBase.setArtifact(TRUE);
@@ -904,6 +912,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Ring of Tar'Kul");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.MAGIK.label());
             meleeWeapon.addTrait(TraitsEnum.RING.label());
             gearBase.setArtifact(TRUE);
@@ -912,6 +921,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Book of the Mad King");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.BOOK.label());
             meleeWeapon.addTrait(TraitsEnum.OCCULT.label());
             gearBase.setArtifact(TRUE);
@@ -920,6 +930,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Horrific Statue");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.DARK_STONE.label());
             gearBase.addTrait(TraitsEnum.STATUE.label());
             gearBase.setArtifact(TRUE);
@@ -992,6 +1003,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Artifact
             rangedWeapon = new RangedWeapon("Void Pistol", 8, 2);
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.setArtifact(TRUE);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.addTrait(TraitsEnum.VOID.label());
@@ -1003,6 +1015,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao.insert(rangedWeapon);
             rangedWeapon = new RangedWeapon("Dead Man's Iron", 6, 3);
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.setArtifact(TRUE);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.addTrait(TraitsEnum.OCCULT.label());
@@ -1012,6 +1025,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao.insert(rangedWeapon);
             rangedWeapon = new RangedWeapon("Hell Pistol", 6, 2);
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.setArtifact(TRUE);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.addTrait(TraitsEnum.DEMONIC.label());
@@ -1022,6 +1036,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mRangedWeaponDao.insert(rangedWeapon);
             rangedWeapon = new RangedWeapon("The Judge", 6, 3);
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.setArtifact(TRUE);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.setArtifact(TRUE);
@@ -1112,6 +1127,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Artifact
             meleeWeapon = new MeleeWeapon("Hell Sword");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.HAND_WEAPON.label());
             meleeWeapon.addTrait(TraitsEnum.BLADE.label());
             meleeWeapon.addTrait(TraitsEnum.DEMONIC.label());
@@ -1122,6 +1138,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao.insert(meleeWeapon);
             meleeWeapon = new MeleeWeapon("Void Sword");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.HAND_WEAPON.label());
             meleeWeapon.addTrait(TraitsEnum.CREATURE.label());
             meleeWeapon.addTrait(TraitsEnum.VOID.label());
@@ -1133,6 +1150,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao.insert(meleeWeapon);
             meleeWeapon = new MeleeWeapon("Black Fang Hatchet");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.addTrait(TraitsEnum.HAND_WEAPON.label());
             meleeWeapon.addTrait(TraitsEnum.TRIBAL.label());
             meleeWeapon.setArtifact(TRUE);
@@ -1147,6 +1165,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon = new MeleeWeapon("Orb of Ro'kal");
             meleeWeapon.addTrait(TraitsEnum.MAGIK.label());
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
             meleeWeapon.setArtifact(TRUE);
             meleeWeapon.setWeight(1);
             meleeWeapon.setSell(425);
@@ -1649,6 +1668,69 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setWeight(1);
             meleeWeapon.setSell(325);
             mMeleeWeaponDao.insert(meleeWeapon);
+            meleeWeapon = new MeleeWeapon("Jeweled Blade");
+            meleeWeapon.setSet(SetListEnum.CRIMSON_HAND.code());
+            meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
+            meleeWeapon.addTrait(TraitsEnum.HAND_WEAPON.label());
+            meleeWeapon.addTrait(TraitsEnum.BLADE.label());
+            meleeWeapon.setCombat(1);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(450);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            gearBase = new GearBase("Book of Gom'Jaharii");
+            gearBase.setSet(SetListEnum.CRIMSON_HAND.code());
+            gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
+            gearBase.addTrait(TraitsEnum.BOOK.label());
+            gearBase.addTrait(TraitsEnum.ANCIENT.label());
+            gearBase.setWeight(1);
+            gearBase.setSell(550);
+            mGearBaseDao.insert(gearBase);
+            clothing = new Clothing("Inquisitor's Helmet");
+            clothing.setSet(SetListEnum.CRIMSON_HAND.code());
+            clothing.addTrait(TraitsEnum.ARTIFACT.label());
+            clothing.addTrait(TraitsEnum.CLOTHING.label());
+            clothing.addTrait(TraitsEnum.FACE.label());
+            clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setFace(TRUE);
+            clothing.setHat(TRUE);
+            clothing.setArtifact(TRUE);
+            clothing.addModifier(ModifiersEnum.LORE.label());
+            clothing.addModifier(ModifiersEnum.MAX_SANITY.label());
+            clothing.addModifier(ModifiersEnum.MAX_SANITY.label());
+            clothing.addModifier(ModifiersEnum.MAX_SANITY.label());
+            clothing.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            clothing.setWeight(1);
+            clothing.setSell(750);
+            mClothingDao.insert(clothing);
+            clothing = new Clothing("Ornate Mask");
+            clothing.setSet(SetListEnum.CRIMSON_HAND.code());
+            clothing.addTrait(TraitsEnum.ARTIFACT.label());
+            clothing.addTrait(TraitsEnum.CLOTHING.label());
+            clothing.addTrait(TraitsEnum.FACE.label());
+            clothing.addTrait(TraitsEnum.CULT.label());
+            clothing.setArtifact(TRUE);
+            clothing.addPenalty(ModifiersEnum.MAX_SANITY.label());
+            clothing.addPenalty(ModifiersEnum.MAX_SANITY.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.setWeight(1);
+            clothing.setSell(450);
+            clothing.setFace(TRUE);
+            mClothingDao.insert(clothing);
+            gearBase = new GearBase("Ring of Zu");
+            gearBase.setSet(SetListEnum.CRIMSON_HAND.code());
+            gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
+            gearBase.addTrait(TraitsEnum.RING.label());
+            gearBase.addTrait(TraitsEnum.ANCIENT.label());
+            gearBase.addTrait(TraitsEnum.MAGIK.label());
+            gearBase.addModifier(ModifiersEnum.LORE.label());
+            gearBase.addModifier(ModifiersEnum.STRENGTH.label());
+            gearBase.setSell(850);
+            mGearBaseDao.insert(gearBase);
+
 
         //Werewolves Den
             rangedWeapon = new RangedWeapon("Beast Hunter's Rifle", 10, 2);
@@ -1661,6 +1743,39 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setWeight(1);
             rangedWeapon.setSell(450);
             mRangedWeaponDao.insert(rangedWeapon);
+            meleeWeapon = new MeleeWeapon("Axe of Savagery");
+            meleeWeapon.setSet(SetListEnum.WEREWOLVES_DEN.code());
+            meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            meleeWeapon.setArtifact(TRUE);
+            meleeWeapon.addTrait(TraitsEnum.HAND_WEAPON.label());
+            meleeWeapon.addTrait(TraitsEnum.TRIBAL.label());
+            meleeWeapon.addModifier(ModifiersEnum.LORE.label());
+            meleeWeapon.setCombat(1);
+            meleeWeapon.setWeight(1);
+            meleeWeapon.setSell(725);
+            mMeleeWeaponDao.insert(meleeWeapon);
+            rangedWeapon = new RangedWeapon("Bloodborn Pistol", 7, 2);
+            rangedWeapon.setSet(SetListEnum.WEREWOLVES_DEN.code());
+            rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.addTrait(TraitsEnum.GUN.label());
+            rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
+            rangedWeapon.addTrait(TraitsEnum.BLOOD.label());
+            rangedWeapon.setArtifact(TRUE);
+            rangedWeapon.setWeight(1);
+            rangedWeapon.setSell(825);
+            mRangedWeaponDao.insert(rangedWeapon);
+            gearBase = new GearBase("Moon Stone");
+            gearBase.setSet(SetListEnum.WEREWOLVES_DEN.code());
+            gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.addTrait(TraitsEnum.TRIBAL.label());
+            gearBase.addTrait(TraitsEnum.MOON.label());
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(450);
+            mGearBaseDao.insert(gearBase);
+
+
+
 
         //Black Fang
             attachment = new Attachment("Vulture Feather", 1);
@@ -1670,6 +1785,26 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             attachment.addRestriction(TraitsEnum.FRONTIER.label());
             attachment.setSell(150);
             mAttacmentDao.insert(attachment);
+            gearBase = new GearBase("Tribal Void Dance");
+            gearBase.setSet(SetListEnum.BLACK_FANG_TRIBE.code());
+            gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.addTrait(TraitsEnum.TRIBAL.label());
+            gearBase.addTrait(TraitsEnum.DANCE.label());
+            gearBase.addTrait(TraitsEnum.VOID.label());
+            gearBase.setArtifact(TRUE);
+            gearBase.addRestriction(TraitsEnum.TRIBAL.label());
+            gearBase.setSell(500);
+            mGearBaseDao.insert(gearBase);
+            gearBase = new GearBase("Trophy Necklace");
+            gearBase.setSet(SetListEnum.BLACK_FANG_TRIBE.code());
+            gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.addTrait(TraitsEnum.CHARM.label());
+            gearBase.addTrait(TraitsEnum.VOID.label());
+            gearBase.setArtifact(TRUE);
+            gearBase.setWeight(1);
+            gearBase.setSell(450);
+            mGearBaseDao.insert(gearBase);
+
 
         //Feral Vampires
             gearBase = new GearBase("Garland");
@@ -1697,6 +1832,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addTrait(TraitsEnum.MEDICAL.label());
             gearBase.setSell(550);
             mGearBaseDao.insert(gearBase);
+
 
         //Lost Army
             gearBase = new GearBase("Flag of the Fallen");
@@ -1748,6 +1884,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon = new RangedWeapon("Lost Army Hell Musket", 10, 1);
             rangedWeapon.setSet(SetListEnum.LOST_ARMY.code());
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
+            rangedWeapon.setArtifact(TRUE);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.RIFLE.label());
             rangedWeapon.addTrait(TraitsEnum.LOST_ARMY.label());
@@ -1762,13 +1899,15 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Journal from the Alamo");
             gearBase.setSet(SetListEnum.LOST_ARMY.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.BOOK.label());
             gearBase.addTrait(TraitsEnum.RELIC.label());
             gearBase.addModifier(ModifiersEnum.LORE.label());
             gearBase.setWeight(1);
             gearBase.setSell(850);
             mGearBaseDao.insert(gearBase);
-            
+
+
 
         //Scafford Gang
             rangedWeapon = new RangedWeapon("Scafford Pistol", 8, 1);
@@ -2080,6 +2219,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Expedition Chest");
             gearBase.setSet(SetListEnum.TREDERRA.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.CONTAINER.label());
             gearBase.addModifier(ModifiersEnum.MAX_HEALTH.label());
             gearBase.addModifier(ModifiersEnum.MAX_HEALTH.label());
@@ -2093,6 +2233,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Void Canary");
             gearBase.setSet(SetListEnum.TREDERRA.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.CREATURE.label());
             gearBase.addTrait(TraitsEnum.VOID.label());
             gearBase.setSell(350);
@@ -2100,6 +2241,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Lucky Horseshoe");
             gearBase.setSet(SetListEnum.TREDERRA.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.CHARM.label());
             gearBase.setWeight(1);
             gearBase.setSell(350);
@@ -2109,6 +2251,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Bone Dominoes");
             gearBase.setSet(SetListEnum.DERELICT_SHIP.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.CHARM.label());
             gearBase.setWeight(1);
             gearBase.setSell(425);
@@ -2116,6 +2259,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Dark Stone Prism");
             gearBase.setSet(SetListEnum.DERELICT_SHIP.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.DARK_STONE.label());
             gearBase.setDarkStone(1);
             gearBase.setWeight(1);
@@ -2126,6 +2270,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase = new GearBase("Shadow Shard");
             gearBase.setSet(SetListEnum.CAVERNS_OF_CYNDER.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
+            gearBase.setArtifact(TRUE);
             gearBase.addTrait(TraitsEnum.MAGIK.label());
             gearBase.addTrait(TraitsEnum.DARKNESS.label());
             gearBase.setDarkStone(2);

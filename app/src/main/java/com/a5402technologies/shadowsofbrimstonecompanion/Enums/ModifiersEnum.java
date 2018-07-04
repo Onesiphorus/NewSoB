@@ -24,7 +24,8 @@ public enum ModifiersEnum {
     MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY),
     RANGED_DAMAGE("Ranged Damage", CharacterClassEnum.ANY),
     RANGE("Range", CharacterClassEnum.ANY),
-    SIDE_BAG_CAPACITY("Side Bag Capacity", CharacterClassEnum.ANY);
+    SIDE_BAG_CAPACITY("Side Bag Capacity", CharacterClassEnum.ANY),
+    MAX_CORRUPTION("Max Corruption", CharacterClassEnum.ANY);
     //TODO finish modifiers
 
 

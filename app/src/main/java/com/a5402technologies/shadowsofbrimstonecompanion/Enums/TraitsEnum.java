@@ -68,7 +68,11 @@ public enum TraitsEnum {
     ICON("Icon", "ICON"),
     DARKNESS("Darkness", "DARKNESS"),
     LOST_ARMY("Lost Army", "LOST ARMY"),
-    RELIC("Relic", "RELIC");
+    RELIC("Relic", "RELIC"),
+    ANCIENT("Ancient", "ANCIENT"),
+    BLOOD("Blood", "BLOOD"),
+    MOON("Moon", "MOON"),
+    DANCE("Dance", "DANCE");
     //TODO Finish Traits
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
