@@ -84,7 +84,12 @@ public enum TraitsEnum {
     TATOO("Tatoo", "TATOO"),
     TIME("Time", "TIME"),
     FLASK("Flask", "FLASK"),
-    ALCOHOL("Alcohol", "ALCOHOL");
+    ALCOHOL("Alcohol", "ALCOHOL"),
+    SHIELD("Shield", "SHIELD"),
+    SCIENCE("Science", "SCIENCE"),
+    BOW("Bow", "BOW"),
+    NECK("Neck", "NECK"),
+    HELL("Hell", "HELL");
 
     //TODO Finish Traits
 

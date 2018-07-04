@@ -11,7 +11,13 @@ public enum ShopEnum {
     BLACKSMITH("Blacksmith", "BLK"),
     CHURCH("Church", "CH"),
     FRONTIER_OUTPOST("Frontier Outpost", "FRN"),
-    SALOON("Saloon", "SAL");
+    SALOON("Saloon", "SAL"),
+    SHERIFFS_OFFICE("Sheriff's Office", "SHF"),
+    SMUGGLERS_DEN("Smuggler's Den", "SMD"),
+    MUTANT_QUARTER("Mutant Quarter", "MUTANT QUARTER"),
+    GAMBLNG_HALL("Gambling Hall", "GAMBLING HALL"),
+    STREET_MARKET("Street Market", "STREET MARKET"),
+    INDIAN_TRADING_POST("Indian Trading Post", "INDIAN TRADING POST");
 
     private static Map<String, ShopEnum> lookupByCode = new HashMap<>();
     private static Map<String, ShopEnum> lookupByLabel = new HashMap<>();

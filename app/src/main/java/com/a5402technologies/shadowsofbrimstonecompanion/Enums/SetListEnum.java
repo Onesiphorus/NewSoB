@@ -24,7 +24,9 @@ public enum SetListEnum {
     JARGONO_NATIVE("Jargono Native", "HCJN"),
     COWBOY("Cowboy", "HCC"),
     MASTERS_OF_THE_VOID("Masters of the Void", "MV"),
-    SERPENTMEN_OF_JARGONO("Serpentmen of Jargono", "SJ");
+    SERPENTMEN_OF_JARGONO("Serpentmen of Jargono", "SJ"),
+    HERO_CLASS("Hero Class", "HC"),
+    FRONTIER_TOWN("Frontier Town", "FT");
     //TODO finish setLists
 
 
