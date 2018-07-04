@@ -23,7 +23,8 @@ public enum ModifiersEnum {
     COMBAT("Combat", CharacterClassEnum.ANY),
     MELEE_DAMAGE("Melee Damage", CharacterClassEnum.ANY),
     RANGED_DAMAGE("Ranged Damage", CharacterClassEnum.ANY),
-    RANGE("Range", CharacterClassEnum.ANY);
+    RANGE("Range", CharacterClassEnum.ANY),
+    SIDE_BAG_CAPACITY("Side Bag Capacity", CharacterClassEnum.ANY);
     //TODO finish modifiers
 
 

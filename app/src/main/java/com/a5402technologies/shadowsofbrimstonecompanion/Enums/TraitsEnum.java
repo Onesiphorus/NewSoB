@@ -23,7 +23,7 @@ public enum TraitsEnum {
     MELEE("Melee", "MELEE"),
     TRANSPORT("Transport", "TRANSPORT"),
     MUSIC("Music", "MUSIC"),
-    MILITARY("Military","MILITARY"),
+    MILITARY("Military", "MILITARY"),
     SURVIVAL("Survival", "SURVIVAl"),
     FACE("Face", "FACE"),
     HAT("Hat", "HAT"),
@@ -58,7 +58,17 @@ public enum TraitsEnum {
     CREATURE("Creature", "CREATURE"),
     AMULET("Amulet", "AMULET"),
     SKULL("Skull", "SKULL"),
-    DEMONIC("Demonic", "DEMONIC");
+    DEMONIC("Demonic", "DEMONIC"),
+    CURSE("Curse", "CURSE"),
+    CONTAINER("Container", "CONTAINER"),
+    LIGHT_SOURCE("Light Source", "LIGHT SOURCE"),
+    EXPLOSIVE("Explosive", "EXPLOSIVE"),
+    DICE("Dice", "DICE"),
+    GOLD("Gold", "GOLD"),
+    ICON("Icon", "ICON"),
+    DARKNESS("Darkness", "DARKNESS"),
+    LOST_ARMY("Lost Army", "LOST ARMY"),
+    RELIC("Relic", "RELIC");
     //TODO Finish Traits
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();

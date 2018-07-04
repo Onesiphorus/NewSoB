@@ -77,7 +77,7 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
                 {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
+                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -95,7 +95,7 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
                 {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
+                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -113,7 +113,7 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
                 {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
+                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -131,7 +131,7 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
                 {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > attachment.getSlotsRequired()) {
+                if((item.getUpgrades() - slotsUsed) > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
