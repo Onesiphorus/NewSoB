@@ -112,7 +112,9 @@
         <activity android:name=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity" />
         <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment" />
         <activity android:name=".Activities.Main.LevelUpActivity" />
-        <activity android:name=".Activities.Main.Inventory.ExamineInventoryActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.ExamineInventoryActivity" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddSkillActivity" />
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveSkillActivity"></activity>
     </application>
 
 </manifest>

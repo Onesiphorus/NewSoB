@@ -64,7 +64,7 @@ public class AddClothingActivity extends AppCompatActivity {
             if (clothing != null) {
                 sobCharacter.addClothing(clothing);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, clothing.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, clothing.getName() + " added to inventory.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();

@@ -100,7 +100,21 @@
                 android:textSize="24sp"
                 android:text="@string/spoils" />
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_levelup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_blue_bright"
+                android:background="@drawable/button_background"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:text="@string/level_up" />
+        </LinearLayout>
     </LinearLayout>
 
 

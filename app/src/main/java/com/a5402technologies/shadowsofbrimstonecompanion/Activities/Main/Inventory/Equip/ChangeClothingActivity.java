@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ClothingSlotsEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -37,15 +37,15 @@ public class ChangeClothingActivity extends AppCompatActivity {
         String type = getIntent().getStringExtra("type");
         ArrayList<Clothing> ClothingOptions = new ArrayList<>(0);
         for (Clothing clothing : sobCharacter.getClothing()) {
-            if (((clothing.getFace().equals(TRUE) && type.equals(ClothingSlotsEnum.FACE.label()))
-                    || (clothing.getBelt().equals(TRUE) && type.equals(ClothingSlotsEnum.BELT.label()))
-                    || (clothing.getBoots().equals(TRUE) && type.equals(ClothingSlotsEnum.BOOTS.label()))
-                    || (clothing.getHat().equals(TRUE) && type.equals(ClothingSlotsEnum.HAT.label()))
-                    || (clothing.getCoat().equals(TRUE) && type.equals(ClothingSlotsEnum.COAT.label()))
-                    || (clothing.getTorso().equals(TRUE) && type.equals(ClothingSlotsEnum.TORSO.label()))
-                    || (clothing.getPants().equals(TRUE) && type.equals(ClothingSlotsEnum.PANTS.label()))
-                    || (clothing.getGloves().equals(TRUE) && type.equals(ClothingSlotsEnum.GLOVES.label()))
-                    || (clothing.getShoulders().equals(TRUE) && type.equals(ClothingSlotsEnum.SHOULDERS.label())))
+            if (((clothing.getFace().equals(TRUE) && type.equals(TraitsEnum.FACE.label()))
+                    || (clothing.getBelt().equals(TRUE) && type.equals(TraitsEnum.BELT.label()))
+                    || (clothing.getBoots().equals(TRUE) && type.equals(TraitsEnum.BOOTS.label()))
+                    || (clothing.getHat().equals(TRUE) && type.equals(TraitsEnum.HAT.label()))
+                    || (clothing.getCoat().equals(TRUE) && type.equals(TraitsEnum.COAT.label()))
+                    || (clothing.getTorso().equals(TRUE) && type.equals(TraitsEnum.TORSO.label()))
+                    || (clothing.getPants().equals(TRUE) && type.equals(TraitsEnum.PANTS.label()))
+                    || (clothing.getGloves().equals(TRUE) && type.equals(TraitsEnum.GLOVES.label()))
+                    || (clothing.getShoulders().equals(TRUE) && type.equals(TraitsEnum.SHOULDERS.label())))
                     && clothing.getEquipped().equals(Boolean.FALSE)) {
                 ClothingOptions.add(clothing);
             }
@@ -57,9 +57,6 @@ public class ChangeClothingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.setClothing(ClothingOptions);
-        Button btn = findViewById(R.id.btn_unequip);
-        String text = "Unequip " + sobCharacter.findClothingByName(name).getName();
-        btn.setText(text);
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != clothing) {
                 if (!(name.isEmpty())) {

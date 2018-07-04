@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ClothingSlotsEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -78,7 +78,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String boots = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.BOOTS.label());
+            intent.putExtra("type", TraitsEnum.BOOTS.label());
             intent.putExtra("name", boots);
             startActivity(intent);
             finish();
@@ -88,7 +88,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String coat = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.COAT.label());
+            intent.putExtra("type", TraitsEnum.COAT.label());
             intent.putExtra("name", coat);
             startActivity(intent);
             finish();
@@ -98,7 +98,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String face = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.FACE.label());
+            intent.putExtra("type", TraitsEnum.FACE.label());
             intent.putExtra("name", face);
             startActivity(intent);
             finish();
@@ -108,7 +108,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String gloves = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.GLOVES.label());
+            intent.putExtra("type", TraitsEnum.GLOVES.label());
             intent.putExtra("name", gloves);
             startActivity(intent);
             finish();
@@ -118,7 +118,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String hat = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.HAT.label());
+            intent.putExtra("type", TraitsEnum.HAT.label());
             intent.putExtra("name", hat);
             startActivity(intent);
             finish();
@@ -128,7 +128,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String pants = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.PANTS.label());
+            intent.putExtra("type", TraitsEnum.PANTS.label());
             intent.putExtra("name", pants);
             startActivity(intent);
             finish();
@@ -138,7 +138,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String shoulders = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.SHOULDERS.label());
+            intent.putExtra("type", TraitsEnum.SHOULDERS.label());
             intent.putExtra("name", shoulders);
             startActivity(intent);
             finish();
@@ -148,7 +148,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String torso = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.TORSO.label());
+            intent.putExtra("type", TraitsEnum.TORSO.label());
             intent.putExtra("name", torso);
             startActivity(intent);
             finish();
@@ -158,7 +158,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             String belt = btn.getText().toString();
             Intent intent = new Intent(this, ChangeClothingActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("type", ClothingSlotsEnum.BELT.label());
+            intent.putExtra("type", TraitsEnum.BELT.label());
             intent.putExtra("name", belt);
             startActivity(intent);
             finish();

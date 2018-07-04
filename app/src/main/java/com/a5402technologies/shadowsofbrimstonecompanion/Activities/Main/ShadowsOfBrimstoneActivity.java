@@ -70,6 +70,12 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_levelup).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, LevelUpActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     protected void setStats() {

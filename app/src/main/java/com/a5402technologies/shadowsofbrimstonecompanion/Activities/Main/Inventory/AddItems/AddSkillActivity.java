@@ -4,9 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,53 +18,60 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
-import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
+import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.SkillViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AddMeleeWeaponActivity extends AppCompatActivity {
+public class AddSkillActivity extends AppCompatActivity {
 
-    private MeleeWeaponViewModel mMeleeWeaponViewModel;
-    private MeleeWeapon meleeWeapon;
+    private SkillViewModel mSkillViewModel;
+    private Skill skill;
     private SobCharacter sobCharacter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_melee_weapon);
+        setContentView(R.layout.activity_add_skill);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final AddMeleeWeaponActivity.MeleeWeaponListAdapter adapter = new AddMeleeWeaponActivity.MeleeWeaponListAdapter(this);
+        final SkillListAdapter adapter = new SkillListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mMeleeWeaponViewModel = ViewModelProviders.of(this).get(MeleeWeaponViewModel.class);
+        mSkillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
 
-        mMeleeWeaponViewModel.getAllMeleeWeapons().observe(this, new Observer<List<MeleeWeapon>>() {
+        mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
             @Override
-            public void onChanged(@Nullable List<MeleeWeapon> meleeWeapon) {
-                adapter.setMeleeWeapon(meleeWeapon);
+            public void onChanged(@Nullable List<Skill> skill) {
+                ArrayList<Skill> mod = new ArrayList<>(0);
+                for(Skill s : skill) {
+                    if(s.getType().equals(sobCharacter.getCharacterClass().getClassName())) {
+                        mod.add(s);
+                    }
+                }
+                adapter.setSkill(mod);
             }
         });
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
             /*
-            if(meleeWeapon != null) {
-                intent.putExtra("serializable_object", meleeWeapon);
+            if(skill != null) {
+                intent.putExtra("serializable_object", skill);
             }
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if (meleeWeapon != null) {
-                sobCharacter.addMeleeWeapon(meleeWeapon);
+            if (skill != null) {
+                sobCharacter.addUpgrade(skill);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, meleeWeapon.getName() + " added to inventory.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, skill.getName() + " learned.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();
@@ -105,63 +112,62 @@ public class AddMeleeWeaponActivity extends AppCompatActivity {
         finish();
     }
 
-    class MeleeWeaponListAdapter extends RecyclerView.Adapter<AddMeleeWeaponActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
+    class SkillListAdapter extends RecyclerView.Adapter<SkillListAdapter.SkillViewHolder> {
 
         private final LayoutInflater mInflater;
-        private List<MeleeWeapon> mMeleeWeapon;
+        private List<Skill> mSkill;
         private Context mContext;
         private Integer RESULT_CODE = 1;
-        public MeleeWeaponListAdapter(Context context) {
+        public SkillListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
         }
 
         @Override
-        public AddMeleeWeaponActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public SkillViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new AddMeleeWeaponActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder(itemView);
+            return new SkillViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(AddMeleeWeaponActivity.MeleeWeaponListAdapter.MeleeWeaponViewHolder holder, int position) {
-            if (null != mMeleeWeapon) {
-                MeleeWeapon current = mMeleeWeapon.get(position);
-                holder.meleeWeaponItemView.setText(current.getName());
+        public void onBindViewHolder(SkillViewHolder holder, int position) {
+            if (null != mSkill) {
+                Skill current = mSkill.get(position);
+                holder.skillItemView.setText(current.getName());
             } else {
-                holder.meleeWeaponItemView.setText("No MeleeWeapon");
+                holder.skillItemView.setText("No Skill");
             }
 
-            holder.meleeWeaponItemView.setOnClickListener(new View.OnClickListener() {
+            holder.skillItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    meleeWeapon = mMeleeWeapon.get(position);
+                    skill = mSkill.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Add " + meleeWeapon.getName() + " to inventory";
+                    String text = "Learn " + skill.getName();
                     btn.setText(text);
                 }
             });
         }
 
-        public void setMeleeWeapon(List<MeleeWeapon> meleeWeapon) {
-            mMeleeWeapon = meleeWeapon;
+        public void setSkill(List<Skill> skill) {
+            mSkill = skill;
             notifyDataSetChanged();
         }
 
         @Override
         public int getItemCount() {
-            if (null != mMeleeWeapon) return mMeleeWeapon.size();
+            if (null != mSkill) return mSkill.size();
             else return 0;
         }
 
-        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final TextView meleeWeaponItemView;
+        class SkillViewHolder extends RecyclerView.ViewHolder {
+            private final TextView skillItemView;
 
-            private MeleeWeaponViewHolder(View itemView) {
+            private SkillViewHolder(View itemView) {
                 super(itemView);
-                meleeWeaponItemView = itemView.findViewById(R.id.textView);
+                skillItemView = itemView.findViewById(R.id.textView);
 
             }
         }
     }
 }
-

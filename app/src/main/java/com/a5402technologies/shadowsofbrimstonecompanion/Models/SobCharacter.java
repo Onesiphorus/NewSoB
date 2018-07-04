@@ -173,6 +173,10 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "current_sanity")
     private Integer currentSanity;
+    @NonNull
+    @ColumnInfo(name = "modifiers")
+    @TypeConverters(GithubTypeConverters.class)
+    private ArrayList<String> modifiers;
 
 
 
@@ -188,6 +192,7 @@ public class SobCharacter implements Serializable {
         attachments = new ArrayList<>(0);
         currentHealth = characterClass.getHealth();
         currentSanity = characterClass.getSanity();
+        modifiers = new ArrayList<>(0);
     }
 
     @NonNull
@@ -707,6 +712,9 @@ public class SobCharacter implements Serializable {
 
     public void setBonuses() {
         resetBonuses();
+        for(String modifier : this.modifiers) {
+            findBonus(modifier);
+        }
         for (Clothing clothing : this.getClothing()) {
             if (clothing.getEquipped().equals(TRUE)) {
                 for (String string : clothing.getModifiers()) {
@@ -1020,8 +1028,17 @@ public class SobCharacter implements Serializable {
     public void removeTrait(String trait) {
         this.traits.remove(trait);
     }
+
     public void addAttachment(Attachment attachment) {
         this.attachments.add(attachment);
+    }
+
+    public void removeModifier(String modifier) {
+        this.modifiers.remove(modifier);
+    }
+
+    public void addModifier(String modifier) {
+        this.modifiers.add(modifier);
     }
 
     public void removeAttachment(Attachment attachment) {
@@ -1053,6 +1070,15 @@ public class SobCharacter implements Serializable {
 
     public void setCurrentSanity(@NonNull Integer currentSanity) {
         this.currentSanity = currentSanity;
+    }
+
+    @NonNull
+    public ArrayList<String> getModifiers() {
+        return modifiers;
+    }
+
+    public void setModifiers(@NonNull ArrayList<String> modifiers) {
+        this.modifiers = modifiers;
     }
 }
 

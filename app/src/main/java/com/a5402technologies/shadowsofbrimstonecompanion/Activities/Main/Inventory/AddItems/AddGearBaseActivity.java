@@ -64,7 +64,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             if (gearBase != null) {
                 sobCharacter.addGear(gearBase);
                 intent.putExtra("serializable_object", sobCharacter);
-                Toast.makeText(this, gearBase.getName() + "added to inventory.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, gearBase.getName() + " added to inventory.", Toast.LENGTH_LONG).show();
             }
             startActivity(intent);
             finish();

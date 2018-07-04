@@ -49,6 +49,12 @@ public class ChooseTypeToRemoveActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_skills).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, RemoveSkillActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override

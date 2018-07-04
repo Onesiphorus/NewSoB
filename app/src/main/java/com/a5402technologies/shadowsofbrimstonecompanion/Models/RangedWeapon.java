@@ -129,6 +129,7 @@ public class RangedWeapon implements Serializable {
         this.penalties = new ArrayList<>(0);
         this.equipped = Boolean.FALSE;
         attachments = new ArrayList<>(0);
+        traits = new ArrayList<>(0);
     }
 
     @NonNull

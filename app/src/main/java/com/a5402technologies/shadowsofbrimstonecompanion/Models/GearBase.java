@@ -97,6 +97,7 @@ public class GearBase implements Serializable {
         this.restrictions = new ArrayList<>(0);
         this.penalties = new ArrayList<>(0);
         attachments = new ArrayList<>(0);
+        traits = new ArrayList<>(0);
     }
 
     @NonNull

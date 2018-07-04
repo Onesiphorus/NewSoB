@@ -41,5 +41,13 @@
         android:background="@drawable/button_background"
         android:textColor="@android:color/holo_blue_dark"
         android:text="@string/attachment_text"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_skills"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="@string/upgrade_text"/>
+
 </LinearLayout>
 
