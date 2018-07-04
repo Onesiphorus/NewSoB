@@ -22,7 +22,9 @@ public enum SetListEnum {
     DOORWAYS_INTO_DARKNESS("Doorways Into Darkness", "DD"),
     PROMO("Promo", "P"),
     JARGONO_NATIVE("Jargono Native", "HCJN"),
-    COWBOY("Cowboy", "HCC");
+    COWBOY("Cowboy", "HCC"),
+    MASTERS_OF_THE_VOID("Masters of the Void", "MV"),
+    SERPENTMEN_OF_JARGONO("Serpentmen of Jargono", "SJ");
     //TODO finish setLists
 
 

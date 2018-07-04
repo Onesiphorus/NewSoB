@@ -72,7 +72,20 @@ public enum TraitsEnum {
     ANCIENT("Ancient", "ANCIENT"),
     BLOOD("Blood", "BLOOD"),
     MOON("Moon", "MOON"),
-    DANCE("Dance", "DANCE");
+    DANCE("Dance", "DANCE"),
+    VAMPIRE("Vampire", "VAMPIRE"),
+    TREDERRAN("Trederran", "TREDERRAN"),
+    UNDEAD("Undead", "UNDEAD"),
+    TARGA("Targa", "TARGA"),
+    TECH("Tech", "TECH"),
+    FLAG("Flag", "FLAG"),
+    MAP("Map", "MAP"),
+    PERSONAL("Personal", "PERSONAL"),
+    TATOO("Tatoo", "TATOO"),
+    TIME("Time", "TIME"),
+    FLASK("Flask", "FLASK"),
+    ALCOHOL("Alcohol", "ALCOHOL");
+
     //TODO Finish Traits
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
