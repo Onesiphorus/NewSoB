@@ -449,13 +449,15 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             traits.add(TraitsEnum.FRONTIER.label());
             characterClass = new CharacterClass(CharacterClassEnum.LAWMAN.male(), 2, 4, 1, 3, 2, 3, 12, 12, 4, 4, 4, 4, 2, 4, 2, traits);
             rangedWeapon = new RangedWeapon("Peacekeeper Pistol", 6, 3);
+            rangedWeapon.setShop(ShopEnum.SHERIFFS_OFFICE.label());
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.addTrait(TraitsEnum.LAW.label());
+            rangedWeapon.addRestriction(TraitsEnum.LAW.label());
+            rangedWeapon.setCost(1000);
+            rangedWeapon.setSell(250);
             rangedWeapon.setWeight(1);
             rangedWeapon.setUpgrades(1);
-            rangedWeapon.setSell(250);
-            rangedWeapon.addRestriction(TraitsEnum.LAW.label());
             mRangedWeaponDao.insert(rangedWeapon);
             characterClass.addStartingRanged(rangedWeapon);
             gearBase = new GearBase("Sheriff Badge");
@@ -1882,17 +1884,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addRestriction(TraitsEnum.LAW.label());
             gearBase.setCost(2400);
             mGearBaseDao.insert(gearBase);
-            rangedWeapon = new RangedWeapon("Peacekeeper Pistol", 6,3);
-            rangedWeapon.setShop(ShopEnum.SHERIFFS_OFFICE.label());
-            rangedWeapon.setSet(SetListEnum.FRONTIER_TOWN.code());
-            rangedWeapon.addTrait(TraitsEnum.GUN.label());
-            rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
-            rangedWeapon.addTrait(TraitsEnum.LAW.label());
-            rangedWeapon.addRestriction(TraitsEnum.LAW.label());
-            rangedWeapon.setCost(1000);
-            rangedWeapon.setWeight(1);
-            rangedWeapon.setUpgrades(1);
-            mRangedWeaponDao.insert(rangedWeapon);
             rangedWeapon = new RangedWeapon("The Punisher", 6, 2);
             rangedWeapon.setShop(ShopEnum.SHERIFFS_OFFICE.label());
             rangedWeapon.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -1905,6 +1896,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setUpgrades(1);
             rangedWeapon.setToHitDie(8);
             rangedWeapon.setDamageDie(8);
+            rangedWeapon.setCost(3000);
             mRangedWeaponDao.insert(rangedWeapon);
 
         //Smuggler's Den
@@ -2328,7 +2320,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addTrait(TraitsEnum.CONTAINER.label());
             mGearBaseDao.insert(gearBase);
             gearBase = new GearBase("Medicine Bag");
-            gearBase.addTrait(TraitsEnum.CONTAINER.label());
+            gearBase.addTrait(TraitsEnum.TRIBAL.label());
+            gearBase.addTrait(TraitsEnum.MEDICAL.label());
             gearBase.setShop(ShopEnum.INDIAN_TRADING_POST.label());
             gearBase.setSet(SetListEnum.FRONTIER_TOWN.code());
             gearBase.setCost(3200);
@@ -3717,11 +3710,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Master of the Hunt", SkillTypeEnum.HUNTING_AND_TRACKING.code());
             skill.setLevel(4);
             mSkillDao.insert(skill);
-
-
-
-
-
 
             for (GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
                 Cowboy.addGear(gearBase1);

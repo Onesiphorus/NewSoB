@@ -60,6 +60,12 @@
     <string name="upgrade_text">Upgrades</string>
     <string name="level_up">Level Up</string>
     <string name="max_grit">Max Grit</string>
+    <string name="sheriffs_office">Sheriff\'s Office</string>
+    <string name="smugglers_den">Smuggler\'s Den</string>
+    <string name="mutant_quarter">Mutant Quarter</string>
+    <string name="gambling_hall">Gambling Hall</string>
+    <string name="street_market">Street Market</string>
+    <string name="indian_trading_outpost">Indian Trading Outpost</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

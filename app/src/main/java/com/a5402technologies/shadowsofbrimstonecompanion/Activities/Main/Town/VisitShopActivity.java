@@ -76,6 +76,7 @@ public class VisitShopActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_skills).setVisibility(View.INVISIBLE);
     }
 
     @Override

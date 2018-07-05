@@ -75,6 +75,48 @@ public class VisitTownActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_sheriffs_office).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.SHERIFFS_OFFICE.label());
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_smugglers_den).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.SMUGGLERS_DEN.label());
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_mutant_quarter).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.MUTANT_QUARTER.label());
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_gambling_hall).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.GAMBLNG_HALL.label());
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_street_market).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.STREET_MARKET.label());
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.btn_indian_trading_outpost).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitShopActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("shop_type", ShopEnum.INDIAN_TRADING_POST.label());
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override
