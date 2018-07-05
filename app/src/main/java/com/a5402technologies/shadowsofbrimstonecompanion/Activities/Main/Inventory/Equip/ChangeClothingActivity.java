@@ -74,14 +74,21 @@ public class ChangeClothingActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            sobCharacter.unequipClothing(sobCharacter.findClothingByName(name));
-            Toast.makeText(this, sobCharacter.findClothingByName(name).getName()
-                    + " removed from "
-                    + type, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, ChangeLoadoutActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
+            if (!(name.isEmpty())) {
+                sobCharacter.unequipClothing(sobCharacter.findClothingByName(name));
+                Toast.makeText(this, sobCharacter.findClothingByName(name).getName()
+                        + " removed from "
+                        + type, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+                intent.putExtra("serializable_object", sobCharacter);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Nothing equipped to this slot.", Toast.LENGTH_LONG).show();
+            }
+
+
+
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

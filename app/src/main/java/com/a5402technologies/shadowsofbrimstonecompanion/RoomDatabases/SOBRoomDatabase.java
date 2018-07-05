@@ -931,6 +931,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.addTrait(TraitsEnum.JARGONO.label());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.BELT.label());
+            clothing.setBelt(TRUE);
             clothing.setSet(SetListEnum.JARGONO_NATIVE.code());
             clothing.addModifier(ModifiersEnum.AGILITY.label());
             mClothingDao.insert(clothing);
