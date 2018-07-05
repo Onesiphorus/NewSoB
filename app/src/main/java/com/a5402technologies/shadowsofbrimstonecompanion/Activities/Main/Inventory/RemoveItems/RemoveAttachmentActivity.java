@@ -47,33 +47,27 @@ public class RemoveAttachmentActivity extends AppCompatActivity {
         adapter.setAttachment(attachmentList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
-            /*
-            if(attachment != null) {
-                intent.putExtra("serializable_object", attachment);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
+            Intent intent = new Intent(this, RemoveAttachmentActivity.class);
             if (attachment != null) {
                 sobCharacter.removeAttachment(attachment);
                 sobCharacter.addGold(attachment.getSell());
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, attachment.getName() + " sold for $" + attachment.getSell() + ".", Toast.LENGTH_LONG).show();
+                startActivity(intent);
+                finish();
             }
-            startActivity(intent);
-            finish();
+
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveAttachmentActivity.class);
             if (attachment != null) {
                 sobCharacter.removeAttachment(attachment);
                 intent.putExtra("serializable_object", sobCharacter);
                 Toast.makeText(this, attachment.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                startActivity(intent);
+                finish();
             }
-            startActivity(intent);
-            finish();
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

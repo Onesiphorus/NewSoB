@@ -79,6 +79,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
     }
 
     protected void setStats() {
+        String text;
         TextView tv = findViewById(R.id.sob_fullscreen);
         Integer value;
         tv.setText(sobCharacter.getCharacterClass().getClassName());
@@ -109,14 +110,16 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv = findViewById(R.id.health_value);
         value = (sobCharacter.getCharacterClass().getHealth())
                 + (sobCharacter.getHealthBonus());
-        tv.setText(String.format(value.toString()));
+        text = sobCharacter.getCurrentHealth().toString() + "/" + value.toString();
+        tv.setText(text);
         tv = findViewById(R.id.defense_value);
         value = (sobCharacter.getCharacterClass().getDefense());
         tv.setText(String.format(value.toString()));
         tv = findViewById(R.id.sanity_value);
         value = (sobCharacter.getCharacterClass().getSanity())
                 + (sobCharacter.getSanityBonus());
-        tv.setText(String.format(value.toString()));
+        text = sobCharacter.getCurrentSanity().toString() + "/" + value.toString();
+        tv.setText(text);
         tv = findViewById(R.id.willpower_value);
         value = (sobCharacter.getCharacterClass().getWillpower());
         tv.setText(String.format(value.toString()));
@@ -126,8 +129,6 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
         tv = findViewById(R.id.sob_character_name);
         tv.setText(sobCharacter.getCharacterName());
-
-        String text;
 
         tv = findViewById(R.id.sob_xp);
         tv.setText(String.format(sobCharacter.getExperience().toString()));
@@ -142,7 +143,10 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setText(String.format(value.toString()));
 
         tv = findViewById(R.id.move_value);
-        text = "d6 + " + sobCharacter.getMoveBonus().toString();
+        text = "d6";
+        if(sobCharacter.getMoveBonus() > 0) {
+            text += " + " + sobCharacter.getMoveBonus().toString();
+        }
         tv.setText(text);
 
         tv = findViewById(R.id.sob_level);

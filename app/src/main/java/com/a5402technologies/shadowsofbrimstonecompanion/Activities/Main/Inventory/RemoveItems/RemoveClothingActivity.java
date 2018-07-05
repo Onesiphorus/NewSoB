@@ -47,7 +47,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
         adapter.setClothing(clothingList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveClothingActivity.class);
             if (clothing != null) {
                 sobCharacter.removeClothing(clothing);
                 sobCharacter.addGold(clothing.getSell());
@@ -59,14 +59,7 @@ public class RemoveClothingActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
-            /*
-            if(clothing != null) {
-                intent.putExtra("serializable_object", clothing);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
+            Intent intent = new Intent(this, RemoveClothingActivity.class);
             if (clothing != null) {
                 sobCharacter.removeClothing(clothing);
                 intent.putExtra("serializable_object", sobCharacter);

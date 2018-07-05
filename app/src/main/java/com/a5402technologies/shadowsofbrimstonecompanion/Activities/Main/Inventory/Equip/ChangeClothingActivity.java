@@ -9,11 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -50,6 +48,11 @@ public class ChangeClothingActivity extends AppCompatActivity {
                 ClothingOptions.add(clothing);
             }
         }
+        Button btn = findViewById(R.id.btn_unequip);
+        if (!(name.isEmpty())) {
+            String text = "Unequip " + sobCharacter.findClothingByName(name).getName();
+            btn.setText(text);
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final ChangeClothingActivity.ClothingListAdapter adapter = new ChangeClothingActivity.ClothingListAdapter(this);
@@ -69,7 +72,7 @@ public class ChangeClothingActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "No weapon selected, click cancel to return.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "No " + type + " selected, click cancel to return.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -84,9 +87,8 @@ public class ChangeClothingActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "Nothing equipped to this slot.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Nothing equipped to " + type + ".", Toast.LENGTH_LONG).show();
             }
-
 
 
         });
@@ -111,6 +113,7 @@ public class ChangeClothingActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
+
         public ClothingListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }

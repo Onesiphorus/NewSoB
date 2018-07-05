@@ -51,9 +51,10 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
         adapter.setAttachment(attachmentList);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("attachment", attachment);
+            if(null != attachment) {
+                Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
+                intent.putExtra("serializable_object", sobCharacter);
+                intent.putExtra("attachment", attachment);
             /*
             if(attachment != null) {
                 intent.putExtra("serializable_object", attachment);
@@ -61,15 +62,18 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
             setResult(RESULT_CODE, intent);
             finish();
             */
-            if (attachment != null) {
+                if (attachment != null) {
                 /*if(attachment.getEquipped().equals(FALSE)) sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(TRUE);
                 else sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(FALSE);
                 //TODO finish attachment checks
                 intent.putExtra("serializable_object", sobCharacter);*/
 
+                }
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "No attachment selected.", Toast.LENGTH_LONG).show();
             }
-            startActivity(intent);
-            finish();
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

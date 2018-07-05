@@ -47,7 +47,7 @@ public class RemoveRangedActivity extends AppCompatActivity {
         adapter.setRangedWeapon(rangedList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveRangedActivity.class);
             if (rangedWeapon != null) {
                 sobCharacter.removeRangedWeapon(rangedWeapon);
                 sobCharacter.addGold(rangedWeapon.getSell());
@@ -59,7 +59,7 @@ public class RemoveRangedActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveRangedActivity.class);
             /*
             if(rangedWeapon != null) {
                 intent.putExtra("serializable_object", rangedWeapon);

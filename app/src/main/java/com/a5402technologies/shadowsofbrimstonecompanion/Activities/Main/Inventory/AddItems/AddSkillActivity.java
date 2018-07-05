@@ -48,14 +48,14 @@ public class AddSkillActivity extends AppCompatActivity {
 
         mSkillViewModel.getAllSkill().observe(this, new Observer<List<Skill>>() {
             @Override
-            public void onChanged(@Nullable List<Skill> skill) {
-                ArrayList<Skill> mod = new ArrayList<>(0);
-                for(Skill s : skill) {
+            public void onChanged(@Nullable List<Skill> skills) {
+                ArrayList<Skill> filteredByClass = new ArrayList<>(0);
+                for(Skill s : skills) {
                     if(s.getType().equals(sobCharacter.getCharacterClass().getClassName())) {
-                        mod.add(s);
+                        filteredByClass.add(s);
                     }
                 }
-                adapter.setSkill(mod);
+                adapter.setSkill(filteredByClass);
             }
         });
 

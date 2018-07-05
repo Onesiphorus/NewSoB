@@ -3931,6 +3931,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
             //OUTLAW SHOOTIN' UPGRADES
             skill = new Skill("Guns Blazing", SkillTypeEnum.SHOOTIN.code());
+            //TODO add category to skills
             skill.setLevel(1);
             mSkillDao.insert(skill);
             skill.setName("Gunfighter(Outlaw)");

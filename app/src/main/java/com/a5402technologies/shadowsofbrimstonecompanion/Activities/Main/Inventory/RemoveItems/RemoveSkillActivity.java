@@ -47,15 +47,7 @@ public class RemoveSkillActivity extends AppCompatActivity {
         adapter.setSkill(skillList);
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
-
-            /*
-            if(skill != null) {
-                intent.putExtra("serializable_object", skill);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
+            Intent intent = new Intent(this, RemoveSkillActivity.class);
             if (skill != null) {
                 sobCharacter.removeUpgrade(skill);
                 intent.putExtra("serializable_object", sobCharacter);

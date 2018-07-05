@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <include layout="@layout/content_resources"/>
-
+        <include layout="@layout/content_quick_stats"/>
         <include layout="@layout/content_ranged_stats"/>
         <include layout="@layout/content_melee_stats"/>
         <LinearLayout
@@ -27,11 +27,11 @@
                 android:layout_weight="1"
                 android:paddingEnd="20dp"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/holo_red_light"
                 android:text="@string/health"/>
             <TextView
                 android:layout_width="0dp"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/holo_blue_bright"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="12dp"
@@ -48,16 +48,22 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/negHealth"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_red_dark"
                 android:text="-"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_red_light"
                 android:layout_weight="3"
                 android:id="@+id/valHealth"
                 android:text="0"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_green_dark"
                 android:layout_weight="1"
                 android:id="@+id/addHealth"
                 android:text="+"/>
@@ -69,21 +75,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_red_dark"
                 android:id="@+id/negSanity"
                 android:text="-"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_blue_bright"
                 android:layout_weight="3"
                 android:id="@+id/valSanity"
                 android:text="0"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/holo_green_dark"
                 android:layout_weight="1"
                 android:id="@+id/addSanity"
                 android:text="+"/>
         </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:textColor="@android:color/holo_blue_dark"
+            android:text="@string/loadout"/>
 
     </LinearLayout>
 

@@ -1,8 +1,8 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +23,8 @@ public class CombatViewActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     TextView tv;
     String text;
+    Integer val;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,38 +33,47 @@ public class CombatViewActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         sobCharacter.setBonuses();
 
-        Button health;
-        health = findViewById(R.id.valHealth);
-        health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
-        Button sanity;
-        sanity = findViewById(R.id.valSanity);
-        sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+        setQuickStats();
+        setHealthSanityStats();
+        setWeapons();
+    }
 
-        findViewById(R.id.negHealth).setOnClickListener((View view) -> {
-            sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
-            health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
-        });
-        findViewById(R.id.addHealth).setOnClickListener((View view) -> {
-            if(sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
-                sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
-                health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
-            } else {
-                Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
-            }
-        });
-        findViewById(R.id.negSanity).setOnClickListener((View view) -> {
-            sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
-            sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
-        });
-        findViewById(R.id.addSanity).setOnClickListener((View view) -> {
-            if(sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
-                sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
-                sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
-            } else {
-                Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
-            }
-        });
+    private void setQuickStats() {
+        tv = findViewById(R.id.quick_agi);
+        val = sobCharacter.getAgilityBonus() + sobCharacter.getCharacterClass().getAgility();
+        text = "AGI:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_cun);
+        val = sobCharacter.getCunningBonus() + sobCharacter.getCharacterClass().getCunning();
+        text = "CUN:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_spi);
+        val = sobCharacter.getSpiritBonus() + sobCharacter.getCharacterClass().getSpirit();
+        text = "SPR:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_str);
+        val = sobCharacter.getStrengthBonus() + sobCharacter.getCharacterClass().getStrength();
+        text = "STR:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_lor);
+        val = sobCharacter.getLoreBonus() + sobCharacter.getCharacterClass().getLore();
+        text = "LOR:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_lck);
+        val = sobCharacter.getLuckBonus() + sobCharacter.getCharacterClass().getLuck();
+        text = "LCK:" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_mv);
+        val = sobCharacter.getMoveBonus();
+        text = "MV:+" + val.toString();
+        tv.setText(text);
+        tv = findViewById(R.id.quick_ini);
+        val = sobCharacter.getInitiativeBonus() + sobCharacter.getCharacterClass().getInitiative();
+        text = "INI:" + val.toString();
+        tv.setText(text);
+    }
 
+    private void setWeapons() {
         Button rightRanged = findViewById(R.id.right_hand_ranged_weapon);
         rightRanged.setHint("empty");
         Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
@@ -84,10 +95,10 @@ public class CombatViewActivity extends AppCompatActivity {
             Integer shots = (sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label()))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getRightHand().getShots();
-            for(Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
-                if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+            for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
-                } else if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_BARREL.label())){
+                } else if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_BARREL.label())) {
                     range += 4;
                 }
             }
@@ -96,20 +107,19 @@ public class CombatViewActivity extends AppCompatActivity {
 
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.right_hand_damage);
-            text =
-                    "D"
-                            + sobCharacter.getRightHand().getDamageDie().toString()
-                            + "+"
-                            + sobCharacter.getRightHand().getDamageBonus().toString();
+            text = "d" + sobCharacter.getRightHand().getDamageDie().toString();
+            if(sobCharacter.getRightHand().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getRightHand().getDamageBonus().toString();
+            }
             tv.setText(text);
             tv = findViewById(R.id.right_hand_to_hit);
-            text =
-                    "D" + sobCharacter.getRightHand().getToHitDie().toString()
-                            + ":"
-                            + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                            + "+("
-                            + sobCharacter.getRightHand().getCritChance()
-                            + "+)";
+            text =  "d"
+                    + sobCharacter.getRightHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getRightHand().getCritChance()
+                    + "+)";
             tv.setText(text);
         }
         rightRanged.setOnClickListener((View view) -> {
@@ -132,27 +142,26 @@ public class CombatViewActivity extends AppCompatActivity {
             Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getLeftHand().getShots();
-            for(Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
-                if(attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+            for (Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
                 }
             }
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.left_hand_damage);
-            String text =
-                    "D" + sobCharacter.getLeftHand().getDamageDie().toString()
-                            + "+"
-                            + sobCharacter.getLeftHand().getDamageBonus().toString();
+            String text = "d" + sobCharacter.getLeftHand().getDamageDie().toString();
+            if (sobCharacter.getLeftHand().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getLeftHand().getDamageBonus().toString();
+            }
             tv.setText(text);
             tv = findViewById(R.id.left_hand_to_hit);
-            text =
-                    "D"
-                            + sobCharacter.getLeftHand().getToHitDie().toString()
-                            + ":"
-                            + sobCharacter.getCharacterClass().getRangedToHit().toString()
-                            + "+("
-                            + sobCharacter.getLeftHand().getCritChance()
-                            + "+)";
+            text = "d"
+                    + sobCharacter.getLeftHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getLeftHand().getCritChance()
+                    + "+)";
             tv.setText(text);
         }
         leftRanged.setOnClickListener((View view) -> {
@@ -189,8 +198,6 @@ public class CombatViewActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-
         tv = findViewById(R.id.melee_combat);
         Integer combat = calculateMeleeCombat();
         tv.setText(String.format(combat.toString()));
@@ -204,8 +211,42 @@ public class CombatViewActivity extends AppCompatActivity {
         tv.setText(text);
     }
 
+    private void setHealthSanityStats() {
+        Button health;
+        health = findViewById(R.id.valHealth);
+        health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+        Button sanity;
+        sanity = findViewById(R.id.valSanity);
+        sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+
+        findViewById(R.id.negHealth).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
+            health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+        });
+        findViewById(R.id.addHealth).setOnClickListener((View view) -> {
+            if (sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
+                sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
+                health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+            } else {
+                Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
+            }
+        });
+        findViewById(R.id.negSanity).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
+            sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+        });
+        findViewById(R.id.addSanity).setOnClickListener((View view) -> {
+            if (sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
+                sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
+                sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+            } else {
+                Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private String calculateMeleeHitDie() {
-        return "D"
+        return "d"
                 + sobCharacter.getMeleeToHitDie()
                 + " : "
                 + sobCharacter.getCharacterClass().getMeleeToHit().toString()
@@ -215,9 +256,12 @@ public class CombatViewActivity extends AppCompatActivity {
     }
 
     private String calculateMeleeDamageDie() {
-        return sobCharacter.getMeleeDamageDie()
-                + "+"
-                + sobCharacter.getMeleeDamageBonus();
+        String dmg = "d" + sobCharacter.getMeleeDamageDie().toString();
+        if (sobCharacter.getMeleeDamageBonus() > 0) {
+            dmg += "+" + sobCharacter.getMeleeDamageBonus();
+        }
+        return dmg;
+
     }
 
     private Integer calculateMeleeCombat() {

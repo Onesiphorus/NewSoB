@@ -47,7 +47,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
         adapter.setMeleeWeapon(meleeList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveMeleeActivity.class);
             if (meleeWeapon != null) {
                 sobCharacter.removeMeleeWeapon(meleeWeapon);
                 sobCharacter.addGold(meleeWeapon.getSell());
@@ -59,14 +59,7 @@ public class RemoveMeleeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
-            /*
-            if(meleeWeapon != null) {
-                intent.putExtra("serializable_object", meleeWeapon);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
+            Intent intent = new Intent(this, RemoveMeleeActivity.class);
             if (meleeWeapon != null) {
                 sobCharacter.removeMeleeWeapon(meleeWeapon);
                 intent.putExtra("serializable_object", sobCharacter);

@@ -48,7 +48,7 @@ public class RemoveGearActivity extends AppCompatActivity {
         adapter.setGearBase(gearList);
 
         findViewById(R.id.btn_sell).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
+            Intent intent = new Intent(this, RemoveGearActivity.class);
             if (gearBase != null) {
                 sobCharacter.removeGear(gearBase);
                 sobCharacter.addGold(gearBase.getSell());
@@ -60,14 +60,7 @@ public class RemoveGearActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManagementMenuActivity.class);
-            /*
-            if(gearBase != null) {
-                intent.putExtra("serializable_object", gearBase);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
+            Intent intent = new Intent(this, RemoveGearActivity.class);
             if (gearBase != null) {
                 sobCharacter.removeGear(gearBase);
                 intent.putExtra("serializable_object", sobCharacter);

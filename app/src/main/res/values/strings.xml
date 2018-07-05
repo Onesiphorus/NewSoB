@@ -56,7 +56,7 @@
     <string name="move">MOVE</string>
     <string name="attachment_text">Attachments</string>
     <string name="clothing">Clothing</string>
-    <string name="loadout">Loadout</string>
+    <string name="loadout">Change Loadout</string>
     <string name="upgrade_text">Upgrades</string>
     <string name="level_up">Level Up</string>
     <string name="max_grit">Max Grit</string>
