@@ -24,7 +24,6 @@ import java.util.List;
 
 public class CharacterActivity extends AppCompatActivity {
 
-    public static final int NEW_CHARACTER_ACTIVITY_REQUEST_CODE = 1;
     private CharacterViewModel mCharacterViewModel;
 
     @Override
@@ -47,18 +46,14 @@ public class CharacterActivity extends AppCompatActivity {
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fab.setOnClickListener((View view) -> {
                 Intent intent = new Intent(CharacterActivity.this, ChooseClassActivity.class);
-                startActivityForResult(intent, NEW_CHARACTER_ACTIVITY_REQUEST_CODE);
-            }
+                startActivity(intent);
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -76,18 +71,5 @@ public class CharacterActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == NEW_CHARACTER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            //TODO add code for retrieving data for new Character
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.invalid_text,
-                    Toast.LENGTH_LONG).show();
-        }
     }
 }

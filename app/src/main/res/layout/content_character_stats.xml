@@ -6,40 +6,81 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:keepScreenOn="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
+        android:weightSum="3"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:keepScreenOn="true"
             android:layout_height="wrap_content"
-            android:text="@string/move"
-            android:paddingEnd="12dp"
-            android:paddingStart="12dp"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold|italic"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/move"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold|italic"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:paddingTop="3sp"
+                android:hint="d6"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/move_value"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:keepScreenOn="true"
             android:layout_height="wrap_content"
-            android:hint="d6"
-            android:textColor="@android:color/holo_blue_bright"
-            android:id="@+id/move_value"
-            android:textColorHint="@android:color/darker_gray"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/initiative"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold|italic"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:hint="0"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/init_value"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:keepScreenOn="true"
             android:layout_height="wrap_content"
-            android:text="@string/initiative"
-            android:paddingEnd="12dp"
-            android:paddingStart="12dp"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="bold|italic"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="0"
-            android:textColor="@android:color/holo_blue_bright"
-            android:id="@+id/init_value"
-            android:textColorHint="@android:color/darker_gray"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/max_grit"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold|italic"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:hint="0"
+                android:textColor="@android:color/holo_blue_bright"
+                android:id="@+id/max_grit_value"
+                android:textColorHint="@android:color/darker_gray"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -222,8 +263,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="16sp"
-                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_gravity="center"
                 android:textColor="@android:color/holo_blue_bright"
                 android:id="@+id/health_value"/>
         </LinearLayout>
@@ -302,7 +343,7 @@
                 android:textColor="@android:color/holo_blue_bright"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:id="@+id/sanity_value"/>
         </LinearLayout>
         <LinearLayout

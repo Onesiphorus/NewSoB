@@ -701,7 +701,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
             skill = new Skill("Quiet Traveler", CharacterClassEnum.WANDERING_SAMARAI.male());
-            //TODO Hard Code this Skill for TwoHanded melee
+            //TODO Hard Code Quiet Traveler Skill for TwoHanded melee
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
             skill = new Skill("Sword Master", CharacterClassEnum.WANDERING_SAMARAI.male());
@@ -1592,7 +1592,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             attachment.addRestriction(TraitsEnum.MELEE.label());
             attachment.setCost(1200);
             attachment.setDarkstoneCost(8);
-            //TODO hardcode dark stone grip bonus
             attachment.setDarkStone(1);
             mAttacmentDao.insert(attachment);
             attachment = new Attachment("Dark Stone Barrel", 1);
@@ -1655,7 +1654,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setCost(4800);
             meleeWeapon.setUpgrades(2);
             meleeWeapon.setWeight(1);
-            //TODO hardcode bonus for Tools of Science : combat = cunning
             mMeleeWeaponDao.insert(meleeWeapon);
             clothing = new Clothing("Field Surgeon's Apron");
             clothing.setCost(925);

@@ -125,7 +125,6 @@ public class LevelUpActivity extends AppCompatActivity {
             }
             tv.setText(String.format(i.toString()));
         });
-        //TODO integrate MAX_GRIT on character sheet
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             sobCharacter.setLevel(sobCharacter.getLevel() + 1);

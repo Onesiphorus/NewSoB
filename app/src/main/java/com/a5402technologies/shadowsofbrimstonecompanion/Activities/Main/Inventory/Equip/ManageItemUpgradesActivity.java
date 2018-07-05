@@ -55,20 +55,6 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 intent.putExtra("attachment", attachment);
-            /*
-            if(attachment != null) {
-                intent.putExtra("serializable_object", attachment);
-            }
-            setResult(RESULT_CODE, intent);
-            finish();
-            */
-                if (attachment != null) {
-                /*if(attachment.getEquipped().equals(FALSE)) sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(TRUE);
-                else sobCharacter.findAttachmentByName(attachment.getName()).setEquipped(FALSE);
-                //TODO finish attachment checks
-                intent.putExtra("serializable_object", sobCharacter);*/
-
-                }
                 startActivity(intent);
                 finish();
             } else {

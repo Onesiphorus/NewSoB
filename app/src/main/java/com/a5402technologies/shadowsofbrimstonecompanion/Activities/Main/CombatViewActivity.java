@@ -13,7 +13,9 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -92,6 +94,22 @@ public class CombatViewActivity extends AppCompatActivity {
             Integer shots = (sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label()))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getRightHand().getShots();
+            for(String s : sobCharacter.getRightHand().getTraits()) {
+                if(s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())
+                                && clothing.getEquipped().equals(TRUE)) {
+                            if (null != sobCharacter.getLeftHand()) {
+                                for (String string : sobCharacter.getLeftHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
@@ -139,6 +157,21 @@ public class CombatViewActivity extends AppCompatActivity {
             Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
                     : sobCharacter.getLeftHand().getShots();
+            for(String s : sobCharacter.getLeftHand().getTraits()) {
+                if(s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
+                            if (null != sobCharacter.getRightHand()) {
+                                for (String string : sobCharacter.getRightHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             for (Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;

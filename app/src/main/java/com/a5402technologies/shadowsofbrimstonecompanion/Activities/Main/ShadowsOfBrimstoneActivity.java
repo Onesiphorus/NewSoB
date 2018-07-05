@@ -30,11 +30,11 @@ import static java.lang.Boolean.TRUE;
 public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
     private SobCharacter sobCharacter;
-
+    private CharacterViewModel mCharacterViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CharacterViewModel mCharacterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
+        mCharacterViewModel = ViewModelProviders.of(this).get(CharacterViewModel.class);
         setContentView(R.layout.activity_shadows_of_brimstone);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         mCharacterViewModel.update(sobCharacter);
@@ -164,7 +164,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //TODO overwrite existing character
+        mCharacterViewModel.update(sobCharacter);
         Intent intent = new Intent(this, CharacterActivity.class);
         startActivity(intent);
         finish();

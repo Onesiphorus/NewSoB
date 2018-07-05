@@ -23,7 +23,6 @@ public enum SkillTypeEnum {
     FEROCITY("Ferocity", CharacterClassEnum.JARGONO_NATIVE.male()),
     HUNTING_AND_TRACKING("Hunting & Tracking", CharacterClassEnum.JARGONO_NATIVE.male()),
     STARTING("Starting", CharacterClassEnum.ANY.male());
-    //TODO finish setLists
 
 
     private static Map<String, SkillTypeEnum> lookupByCode = new HashMap<>();

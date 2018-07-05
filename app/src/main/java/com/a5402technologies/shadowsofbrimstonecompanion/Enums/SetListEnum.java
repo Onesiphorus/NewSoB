@@ -27,7 +27,6 @@ public enum SetListEnum {
     SERPENTMEN_OF_JARGONO("Serpentmen of Jargono", "SJ"),
     HERO_CLASS("Hero Class", "HC"),
     FRONTIER_TOWN("Frontier Town", "FT");
-    //TODO finish setLists
 
 
     private static Map<String, SetListEnum> lookupByCode = new HashMap<>();

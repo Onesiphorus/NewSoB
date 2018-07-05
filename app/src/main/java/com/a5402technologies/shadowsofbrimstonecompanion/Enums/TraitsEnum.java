@@ -92,7 +92,6 @@ public enum TraitsEnum {
     HELL("Hell", "HELL"),
     CYNDER("Cynder", "CYNDER");
 
-    //TODO Finish Traits
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
     private static Map<String, TraitsEnum> lookupByLabel = new HashMap<>();

@@ -26,7 +26,6 @@ public enum ModifiersEnum {
     RANGE("Range", CharacterClassEnum.ANY),
     SIDE_BAG_CAPACITY("Side Bag Capacity", CharacterClassEnum.ANY),
     MAX_CORRUPTION("Max Corruption", CharacterClassEnum.ANY);
-    //TODO finish modifiers
 
 
     private static Map<CharacterClassEnum, ModifiersEnum> lookupByCode = new HashMap<>();
