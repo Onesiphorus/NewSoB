@@ -89,7 +89,8 @@ public enum TraitsEnum {
     SCIENCE("Science", "SCIENCE"),
     BOW("Bow", "BOW"),
     NECK("Neck", "NECK"),
-    HELL("Hell", "HELL");
+    HELL("Hell", "HELL"),
+    CYNDER("Cynder", "CYNDER");
 
     //TODO Finish Traits
 
