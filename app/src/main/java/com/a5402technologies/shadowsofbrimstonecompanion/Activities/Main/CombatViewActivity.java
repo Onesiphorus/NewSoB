@@ -91,8 +91,10 @@ public class CombatViewActivity extends AppCompatActivity {
             }
             tv = findViewById(R.id.right_hand_range);
             Integer range = sobCharacter.getRightHand().getRange();
-            Integer shots = (sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label()))
+            Integer shots = sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label())
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
                     : sobCharacter.getRightHand().getShots();
             for(String s : sobCharacter.getRightHand().getTraits()) {
                 if(s.equals(TraitsEnum.PISTOL.label())) {
@@ -156,6 +158,8 @@ public class CombatViewActivity extends AppCompatActivity {
             tv = findViewById(R.id.left_hand_shots);
             Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
                     ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
                     : sobCharacter.getLeftHand().getShots();
             for(String s : sobCharacter.getLeftHand().getTraits()) {
                 if(s.equals(TraitsEnum.PISTOL.label())) {

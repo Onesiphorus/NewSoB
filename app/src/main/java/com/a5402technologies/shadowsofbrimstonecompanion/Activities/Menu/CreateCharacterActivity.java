@@ -162,6 +162,13 @@ public class CreateCharacterActivity extends AppCompatActivity {
         tv.setText("0");
         tv = findViewById(R.id.spirit_armor_value);
         tv.setText("0");
+        tv = findViewById(R.id.move_value);
+        String text = "d6";
+        tv.setText(text);
+        tv = findViewById(R.id.init_value);
+        tv.setText(String.format(characterClass.getInitiative().toString()));
+        tv = findViewById(R.id.max_grit_value);
+        tv.setText(String.format(characterClass.getMaxGrit().toString()));
 
         EditText name = findViewById(R.id.character_name_value);
 

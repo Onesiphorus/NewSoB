@@ -73,7 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:hint="@string/hint_enter_name"
-            android:textColorHint="@android:color/holo_blue_bright"/>
+            android:textColorHint="@android:color/holo_blue_bright"
+            android:textColor="@android:color/holo_blue_bright"
+            />
 
         <Button
             android:id="@+id/create_button"
@@ -81,6 +83,7 @@
             android:layout_width="0dp"
             android:background="@drawable/button_background"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:text="@string/create" />
     </LinearLayout>

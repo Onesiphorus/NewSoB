@@ -9,7 +9,13 @@ public enum RuleExceptionEnum {
     DARK_STONE_BARREL("Dark Stone Barrel"),
     TRUSTY_PISTOL("Trusty Pistol"),
     TOOLS_OF_SCIENCE("Tools of Science"),
-    DUELISTS_GUNBELT("Duelist's Gunbelt");
+    DUELISTS_GUNBELT("Duelist's Gunbelt"),
+    BOUNTY_HUNTERS_BADGE("Bounty Hunter's Badge"),
+    SPIRIT_BOW("Spirit Bow"),
+    HARTHBONE_NECKLACE("Harthbone Necklace"),
+    MARK_OF_THE_FAITHFUL("Mark of the Faithful"),
+    DARK_STONE_CLUB("Dark Stone Club"),
+    PERSONAL_TOUCH("Personal Touch");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

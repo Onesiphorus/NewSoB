@@ -47,13 +47,17 @@ public class Skill implements Serializable {
     @NonNull
     @ColumnInfo(name = "willpower")
     private Integer willpower = 0;
+    @NonNull
+    @ColumnInfo(name = "category")
+    private String category;
 
 
-    public Skill(@NonNull String name, @NonNull String type) {
+    public Skill(@NonNull String name, @NonNull String type, @NonNull String category) {
         this.name = name;
         this.modifiers = new ArrayList<>(0);
         this.penalties = new ArrayList<>(0);
         this.type = type;
+        this.category = category;
     }
 
     @NonNull
@@ -157,5 +161,14 @@ public class Skill implements Serializable {
 
     public void setWillpower(@NonNull Integer willpower) {
         this.willpower = willpower;
+    }
+
+    @NonNull
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(@NonNull String category) {
+        this.category = category;
     }
 }

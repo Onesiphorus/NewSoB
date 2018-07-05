@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
 import java.io.Serializable;
@@ -179,7 +181,6 @@ public class SobCharacter implements Serializable {
     private ArrayList<String> modifiers;
 
 
-
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
         this.characterClass = characterClass;
@@ -188,11 +189,11 @@ public class SobCharacter implements Serializable {
         meleeWeapons = new ArrayList<>(0);
         rangedWeapons = new ArrayList<>(0);
         upgrades = new ArrayList<>(0);
-        traits = new ArrayList<>(0);
         attachments = new ArrayList<>(0);
         currentHealth = characterClass.getHealth();
         currentSanity = characterClass.getSanity();
         modifiers = new ArrayList<>(0);
+        traits = characterClass.getTraits();
     }
 
     @NonNull
@@ -585,8 +586,8 @@ public class SobCharacter implements Serializable {
             findClothingByName(clothing.getName()).setEquipped(FALSE);
             Log.e("getEquipped: ",
                     clothing.getName()
-                    + ": "
-                    + findClothingByName(clothing.getName()).getEquipped());
+                            + ": "
+                            + findClothingByName(clothing.getName()).getEquipped());
             if (clothing.getEquipped().equals(TRUE)) {
                 if (clothing.getTorso().equals(TRUE)) {
                     this.setTorso(FALSE);
@@ -658,19 +659,22 @@ public class SobCharacter implements Serializable {
     }
 
     public void unequipRightHand() {
-        if(null != rightHand) findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+        if (null != rightHand) findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
         rightHand = null;
     }
+
     public void unequipLeftHand() {
-        if(null != leftHand) findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+        if (null != leftHand) findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
         leftHand = null;
     }
+
     public void unequipRightMelee() {
-        if(null != rightMelee) findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+        if (null != rightMelee) findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
         rightMelee = null;
     }
+
     public void unequipLeftMelee() {
-        if(null != leftMelee) findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+        if (null != leftMelee) findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
         leftMelee = null;
     }
 
@@ -712,7 +716,8 @@ public class SobCharacter implements Serializable {
 
     public void setBonuses() {
         resetBonuses();
-        for(String modifier : this.modifiers) {
+        Boolean markFaithfulBonus = FALSE;
+        for (String modifier : this.modifiers) {
             findBonus(modifier);
         }
         for (Clothing clothing : this.getClothing()) {
@@ -738,6 +743,9 @@ public class SobCharacter implements Serializable {
             if (meleeWeapon.getArmor() > 0 && meleeWeapon.getArmor() < this.armor) {
                 this.armor = meleeWeapon.getArmor();
             }
+            if (meleeWeapon.getName().equals(RuleExceptionEnum.DARK_STONE_CLUB.label())) {
+                traits.add(TraitsEnum.TRIBAL.label());
+            }
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
             if (rangedWeapon.getEquipped().equals(TRUE))
@@ -756,17 +764,44 @@ public class SobCharacter implements Serializable {
             if (gearBase.getSpiritArmor() > 0 && gearBase.getSpiritArmor() < this.spiritArmor) {
                 this.spiritArmor = gearBase.getSpiritArmor();
             }
+            if (gearBase.getName().equals(RuleExceptionEnum.BOUNTY_HUNTERS_BADGE.label())) {
+                traits.add(TraitsEnum.TRAVELER.label());
+            }
+            if (gearBase.getName().equals(RuleExceptionEnum.HARTHBONE_NECKLACE.label())) {
+                traits.add(TraitsEnum.TRIBAL.label());
+            }
         }
-        for(Attachment attachment : this.getAttachments()) {
-            if(attachment.getEquipped().equals(TRUE)) {
+        for (Attachment attachment : this.getAttachments()) {
+            if (attachment.getEquipped().equals(TRUE)) {
                 for (String string : attachment.getModifiers()) {
                     findBonus(string);
+                }
+                if (attachment.getName().equals(RuleExceptionEnum.MARK_OF_THE_FAITHFUL.label())) {
+                    markFaithfulBonus = TRUE;
                 }
                 for (String string : attachment.getPenalties()) {
                     findPenalty(string);
                 }
             }
         }
+        for (Skill skill : this.getUpgrades()) {
+            for (String string : skill.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : skill.getPenalties()) {
+                findPenalty(string);
+            }
+            if(skill.getName().equals(RuleExceptionEnum.PERSONAL_TOUCH.label())) {
+                this.getCharacterClass().setDefense(4);
+                for (Clothing clothing : this.getClothing()) {
+                    if (clothing.getHat().equals(TRUE) && this.getClothing().size() > 3) {
+                        this.getCharacterClass().setDefense(3);
+                    }
+                }
+            }
+        }
+        if (markFaithfulBonus.equals(TRUE))
+            setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
     }
 
     private void setRanged(RangedWeapon rangedWeapon) {
@@ -780,7 +815,7 @@ public class SobCharacter implements Serializable {
 
     private void setCombat(MeleeWeapon meleeWeapon) {
         this.combatBonus += meleeWeapon.getCombat();
-        for(Attachment attachment : meleeWeapon.getAttachments()) {
+        for (Attachment attachment : meleeWeapon.getAttachments()) {
             if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                 this.combatBonus++;
             }
@@ -883,6 +918,7 @@ public class SobCharacter implements Serializable {
         this.setSpiritArmor(0);
         this.setMeleeToHitDie(6);
         this.setMeleeDamageDie(6);
+        this.traits = getCharacterClass().getTraits();
     }
 
     public RangedWeapon getRightHand() {
@@ -971,6 +1007,7 @@ public class SobCharacter implements Serializable {
         }
         return null;
     }
+
     public Attachment findAttachmentByName(String name) {
         for (Attachment attachment : this.getAttachments()) {
             if (attachment.getName().equals(name)) return attachment;

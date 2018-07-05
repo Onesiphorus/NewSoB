@@ -149,6 +149,10 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         }
         tv.setText(text);
 
+        tv = findViewById(R.id.max_grit_value);
+        value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
+        tv.setText(String.format(String.format(value.toString())));
+
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
 
