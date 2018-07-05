@@ -12,6 +12,7 @@
         <activity
             android:name=".Activities.Menu.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,100 +22,136 @@
         </activity>
         <activity
             android:name=".Activities.Menu.CharacterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.NewCharacterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddClothingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.ChooseClassActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.FoundGearActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.CreateCharacterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Menu.FinishCharacterActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.ShadowsOfBrimstoneActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.ManagementMenuActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddMeleeWeaponActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddRangedWeaponActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.EquipLeftMeleeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.EquipRightMeleeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.ChangeLoadoutActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.Equip.ChangeClothingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.RemoveItems.RemoveGearActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.RemoveItems.RemoveMeleeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.RemoveItems.RemoveRangedActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.RemoveItems.RemoveClothingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Town.VisitTownActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Town.VisitShopActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Town.ShopBuyActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.SpoilsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.CombatViewActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddAttachmentActivity" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity" />
-        <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment" />
-        <activity android:name=".Activities.Main.LevelUpActivity" />
-        <activity android:name=".Activities.Main.Inventory.ExamineInventoryActivity" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddSkillActivity" />
-        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveSkillActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddAttachmentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ManageItemUpgradesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.Inventory.Equip.ChooseCategoryForAttachment"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.LevelUpActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.Inventory.ExamineInventoryActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddSkillActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.Main.Inventory.RemoveItems.RemoveSkillActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@
     <string name="spirit_armor">SPIRIT ARMOR</string>
     <string name="title_activity_finish_character">FinishCharacterActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">CLASS\nNAME</string>
+    <string name="dummy_content">Class Name</string>
     <string name="create">CREATE</string>
     <string name="choose_upgrade">CHOOSE YOUR UPGRADE</string>
     <string name="choose_class">CHOOSE YOUR CLASS</string>
@@ -66,6 +66,7 @@
     <string name="gambling_hall">Gambling Hall</string>
     <string name="street_market">Street Market</string>
     <string name="indian_trading_outpost">Indian Trading Outpost</string>
+    <string name="inventory">Inventory</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

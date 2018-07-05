@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@android:color/holo_orange_light"
             android:textColorHint="@android:color/darker_gray"
             android:id="@+id/sob_money"
             android:hint="$0"/>
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@android:color/holo_purple"
             android:id="@+id/sob_darkstone"
             android:hint="0"/>
     </LinearLayout>

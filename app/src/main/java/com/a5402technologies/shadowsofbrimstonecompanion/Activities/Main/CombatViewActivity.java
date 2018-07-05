@@ -29,15 +29,12 @@ public class CombatViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combat_view);
-
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         sobCharacter.setBonuses();
-
         setQuickStats();
         setHealthSanityStats();
         setWeapons();
     }
-
     private void setQuickStats() {
         tv = findViewById(R.id.quick_agi);
         val = sobCharacter.getAgilityBonus() + sobCharacter.getCharacterClass().getAgility();

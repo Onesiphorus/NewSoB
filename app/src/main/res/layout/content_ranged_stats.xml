@@ -3,6 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ranged Combat Stats"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

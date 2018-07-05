@@ -222,7 +222,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="16sp"
+                android:gravity="center"
                 android:textColor="@android:color/holo_blue_bright"
                 android:id="@+id/health_value"/>
         </LinearLayout>
@@ -300,7 +301,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/holo_blue_bright"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:gravity="center"
+                android:textSize="16sp"
                 android:id="@+id/sanity_value"/>
         </LinearLayout>
         <LinearLayout
