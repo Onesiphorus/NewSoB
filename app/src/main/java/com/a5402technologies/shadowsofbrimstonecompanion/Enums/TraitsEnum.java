@@ -90,7 +90,12 @@ public enum TraitsEnum {
     BOW("Bow", "BOW"),
     NECK("Neck", "NECK"),
     HELL("Hell", "HELL"),
-    CYNDER("Cynder", "CYNDER");
+    CYNDER("Cynder", "CYNDER"),
+    PLANT("Plant", "PLANT"),
+    SHIP("Ship", "SHIP"),
+    CONTROL("Control", "CONTROL"),
+    ROBOT("Robot", "ROBOT");
+
 
 
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
