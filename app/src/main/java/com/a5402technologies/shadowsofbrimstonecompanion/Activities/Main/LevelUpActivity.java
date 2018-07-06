@@ -173,6 +173,9 @@ public class LevelUpActivity extends AppCompatActivity {
                 for (String modifier : tempMods) {
                     sobCharacter.addModifier(modifier);
                 }
+                sobCharacter.setBonuses();
+                sobCharacter.setCurrentSanity(sobCharacter.getSanityBonus() + sobCharacter.getCharacterClass().getSanity());
+                sobCharacter.setCurrentHealth(sobCharacter.getHealthBonus() + sobCharacter.getCharacterClass().getHealth());
                 Intent intent = new Intent(this, AddSkillActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);

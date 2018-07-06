@@ -98,7 +98,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv = findViewById(R.id.quick_face);
         if (sobCharacter.getFace().equals(TRUE)) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
-        tv = findViewById(R.id.squick_torso);
+        tv = findViewById(R.id.quick_torso);
         if (sobCharacter.getTorso().equals(TRUE)) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv = findViewById(R.id.quick_gloves);
@@ -118,6 +118,11 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         else tv.setHintTextColor(RED);
         tv = findViewById(R.id.quick_coat);
         if (sobCharacter.getCoat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_weight);
+        String text = "Weight: " + sobCharacter.getWeight().toString() + "/" + sobCharacter.getMaxWeight();
+        tv.setHint(text);
+        if(sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
     }
 

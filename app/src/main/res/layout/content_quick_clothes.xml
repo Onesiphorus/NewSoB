@@ -46,10 +46,20 @@
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorAccent"
             android:layout_margin="4dp"
-            android:id="@+id/squick_torso"
+            android:id="@+id/quick_torso"
             android:background="@android:color/background_dark"
             android:textColor="@color/colorPrimary"
             android:hint="@string/torso"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorAccent"
+            android:layout_margin="4dp"
+            android:id="@+id/quick_weight"
+            android:background="@android:color/background_dark"
+            android:textColor="@color/colorPrimary"
+            android:hint="@string/weight"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

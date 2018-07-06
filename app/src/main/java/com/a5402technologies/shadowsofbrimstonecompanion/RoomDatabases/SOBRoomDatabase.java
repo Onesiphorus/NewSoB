@@ -46,7 +46,7 @@ import static java.lang.Boolean.TRUE;
 import static java.lang.Boolean.compare;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 31)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 32)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -961,7 +961,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setUpgrades(2);
             clothing.setTargaArtifact(TRUE);
             mClothingDao.insert(clothing);
-            Cowboy.addGear(gearBase);
+            Cowboy.addClothing(clothing);
+            //TODO hard code items that need to be equipped to reduce weight
             gearBase = new GearBase("Deflection Field");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
             gearBase.addTrait(TraitsEnum.TARGA.label());

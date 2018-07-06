@@ -76,6 +76,7 @@
     <string name="pants">Pants</string>
     <string name="boots">Boots</string>
     <string name="coat">Coat</string>
+    <string name="weight">Weight</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-    tools:context=".Activities.Main.Inventory.Equip.EquipRightHandRangedActivity">
+    android:layout_gravity="center|bottom"
+    android:background="@color/colorPrimaryDark">
 
 
     <include layout="@layout/content_choose_item"/>

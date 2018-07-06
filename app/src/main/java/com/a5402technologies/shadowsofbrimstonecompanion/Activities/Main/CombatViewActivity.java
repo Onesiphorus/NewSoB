@@ -62,7 +62,7 @@ public class CombatViewActivity extends AppCompatActivity {
         tv = findViewById(R.id.quick_face);
         if (sobCharacter.getFace().equals(TRUE)) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
-        tv = findViewById(R.id.squick_torso);
+        tv = findViewById(R.id.quick_torso);
         if (sobCharacter.getTorso().equals(TRUE)) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv = findViewById(R.id.quick_gloves);

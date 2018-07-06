@@ -179,6 +179,12 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "modifiers")
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> modifiers;
+    @NonNull
+    @ColumnInfo(name = "weight")
+    private Integer weight = 0;
+    @NonNull
+    @ColumnInfo(name = "max_weight")
+    private Integer maxWeight = 0;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -735,6 +741,7 @@ public class SobCharacter implements Serializable {
                     this.spiritArmor = clothing.getSpiritArmor();
                 }
             }
+            this.weight += clothing.getWeight();
         }
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
             if (meleeWeapon.getEquipped().equals(TRUE)) {
@@ -746,10 +753,13 @@ public class SobCharacter implements Serializable {
             if (meleeWeapon.getName().equals(RuleExceptionEnum.DARK_STONE_CLUB.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
+            this.weight += meleeWeapon.getWeight();
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(TRUE))
+            if (rangedWeapon.getEquipped().equals(TRUE)) {
                 setRanged(rangedWeapon);
+            }
+            this.weight += rangedWeapon.getWeight();
         }
         for (GearBase gearBase : this.getGear()) {
             for (String string : gearBase.getModifiers()) {
@@ -770,6 +780,7 @@ public class SobCharacter implements Serializable {
             if (gearBase.getName().equals(RuleExceptionEnum.HARTHBONE_NECKLACE.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
+            this.weight += gearBase.getWeight();
         }
         for (Attachment attachment : this.getAttachments()) {
             if (attachment.getEquipped().equals(TRUE)) {
@@ -783,6 +794,7 @@ public class SobCharacter implements Serializable {
                     findPenalty(string);
                 }
             }
+            this.weight += attachment.getWeight();
         }
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
@@ -800,6 +812,7 @@ public class SobCharacter implements Serializable {
                 }
             }
         }
+        this.maxWeight = this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
     }
@@ -919,6 +932,8 @@ public class SobCharacter implements Serializable {
         this.setMeleeToHitDie(6);
         this.setMeleeDamageDie(6);
         this.traits = getCharacterClass().getTraits();
+        this.weight = 0;
+        this.maxWeight = 0;
     }
 
     public RangedWeapon getRightHand() {
@@ -1116,6 +1131,24 @@ public class SobCharacter implements Serializable {
 
     public void setModifiers(@NonNull ArrayList<String> modifiers) {
         this.modifiers = modifiers;
+    }
+
+    @NonNull
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(@NonNull Integer weight) {
+        this.weight = weight;
+    }
+
+    @NonNull
+    public Integer getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(@NonNull Integer maxWeight) {
+        this.maxWeight = maxWeight;
     }
 }
 
