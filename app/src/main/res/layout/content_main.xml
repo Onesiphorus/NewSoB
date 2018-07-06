@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/colorPrimaryDark"
         android:keepScreenOn="true"
         android:text="@string/shadows"
         android:textSize="50sp"
@@ -28,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_bright"
-            android:textColorHighlight="@android:color/holo_blue_bright"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary"
             android:textSize="24sp"
             android:id="@+id/btn_character"
             android:text="@string/character_text"/>
@@ -37,8 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColorHighlight="@android:color/holo_blue_bright"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColorHighlight="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/btn_settings"
             android:text="@string/settings"/>
     </LinearLayout>

@@ -166,7 +166,10 @@ public class FinishCharacterActivity extends AppCompatActivity {
         tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
         tv = findViewById(R.id.tv_character_name);
         tv.setText(sobCharacter.getCharacterName());
-
+        tv = findViewById(R.id.init_value);
+        tv.setText(String.format(sobCharacter.getCharacterClass().getInitiative().toString()));
+        tv = findViewById(R.id.max_grit_value);
+        tv.setText(String.format(sobCharacter.getCharacterClass().getMaxGrit().toString()));
         ArrayList<String> startingGear = new ArrayList<>(0);
         for (GearBase gear : sobCharacter.getCharacterClass().getStartingGear()) {
             startingGear.add(gear.getName());

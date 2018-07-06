@@ -67,6 +67,15 @@
     <string name="street_market">Street Market</string>
     <string name="indian_trading_outpost">Indian Trading Outpost</string>
     <string name="inventory">Inventory</string>
+    <string name="hat">Hat</string>
+    <string name="face">Face</string>
+    <string name="shoulders">Shoulders</string>
+    <string name="torso">Torso</string>
+    <string name="gloves">Gloves</string>
+    <string name="belt">Belt</string>
+    <string name="pants">Pants</string>
+    <string name="boots">Boots</string>
+    <string name="coat">Coat</string>
 
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
 </resources>

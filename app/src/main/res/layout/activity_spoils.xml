@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"
             android:text="Experience Earned"/>
         <TextView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:id="@+id/spoils_xp"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/colorPrimary"
             android:hint="0"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,14 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Money Gained"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:id="@+id/spoils_money"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/colorPrimary"
             android:hint="0"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,14 +149,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Dark Stone Found"/>
         <TextView
             android:layout_width="match_parent"
             android:textAlignment="center"
             android:id="@+id/spoils_ds"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/colorPrimary"
             android:hint="0"/>
         <LinearLayout
             android:layout_width="match_parent"

@@ -583,7 +583,6 @@ public class SobCharacter implements Serializable {
 
     public void unequipClothing(Clothing clothing) {
         if (null != clothing && null != findClothingByName(clothing.getName())) {
-            findClothingByName(clothing.getName()).setEquipped(FALSE);
             Log.e("getEquipped: ",
                     clothing.getName()
                             + ": "
@@ -617,6 +616,7 @@ public class SobCharacter implements Serializable {
                     this.setHat(FALSE);
                 }
             }
+            findClothingByName(clothing.getName()).setEquipped(FALSE);
         }
     }
 

@@ -1,29 +1,21 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterViewModel;
 
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.RED;
 import static java.lang.Boolean.TRUE;
 
 
@@ -31,6 +23,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
     private SobCharacter sobCharacter;
     private CharacterViewModel mCharacterViewModel;
+    private TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +34,28 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         mCharacterViewModel.update(sobCharacter);
         sobCharacter.setBonuses();
 
-        setStats();
+        TextView tv = findViewById(R.id.right_hand_weapon);
+        if (sobCharacter.getRightHand() != null) {
+            tv.setText(sobCharacter.getRightHand().getName());
+        } else if (sobCharacter.getRightMelee() != null) {
+            tv.setText(sobCharacter.getRightMelee().getName());
+        } else tv.setText("Empty");
+        tv = findViewById(R.id.left_hand_weapon);
+        if (sobCharacter.getLeftHand() != null) {
+            tv.setText(sobCharacter.getLeftHand().getName());
+        } else if (sobCharacter.getLeftMelee() != null) {
+            tv.setText(sobCharacter.getLeftMelee().getName());
+        } else tv.setText("Empty");
 
-        findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
+        setStats();
+        setQuickClothes();
+        findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, CombatViewActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.quick_clothes_layout).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ChangeLoadoutActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
@@ -64,7 +77,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             finish();
         });
 
-        findViewById(R.id.combat_view).setOnClickListener((View view) -> {
+        findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
@@ -78,9 +91,39 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         });
     }
 
+    protected void setQuickClothes() {
+        tv = findViewById(R.id.quick_hat);
+        if (sobCharacter.getHat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_face);
+        if (sobCharacter.getFace().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.squick_torso);
+        if (sobCharacter.getTorso().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_gloves);
+        if (sobCharacter.getGloves().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_belt);
+        if (sobCharacter.getBelt().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_pants);
+        if (sobCharacter.getPants().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_shoulders);
+        if (sobCharacter.getShoulders().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_boots);
+        if (sobCharacter.getBoots().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_coat);
+        if (sobCharacter.getCoat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+    }
+
     protected void setStats() {
         String text;
-        TextView tv = findViewById(R.id.sob_fullscreen);
+        tv = findViewById(R.id.sob_fullscreen);
         Integer value;
         tv.setText(sobCharacter.getCharacterClass().getClassName());
         tv = findViewById(R.id.strength_value);
@@ -144,7 +187,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.move_value);
         text = "d6";
-        if(sobCharacter.getMoveBonus() > 0) {
+        if (sobCharacter.getMoveBonus() > 0) {
             text += " + " + sobCharacter.getMoveBonus().toString();
         }
         tv.setText(text);
@@ -163,7 +206,6 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
     }
-
 
 
     @Override

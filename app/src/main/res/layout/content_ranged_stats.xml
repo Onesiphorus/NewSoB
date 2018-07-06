@@ -13,11 +13,11 @@
         android:text="Ranged Combat Stats"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"/>
+        android:textColor="@color/colorPrimaryDark"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/background_light"/>
+        android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="Right Hand"
                     android:layout_weight="1"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="12sp"/>
                 <Button
                     android:layout_width="0dp"
@@ -46,7 +46,7 @@
                     android:gravity="center"
                     android:background="@drawable/button_background"
                     android:layout_weight="4"
-                    android:textColor="@android:color/holo_blue_bright"
+                    android:textColor="@color/colorPrimary"
                     android:textColorHint="@android:color/darker_gray"
                     android:id="@+id/right_hand_ranged_weapon"
                     android:textSize="12sp"
@@ -68,7 +68,7 @@
                         android:textSize="12sp"
                         android:textAlignment="center"
                         android:layout_gravity="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Range"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:layout_gravity="center"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:hint="@string/NA"/>
                 </LinearLayout>
                 <LinearLayout
@@ -92,7 +92,7 @@
                         android:textSize="12sp"
                         android:textAlignment="center"
                         android:layout_gravity="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Shots"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                         android:id="@+id/right_hand_shots"
                         android:textSize="20sp"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
                         android:hint="@string/NA"/>
                 </LinearLayout>
@@ -116,14 +116,14 @@
                         android:textSize="12sp"
                         android:textAlignment="center"
                         android:layout_gravity="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="To Hit(Crit)"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/right_hand_to_hit"
                         android:textSize="20sp"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:textAlignment="center"
                         android:layout_gravity="center"
                         android:hint="@string/NA"/>
@@ -139,14 +139,14 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
                         android:text="Damage"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
                         android:id="@+id/right_hand_damage"
                         android:textSize="20sp"
@@ -173,7 +173,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"
                     android:text="Left Hand"/>
                 <Button
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColorHint="@android:color/darker_gray"
-                    android:textColor="@android:color/holo_blue_bright"
+                    android:textColor="@color/colorPrimary"
                     android:background="@drawable/button_background"
                     android:id="@+id/left_hand_ranged_weapon"
                     android:layout_weight="4"
@@ -202,7 +202,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textAlignment="center"
                         android:layout_gravity="center"
                         android:text="Range"/>
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:id="@+id/left_hand_range"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
                         android:textAlignment="center"
                         android:hint="@string/NA"/>
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textAlignment="center"
                         android:layout_gravity="center"
                         android:text="Shots"/>
@@ -234,7 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:id="@+id/left_hand_shots"
                         android:layout_gravity="center"
                         android:textAlignment="center"
@@ -251,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
                         android:text="To Hit(Crit)"/>
                     <TextView
@@ -260,7 +260,7 @@
                         android:textSize="20sp"
                         android:id="@+id/left_hand_to_hit"
                         android:layout_gravity="center"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:textAlignment="center"
                         android:hint="@string/NA"/>
                 </LinearLayout>
@@ -275,14 +275,14 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
                         android:text="Damage"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
                         android:textSize="20sp"
                         android:id="@+id/left_hand_damage"

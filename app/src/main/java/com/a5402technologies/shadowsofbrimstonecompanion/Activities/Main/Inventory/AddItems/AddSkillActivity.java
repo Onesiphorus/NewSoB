@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -50,17 +51,31 @@ public class AddSkillActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Skill> skills) {
                 ArrayList<Skill> filteredByClass = new ArrayList<>(0);
+                ArrayList<Skill> filteredByAvailable = new ArrayList<>(0);
                 for(Skill s : skills) {
                     if(s.getType().equals(sobCharacter.getCharacterClass().getClassName())) {
                         filteredByClass.add(s);
                     }
                 }
-                adapter.setSkill(filteredByClass);
+                for(Skill s : filteredByClass) {
+                    if(s.getLevel() == 1) filteredByAvailable.add(s);
+                    for(Skill have : sobCharacter.getUpgrades()) {
+                        if(s.getCategory().equals(have.getCategory()) && s.getLevel() - 1 == have.getLevel()) {
+                            filteredByAvailable.add(s);
+                        }
+                    }
+                    for(Skill have : sobCharacter.getUpgrades()) {
+                        if(s.getName().equals(have.getName())) {
+                            filteredByAvailable.remove(s);
+                        }
+                    }
+                }
+                adapter.setSkill(filteredByAvailable);
             }
         });
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class);
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
             /*
             if(skill != null) {
                 intent.putExtra("serializable_object", skill);
@@ -106,9 +121,10 @@ public class AddSkillActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, FoundGearActivity.class);
+        Intent intent = new Intent(this, AddSkillActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
+        Toast.makeText(this, "Please choose a skill to continue", Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -133,7 +149,9 @@ public class AddSkillActivity extends AppCompatActivity {
         public void onBindViewHolder(SkillViewHolder holder, int position) {
             if (null != mSkill) {
                 Skill current = mSkill.get(position);
-                holder.skillItemView.setText(current.getName());
+                String text;
+                text = current.getName() + "\n " + current.getCategory() + " (Rank " + current.getLevel() + ")";
+                holder.skillItemView.setText(text);
             } else {
                 holder.skillItemView.setText("No Skill");
             }

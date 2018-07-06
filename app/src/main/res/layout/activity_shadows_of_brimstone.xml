@@ -13,46 +13,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="48dp"
         android:orientation="vertical">
-        <include layout="@layout/content_resources"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/background_light"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/sob_character_name"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textColorHint="@android:color/background_light"
-                android:hint="@string/character_text"
-                android:textSize="24sp"
-                android:textAlignment="viewEnd"
-                android:layout_weight="1"
-                android:textStyle="italic|bold"/>
-            <TextView
-                android:id="@+id/sob_fullscreen"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:keepScreenOn="true"
-                android:text="@string/dummy_content"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:background="@android:color/background_light" />
+
+        <include layout="@layout/content_charater_header" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/background_light"/>
-        <include layout="@layout/content_character_stats"/>
+            android:background="@android:color/background_light" />
+
+        <include layout="@layout/content_resources" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light" />
+
+
+        <include layout="@layout/content_character_stats" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light" />
+
+        <include layout="@layout/content_quick_combat" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light" />
+
+        <include layout="@layout/content_quick_clothes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,26 +63,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_clothing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:background="@drawable/button_background"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/loadout" />
-            <Button
                 android:id="@+id/btn_sob_gear"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:background="@drawable/button_background"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/inventory" />
+                android:background="@drawable/button_background"
+                android:text="@string/inventory"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,37 +85,23 @@
                 android:id="@+id/btn_levelup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:background="@drawable/button_background"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/level_up" />
+                android:background="@drawable/button_background"
+                android:text="@string/level_up"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
             <Button
                 android:id="@+id/btn_spoils"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:background="@drawable/button_background"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/spoils" />
+                android:background="@drawable/button_background"
+                android:text="@string/spoils"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/combat_view"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:background="@drawable/button_background"
-                android:textColor="@android:color/holo_red_dark"
-                android:id="@+id/combat_view"/>
 
-        </LinearLayout>
     </LinearLayout>
 
 

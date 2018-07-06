@@ -4374,6 +4374,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             for (MeleeWeapon meleeWeapon1 : Cowboy.getCharacterClass().getStartingMelee()) {
                 Cowboy.addMeleeWeapon(meleeWeapon1);
             }
+            Cowboy.setExperience(1585);
+            Cowboy.setGold(390);
+            Cowboy.setDarkStoneShards(12);
             mCharacterDao.insert(sobCharacter);
             mCharacterDao.insert(Cowboy);
 

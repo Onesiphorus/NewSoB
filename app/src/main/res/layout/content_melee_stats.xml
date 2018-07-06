@@ -6,18 +6,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/background_light"/>
+        android:background="@android:color/darker_gray"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Melee Combat Stats"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"/>
+        android:textColor="@color/colorPrimaryDark"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/background_light"/>
+        android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:background="@drawable/button_background"
             android:textColorHint="@android:color/darker_gray"
             android:hint="Right Hand"
@@ -44,7 +44,7 @@
             android:background="@drawable/button_background"
             android:hint="Left Hand"
             android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:paddingLeft="4dp"
             android:gravity="center"
             android:id="@+id/btn_left_melee"/>
@@ -62,14 +62,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Combat"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:hint="2"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:id="@+id/melee_combat"/>
         </LinearLayout>
@@ -81,13 +81,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="To Hit(Crit)"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:hint="D6(4+)"
@@ -102,14 +102,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Damage"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:hint="D6+0"
                 android:id="@+id/melee_damage"/>
         </LinearLayout>

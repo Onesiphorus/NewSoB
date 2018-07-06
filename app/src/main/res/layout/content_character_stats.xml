@@ -3,12 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/background_dark"
+    android:gravity="center"
+    android:layout_weight="5"
     android:orientation="vertical">
 
     <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="3"
         android:orientation="horizontal">
         <LinearLayout
@@ -22,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/move"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"/>
             <TextView
                 android:layout_width="match_parent"
@@ -31,7 +34,7 @@
                 android:paddingTop="3sp"
                 android:hint="d6"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/move_value"
                 android:textColorHint="@android:color/darker_gray"/>
         </LinearLayout>
@@ -46,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/initiative"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"/>
             <TextView
                 android:layout_width="match_parent"
@@ -54,7 +57,7 @@
                 android:textSize="24sp"
                 android:hint="0"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/init_value"
                 android:textColorHint="@android:color/darker_gray"/>
         </LinearLayout>
@@ -69,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/max_grit"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"/>
             <TextView
                 android:layout_width="match_parent"
@@ -77,7 +80,7 @@
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:hint="0"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/max_grit_value"
                 android:textColorHint="@android:color/darker_gray"/>
         </LinearLayout>
@@ -86,7 +89,8 @@
     <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="3"
         android:orientation="horizontal">
         <LinearLayout
@@ -100,7 +104,7 @@
                 android:keepScreenOn="true"
                 android:text="@string/agility"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/agility_label"/>
@@ -109,7 +113,7 @@
                 android:id="@+id/agility_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -126,14 +130,14 @@
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/cunning_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/cunning_value"/>
         </LinearLayout>
         <LinearLayout
@@ -147,14 +151,14 @@
                 android:keepScreenOn="true"
                 android:text="@string/spirit"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/spirit_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:id="@+id/spirit_value"/>
@@ -163,8 +167,8 @@
     <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center|center_horizontal"
         android:orientation="horizontal">
         <LinearLayout
@@ -178,7 +182,7 @@
                 android:keepScreenOn="true"
                 android:text="@string/strength"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/strength_label"/>
@@ -186,7 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:id="@+id/strength_value"/>
         </LinearLayout>
@@ -201,7 +205,7 @@
                 android:keepScreenOn="true"
                 android:text="@string/lore"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/lore_label"/>
@@ -209,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:id="@+id/lore_value"/>
         </LinearLayout>
@@ -224,7 +228,7 @@
                 android:keepScreenOn="true"
                 android:text="@string/luck"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/luck_label"/>
@@ -232,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:id="@+id/luck_value"/>
         </LinearLayout>
@@ -240,8 +244,8 @@
     <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center|center_horizontal"
         android:orientation="horizontal">
         <LinearLayout
@@ -256,7 +260,7 @@
                 android:text="@string/health"
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
                 android:id="@+id/health_label"/>
             <TextView
@@ -265,7 +269,7 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:layout_gravity="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/health_value"/>
         </LinearLayout>
         <LinearLayout
@@ -281,12 +285,12 @@
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/defense_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:id="@+id/defense_value"/>
@@ -304,13 +308,13 @@
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/armor_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:id="@+id/armor_value"/>
         </LinearLayout>
@@ -318,8 +322,8 @@
     <LinearLayout
         android:keepScreenOn="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center|center_horizontal"
         android:orientation="horizontal">
         <LinearLayout
@@ -333,14 +337,14 @@
                 android:keepScreenOn="true"
                 android:text="@string/sanity"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/sanity_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textSize="18sp"
@@ -358,14 +362,14 @@
                 android:text="@string/willpower"
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
                 android:id="@+id/willpower_label"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:id="@+id/willpower_value"/>
         </LinearLayout>
@@ -380,7 +384,7 @@
                 android:keepScreenOn="true"
                 android:text="@string/spirit_armor"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold|italic"
                 android:layout_height="wrap_content"
                 android:id="@+id/spirit_armor_label"/>
@@ -389,7 +393,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/spirit_armor_value"/>
         </LinearLayout>
 

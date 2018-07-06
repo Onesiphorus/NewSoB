@@ -60,12 +60,7 @@ public class FoundGearActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        findViewById(R.id.btn_skills).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddSkillActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
+        findViewById(R.id.btn_skills).setVisibility(View.INVISIBLE);
 
     }
 

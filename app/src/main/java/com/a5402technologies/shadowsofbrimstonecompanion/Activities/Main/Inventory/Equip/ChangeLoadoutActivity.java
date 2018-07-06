@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;

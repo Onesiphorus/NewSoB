@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
@@ -19,6 +20,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.RED;
 import static java.lang.Boolean.TRUE;
 
 public class CombatViewActivity extends AppCompatActivity {
@@ -36,40 +39,91 @@ public class CombatViewActivity extends AppCompatActivity {
         setQuickStats();
         setHealthSanityStats();
         setWeapons();
+        setQuickClothes();
+
+        findViewById(R.id.layout_quick_stats).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+
+        findViewById(R.id.quick_clothes_layout).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+    }
+    protected void setQuickClothes() {
+        tv = findViewById(R.id.quick_hat);
+        if (sobCharacter.getHat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_face);
+        if (sobCharacter.getFace().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.squick_torso);
+        if (sobCharacter.getTorso().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_gloves);
+        if (sobCharacter.getGloves().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_belt);
+        if (sobCharacter.getBelt().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_pants);
+        if (sobCharacter.getPants().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_shoulders);
+        if (sobCharacter.getShoulders().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_boots);
+        if (sobCharacter.getBoots().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_coat);
+        if (sobCharacter.getCoat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
     }
     private void setQuickStats() {
         tv = findViewById(R.id.quick_agi);
         val = sobCharacter.getAgilityBonus() + sobCharacter.getCharacterClass().getAgility();
-        text = "AGI:" + val.toString();
+        text = "AGI: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_cun);
         val = sobCharacter.getCunningBonus() + sobCharacter.getCharacterClass().getCunning();
-        text = "CUN:" + val.toString();
+        text = "CUN: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_spi);
         val = sobCharacter.getSpiritBonus() + sobCharacter.getCharacterClass().getSpirit();
-        text = "SPR:" + val.toString();
+        text = "SPR: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_str);
         val = sobCharacter.getStrengthBonus() + sobCharacter.getCharacterClass().getStrength();
-        text = "STR:" + val.toString();
+        text = "STR: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_lor);
         val = sobCharacter.getLoreBonus() + sobCharacter.getCharacterClass().getLore();
-        text = "LOR:" + val.toString();
+        text = "LOR: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_lck);
         val = sobCharacter.getLuckBonus() + sobCharacter.getCharacterClass().getLuck();
-        text = "LCK:" + val.toString();
+        text = "LCK: " + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_mv);
         val = sobCharacter.getMoveBonus();
-        text = "MV:+" + val.toString();
+        text = "MV: +" + val.toString();
         tv.setText(text);
         tv = findViewById(R.id.quick_ini);
         val = sobCharacter.getInitiativeBonus() + sobCharacter.getCharacterClass().getInitiative();
-        text = "INI:" + val.toString();
+        text = "INI: " + val.toString();
         tv.setText(text);
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$" + sobCharacter.getGold().toString();
+        tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
     }
 
     private void setWeapons() {

@@ -1,63 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_weight="1"
+    android:gravity="center"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_dark"
             android:paddingRight="4dp"
-            android:text="Money"/>
+            android:text="Money"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
         <TextView
+            android:id="@+id/sob_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="$0"
             android:textColor="@android:color/holo_orange_light"
             android:textColorHint="@android:color/darker_gray"
-            android:id="@+id/sob_money"
-            android:hint="$0"/>
+            android:textSize="14sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_dark"
             android:paddingRight="4dp"
-            android:text="Dark Stone"/>
+            android:text="Dark Stone"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@android:color/holo_purple"
             android:id="@+id/sob_darkstone"
-            android:hint="0"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_dark"
-            android:text="Level"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
-            android:textColorHint="@android:color/darker_gray"
-            android:paddingLeft="4dp"
             android:hint="0"
-            android:id="@+id/sob_level"/>
+            android:textColor="@android:color/holo_purple"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,18 +57,46 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
-            android:textColorHint="@android:color/darker_gray"
-            android:paddingRight="4dp"
+            android:text="Level"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/sob_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="0"
-            android:id="@+id/sob_xp"/>
+            android:paddingLeft="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/sob_xp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:paddingRight="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="14sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_dark"
-            android:text="Exp"/>
+            android:text="Exp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

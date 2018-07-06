@@ -19,21 +19,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_church"
             android:text="@string/church"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_blacksmith"
             android:text="@string/blacksmith"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_saloon"
             android:text="@string/saloon"/>
         <Button
@@ -41,62 +41,62 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_frontier_outpost"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/frontier_outpost"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_general_store"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/general_store"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_docs_office"
             android:text="@string/docs_office"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_sheriffs_office"
             android:text="@string/sheriffs_office"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_smugglers_den"
             android:text="@string/smugglers_den"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_mutant_quarter"
             android:text="@string/mutant_quarter"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_gambling_hall"
             android:text="@string/gambling_hall"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_street_market"
             android:text="@string/street_market"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_indian_trading_outpost"
             android:text="@string/indian_trading_outpost"/>
 
