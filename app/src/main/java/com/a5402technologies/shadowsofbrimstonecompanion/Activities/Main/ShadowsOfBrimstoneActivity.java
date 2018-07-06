@@ -70,7 +70,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             finish();
         });
 
-        findViewById(R.id.btn_spoils).setOnClickListener((View view) -> {
+        findViewById(R.id.quick_resources_layout).setOnClickListener(( View view) -> {
             Intent intent = new Intent(this, SpoilsActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);

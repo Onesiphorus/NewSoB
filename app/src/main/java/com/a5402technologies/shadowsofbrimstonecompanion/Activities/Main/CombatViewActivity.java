@@ -13,6 +13,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
@@ -41,6 +42,11 @@ public class CombatViewActivity extends AppCompatActivity {
         setWeapons();
         setQuickClothes();
 
+        tv = findViewById(R.id.sob_fullscreen);
+        tv.setText(sobCharacter.getCharacterClass().getClassName());
+        tv = findViewById(R.id.sob_character_name);
+        tv.setText(sobCharacter.getCharacterName());
+
         findViewById(R.id.layout_quick_stats).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
@@ -50,6 +56,12 @@ public class CombatViewActivity extends AppCompatActivity {
 
         findViewById(R.id.quick_clothes_layout).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ChangeLoadoutActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        findViewById(R.id.quick_resources_layout).setOnClickListener(( View view) -> {
+            Intent intent = new Intent(this, SpoilsActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -82,6 +94,11 @@ public class CombatViewActivity extends AppCompatActivity {
         else tv.setHintTextColor(RED);
         tv = findViewById(R.id.quick_coat);
         if (sobCharacter.getCoat().equals(TRUE)) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_weight);
+        String text = "Weight: " + sobCharacter.getWeight().toString() + "/" + sobCharacter.getMaxWeight();
+        tv.setHint(text);
+        if(sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
     }
     private void setQuickStats() {
@@ -124,6 +141,8 @@ public class CombatViewActivity extends AppCompatActivity {
         tv.setText(text);
         tv = findViewById(R.id.sob_darkstone);
         tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+        tv = findViewById(R.id.sob_level);
+        tv.setText(String.format(sobCharacter.getLevel().toString()));
     }
 
     private void setWeapons() {

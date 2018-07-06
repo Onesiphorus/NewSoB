@@ -554,7 +554,7 @@ public class SobCharacter implements Serializable {
             findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
         if (clothing.getBelt().equals(TRUE)) {
-            this.setHat(TRUE);
+            this.setBelt(TRUE);
             findClothingByName(clothing.getName()).setEquipped(TRUE);
         }
         if (clothing.getBoots().equals(TRUE)) {

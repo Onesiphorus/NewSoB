@@ -11,5 +11,6 @@ public class ExamineInventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_examine_inventory);
+        //TODO finish examine inventor activity
     }
 }
