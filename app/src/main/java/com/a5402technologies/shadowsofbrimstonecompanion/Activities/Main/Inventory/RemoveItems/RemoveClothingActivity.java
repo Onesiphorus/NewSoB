@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -134,6 +135,9 @@ public class RemoveClothingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
+                    Button btn = findViewById(R.id.btn_sell);
+                    String text = "Sell " + clothing.getName() + " for $" + clothing.getSell();
+                    btn.setText(text);
                 }
             });
         }
