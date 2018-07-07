@@ -48,6 +48,12 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_manage_side_bag).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, SideBagActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     public void setViews() {

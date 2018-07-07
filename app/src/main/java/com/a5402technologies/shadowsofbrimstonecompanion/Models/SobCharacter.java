@@ -185,6 +185,13 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "max_weight")
     private Integer maxWeight = 0;
+    @NonNull
+    @ColumnInfo(name = "side_bag")
+    @TypeConverters(GithubTypeConverters.class)
+    private ArrayList<String> sideBag;
+    @NonNull
+    @ColumnInfo(name = "side_bag_size")
+    private Integer sideBagSize = 5;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -200,6 +207,7 @@ public class SobCharacter implements Serializable {
         currentSanity = characterClass.getSanity();
         modifiers = new ArrayList<>(0);
         traits = characterClass.getTraits();
+        sideBag = new ArrayList<>(0);
     }
 
     @NonNull
@@ -741,7 +749,11 @@ public class SobCharacter implements Serializable {
                     this.spiritArmor = clothing.getSpiritArmor();
                 }
             }
-            this.weight += clothing.getWeight();
+            if(clothing.getWeight() < 0) {
+                if(clothing.getEquipped().equals(TRUE)) {
+                    this.maxWeight -= clothing.getWeight();
+                }
+            } else this.weight += clothing.getWeight();
         }
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
             if (meleeWeapon.getEquipped().equals(TRUE)) {
@@ -780,7 +792,9 @@ public class SobCharacter implements Serializable {
             if (gearBase.getName().equals(RuleExceptionEnum.HARTHBONE_NECKLACE.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
-            this.weight += gearBase.getWeight();
+            if(gearBase.getWeight() < 0) {
+                    this.maxWeight -= gearBase.getWeight();
+            } else this.weight += gearBase.getWeight();
         }
         for (Attachment attachment : this.getAttachments()) {
             if (attachment.getEquipped().equals(TRUE)) {
@@ -812,7 +826,7 @@ public class SobCharacter implements Serializable {
                 }
             }
         }
-        this.maxWeight = this.strengthBonus + this.characterClass.getStrength() + 4;
+        this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
     }
@@ -1149,6 +1163,32 @@ public class SobCharacter implements Serializable {
 
     public void setMaxWeight(@NonNull Integer maxWeight) {
         this.maxWeight = maxWeight;
+    }
+
+    @NonNull
+    public ArrayList<String> getSideBag() {
+        return sideBag;
+    }
+
+    public void setSideBag(@NonNull ArrayList<String> sideBag) {
+        this.sideBag = sideBag;
+    }
+
+    @NonNull
+    public Integer getSideBagSize() {
+        return sideBagSize;
+    }
+
+    public void setSideBagSize(@NonNull Integer sideBagSize) {
+        this.sideBagSize = sideBagSize;
+    }
+
+    public void addToSideBag(String string) {
+        this.sideBag.add(string);
+    }
+
+    public void removeFromSideBag(String string) {
+        this.sideBag.remove(string);
     }
 }
 

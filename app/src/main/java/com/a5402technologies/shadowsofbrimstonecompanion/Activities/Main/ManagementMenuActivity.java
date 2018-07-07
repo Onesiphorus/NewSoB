@@ -43,6 +43,13 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
+
+        findViewById(R.id.btn_mng_side_bag_tokens).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, VisitTownActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override

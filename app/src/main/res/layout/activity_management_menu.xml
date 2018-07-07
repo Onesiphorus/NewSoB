@@ -38,6 +38,14 @@
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/btn_visit_town"
             android:text="Visit Town"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/btn_mng_side_bag_tokens"
+            android:text="Manage Items Not Carried"/>
 
 
     </LinearLayout>
