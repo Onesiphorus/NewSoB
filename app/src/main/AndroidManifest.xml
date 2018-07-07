@@ -166,8 +166,12 @@
             android:name=".Activities.Main.Inventory.RemoveItems.RemoveSkillActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.Equip.SideBagActivity" />
-        <activity android:name=".Activities.Main.Inventory.ManageExtraTokensActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.Equip.SideBagActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Inventory.ManageExtraTokensActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import javax.net.ssl.SNIHostName;
+import javax.net.ssl.SSLKeyException;
 
 import static java.lang.Boolean.TRUE;
 import static java.lang.Boolean.compare;
@@ -1927,7 +1928,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setCost(3000);
             mRangedWeaponDao.insert(rangedWeapon);
 
-        //Smuggler's Den
+            //Smuggler's Den
             rangedWeapon = new RangedWeapon("Smuggler's Hold-Out Pistol", 3, 3);
             rangedWeapon.setShop(ShopEnum.SMUGGLERS_DEN.label());
             rangedWeapon.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -1961,7 +1962,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setCost(750);
             mClothingDao.insert(clothing);
 
-        //Mutant Quarter
+            //Mutant Quarter
             clothing = new Clothing("Hooded Cloak");
             clothing.setShop(ShopEnum.MUTANT_QUARTER.label());
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -2019,7 +2020,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setCost(4800);
             mMeleeWeaponDao.insert(meleeWeapon);
 
-        //Gambling Hall
+            //Gambling Hall
             clothing = new Clothing("Black Tie");
             clothing.setShop(ShopEnum.GAMBLNG_HALL.label());
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -2107,7 +2108,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addModifier(ModifiersEnum.LUCK.label());
             mGearBaseDao.insert(gearBase);
 
-        //Street Market
+            //Street Market
             clothing = new Clothing("Scavenger's Hat");
             clothing.setShop(ShopEnum.STREET_MARKET.label());
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -2214,7 +2215,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setWeight(1);
             clothing.setCost(860);
             mClothingDao.insert(clothing);
-        //Indian Trading Post
+            //Indian Trading Post
             meleeWeapon = new MeleeWeapon("Feathered Hatchet");
             meleeWeapon.setShop(ShopEnum.INDIAN_TRADING_POST.label());
             meleeWeapon.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -2358,9 +2359,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
 
-        //Caverns of Cynder
+            //Caverns of Cynder
 
-        //Crimson Hand
+            //Crimson Hand
             rangedWeapon = new RangedWeapon("Cult Rifle", 8, 2);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.RIFLE.label());
@@ -2467,7 +2468,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-        //Werewolves Den
+            //Werewolves Den
             rangedWeapon = new RangedWeapon("Beast Hunter's Rifle", 10, 2);
             rangedWeapon.setSet(SetListEnum.WEREWOLVES_DEN.code());
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
@@ -2512,7 +2513,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
 
-        //Black Fang
+            //Black Fang
             attachment = new Attachment("Vulture Feather", 1);
             attachment.setSet(SetListEnum.BLACK_FANG_TRIBE.code());
             attachment.addRestriction(TraitsEnum.TRIBAL.label());
@@ -2541,7 +2542,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-        //Feral Vampires
+            //Feral Vampires
             gearBase = new GearBase("Garland");
             gearBase.setSet(SetListEnum.FERAL_VAMPIRES.code());
             gearBase.addTrait(TraitsEnum.CHARM.label());
@@ -2608,7 +2609,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
 
-        //Lost Army
+            //Lost Army
             gearBase = new GearBase("Flag of the Fallen");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
             gearBase.addTrait(TraitsEnum.RELIC.label());
@@ -2692,7 +2693,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
 
-        //Scafford Gang
+            //Scafford Gang
             rangedWeapon = new RangedWeapon("Scafford Pistol", 8, 1);
             //TODO Hard Code Scafford Pistol +1 Shot for each mutation
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
@@ -2732,7 +2733,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSell(525);
             mClothingDao.insert(clothing);
 
-        //Masters of the Void
+            //Masters of the Void
             gearBase = new GearBase("Book of Tarn");
             gearBase.setSet(SetListEnum.MASTERS_OF_THE_VOID.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
@@ -2768,7 +2769,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mMeleeWeaponDao.insert(meleeWeapon);
 
 
-        //Undead Outlaw
+            //Undead Outlaw
             rangedWeapon = new RangedWeapon("Fallen Gunfighter's Pistol", 6, 3);
             rangedWeapon.setSet(SetListEnum.UNDEAD_OUTLAWS.code());
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
@@ -2807,7 +2808,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setDarkStone(2);
             mGearBaseDao.insert(gearBase);
 
-        //Serpentmen of Jargono
+            //Serpentmen of Jargono
             gearBase = new GearBase("Tu'tarri Feather");
             gearBase.setSet(SetListEnum.SERPENTMEN_OF_JARGONO.code());
             gearBase.setJargonoArtifact(TRUE);
@@ -2843,9 +2844,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setSell(600);
             mGearBaseDao.insert(gearBase);
 
-        //END Serpentmen of Jargono
+            //END Serpentmen of Jargono
 
-        //Allies of the Old West
+            //Allies of the Old West
             clothing = new Clothing("Follower's Hat");
             clothing.setSet(SetListEnum.ALLIES_OF_THE_OLD_WEST.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
@@ -2884,7 +2885,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSell(100);
             mClothingDao.insert(clothing);
 
-        //Doorways Into Darkness
+            //Doorways Into Darkness
             gearBase = new GearBase("Explorer's Lantern");
             gearBase.setSet(SetListEnum.DOORWAYS_INTO_DARKNESS.code());
             gearBase.addTrait(TraitsEnum.LIGHT_SOURCE.label());
@@ -3451,11 +3452,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setSell(475);
             mMeleeWeaponDao.insert(meleeWeapon);
 
-        //END PROMO
+            //END PROMO
 
 
 
-        //Trederra
+            //Trederra
             gearBase = new GearBase("Expedition Chest");
             gearBase.setSet(SetListEnum.TREDERRA.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
@@ -3680,7 +3681,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setWeight(1);
             gearBase.setSell(375);
             mGearBaseDao.insert(gearBase);
-        //Derelict Ship
+            //Derelict Ship
             gearBase = new GearBase("Bone Dominoes");
             gearBase.setSet(SetListEnum.DERELICT_SHIP.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
@@ -3902,7 +3903,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-        //Caverns of Cynder
+            //Caverns of Cynder
             gearBase = new GearBase("Shadow Shard");
             gearBase.setSet(SetListEnum.CAVERNS_OF_CYNDER.code());
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
@@ -4362,6 +4363,69 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Master of the Hunt", SkillTypeEnum.HUNTING_AND_TRACKING.code(), SkillTypeEnum.HUNTING_AND_TRACKING.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
+
+        //Lawman Leadership Upgrades
+            skill = new Skill("Motivate", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Reassure", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Teamwork", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Battle Plan", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            skill = new Skill("Man of Action", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Standing Your Ground", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Temper", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Never Gives Up", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            skill = new Skill("Cold Stare", SkillTypeEnum.JUSTICE.code(), SkillTypeEnum.JUSTICE.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Relentless", SkillTypeEnum.JUSTICE.code(), SkillTypeEnum.JUSTICE.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Cool Head", SkillTypeEnum.JUSTICE.code(), SkillTypeEnum.JUSTICE.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Justice Never Sleeps", SkillTypeEnum.JUSTICE.code(), SkillTypeEnum.JUSTICE.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Fair Warning", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Long Arm of the Law", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Learning to Live With It", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Judge, Jury, and Executioner", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+
+
+
+
 
             for (GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
                 Cowboy.addGear(gearBase1);

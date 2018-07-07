@@ -3,6 +3,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 
+import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,10 @@ public enum SkillTypeEnum {
     GLADIATOR("Gladiator", CharacterClassEnum.JARGONO_NATIVE.male()),
     FEROCITY("Ferocity", CharacterClassEnum.JARGONO_NATIVE.male()),
     HUNTING_AND_TRACKING("Hunting & Tracking", CharacterClassEnum.JARGONO_NATIVE.male()),
+    LEADERSHIP("Leadership", CharacterClassEnum.LAWMAN.male()),
+    DETERMINATION("Determination", CharacterClassEnum.LAWMAN.male()),
+    JUSTICE("Justice", CharacterClassEnum.LAWMAN.male()),
+    LAW_AND_ORDER("Law and Order", CharacterClassEnum.LAWMAN.male()),
     STARTING("Starting", CharacterClassEnum.ANY.male());
 
 
