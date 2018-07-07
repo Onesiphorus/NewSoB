@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-    tools:context=".Activities.Main.Inventory.Equip.ChooseItemToAttachToActivity">
+    tools:context=".Activities.Main.Town.ShopBuyActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include layout="@layout/content_resources"/>
-
-
-        <include layout="@layout/content_choose_item"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-    </LinearLayout>
-    <include layout="@layout/content_accept_cancel"/>
+                <include layout="@layout/content_resources"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/colorPrimaryDark"/>
+                <include layout="@layout/content_choose_item" />
+
+
+                <include layout="@layout/content_accept_cancel" />
+
+        </LinearLayout>
 </android.support.constraint.ConstraintLayout>

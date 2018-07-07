@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddGearBaseActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -40,7 +41,7 @@ public class VisitShopActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("shop_type",shop);
-            intent.putExtra("gear_type", "gear");
+            intent.putExtra("gear_type", GearTypeEnum.GEAR.label());
             startActivity(intent);
             finish();
         });
@@ -48,7 +49,7 @@ public class VisitShopActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("shop_type",shop);
-            intent.putExtra("gear_type", "melee");
+            intent.putExtra("gear_type", GearTypeEnum.HAND_WEAPONS.label());
             startActivity(intent);
             finish();
         });
@@ -56,7 +57,7 @@ public class VisitShopActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("shop_type",shop);
-            intent.putExtra("gear_type", "ranged");
+            intent.putExtra("gear_type", GearTypeEnum.RANGED_WEAPONS.label());
             startActivity(intent);
             finish();
         });
@@ -64,7 +65,7 @@ public class VisitShopActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("shop_type",shop);
-            intent.putExtra("gear_type", "clothing");
+            intent.putExtra("gear_type", GearTypeEnum.CLOTHING.label());
             startActivity(intent);
             finish();
         });
@@ -72,7 +73,7 @@ public class VisitShopActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("shop_type",shop);
-            intent.putExtra("gear_type", "attachment");
+            intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
             startActivity(intent);
             finish();
         });

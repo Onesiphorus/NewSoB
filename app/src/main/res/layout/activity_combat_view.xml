@@ -23,8 +23,6 @@
             android:layout_height="1dp"
             android:background="@android:color/background_light"/>
         <include layout="@layout/content_quick_stats"/>
-        <include layout="@layout/content_ranged_stats"/>
-        <include layout="@layout/content_melee_stats"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -108,6 +106,9 @@
                 android:id="@+id/addSanity"
                 android:text="+"/>
         </LinearLayout>
+        <include layout="@layout/content_ranged_stats"/>
+        <include layout="@layout/content_melee_stats"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"

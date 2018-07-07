@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
@@ -75,7 +76,7 @@ public class ShopBuyActivity extends AppCompatActivity {
         tv.setText(String.format(sobCharacter.getLevel().toString()));
 
 
-        if(type.equals("gear")) {
+        if(type.equals(GearTypeEnum.GEAR.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final GearBaseListAdapter adapter = new GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
@@ -93,7 +94,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                     adapter.setGearBase(filteredList);
                 }
             });
-        } else if(type.equals("clothing")) {
+        } else if(type.equals(GearTypeEnum.CLOTHING.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final ClothingListAdapter adapter = new ClothingListAdapter(this);
             recyclerView.setAdapter(adapter);
@@ -111,7 +112,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                     adapter.setClothing(filteredList);
                 }
             });
-        } else if(type.equals("melee")) {
+        } else if(type.equals(GearTypeEnum.HAND_WEAPONS.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
@@ -129,7 +130,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                     adapter.setMeleeWeapon(filteredList);
                 }
             });
-        } else if(type.equals("ranged")) {
+        } else if(type.equals(GearTypeEnum.RANGED_WEAPONS.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
@@ -147,7 +148,7 @@ public class ShopBuyActivity extends AppCompatActivity {
                     adapter.setRangedWeapon(filteredList);
                 }
             });
-        }else if(type.equals("attachment")) {
+        }else if(type.equals(GearTypeEnum.GEAR_UPGRADES.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
             recyclerView.setAdapter(adapter);

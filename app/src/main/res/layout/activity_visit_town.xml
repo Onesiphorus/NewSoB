@@ -1,105 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:orientation="vertical"
     android:background="@android:color/background_dark"
     tools:context=".Activities.Main.Town.VisitTownActivity">
+    <include layout="@layout/content_resources" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <include layout="@layout/content_resources"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_church"
-            android:text="@string/church"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_blacksmith"
-            android:text="@string/blacksmith"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_saloon"
-            android:text="@string/saloon"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_frontier_outpost"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="@string/frontier_outpost"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_general_store"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="@string/general_store"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_docs_office"
-            android:text="@string/docs_office"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_sheriffs_office"
-            android:text="@string/sheriffs_office"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_smugglers_den"
-            android:text="@string/smugglers_den"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_mutant_quarter"
-            android:text="@string/mutant_quarter"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_gambling_hall"
-            android:text="@string/gambling_hall"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_street_market"
-            android:text="@string/street_market"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_indian_trading_outpost"
-            android:text="@string/indian_trading_outpost"/>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btn_church"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/church"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_blacksmith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/blacksmith"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_saloon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/saloon"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_frontier_outpost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/frontier_outpost"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_general_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/general_store"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_docs_office"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/docs_office"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_sheriffs_office"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/sheriffs_office"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_smugglers_den"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/smugglers_den"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_mutant_quarter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/mutant_quarter"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_gambling_hall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/gambling_hall"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_street_market"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/street_market"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btn_indian_trading_outpost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/indian_trading_outpost"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

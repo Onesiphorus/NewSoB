@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.a5402technologies.shadowsofbrimstonecompanion"
-        minSdkVersion 26
+        minSdkVersion 23
         buildToolsVersion '27.0.3'
         targetSdkVersion 28
         versionCode 1
