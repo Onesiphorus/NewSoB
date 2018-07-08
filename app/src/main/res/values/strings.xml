@@ -78,6 +78,9 @@
     <string name="coat">Coat</string>
     <string name="weight">Weight</string>
     <string name="weapons">Equipped Weapon(s)</string>
-
+    <string name="max_side_bag">Side Bag\nCapacity</string>
+    <string name="max_corruption">Max\nCorruption</string>
     <string name="title_activity_management_menu">ManagementMenuActivity</string>
+    <string name="side_bag">Side Bag</string>
+    <string name="corruption">Corruption</string>
 </resources>

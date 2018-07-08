@@ -15,7 +15,9 @@ public enum RuleExceptionEnum {
     HARTHBONE_NECKLACE("Harthbone Necklace"),
     MARK_OF_THE_FAITHFUL("Mark of the Faithful"),
     DARK_STONE_CLUB("Dark Stone Club"),
-    PERSONAL_TOUCH("Personal Touch");
+    PERSONAL_TOUCH("Personal Touch"),
+    TOMB_CHEST("Tomb Chest"),
+    SPINNING_SLASH("Spinning Slash");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

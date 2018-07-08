@@ -100,6 +100,16 @@ public class CombatViewActivity extends AppCompatActivity {
         tv.setHint(text);
         if(sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_side_bag);
+        text = "Side Bag: " + sobCharacter.getSideBag().size() + "/" + sobCharacter.getSideBagSize();
+        if(sobCharacter.getSideBagSize() >= sobCharacter.getSideBag().size()) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv.setHint(text);
+        tv = findViewById(R.id.quick_corruption);
+        text = "Corruption: " + sobCharacter.getCurrentCorruption() + "/" + sobCharacter.getMaxCorruption();
+        if(sobCharacter.getMaxCorruption() >= sobCharacter.getCurrentCorruption()) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv.setHint(text);
     }
     private void setQuickStats() {
         tv = findViewById(R.id.quick_agi);

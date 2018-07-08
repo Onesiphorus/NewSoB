@@ -47,6 +47,13 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             tv.setText(sobCharacter.getLeftMelee().getName());
         } else tv.setText("Empty");
 
+        tv = findViewById(R.id.traits_wrapper);
+        String text = " - ";
+        for(String string : sobCharacter.getTraits()) {
+            text += string + " - ";
+        }
+        tv.setText(text);
+
         setStats();
         setQuickClothes();
         findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
@@ -124,6 +131,16 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setHint(text);
         if(sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
+        tv = findViewById(R.id.quick_side_bag);
+        text = "Side Bag: " + sobCharacter.getSideBag().size() + "/" + sobCharacter.getSideBagSize();
+        if(sobCharacter.getSideBagSize() >= sobCharacter.getSideBag().size()) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv.setHint(text);
+        tv = findViewById(R.id.quick_corruption);
+        text = "Corruption: " + sobCharacter.getCurrentCorruption() + "/" + sobCharacter.getMaxCorruption();
+        if(sobCharacter.getMaxCorruption() >= sobCharacter.getCurrentCorruption()) tv.setHintTextColor(GREEN);
+        else tv.setHintTextColor(RED);
+        tv.setHint(text);
     }
 
     protected void setStats() {
@@ -184,7 +201,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
         tv = findViewById(R.id.sob_darkstone);
-        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() +")";
+        tv.setText(text);
 
         tv = findViewById(R.id.init_value);
         value = sobCharacter.getCharacterClass().getInitiative() + sobCharacter.getInitiativeBonus();

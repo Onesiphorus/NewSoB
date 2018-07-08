@@ -53,6 +53,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/quick_gloves"
+            android:textColorHint="@color/colorAccent"
+            android:background="@android:color/background_dark"
+            android:layout_margin="4dp"
+            android:textColor="@color/colorPrimary"
+            android:hint="@string/gloves"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColorHint="@color/colorAccent"
             android:layout_margin="4dp"
             android:id="@+id/quick_weight"
@@ -66,15 +75,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/quick_gloves"
-            android:textColorHint="@color/colorAccent"
-            android:background="@android:color/background_dark"
-            android:layout_margin="4dp"
-            android:textColor="@color/colorPrimary"
-            android:hint="@string/gloves"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +111,25 @@
             android:layout_margin="4dp"
             android:textColor="@color/colorPrimary"
             android:hint="@string/coat"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/quick_corruption"
+            android:textColorHint="@color/colorAccent"
+            android:background="@android:color/background_dark"
+            android:layout_margin="4dp"
+            android:textColor="@color/colorPrimary"
+            android:hint="@string/corruption"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/quick_side_bag"
+            android:textColorHint="@color/colorAccent"
+            android:background="@android:color/background_dark"
+            android:layout_margin="4dp"
+            android:textColor="@color/colorPrimary"
+            android:hint="@string/side_bag"/>
     </LinearLayout>
+
 
 </LinearLayout>

@@ -47,7 +47,7 @@ import static java.lang.Boolean.TRUE;
 import static java.lang.Boolean.compare;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 33)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 35)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -1559,10 +1559,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.DOORWAYS_INTO_DARKNESS.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.BOOTS.label());
-            gearBase.addModifier("Agility");
-            gearBase.setWeight(1);
-            gearBase.setUpgrades(1);
-            gearBase.setSell(650);
+            clothing.addModifier("Agility");
+            clothing.setWeight(1);
+            clothing.setUpgrades(1);
+            clothing.setSell(650);
             clothing.setBoots(TRUE);
             mClothingDao.insert(clothing);
             //Test
@@ -2620,14 +2620,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setSet(SetListEnum.LOST_ARMY.code());
             mGearBaseDao.insert(gearBase);
             Cowboy.addGear(gearBase);
-            gearBase = new GearBase("Defender's Hat");
-            gearBase.addTrait(TraitsEnum.CLOTHING.label());
-            gearBase.addTrait(TraitsEnum.HAT.label());
-            gearBase.setWeight(1);
-            gearBase.setUpgrades(2);
-            gearBase.setSell(400);
-            gearBase.setSet(SetListEnum.LOST_ARMY.code());
-            mGearBaseDao.insert(gearBase);
+            clothing = new Clothing("Defender's Hat");
+            clothing.addTrait(TraitsEnum.CLOTHING.label());
+            clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setWeight(1);
+            clothing.setUpgrades(2);
+            clothing.setSell(400);
+            clothing.setSet(SetListEnum.LOST_ARMY.code());
+            mClothingDao.insert(clothing);
             rangedWeapon = new RangedWeapon("Lost Army Pistol", 7, 1);
             rangedWeapon.addTrait(TraitsEnum.ARTIFACT.label());
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
@@ -2989,17 +2989,18 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //Test
             sobCharacter.addMeleeWeapon(meleeWeapon);
             //End
-            gearBase = new GearBase("Outlaw's Gun Belt");
-            gearBase.addTrait(TraitsEnum.CLOTHING.label());
-            gearBase.addTrait(TraitsEnum.BELT.label());
-            gearBase.addModifier(ModifiersEnum.MAX_HEALTH.label());
-            gearBase.addModifier(ModifiersEnum.MAX_HEALTH.label());
-            gearBase.addRestriction(TraitsEnum.OUTLAW.label());
-            gearBase.addRestriction(TraitsEnum.SHOWMAN.label());
-            gearBase.addRestriction(TraitsEnum.FRONTIER.label());
-            gearBase.setSell(625);
-            gearBase.setSet(SetListEnum.PROMO.code());
-            mGearBaseDao.insert(gearBase);
+            clothing = new Clothing("Outlaw's Gun Belt");
+            clothing.addTrait(TraitsEnum.CLOTHING.label());
+            clothing.addTrait(TraitsEnum.BELT.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            clothing.addRestriction(TraitsEnum.OUTLAW.label());
+            clothing.addRestriction(TraitsEnum.SHOWMAN.label());
+            clothing.addRestriction(TraitsEnum.FRONTIER.label());
+            clothing.setSell(625);
+            clothing.setBelt(TRUE);
+            clothing.setSet(SetListEnum.PROMO.code());
+            mClothingDao.insert(clothing);
             attachment = new Attachment("Mark of the Faithful", 1);
             attachment.setSet(SetListEnum.PROMO.code());
             attachment.setDarkStone(1);

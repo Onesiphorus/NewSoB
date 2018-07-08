@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
@@ -192,6 +193,15 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "side_bag_size")
     private Integer sideBagSize = 5;
+    @NonNull
+    @ColumnInfo(name = "max_corruption")
+    private Integer maxCorruption = 5;
+    @NonNull
+    @ColumnInfo(name = "current_corruption")
+    private Integer currentCorruption = 0;
+    @NonNull
+    @ColumnInfo(name = "dark_stone_count")
+    private Integer darkStoneCount = 0;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -731,6 +741,7 @@ public class SobCharacter implements Serializable {
     public void setBonuses() {
         resetBonuses();
         Boolean markFaithfulBonus = FALSE;
+        Integer tombChests = 0;
         for (String modifier : this.modifiers) {
             findBonus(modifier);
         }
@@ -754,6 +765,8 @@ public class SobCharacter implements Serializable {
                     this.maxWeight -= clothing.getWeight();
                 }
             } else this.weight += clothing.getWeight();
+            darkStoneCount += clothing.getDarkStone();
+
         }
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
             if (meleeWeapon.getEquipped().equals(TRUE)) {
@@ -766,12 +779,15 @@ public class SobCharacter implements Serializable {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
             this.weight += meleeWeapon.getWeight();
+            darkStoneCount += meleeWeapon.getDarkStone();
+
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
             if (rangedWeapon.getEquipped().equals(TRUE)) {
                 setRanged(rangedWeapon);
             }
             this.weight += rangedWeapon.getWeight();
+            darkStoneCount += rangedWeapon.getDarkStone();
         }
         for (GearBase gearBase : this.getGear()) {
             for (String string : gearBase.getModifiers()) {
@@ -795,6 +811,8 @@ public class SobCharacter implements Serializable {
             if(gearBase.getWeight() < 0) {
                     this.maxWeight -= gearBase.getWeight();
             } else this.weight += gearBase.getWeight();
+            darkStoneCount += gearBase.getDarkStone();
+            if(gearBase.getName().equals(RuleExceptionEnum.TOMB_CHEST.label())) tombChests++;
         }
         for (Attachment attachment : this.getAttachments()) {
             if (attachment.getEquipped().equals(TRUE)) {
@@ -809,6 +827,7 @@ public class SobCharacter implements Serializable {
                 }
             }
             this.weight += attachment.getWeight();
+            darkStoneCount += attachment.getDarkStone();
         }
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
@@ -829,6 +848,16 @@ public class SobCharacter implements Serializable {
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
+        darkStoneCount += darkStoneShards;
+        darkStoneCount -= (8*tombChests);
+        if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+            if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
+                for (Skill skill : getUpgrades()) {
+                    if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()));
+                        meleeDamageBonus++;
+                }
+            }
+        }
     }
 
     private void setRanged(RangedWeapon rangedWeapon) {
@@ -892,6 +921,10 @@ public class SobCharacter implements Serializable {
             setMeleeDamageBonus(getMeleeDamageBonus() + 1);
         } else if (ModifiersEnum.COMBAT.label().equals(modifier)) {
             setCombatBonus(getCombatBonus() + 1);
+        } else if (ModifiersEnum.SIDE_BAG_CAPACITY.label().equals(modifier)) {
+            sideBagSize += 1;
+        } else if (ModifiersEnum.MAX_CORRUPTION.label().equals(modifier)) {
+            maxCorruption += 1;
         }
     }
 
@@ -922,6 +955,10 @@ public class SobCharacter implements Serializable {
             setMeleeDamageBonus(getMeleeDamageBonus() - 1);
         } else if (ModifiersEnum.COMBAT.label().equals(modifier)) {
             setCombatBonus(getCombatBonus() - 1);
+        } else if (ModifiersEnum.SIDE_BAG_CAPACITY.label().equals(modifier)) {
+            sideBagSize -= 1;
+        } else if (ModifiersEnum.MAX_CORRUPTION.label().equals(modifier)) {
+            maxCorruption -= 1;
         }
     }
 
@@ -948,6 +985,9 @@ public class SobCharacter implements Serializable {
         this.traits = getCharacterClass().getTraits();
         this.weight = 0;
         this.maxWeight = 0;
+        this.sideBagSize = 5;
+        this.maxCorruption = 5;
+        this.darkStoneCount = 0;
     }
 
     public RangedWeapon getRightHand() {
@@ -1189,6 +1229,33 @@ public class SobCharacter implements Serializable {
 
     public void removeFromSideBag(String string) {
         this.sideBag.remove(string);
+    }
+
+    @NonNull
+    public Integer getMaxCorruption() {
+        return maxCorruption;
+    }
+
+    public void setMaxCorruption(@NonNull Integer maxCorruption) {
+        this.maxCorruption = maxCorruption;
+    }
+
+    @NonNull
+    public Integer getCurrentCorruption() {
+        return currentCorruption;
+    }
+
+    public void setCurrentCorruption(@NonNull Integer currentCorruption) {
+        this.currentCorruption = currentCorruption;
+    }
+
+    @NonNull
+    public Integer getDarkStoneCount() {
+        return darkStoneCount;
+    }
+
+    public void setDarkStoneCount(@NonNull Integer darkStoneCount) {
+        this.darkStoneCount = darkStoneCount;
     }
 }
 

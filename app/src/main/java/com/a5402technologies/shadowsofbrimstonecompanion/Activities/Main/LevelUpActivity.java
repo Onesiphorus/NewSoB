@@ -130,6 +130,24 @@ public class LevelUpActivity extends AppCompatActivity {
             }
             tv.setText(String.format(i.toString()));
         });
+        findViewById(R.id.max_side_bag_label).setOnClickListener((View view) -> {
+            TextView tv = findViewById(R.id.max_side_bag_value);
+            tempMods.add(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            Integer i = 0;
+            for (String string : tempMods) {
+                if (string.equals(ModifiersEnum.SIDE_BAG_CAPACITY.label())) i++;
+            }
+            tv.setText(String.format(i.toString()));
+        });
+        findViewById(R.id.max_corruption_label).setOnClickListener((View view) -> {
+            TextView tv = findViewById(R.id.max_corruption_value);
+            tempMods.add(ModifiersEnum.MAX_CORRUPTION.label());
+            Integer i = 0;
+            for (String string : tempMods) {
+                if (string.equals(ModifiersEnum.MAX_CORRUPTION.label())) i++;
+            }
+            tv.setText(String.format(i.toString()));
+        });
         btn = findViewById(R.id.btn_accept);
         String text = "Accept and select new Upgrade";
         btn.setText(text);
