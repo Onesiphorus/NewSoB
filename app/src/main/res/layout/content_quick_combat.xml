@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_quick_combat"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/button_background"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/weapons"
         android:textAlignment="center"
-        android:textSize="10sp"
-        android:text="@string/weapons"/>
-    <LinearLayout
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="10sp" />
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="@android:color/background_dark"
         android:gravity="center"
-        android:layout_weight="1"
-        android:background="@drawable/button_background"
-        android:id="@+id/layout_quick_combat">
+        android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/right_hand_weapon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:text="@string/equip"
-            android:textColor="@color/colorPrimary"
             android:background="@android:color/background_dark"
-            android:id="@+id/right_hand_weapon"/>
+            android:text="@string/equip"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+
         <TextView
+            android:id="@+id/left_hand_weapon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="@string/equip"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimary"
             android:background="@android:color/background_dark"
-            android:id="@+id/left_hand_weapon"/>
+            android:text="@string/equip"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

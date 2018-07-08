@@ -54,6 +54,12 @@ public class FoundGearActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_side_bag).setOnClickListener((View view) -> {
+            Intent intent = new Intent(FoundGearActivity.this, AddSideBagTokenActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
         findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddAttachmentActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
