@@ -22,6 +22,7 @@
             android:paddingTop="32dp"
             android:textSize="24sp"
             android:gravity="center"
+            android:id="@+id/pick_a_header"
             android:text="Pick a Character"/>
 
         <android.support.v7.widget.RecyclerView

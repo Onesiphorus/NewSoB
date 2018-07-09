@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddSideBagTokenActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.ChooseClassActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -27,7 +31,7 @@ public class SideBagActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equip);
+        setContentView(R.layout.activity_side_bag);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         ArrayList<String> StringOptions = new ArrayList<>(0);
@@ -47,6 +51,14 @@ public class SideBagActivity extends AppCompatActivity {
         btn.setText("Destroy");
         btn = findViewById(R.id.btn_equip);
         btn.setText("Use");
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, AddSideBagTokenActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != string) {

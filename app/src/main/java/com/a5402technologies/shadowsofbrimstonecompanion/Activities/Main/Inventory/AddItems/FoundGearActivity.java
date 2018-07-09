@@ -35,10 +35,6 @@ public class FoundGearActivity extends AppCompatActivity {
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
-            /*
-            Intent intent = new Intent(FoundGearActivity.this, AddClothingActivity.class);
-            startActivityForResult(intent, CLOTHING_REQUEST_CODE);
-            */
         });
 
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {
@@ -54,20 +50,12 @@ public class FoundGearActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        findViewById(R.id.btn_side_bag).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddSideBagTokenActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
         findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddAttachmentActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
-        findViewById(R.id.btn_skills).setVisibility(View.INVISIBLE);
-
     }
 
     @Override

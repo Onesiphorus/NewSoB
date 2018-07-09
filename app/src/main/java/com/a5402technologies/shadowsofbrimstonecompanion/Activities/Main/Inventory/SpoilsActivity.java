@@ -102,6 +102,28 @@ public class SpoilsActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        TextView tvCorruption = findViewById(R.id.spoils_corruption);
+        tvCorruption.setText(Integer.valueOf(0).toString());
+
+        findViewById(R.id.neg1cor).setOnClickListener((View view) -> {
+            Integer corruption = Integer.parseInt(tvCorruption.getText().toString()) - 1;
+            tvCorruption.setText(corruption.toString());
+        });
+        findViewById(R.id.plus1cor).setOnClickListener((View view) -> {
+            Integer corruption = Integer.parseInt(tvCorruption.getText().toString()) + 1;
+            tvCorruption.setText(corruption.toString());
+        });
+
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+            sobCharacter.addDarkstoneShards(Integer.parseInt(tvDarkstone.getText().toString()));
+            sobCharacter.addGold(Integer.parseInt(tvMoney.getText().toString()));
+            sobCharacter.addExp(Integer.parseInt(tvExp.getText().toString()));
+            sobCharacter.setCurrentCorruption(sobCharacter.getCurrentCorruption() + Integer.parseInt(tvCorruption.getText().toString()));
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
             onBackPressed();

@@ -740,7 +740,6 @@ public class SobCharacter implements Serializable {
 
     public void setBonuses() {
         resetBonuses();
-        Boolean markFaithfulBonus = FALSE;
         Integer tombChests = 0;
         for (String modifier : this.modifiers) {
             findBonus(modifier);
@@ -814,6 +813,7 @@ public class SobCharacter implements Serializable {
             darkStoneCount += gearBase.getDarkStone();
             if(gearBase.getName().equals(RuleExceptionEnum.TOMB_CHEST.label())) tombChests++;
         }
+        Boolean markFaithfulBonus = FALSE;
         for (Attachment attachment : this.getAttachments()) {
             if (attachment.getEquipped().equals(TRUE)) {
                 for (String string : attachment.getModifiers()) {
@@ -829,6 +829,7 @@ public class SobCharacter implements Serializable {
             this.weight += attachment.getWeight();
             darkStoneCount += attachment.getDarkStone();
         }
+        Boolean spinningSlash = FALSE;
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
                 findBonus(string);
@@ -844,18 +845,18 @@ public class SobCharacter implements Serializable {
                     }
                 }
             }
+            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()));
+            spinningSlash = TRUE;
         }
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
         darkStoneCount += darkStoneShards;
         darkStoneCount -= (8*tombChests);
+        //Spinning Slash Exception
         if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
             if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
-                for (Skill skill : getUpgrades()) {
-                    if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()));
-                        meleeDamageBonus++;
-                }
+                if(spinningSlash.equals(TRUE)) meleeDamageBonus++;
             }
         }
     }

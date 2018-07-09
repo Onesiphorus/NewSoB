@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:keepScreenOn="true"
         android:text="@string/shadows"
         android:textSize="50sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:paddingBottom="96dp"/>
     <LinearLayout
         android:paddingTop="192dp"

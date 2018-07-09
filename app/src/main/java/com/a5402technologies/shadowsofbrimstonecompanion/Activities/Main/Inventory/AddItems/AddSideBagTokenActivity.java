@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.SideBagActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SideBagTokenEnums;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -51,7 +52,7 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             if(null != token) {
                 if (sobCharacter.getSideBag().size() < sobCharacter.getSideBagSize()) {
-                    Intent intent = new Intent(this, FoundGearActivity.class);
+                    Intent intent = new Intent(this, SideBagActivity.class);
                     sobCharacter.getSideBag().add(token);
                     intent.putExtra("serializable_object", sobCharacter);
                     startActivity(intent);

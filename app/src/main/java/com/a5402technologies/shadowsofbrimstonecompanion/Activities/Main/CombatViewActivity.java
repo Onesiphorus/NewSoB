@@ -46,6 +46,12 @@ public class CombatViewActivity extends AppCompatActivity {
         tv.setText(sobCharacter.getCharacterClass().getClassName());
         tv = findViewById(R.id.sob_character_name);
         tv.setText(sobCharacter.getCharacterName());
+        tv = findViewById(R.id.traits_wrapper);
+        String text = " - ";
+        for(String string : sobCharacter.getTraits()) {
+            text += string + " - ";
+        }
+        tv.setText(text);
 
         findViewById(R.id.layout_quick_stats).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
@@ -150,7 +156,8 @@ public class CombatViewActivity extends AppCompatActivity {
         text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
         tv = findViewById(R.id.sob_darkstone);
-        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() +")";
+        tv.setText(text);
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
     }
@@ -331,31 +338,39 @@ public class CombatViewActivity extends AppCompatActivity {
     private void setHealthSanityStats() {
         Button health;
         health = findViewById(R.id.valHealth);
-        health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+        Integer maxHealth = sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus();
+        text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+        health.setText(text);
         Button sanity;
         sanity = findViewById(R.id.valSanity);
-        sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+        Integer maxSanity = sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus();
+        text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+        sanity.setText(text);
 
         findViewById(R.id.negHealth).setOnClickListener((View view) -> {
             sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
-            health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+            text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+            health.setText(text);
         });
         findViewById(R.id.addHealth).setOnClickListener((View view) -> {
             if (sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
                 sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
-                health.setText(String.format(sobCharacter.getCurrentHealth().toString()));
+                text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+                health.setText(text);
             } else {
                 Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
             }
         });
         findViewById(R.id.negSanity).setOnClickListener((View view) -> {
             sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
-            sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+            text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+            sanity.setText(text);
         });
         findViewById(R.id.addSanity).setOnClickListener((View view) -> {
             if (sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
                 sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
-                sanity.setText(String.format(sobCharacter.getCurrentSanity().toString()));
+                text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+                sanity.setText(text);
             } else {
                 Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
             }
