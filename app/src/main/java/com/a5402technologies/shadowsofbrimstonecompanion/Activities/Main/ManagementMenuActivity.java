@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ManageItemUpgradesActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ExamineInventoryActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ManageExtraTokensActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town.VisitTownActivity;
@@ -24,6 +25,13 @@ public class ManagementMenuActivity extends Activity {
 
         setContentView(R.layout.activity_management_menu);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+
+        findViewById(R.id.btn_inventory).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ExamineInventoryActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
         findViewById(R.id.btn_new_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
@@ -45,6 +53,7 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
+
         findViewById(R.id.btn_mng_side_bag_tokens).setVisibility(View.INVISIBLE);//TODO remove and finish
         findViewById(R.id.btn_mng_side_bag_tokens).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ManageExtraTokensActivity.class);

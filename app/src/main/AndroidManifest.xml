@@ -28,10 +28,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.Inventory.AddItems.AddClothingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.Menu.ChooseClassActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -57,14 +53,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.Inventory.AddItems.AddGearBaseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.AddItems.AddMeleeWeaponActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.AddItems.AddRangedWeaponActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -100,17 +88,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.Inventory.RemoveItems.RemoveMeleeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.RemoveItems.RemoveRangedActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.RemoveItems.RemoveClothingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.Main.Town.VisitTownActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -128,14 +105,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Main.CombatViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.AddItems.AddAttachmentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main.Inventory.RemoveItems.RemoveAttachmentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -163,10 +132,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.Main.Inventory.RemoveItems.RemoveSkillActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.Main.Inventory.Equip.SideBagActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -174,7 +139,12 @@
             android:name=".Activities.Main.Inventory.ManageExtraTokensActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddSideBagTokenActivity"></activity>
+        <activity android:name=".Activities.Main.Inventory.AddItems.AddSideBagTokenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.Main.Inventory.ExamineActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

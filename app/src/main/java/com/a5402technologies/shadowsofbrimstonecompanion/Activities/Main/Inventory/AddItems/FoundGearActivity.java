@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -26,33 +27,38 @@ public class FoundGearActivity extends AppCompatActivity {
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("gear_type", GearTypeEnum.GEAR.label());
             startActivity(intent);
             finish();
         });
 
         findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddClothingActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("gear_type", GearTypeEnum.CLOTHING.label());
             startActivity(intent);
             finish();
         });
 
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddMeleeWeaponActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("gear_type", GearTypeEnum.HAND_WEAPONS.label());
             startActivity(intent);
             finish();
         });
 
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddRangedWeaponActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("gear_type", GearTypeEnum.RANGED_WEAPONS.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
-            Intent intent = new Intent(FoundGearActivity.this, AddAttachmentActivity.class);
+            Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
+            intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
             startActivity(intent);
             finish();
         });

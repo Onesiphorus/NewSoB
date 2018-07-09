@@ -40,10 +40,6 @@ public class ChooseCategoryForAttachment extends AppCompatActivity {
             intent.putExtra("attachment", sentAttachment);
             startActivity(intent);
             finish();
-            /*
-            Intent intent = new Intent(this, AddClothingActivity.class);
-            startActivityForResult(intent, CLOTHING_REQUEST_CODE);
-            */
         });
 
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {

@@ -33,7 +33,7 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_clothing);
+        setContentView(R.layout.activity_gear_base);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 

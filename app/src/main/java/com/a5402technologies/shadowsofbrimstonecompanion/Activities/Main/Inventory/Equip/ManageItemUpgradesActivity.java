@@ -35,7 +35,7 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attachment);
+        setContentView(R.layout.activity_gear_base);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
