@@ -50,14 +50,7 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
-
-        findViewById(R.id.btn_mng_side_bag_tokens).setVisibility(View.INVISIBLE);//TODO remove and finish
-        findViewById(R.id.btn_mng_side_bag_tokens).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ManageExtraTokensActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
+        //TODO add manage transport inventory
     }
 
     @Override

@@ -828,7 +828,9 @@ public class SobCharacter implements Serializable {
             this.weight += attachment.getWeight();
             darkStoneCount += attachment.getDarkStone();
         }
+        Boolean shieldBash = FALSE;
         Boolean spinningSlash = FALSE;
+        Boolean quickShot = FALSE;
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
                 findBonus(string);
@@ -844,19 +846,32 @@ public class SobCharacter implements Serializable {
                     }
                 }
             }
-            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) ;
-            spinningSlash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) spinningSlash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
         }
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
         darkStoneCount += darkStoneShards;
         darkStoneCount -= (8 * tombChests);
-        //Spinning Slash Exception
         if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+            //Spinning Slash Exception
             if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
                 if (spinningSlash.equals(TRUE)) meleeDamageBonus++;
             }
+            //Shield Bash Exception
+            Boolean shieldEquipped = FALSE;
+            if (null != leftMelee) {
+                for(String trait : leftMelee.getTraits()) {
+                    if(trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
+                }
+            }
+            if (null != rightMelee) {
+                for(String trait : rightMelee.getTraits()) {
+                    if(trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
+                }
+            }
+            if(shieldBash.equals(TRUE) && shieldEquipped.equals(TRUE)) combatBonus++;
         }
     }
 

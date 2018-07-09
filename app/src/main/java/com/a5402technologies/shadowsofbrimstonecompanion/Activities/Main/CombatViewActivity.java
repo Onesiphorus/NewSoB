@@ -14,10 +14,12 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -204,6 +206,14 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if(sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for(Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
                 }
             }
             for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
@@ -265,6 +275,14 @@ public class CombatViewActivity extends AppCompatActivity {
                                         shots++;
                                     }
                                 }
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if(sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for(Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
                             }
                         }
                     }

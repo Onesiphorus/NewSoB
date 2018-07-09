@@ -6,11 +6,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.media.midi.MidiOutputPort;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town.ShopBuyActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.AttachmentDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterClassDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
@@ -30,21 +28,16 @@ import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 import java.util.ArrayList;
-import java.util.Set;
-
-import javax.net.ssl.SNIHostName;
-import javax.net.ssl.SSLKeyException;
 
 import static java.lang.Boolean.TRUE;
-import static java.lang.Boolean.compare;
 
 @Database(entities = {SobCharacter.class, CharacterClass.class, GearBase.class, MeleeWeapon.class,
         RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 35)
@@ -57,7 +50,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
                     new PopulateDbAsync(INSTANCE).execute();
-                    //TODO Divide DB by Sets and use flags here
                 }
             };
 
@@ -116,8 +108,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao = db.permanentConditionDao();
         }
 
-        //TODO Move database population and finish
-
         @Override
         protected Void doInBackground(final Void... params) {
             mCharacterClassDao.deleteAllCharacterClasses();
@@ -144,7 +134,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
             //Initialize Classes
             //Cowboy
-            //TODO check starting gear is inserted properly
             traits.add(TraitsEnum.FRONTIER.label());
             traits.add(TraitsEnum.SHOWMAN.label());
             characterClass = new CharacterClass(CharacterClassEnum.COWBOY.male(), 2, 3, 1, 4, 3, 2, 14, 12, 4, 4, 4, 4, 2, 3, 2, traits);
@@ -322,7 +311,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
             characterClass.addStartingSkill(skill);
             //TODO method for changing starting gear
-            skill = new Skill( "Pit Fighter", CharacterClassEnum.JARGONO_NATIVE.male(), SkillTypeEnum.STARTING.label());
+            skill = new Skill("Pit Fighter", CharacterClassEnum.JARGONO_NATIVE.male(), SkillTypeEnum.STARTING.label());
             mSkillDao.insert(skill);
             skill = new Skill("Treetop Hunter", CharacterClassEnum.JARGONO_NATIVE.male(), SkillTypeEnum.STARTING.label());
             skill.setRangedToHit(4);
@@ -945,7 +934,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-
             //Initialize Gear by Set
             //BASE GEAR
             //TODO add toggles for loading database. One for if user has set, one for if set is already loaded
@@ -963,7 +951,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setTargaArtifact(TRUE);
             mClothingDao.insert(clothing);
             Cowboy.addClothing(clothing);
-            //TODO hard code items that need to be equipped to reduce weight
             gearBase = new GearBase("Deflection Field");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
             gearBase.addTrait(TraitsEnum.TARGA.label());
@@ -1250,7 +1237,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setSell(625);
             rangedWeapon.setToHitDie(8);
             mRangedWeaponDao.insert(rangedWeapon);
-
 
 
             //BASE MELEE WEAPONS
@@ -1550,8 +1536,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             attachment.addModifier(ModifiersEnum.SPIRIT.label());
             attachment.addModifier(ModifiersEnum.MAX_SANITY.label());
             mAttacmentDao.insert(attachment);
-
-
 
 
             //DD
@@ -2357,8 +2341,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-
-
             //Caverns of Cynder
 
             //Crimson Hand
@@ -2511,8 +2493,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-
-
             //Black Fang
             attachment = new Attachment("Vulture Feather", 1);
             attachment.setSet(SetListEnum.BLACK_FANG_TRIBE.code());
@@ -2607,8 +2587,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-
-
             //Lost Army
             gearBase = new GearBase("Flag of the Fallen");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
@@ -2690,7 +2668,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setWeight(1);
             gearBase.setSell(850);
             mGearBaseDao.insert(gearBase);
-
 
 
             //Scafford Gang
@@ -3456,7 +3433,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //END PROMO
 
 
-
             //Trederra
             gearBase = new GearBase("Expedition Chest");
             gearBase.setSet(SetListEnum.TREDERRA.code());
@@ -4150,7 +4126,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mGearBaseDao.insert(gearBase);
 
 
-
             //OUTLAW SHOOTIN' UPGRADES
             skill = new Skill("Guns Blazing", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
             skill.setLevel(1);
@@ -4319,7 +4294,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Shield Bash", SkillTypeEnum.GLADIATOR.code(), SkillTypeEnum.GLADIATOR.label());
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
-            //TODO Hard Code if Jargono Native has Shield Bash and is equipped with Shield +1 Combat
             mSkillDao.insert(skill);
             skill = new Skill("Shield Charge", SkillTypeEnum.GLADIATOR.code(), SkillTypeEnum.GLADIATOR.label());
             skill.setLevel(3);
@@ -4335,7 +4309,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Spinning Slash", SkillTypeEnum.FEROCITY.code(), SkillTypeEnum.FEROCITY.label());
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.INITIATIVE.label());
-            //TODO Hard Code Jargono Native has Spinning Slash and equipped with 2-handed melee +1 Combat
             mSkillDao.insert(skill);
             skill = new Skill("Mighty Swing", SkillTypeEnum.FEROCITY.code(), SkillTypeEnum.FEROCITY.label());
             skill.setLevel(3);
@@ -4365,7 +4338,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(4);
             mSkillDao.insert(skill);
 
-        //Lawman Leadership Upgrades
+            //Lawman Leadership Upgrades
             skill = new Skill("Motivate", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
             skill.setLevel(1);
             mSkillDao.insert(skill);
@@ -4423,9 +4396,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Judge, Jury, and Executioner", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
-
-
-
 
 
             for (GearBase gearBase1 : Cowboy.getCharacterClass().getStartingGear()) {
