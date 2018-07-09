@@ -58,7 +58,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         gearType = getIntent().getStringExtra("gear_type");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        if(gearType.equals(GearTypeEnum.GEAR.label())) {
+        if (gearType.equals(GearTypeEnum.GEAR.label())) {
             final GearBaseListAdapter adapter = new GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -82,7 +82,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 finish();
             });
         }
-        if(gearType.equals(GearTypeEnum.GEAR_UPGRADES.label())) {
+        if (gearType.equals(GearTypeEnum.GEAR_UPGRADES.label())) {
             final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -106,7 +106,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 finish();
             });
         }
-        if(gearType.equals(GearTypeEnum.CLOTHING.label())) {
+        if (gearType.equals(GearTypeEnum.CLOTHING.label())) {
             final ClothingListAdapter adapter = new ClothingListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -130,7 +130,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 finish();
             });
         }
-        if(gearType.equals(GearTypeEnum.HAND_WEAPONS.label())) {
+        if (gearType.equals(GearTypeEnum.HAND_WEAPONS.label())) {
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -154,7 +154,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 finish();
             });
         }
-        if(gearType.equals(GearTypeEnum.RANGED_WEAPONS.label())) {
+        if (gearType.equals(GearTypeEnum.RANGED_WEAPONS.label())) {
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -220,6 +220,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         private List<GearBase> mGearBase;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public GearBaseListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -278,6 +279,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
         private final LayoutInflater mInflater;
         private List<Attachment> mAttachment;
         private Context mContext;
+
         public AttachmentListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -331,11 +333,13 @@ public class AddGearBaseActivity extends AppCompatActivity {
             }
         }
     }
+
     class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapter.ClothingViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
         private Context mContext;
+
         public ClothingListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -389,12 +393,14 @@ public class AddGearBaseActivity extends AppCompatActivity {
             }
         }
     }
+
     class MeleeWeaponListAdapter extends RecyclerView.Adapter<MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<MeleeWeapon> mMeleeWeapon;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public MeleeWeaponListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -448,10 +454,12 @@ public class AddGearBaseActivity extends AppCompatActivity {
             }
         }
     }
+
     class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
+
         public RangedWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }

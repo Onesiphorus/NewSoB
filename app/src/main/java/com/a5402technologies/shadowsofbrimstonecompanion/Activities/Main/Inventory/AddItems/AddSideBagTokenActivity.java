@@ -1,12 +1,9 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,6 +26,7 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     ArrayList<String> sideBagTokens = new ArrayList<>(0);
     String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +42,13 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
 
         EnumSet<SideBagTokenEnums> allTokens = EnumSet.allOf(SideBagTokenEnums.class);
 
-        for(SideBagTokenEnums token : allTokens){
+        for (SideBagTokenEnums token : allTokens) {
             sideBagTokens.add(token.label());
         }
         adapter.setString(sideBagTokens);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            if(null != token) {
+            if (null != token) {
                 if (sobCharacter.getSideBag().size() < sobCharacter.getSideBagSize()) {
                     Intent intent = new Intent(this, SideBagActivity.class);
                     sobCharacter.getSideBag().add(token);
@@ -74,6 +72,7 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
         private List<String> mString;
+
         public StringListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }

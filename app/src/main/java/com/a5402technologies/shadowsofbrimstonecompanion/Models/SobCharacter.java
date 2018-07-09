@@ -10,7 +10,6 @@ import android.util.Log;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SkillTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.GithubTypeConverters;
 
@@ -759,8 +758,8 @@ public class SobCharacter implements Serializable {
                     this.spiritArmor = clothing.getSpiritArmor();
                 }
             }
-            if(clothing.getWeight() < 0) {
-                if(clothing.getEquipped().equals(TRUE)) {
+            if (clothing.getWeight() < 0) {
+                if (clothing.getEquipped().equals(TRUE)) {
                     this.maxWeight -= clothing.getWeight();
                 }
             } else this.weight += clothing.getWeight();
@@ -807,11 +806,11 @@ public class SobCharacter implements Serializable {
             if (gearBase.getName().equals(RuleExceptionEnum.HARTHBONE_NECKLACE.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
-            if(gearBase.getWeight() < 0) {
-                    this.maxWeight -= gearBase.getWeight();
+            if (gearBase.getWeight() < 0) {
+                this.maxWeight -= gearBase.getWeight();
             } else this.weight += gearBase.getWeight();
             darkStoneCount += gearBase.getDarkStone();
-            if(gearBase.getName().equals(RuleExceptionEnum.TOMB_CHEST.label())) tombChests++;
+            if (gearBase.getName().equals(RuleExceptionEnum.TOMB_CHEST.label())) tombChests++;
         }
         Boolean markFaithfulBonus = FALSE;
         for (Attachment attachment : this.getAttachments()) {
@@ -837,7 +836,7 @@ public class SobCharacter implements Serializable {
             for (String string : skill.getPenalties()) {
                 findPenalty(string);
             }
-            if(skill.getName().equals(RuleExceptionEnum.PERSONAL_TOUCH.label())) {
+            if (skill.getName().equals(RuleExceptionEnum.PERSONAL_TOUCH.label())) {
                 this.getCharacterClass().setDefense(4);
                 for (Clothing clothing : this.getClothing()) {
                     if (clothing.getHat().equals(TRUE) && this.getClothing().size() > 3) {
@@ -845,18 +844,18 @@ public class SobCharacter implements Serializable {
                     }
                 }
             }
-            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()));
+            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) ;
             spinningSlash = TRUE;
         }
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
         darkStoneCount += darkStoneShards;
-        darkStoneCount -= (8*tombChests);
+        darkStoneCount -= (8 * tombChests);
         //Spinning Slash Exception
         if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
             if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
-                if(spinningSlash.equals(TRUE)) meleeDamageBonus++;
+                if (spinningSlash.equals(TRUE)) meleeDamageBonus++;
             }
         }
     }

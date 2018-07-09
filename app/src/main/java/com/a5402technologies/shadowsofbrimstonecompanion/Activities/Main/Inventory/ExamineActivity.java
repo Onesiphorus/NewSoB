@@ -132,7 +132,7 @@ public class ExamineActivity extends AppCompatActivity {
             if (null != mGearBase) {
                 GearBase current = mGearBase.get(position);
                 String label = current.getName();
-                if(current.getPersonal().equals(TRUE)) {
+                if (current.getPersonal().equals(TRUE)) {
                     label += " (Personal)";
                 }
                 holder.gearBaseItemView.setText(label);
@@ -199,10 +199,10 @@ public class ExamineActivity extends AppCompatActivity {
             if (null != mClothing) {
                 Clothing current = mClothing.get(position);
                 String label = current.getName();
-                if(current.getPersonal().equals(TRUE)) {
+                if (current.getPersonal().equals(TRUE)) {
                     label += " (Personal)";
                 }
-                if(current.getEquipped().equals(TRUE)) {
+                if (current.getEquipped().equals(TRUE)) {
                     label += " (Equipped)";
                 }
                 holder.clothingItemView.setTextSize(14);
@@ -273,10 +273,10 @@ public class ExamineActivity extends AppCompatActivity {
             if (null != mMeleeWeapon) {
                 MeleeWeapon current = mMeleeWeapon.get(position);
                 String label = current.getName();
-                if(current.getPersonal().equals(TRUE)) {
+                if (current.getPersonal().equals(TRUE)) {
                     label += " (Personal)";
                 }
-                if(current.getEquipped().equals(TRUE)) {
+                if (current.getEquipped().equals(TRUE)) {
                     label += " (Equipped)";
                 }
                 holder.meleeWeaponItemView.setTextSize(14);
@@ -346,10 +346,10 @@ public class ExamineActivity extends AppCompatActivity {
             if (null != mRangedWeapon) {
                 RangedWeapon current = mRangedWeapon.get(position);
                 String label = current.getName();
-                if(current.getPersonal().equals(TRUE)) {
+                if (current.getPersonal().equals(TRUE)) {
                     label += " (Personal)";
                 }
-                if(current.getEquipped().equals(TRUE)) {
+                if (current.getEquipped().equals(TRUE)) {
                     label += " (Equipped)";
                 }
                 holder.rangedWeaponItemView.setTextSize(14);
@@ -417,7 +417,7 @@ public class ExamineActivity extends AppCompatActivity {
             if (null != mAttachment) {
                 Attachment current = mAttachment.get(position);
                 String label = current.getName();
-                if(current.getEquipped().equals(TRUE)) {
+                if (current.getEquipped().equals(TRUE)) {
                     label += " (Equipped)";
                 }
                 holder.attachmentItemView.setTextSize(14);

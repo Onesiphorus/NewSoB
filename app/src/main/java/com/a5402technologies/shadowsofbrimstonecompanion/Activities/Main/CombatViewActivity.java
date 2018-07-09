@@ -48,7 +48,7 @@ public class CombatViewActivity extends AppCompatActivity {
         tv.setText(sobCharacter.getCharacterName());
         tv = findViewById(R.id.traits_wrapper);
         String text = " - ";
-        for(String string : sobCharacter.getTraits()) {
+        for (String string : sobCharacter.getTraits()) {
             text += string + " - ";
         }
         tv.setText(text);
@@ -66,13 +66,14 @@ public class CombatViewActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        findViewById(R.id.quick_resources_layout).setOnClickListener(( View view) -> {
+        findViewById(R.id.quick_resources_layout).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, SpoilsActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
     }
+
     protected void setQuickClothes() {
         tv = findViewById(R.id.quick_hat);
         if (sobCharacter.getHat().equals(TRUE)) tv.setHintTextColor(GREEN);
@@ -104,19 +105,22 @@ public class CombatViewActivity extends AppCompatActivity {
         tv = findViewById(R.id.quick_weight);
         String text = "Weight: " + sobCharacter.getWeight().toString() + "/" + sobCharacter.getMaxWeight();
         tv.setHint(text);
-        if(sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
+        if (sobCharacter.getMaxWeight() >= sobCharacter.getWeight()) tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv = findViewById(R.id.quick_side_bag);
         text = "Side Bag: " + sobCharacter.getSideBag().size() + "/" + sobCharacter.getSideBagSize();
-        if(sobCharacter.getSideBagSize() >= sobCharacter.getSideBag().size()) tv.setHintTextColor(GREEN);
+        if (sobCharacter.getSideBagSize() >= sobCharacter.getSideBag().size())
+            tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv.setHint(text);
         tv = findViewById(R.id.quick_corruption);
         text = "Corruption: " + sobCharacter.getCurrentCorruption() + "/" + sobCharacter.getMaxCorruption();
-        if(sobCharacter.getMaxCorruption() >= sobCharacter.getCurrentCorruption()) tv.setHintTextColor(GREEN);
+        if (sobCharacter.getMaxCorruption() >= sobCharacter.getCurrentCorruption())
+            tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv.setHint(text);
     }
+
     private void setQuickStats() {
         tv = findViewById(R.id.quick_agi);
         val = sobCharacter.getAgilityBonus() + sobCharacter.getCharacterClass().getAgility();
@@ -156,7 +160,7 @@ public class CombatViewActivity extends AppCompatActivity {
         text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
         tv = findViewById(R.id.sob_darkstone);
-        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() +")";
+        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() + ")";
         tv.setText(text);
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
@@ -186,8 +190,8 @@ public class CombatViewActivity extends AppCompatActivity {
                     : sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
                     ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
                     : sobCharacter.getRightHand().getShots();
-            for(String s : sobCharacter.getRightHand().getTraits()) {
-                if(s.equals(TraitsEnum.PISTOL.label())) {
+            for (String s : sobCharacter.getRightHand().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
                     for (Clothing clothing : sobCharacter.getClothing()) {
                         if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())
                                 && clothing.getEquipped().equals(TRUE)) {
@@ -215,12 +219,12 @@ public class CombatViewActivity extends AppCompatActivity {
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.right_hand_damage);
             text = "d" + sobCharacter.getRightHand().getDamageDie().toString();
-            if(sobCharacter.getRightHand().getDamageBonus() > 0) {
+            if (sobCharacter.getRightHand().getDamageBonus() > 0) {
                 text += "+" + sobCharacter.getRightHand().getDamageBonus().toString();
             }
             tv.setText(text);
             tv = findViewById(R.id.right_hand_to_hit);
-            text =  "d"
+            text = "d"
                     + sobCharacter.getRightHand().getToHitDie().toString()
                     + " : "
                     + sobCharacter.getCharacterClass().getRangedToHit().toString()
@@ -251,8 +255,8 @@ public class CombatViewActivity extends AppCompatActivity {
                     : sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
                     ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
                     : sobCharacter.getLeftHand().getShots();
-            for(String s : sobCharacter.getLeftHand().getTraits()) {
-                if(s.equals(TraitsEnum.PISTOL.label())) {
+            for (String s : sobCharacter.getLeftHand().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
                     for (Clothing clothing : sobCharacter.getClothing()) {
                         if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
                             if (null != sobCharacter.getRightHand()) {

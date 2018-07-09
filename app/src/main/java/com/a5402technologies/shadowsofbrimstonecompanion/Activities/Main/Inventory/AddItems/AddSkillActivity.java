@@ -4,9 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,20 +52,20 @@ public class AddSkillActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<Skill> skills) {
                 ArrayList<Skill> filteredByClass = new ArrayList<>(0);
                 ArrayList<Skill> filteredByAvailable = new ArrayList<>(0);
-                for(Skill s : skills) {
-                    if(s.getType().equals(sobCharacter.getCharacterClass().getClassName())) {
+                for (Skill s : skills) {
+                    if (s.getType().equals(sobCharacter.getCharacterClass().getClassName())) {
                         filteredByClass.add(s);
                     }
                 }
-                for(Skill s : filteredByClass) {
-                    if(s.getLevel() == 1) filteredByAvailable.add(s);
-                    for(Skill have : sobCharacter.getUpgrades()) {
-                        if(s.getCategory().equals(have.getCategory()) && s.getLevel() - 1 == have.getLevel()) {
+                for (Skill s : filteredByClass) {
+                    if (s.getLevel() == 1) filteredByAvailable.add(s);
+                    for (Skill have : sobCharacter.getUpgrades()) {
+                        if (s.getCategory().equals(have.getCategory()) && s.getLevel() - 1 == have.getLevel()) {
                             filteredByAvailable.add(s);
                         }
                     }
-                    for(Skill have : sobCharacter.getUpgrades()) {
-                        if(s.getName().equals(have.getName())) {
+                    for (Skill have : sobCharacter.getUpgrades()) {
+                        if (s.getName().equals(have.getName())) {
                             filteredByAvailable.remove(s);
                         }
                     }
@@ -134,6 +134,7 @@ public class AddSkillActivity extends AppCompatActivity {
         private List<Skill> mSkill;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public SkillListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);

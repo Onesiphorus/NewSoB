@@ -1,20 +1,19 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddGearBaseActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class VisitShopActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     String shop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +39,7 @@ public class VisitShopActivity extends AppCompatActivity {
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("shop_type",shop);
+            intent.putExtra("shop_type", shop);
             intent.putExtra("gear_type", GearTypeEnum.GEAR.label());
             startActivity(intent);
             finish();
@@ -48,7 +47,7 @@ public class VisitShopActivity extends AppCompatActivity {
         findViewById(R.id.btn_melee).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("shop_type",shop);
+            intent.putExtra("shop_type", shop);
             intent.putExtra("gear_type", GearTypeEnum.HAND_WEAPONS.label());
             startActivity(intent);
             finish();
@@ -56,7 +55,7 @@ public class VisitShopActivity extends AppCompatActivity {
         findViewById(R.id.btn_ranged).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("shop_type",shop);
+            intent.putExtra("shop_type", shop);
             intent.putExtra("gear_type", GearTypeEnum.RANGED_WEAPONS.label());
             startActivity(intent);
             finish();
@@ -64,7 +63,7 @@ public class VisitShopActivity extends AppCompatActivity {
         findViewById(R.id.btn_clothing).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("shop_type",shop);
+            intent.putExtra("shop_type", shop);
             intent.putExtra("gear_type", GearTypeEnum.CLOTHING.label());
             startActivity(intent);
             finish();
@@ -72,7 +71,7 @@ public class VisitShopActivity extends AppCompatActivity {
         findViewById(R.id.btn_attachments).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
-            intent.putExtra("shop_type",shop);
+            intent.putExtra("shop_type", shop);
             intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
             startActivity(intent);
             finish();
