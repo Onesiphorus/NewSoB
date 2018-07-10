@@ -5,14 +5,15 @@ import android.arch.persistence.room.TypeConverter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Ally;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.AllyClass;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Transport;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,7 +30,8 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<String>>() {
+        }.getType();
 
         return gson.fromJson(data, listType);
     }
@@ -45,9 +47,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<GearBase>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<GearBase>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -61,9 +64,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<PermanentCondition>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<PermanentCondition>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -77,9 +81,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<Clothing>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Clothing>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -93,9 +98,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<MeleeWeapon>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<MeleeWeapon>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -109,9 +115,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<RangedWeapon>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<RangedWeapon>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -125,9 +132,10 @@ public class GithubTypeConverters {
             return new CharacterClass("null");
         }
 
-        Type listType = new TypeToken<CharacterClass>() {}.getType();
+        Type listType = new TypeToken<CharacterClass>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -141,9 +149,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<Skill>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Skill>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -157,9 +166,10 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<Attachment>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Attachment>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -173,9 +183,10 @@ public class GithubTypeConverters {
             return CharacterClassEnum.ANY;
         }
 
-        Type listType = new TypeToken<CharacterClassEnum>() {}.getType();
+        Type listType = new TypeToken<CharacterClassEnum>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -186,12 +197,13 @@ public class GithubTypeConverters {
     @TypeConverter
     public static RangedWeapon stringToRangedWeapon(String data) {
         if (null == data) {
-            return new RangedWeapon("",0,0);
+            return new RangedWeapon("", 0, 0);
         }
 
-        Type listType = new TypeToken<RangedWeapon>() {}.getType();
+        Type listType = new TypeToken<RangedWeapon>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -205,39 +217,61 @@ public class GithubTypeConverters {
             return new MeleeWeapon("");
         }
 
-        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+        Type listType = new TypeToken<MeleeWeapon>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
     public static String MeleeWeaponToString(MeleeWeapon meleeWeapon) {
         return gson.toJson(meleeWeapon);
     }
+
     @TypeConverter
     public static Ally stringToAlly(String data) {
         if (null == data) {
             return new Ally("", new AllyClass(""));
         }
 
-        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+        Type listType = new TypeToken<Ally>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
     public static String AllyToString(Ally ally) {
         return gson.toJson(ally);
     }
+
+    @TypeConverter
+    public static Transport stringToTransport(String data) {
+        if (null == data) {
+            return new Transport();
+        }
+
+        Type listType = new TypeToken<Transport>() {
+        }.getType();
+
+        return gson.fromJson(data, listType);
+    }
+
+    @TypeConverter
+    public static String TransportToString(Transport transport) {
+        return gson.toJson(transport);
+    }
+
     @TypeConverter
     public static AllyClass stringToAllyClass(String data) {
         if (null == data) {
             return new AllyClass("");
         }
 
-        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+        Type listType = new TypeToken<AllyClass>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
@@ -251,28 +285,31 @@ public class GithubTypeConverters {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<Ally>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Ally>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
     public static String AllyListToString(ArrayList<Ally> allies) {
         return gson.toJson(allies);
     }
+
     @TypeConverter
     public static ArrayList<AllyClass> stringToAllyClassList(String data) {
         if (null == data) {
             return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<ArrayList<AllyClass>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<AllyClass>>() {
+        }.getType();
 
-        return gson.fromJson(data,listType);
+        return gson.fromJson(data, listType);
     }
 
     @TypeConverter
     public static String AllyClassListToString(ArrayList<AllyClass> allyClasses) {
-            return gson.toJson(allyClasses);
+        return gson.toJson(allyClasses);
     }
 }

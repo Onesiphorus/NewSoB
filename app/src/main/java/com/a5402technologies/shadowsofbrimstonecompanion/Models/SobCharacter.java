@@ -204,6 +204,9 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "mutations")
     private ArrayList<PermanentCondition> mutations;
+    @NonNull
+    @ColumnInfo(name = "transport")
+    private Transport transport;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -223,6 +226,7 @@ public class SobCharacter implements Serializable {
         injuries = new ArrayList<>(0);
         madness = new ArrayList<>(0);
         mutations = new ArrayList<>(0);
+        transport = new Transport();
     }
 
     @NonNull
@@ -1353,6 +1357,13 @@ public class SobCharacter implements Serializable {
         this.mutations = mutations;
     }
 
+    @NonNull
+    public Transport getTransport() {
+        return transport;
+    }
 
+    public void setTransport(@NonNull Transport transport) {
+        this.transport = transport;
+    }
 }
 

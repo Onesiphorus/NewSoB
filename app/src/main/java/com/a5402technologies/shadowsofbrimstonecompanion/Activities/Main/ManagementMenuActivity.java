@@ -15,7 +15,6 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class ManagementMenuActivity extends Activity {
     SobCharacter sobCharacter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +24,7 @@ public class ManagementMenuActivity extends Activity {
 
         findViewById(R.id.btn_inventory).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ExamineInventoryActivity.class);
+            intent.putExtra("location", "inventory");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -50,7 +50,13 @@ public class ManagementMenuActivity extends Activity {
             startActivity(intent);
             finish();
         });
-        //TODO add manage transport inventory
+        findViewById(R.id.btn_transport).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ExamineInventoryActivity.class);
+            intent.putExtra("location", "transport");
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override

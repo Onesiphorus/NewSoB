@@ -52,8 +52,8 @@
             android:layout_margin="2dp"
             android:background="@drawable/button_background"
             android:textColor="@color/colorPrimaryDark"
-            android:id="@+id/btn_mng_side_bag_tokens"
-            android:text="Manage Items Not Carried"/>
+            android:id="@+id/btn_transport"
+            android:text="Transport"/>
 
 
     </LinearLayout>

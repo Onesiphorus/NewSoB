@@ -33,6 +33,7 @@ public class ExamineActivity extends AppCompatActivity {
     private RangedWeapon rangedWeapon;
     private Clothing clothing;
     private Attachment attachment;
+    private String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class ExamineActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         type = getIntent().getStringExtra("gear_type");
+        location = getIntent().getStringExtra("location");
 
         TextView tv = findViewById(R.id.tv_gear_type);
         tv.setText(type);
@@ -62,44 +64,153 @@ public class ExamineActivity extends AppCompatActivity {
             final GearBaseListAdapter adapter = new GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            adapter.setGearBase(sobCharacter.getGear());
+            if(location.equals("inventory")) {
+                adapter.setGearBase(sobCharacter.getGear());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.removeGear(gearBase);
+                    sobCharacter.getTransport().getGear().add(gearBase);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            } else if (location.equals("transport")){
+                adapter.setGearBase(sobCharacter.getTransport().getGear());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.addGear(gearBase);
+                    sobCharacter.getTransport().getGear().remove(gearBase);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         } else if (type.equals(GearTypeEnum.CLOTHING.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final ClothingListAdapter adapter = new ClothingListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            adapter.setClothing(sobCharacter.getClothing());
+            if(location.equals("inventory")) {
+                adapter.setClothing(sobCharacter.getClothing());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.removeClothing(clothing);
+                    sobCharacter.getTransport().getClothing().add(clothing);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            } else if (location.equals("transport")){
+                adapter.setClothing(sobCharacter.getTransport().getClothing());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.addClothing(clothing);
+                    sobCharacter.getTransport().getClothing().remove(clothing);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         } else if (type.equals(GearTypeEnum.HAND_WEAPONS.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            adapter.setMeleeWeapon(sobCharacter.getMeleeWeapons());
+            if(location.equals("inventory")) {
+                adapter.setMeleeWeapon(sobCharacter.getMeleeWeapons());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.removeMeleeWeapon(meleeWeapon);
+                    sobCharacter.getTransport().getMeleeWeapons().add(meleeWeapon);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            } else if (location.equals("transport")){
+                adapter.setMeleeWeapon(sobCharacter.getTransport().getMeleeWeapons());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.addMeleeWeapon(meleeWeapon);
+                    sobCharacter.getTransport().getMeleeWeapons().remove(meleeWeapon);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         } else if (type.equals(GearTypeEnum.RANGED_WEAPONS.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            adapter.setRangedWeapon(sobCharacter.getRangedWeapons());
+            if(location.equals("inventory")) {
+                adapter.setRangedWeapon(sobCharacter.getRangedWeapons());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.removeRangedWeapon(rangedWeapon);
+                    sobCharacter.getTransport().getRangedWeapons().add(rangedWeapon);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            } else if (location.equals("transport")){
+                adapter.setRangedWeapon(sobCharacter.getTransport().getRangedWeapons());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.addRangedWeapon(rangedWeapon);
+                    sobCharacter.getTransport().getRangedWeapons().remove(rangedWeapon);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         } else if (type.equals(GearTypeEnum.GEAR_UPGRADES.label())) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            adapter.setAttachment(sobCharacter.getAttachments());
+            if(location.equals("inventory")) {
+                adapter.setAttachment(sobCharacter.getAttachments());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.removeAttachment(attachment);
+                    sobCharacter.getTransport().getAttachments().add(attachment);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            } else if (location.equals("transport")){
+                adapter.setAttachment(sobCharacter.getTransport().getAttachments());
+                findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
+                    sobCharacter.addAttachment(attachment);
+                    sobCharacter.getTransport().getAttachments().remove(attachment);
+                    Intent intent = new Intent(this, ExamineActivity.class);
+                    intent.putExtra("serializable_object", sobCharacter);
+                    intent.putExtra("location", location);
+                    intent.putExtra("gear_type", type);
+                    startActivity(intent);
+                    finish();
+                });
+            }
         }
-
-        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ExamineInventoryActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> onBackPressed());
     }
@@ -145,12 +256,13 @@ public class ExamineActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     gearBase = mGearBase.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + gearBase.getName() + " for";
-                    if (gearBase.getCost() > 0) {
-                        text += " $" + gearBase.getCost();
+                    String text = "Send " + gearBase.getName();
+                    if(location.equals("inventory")) {
+                        text += " to transport";
+
                     }
-                    if (gearBase.getDarkstoneCost() > 0) {
-                        text += " " + gearBase.getDarkstoneCost() + " Dark Stone";
+                    if(location.equals("transport")) {
+                        text += " to inventory";
                     }
                     btn.setText(text);
                 }
@@ -216,12 +328,13 @@ public class ExamineActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + clothing.getName() + " for";
-                    if (clothing.getCost() > 0) {
-                        text += " $" + clothing.getCost();
+                    String text = "Send " + clothing.getName();
+                    if(location.equals("inventory")) {
+                        text += " to transport";
+
                     }
-                    if (clothing.getDarkstoneCost() > 0) {
-                        text += " " + clothing.getDarkstoneCost() + " Dark Stone";
+                    if(location.equals("transport")) {
+                        text += " to inventory";
                     }
                     btn.setText(text);
                 }
@@ -290,12 +403,13 @@ public class ExamineActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + meleeWeapon.getName() + " for";
-                    if (meleeWeapon.getCost() > 0) {
-                        text += " $" + meleeWeapon.getCost();
+                    String text = "Send " + meleeWeapon.getName();
+                    if(location.equals("inventory")) {
+                        text += " to transport";
+
                     }
-                    if (meleeWeapon.getDarkstoneCost() > 0) {
-                        text += " " + meleeWeapon.getDarkstoneCost() + " Dark Stone";
+                    if(location.equals("transport")) {
+                        text += " to inventory";
                     }
                     btn.setText(text);
                 }
@@ -363,12 +477,13 @@ public class ExamineActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + rangedWeapon.getName() + " for";
-                    if (rangedWeapon.getCost() > 0) {
-                        text += " $" + rangedWeapon.getCost();
+                    String text = "Send " + rangedWeapon.getName();
+                    if(location.equals("inventory")) {
+                        text += " to transport";
+
                     }
-                    if (rangedWeapon.getDarkstoneCost() > 0) {
-                        text += " " + rangedWeapon.getDarkstoneCost() + " Dark Stone";
+                    if(location.equals("transport")) {
+                        text += " to inventory";
                     }
                     btn.setText(text);
                 }
@@ -431,12 +546,13 @@ public class ExamineActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Buy " + attachment.getName() + " for";
-                    if (attachment.getCost() > 0) {
-                        text += " $" + attachment.getCost();
+                    String text = "Send " + attachment.getName();
+                    if(location.equals("inventory")) {
+                        text += " to transport";
+
                     }
-                    if (attachment.getDarkstoneCost() > 0) {
-                        text += " " + attachment.getDarkstoneCost() + " Dark Stone";
+                    if(location.equals("transport")) {
+                        text += " to inventory";
                     }
                     btn.setText(text);
                 }

@@ -13,18 +13,20 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 public class ExamineInventoryActivity extends AppCompatActivity {
 
     SobCharacter sobCharacter;
-
+    String location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_type_to_remove);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        location = getIntent().getStringExtra("location");
 
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ExamineActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.GEAR.label());
+            intent.putExtra("location", location);
             startActivity(intent);
             finish();
         });
@@ -32,6 +34,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ExamineActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.CLOTHING.label());
+            intent.putExtra("location", location);
             startActivity(intent);
             finish();
         });
@@ -39,6 +42,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ExamineActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.HAND_WEAPONS.label());
+            intent.putExtra("location", location);
             startActivity(intent);
             finish();
         });
@@ -46,6 +50,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ExamineActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.RANGED_WEAPONS.label());
+            intent.putExtra("location", location);
             startActivity(intent);
             finish();
         });
@@ -53,6 +58,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ExamineActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
+            intent.putExtra("location", location);
             startActivity(intent);
             finish();
         });
@@ -62,6 +68,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, ManagementMenuActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("location", location);
         startActivity(intent);
         finish();
     }

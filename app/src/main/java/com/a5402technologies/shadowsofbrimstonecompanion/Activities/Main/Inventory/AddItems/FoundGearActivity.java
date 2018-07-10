@@ -22,7 +22,6 @@ public class FoundGearActivity extends AppCompatActivity {
         setContentView(R.layout.activity_found_gear);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
-
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
