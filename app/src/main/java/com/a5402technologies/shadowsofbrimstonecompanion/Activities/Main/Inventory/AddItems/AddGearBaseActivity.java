@@ -32,7 +32,11 @@ import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.GearBaseView
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.MeleeWeaponViewModel;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.RangedWeaponViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class AddGearBaseActivity extends AppCompatActivity {
 
@@ -48,6 +52,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
     private RangedWeaponViewModel mRangedWeaponViewModel;
     private RangedWeapon rangedWeapon;
     private SobCharacter sobCharacter;
+    private String cardType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         gearType = getIntent().getStringExtra("gear_type");
+        cardType = getIntent().getStringExtra("card_type");
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         if (gearType.equals(GearTypeEnum.GEAR.label())) {
@@ -67,7 +74,32 @@ public class AddGearBaseActivity extends AppCompatActivity {
             mGearBaseViewModel.getAllGear().observe(this, new Observer<List<GearBase>>() {
                 @Override
                 public void onChanged(@Nullable List<GearBase> gearBase) {
-                    adapter.setGearBase(gearBase);
+                    ArrayList<GearBase> filtered = new ArrayList<>(0);
+                    for(GearBase item : gearBase) {
+                        if(cardType.equals("mine")) {
+                            if (item.getArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("targa")) {
+                            if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("jargono")) {
+                            if (item.getJargonoArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("derelict")) {
+                            if (item.getDerelictArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("trederra")) {
+                            if (item.getTrederraArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("cynder")) {
+                            if (item.getCynderArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("personal")) {
+                            if (item.getPersonal().equals(TRUE)) filtered.add(item);
+                        } else {
+                            if (item.getArtifact().equals(FALSE) && item.getTargaArtifact().equals(FALSE)
+                                    && item.getJargonoArtifact().equals(FALSE) && item.getDerelictArtifact().equals(FALSE)
+                                    && item.getTrederraArtifact().equals(FALSE) && item.getCynderArtifact().equals(FALSE)
+                                    && item.getPersonal().equals(FALSE)) {
+                                filtered.add(item);
+                            }
+                        }
+                    }
+                    adapter.setGearBase(filtered);
                 }
             });
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -91,7 +123,30 @@ public class AddGearBaseActivity extends AppCompatActivity {
             mAttachmentViewModel.getAllAttachment().observe(this, new Observer<List<Attachment>>() {
                 @Override
                 public void onChanged(@Nullable List<Attachment> list) {
-                    adapter.setAttachment(list);
+                    ArrayList<Attachment> filtered = new ArrayList<>(0);
+                    for(Attachment item : list) {
+                        if(cardType.equals("mine")) {
+                            if (item.getArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("targa")) {
+                            if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("jargono")) {
+                            if (item.getJargonoArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("derelict")) {
+                            if (item.getDerelictArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("trederra")) {
+                            if (item.getTrederraArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("cynder")) {
+                            if (item.getCynderArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("personal")) {
+                        } else {
+                            if (item.getArtifact().equals(FALSE) && item.getTargaArtifact().equals(FALSE)
+                                    && item.getJargonoArtifact().equals(FALSE) && item.getDerelictArtifact().equals(FALSE)
+                                    && item.getTrederraArtifact().equals(FALSE) && item.getCynderArtifact().equals(FALSE)) {
+                                filtered.add(item);
+                            }
+                        }
+                    }
+                    adapter.setAttachment(filtered);
                 }
             });
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -115,7 +170,32 @@ public class AddGearBaseActivity extends AppCompatActivity {
             mClothingViewModel.getAllClothing().observe(this, new Observer<List<Clothing>>() {
                 @Override
                 public void onChanged(@Nullable List<Clothing> list) {
-                    adapter.setClothing(list);
+                    ArrayList<Clothing> filtered = new ArrayList<>(0);
+                    for(Clothing item : list) {
+                        if(cardType.equals("mine")) {
+                            if (item.getArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("targa")) {
+                            if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("jargono")) {
+                            if (item.getJargonoArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("derelict")) {
+                            if (item.getDerelictArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("trederra")) {
+                            if (item.getTrederraArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("cynder")) {
+                            if (item.getCynderArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("personal")) {
+                            if (item.getPersonal().equals(TRUE)) filtered.add(item);
+                        } else {
+                            if (item.getArtifact().equals(FALSE) && item.getTargaArtifact().equals(FALSE)
+                                    && item.getJargonoArtifact().equals(FALSE) && item.getDerelictArtifact().equals(FALSE)
+                                    && item.getTrederraArtifact().equals(FALSE) && item.getCynderArtifact().equals(FALSE)
+                                    && item.getPersonal().equals(FALSE)) {
+                                filtered.add(item);
+                            }
+                        }
+                    }
+                    adapter.setClothing(filtered);
                 }
             });
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -139,7 +219,32 @@ public class AddGearBaseActivity extends AppCompatActivity {
             mMeleeWeaponViewModel.getAllMeleeWeapons().observe(this, new Observer<List<MeleeWeapon>>() {
                 @Override
                 public void onChanged(@Nullable List<MeleeWeapon> list) {
-                    adapter.setMeleeWeapon(list);
+                    ArrayList<MeleeWeapon> filtered = new ArrayList<>(0);
+                    for(MeleeWeapon item : list) {
+                        if(cardType.equals("mine")) {
+                            if (item.getArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("targa")) {
+                            if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("jargono")) {
+                            if (item.getJargonoArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("derelict")) {
+                            if (item.getDerelictArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("trederra")) {
+                            if (item.getTrederraArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("cynder")) {
+                            if (item.getCynderArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("personal")) {
+                            if (item.getPersonal().equals(TRUE)) filtered.add(item);
+                        } else {
+                            if (item.getArtifact().equals(FALSE) && item.getTargaArtifact().equals(FALSE)
+                                    && item.getJargonoArtifact().equals(FALSE) && item.getDerelictArtifact().equals(FALSE)
+                                    && item.getTrederraArtifact().equals(FALSE) && item.getCynderArtifact().equals(FALSE)
+                                    && item.getPersonal().equals(FALSE)) {
+                                filtered.add(item);
+                            }
+                        }
+                    }
+                    adapter.setMeleeWeapon(filtered);
                 }
             });
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -163,7 +268,32 @@ public class AddGearBaseActivity extends AppCompatActivity {
             mRangedWeaponViewModel.getAllRangedWeapons().observe(this, new Observer<List<RangedWeapon>>() {
                 @Override
                 public void onChanged(@Nullable List<RangedWeapon> list) {
-                    adapter.setRangedWeapon(list);
+                    ArrayList<RangedWeapon> filtered = new ArrayList<>(0);
+                    for(RangedWeapon item : list) {
+                        if(cardType.equals("mine")) {
+                            if (item.getArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("targa")) {
+                            if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("jargono")) {
+                            if (item.getJargonoArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("derelict")) {
+                            if (item.getDerelictArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("trederra")) {
+                            if (item.getTrederraArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("cynder")) {
+                            if (item.getCynderArtifact().equals(TRUE)) filtered.add(item);
+                        } else if (cardType.equals("personal")) {
+                            if (item.getPersonal().equals(TRUE)) filtered.add(item);
+                        } else {
+                            if (item.getArtifact().equals(FALSE) && item.getTargaArtifact().equals(FALSE)
+                                    && item.getJargonoArtifact().equals(FALSE) && item.getDerelictArtifact().equals(FALSE)
+                                    && item.getTrederraArtifact().equals(FALSE) && item.getCynderArtifact().equals(FALSE)
+                                    && item.getPersonal().equals(FALSE)) {
+                                filtered.add(item);
+                            }
+                        }
+                    }
+                    adapter.setRangedWeapon(filtered);
                 }
             });
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
@@ -210,6 +340,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, FoundGearActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("card_type", cardType);
         startActivity(intent);
         finish();
     }

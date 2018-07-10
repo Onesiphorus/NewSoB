@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.ChooseSetActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ExamineInventoryActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ManageExtraTokensActivity;
@@ -31,7 +32,7 @@ public class ManagementMenuActivity extends Activity {
         });
 
         findViewById(R.id.btn_new_gear).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, FoundGearActivity.class);
+            Intent intent = new Intent(this, ChooseSetActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

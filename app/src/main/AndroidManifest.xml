@@ -139,10 +139,15 @@
             android:name=".Activities.Main.Inventory.ManageExtraTokensActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.Inventory.AddItems.AddSideBagTokenActivity"
+        <activity
+            android:name=".Activities.Main.Inventory.AddItems.AddSideBagTokenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activities.Main.Inventory.ExamineActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.Main.Inventory.ExamineActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Inventory.AddItems.ChooseSetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

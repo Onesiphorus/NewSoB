@@ -15,6 +15,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 public class FoundGearActivity extends AppCompatActivity {
 
     private SobCharacter sobCharacter;
+    private String cardType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,12 @@ public class FoundGearActivity extends AppCompatActivity {
         setContentView(R.layout.activity_found_gear);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        cardType = getIntent().getStringExtra("card_type");
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.GEAR.label());
+            intent.putExtra("card_type", cardType);
             startActivity(intent);
             finish();
         });
@@ -34,6 +37,7 @@ public class FoundGearActivity extends AppCompatActivity {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.CLOTHING.label());
+            intent.putExtra("card_type", cardType);
             startActivity(intent);
             finish();
         });
@@ -42,6 +46,7 @@ public class FoundGearActivity extends AppCompatActivity {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.HAND_WEAPONS.label());
+            intent.putExtra("card_type", cardType);
             startActivity(intent);
             finish();
         });
@@ -50,6 +55,7 @@ public class FoundGearActivity extends AppCompatActivity {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.RANGED_WEAPONS.label());
+            intent.putExtra("card_type", cardType);
             startActivity(intent);
             finish();
         });
@@ -57,6 +63,7 @@ public class FoundGearActivity extends AppCompatActivity {
             Intent intent = new Intent(FoundGearActivity.this, AddGearBaseActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
+            intent.putExtra("card_type", cardType);
             startActivity(intent);
             finish();
         });
@@ -86,8 +93,9 @@ public class FoundGearActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ManagementMenuActivity.class);
+        Intent intent = new Intent(this, ChooseSetActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("card_type", cardType);
         startActivity(intent);
         finish();
     }

@@ -219,6 +219,7 @@ public class ExamineActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, ExamineInventoryActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("location", location);
         startActivity(intent);
         finish();
     }
