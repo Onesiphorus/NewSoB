@@ -21,23 +21,26 @@ import static java.lang.Boolean.TRUE;
 
 @Entity(tableName = "character_table")
 public class SobCharacter implements Serializable {
+    @TypeConverters(GithubTypeConverters.class)
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "character_name")
     private String characterName;
+    @NonNull
     @ColumnInfo(name = "character_class")
     private CharacterClass characterClass;
+    @NonNull
     @ColumnInfo(name = "gear_list")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<GearBase> gear = new ArrayList<>();
+    @NonNull
     @ColumnInfo(name = "clothing_list")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Clothing> clothing = new ArrayList<>();
+    @NonNull
     @ColumnInfo(name = "melee_list")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<MeleeWeapon> meleeWeapons = new ArrayList<>();
+    @NonNull
     @ColumnInfo(name = "ranged_list")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<RangedWeapon> rangedWeapons = new ArrayList<>();
     @NonNull
     @ColumnInfo(name = "agility_bonus")
@@ -131,28 +134,21 @@ public class SobCharacter implements Serializable {
     private Boolean hasPTail = FALSE;
     @NonNull
     @ColumnInfo(name = "earned_skills")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Skill> upgrades;
     @NonNull
     @ColumnInfo(name = "move_bonus")
     private Integer moveBonus = 0;
     @ColumnInfo(name = "right_hand")
-    @TypeConverters(GithubTypeConverters.class)
     private RangedWeapon rightHand;
     @ColumnInfo(name = "left_hand")
-    @TypeConverters(GithubTypeConverters.class)
     private RangedWeapon leftHand;
     @ColumnInfo(name = "right_melee")
-    @TypeConverters(GithubTypeConverters.class)
     private MeleeWeapon rightMelee;
     @ColumnInfo(name = "left_melee")
-    @TypeConverters(GithubTypeConverters.class)
     private MeleeWeapon leftMelee;
     @ColumnInfo(name = "tail_melee")
-    @TypeConverters(GithubTypeConverters.class)
     private MeleeWeapon prehensileMelee;
     @ColumnInfo(name = "prehensile_tail")
-    @TypeConverters(GithubTypeConverters.class)
     private RangedWeapon prehensileTail;
     @NonNull
     @ColumnInfo(name = "melee_to_hit_die")
@@ -177,7 +173,6 @@ public class SobCharacter implements Serializable {
     private Integer currentSanity;
     @NonNull
     @ColumnInfo(name = "modifiers")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> modifiers;
     @NonNull
     @ColumnInfo(name = "weight")
@@ -187,7 +182,6 @@ public class SobCharacter implements Serializable {
     private Integer maxWeight = 0;
     @NonNull
     @ColumnInfo(name = "side_bag")
-    @TypeConverters(GithubTypeConverters.class)
     private ArrayList<String> sideBag;
     @NonNull
     @ColumnInfo(name = "side_bag_size")
@@ -201,6 +195,15 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "dark_stone_count")
     private Integer darkStoneCount = 0;
+    @NonNull
+    @ColumnInfo(name = "injuries")
+    private ArrayList<PermanentCondition> injuries;
+    @NonNull
+    @ColumnInfo(name = "madness")
+    private ArrayList<PermanentCondition> madness;
+    @NonNull
+    @ColumnInfo(name = "mutations")
+    private ArrayList<PermanentCondition> mutations;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -217,6 +220,9 @@ public class SobCharacter implements Serializable {
         modifiers = new ArrayList<>(0);
         traits = characterClass.getTraits();
         sideBag = new ArrayList<>(0);
+        injuries = new ArrayList<>(0);
+        madness = new ArrayList<>(0);
+        mutations = new ArrayList<>(0);
     }
 
     @NonNull
@@ -830,7 +836,6 @@ public class SobCharacter implements Serializable {
         }
         Boolean shieldBash = FALSE;
         Boolean spinningSlash = FALSE;
-        Boolean quickShot = FALSE;
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
                 findBonus(string);
@@ -848,6 +853,30 @@ public class SobCharacter implements Serializable {
             }
             if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) spinningSlash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
+        }
+        for(PermanentCondition permanentCondition : getInjuries()) {
+            for (String string : permanentCondition.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : permanentCondition.getPenalties()) {
+                findPenalty(string);
+            }
+        }
+        for(PermanentCondition permanentCondition : getMadness()) {
+            for (String string : permanentCondition.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : permanentCondition.getPenalties()) {
+                findPenalty(string);
+            }
+        }
+        for(PermanentCondition permanentCondition : getMutations()) {
+            for (String string : permanentCondition.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : permanentCondition.getPenalties()) {
+                findPenalty(string);
+            }
         }
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
@@ -1246,6 +1275,30 @@ public class SobCharacter implements Serializable {
         this.sideBag.remove(string);
     }
 
+    public void addMutation(PermanentCondition permanentCondition) {
+        this.mutations.add(permanentCondition);
+    }
+
+    public void removeMutation(PermanentCondition permanentCondition) {
+        this.mutations.remove(permanentCondition);
+    }
+
+    public void addInjury(PermanentCondition permanentCondition) {
+        this.injuries.add(permanentCondition);
+    }
+
+    public void removeInjury(PermanentCondition permanentCondition) {
+        this.injuries.remove(permanentCondition);
+    }
+
+    public void addMadness(PermanentCondition permanentCondition) {
+        this.madness.add(permanentCondition);
+    }
+
+    public void removeMadness(PermanentCondition permanentCondition) {
+        this.madness.remove(permanentCondition);
+    }
+
     @NonNull
     public Integer getMaxCorruption() {
         return maxCorruption;
@@ -1272,5 +1325,34 @@ public class SobCharacter implements Serializable {
     public void setDarkStoneCount(@NonNull Integer darkStoneCount) {
         this.darkStoneCount = darkStoneCount;
     }
+
+    @NonNull
+    public ArrayList<PermanentCondition> getInjuries() {
+        return injuries;
+    }
+
+    public void setInjuries(@NonNull ArrayList<PermanentCondition> injuries) {
+        this.injuries = injuries;
+    }
+
+    @NonNull
+    public ArrayList<PermanentCondition> getMadness() {
+        return madness;
+    }
+
+    public void setMadness(@NonNull ArrayList<PermanentCondition> madness) {
+        this.madness = madness;
+    }
+
+    @NonNull
+    public ArrayList<PermanentCondition> getMutations() {
+        return mutations;
+    }
+
+    public void setMutations(@NonNull ArrayList<PermanentCondition> mutations) {
+        this.mutations = mutations;
+    }
+
+
 }
 

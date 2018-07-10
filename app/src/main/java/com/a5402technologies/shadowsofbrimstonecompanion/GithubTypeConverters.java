@@ -3,11 +3,14 @@ package com.a5402technologies.shadowsofbrimstonecompanion;
 import android.arch.persistence.room.TypeConverter;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Ally;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.AllyClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.GearBase;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.google.gson.Gson;
@@ -50,6 +53,22 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String GearListToString(ArrayList<GearBase> gearBases) {
         return gson.toJson(gearBases);
+    }
+
+    @TypeConverter
+    public static ArrayList<PermanentCondition> stringToPermanentConditionList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<PermanentCondition>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String PermanentConditionListToString(ArrayList<PermanentCondition> permanentConditions) {
+        return gson.toJson(permanentConditions);
     }
 
     @TypeConverter
@@ -194,5 +213,66 @@ public class GithubTypeConverters {
     @TypeConverter
     public static String MeleeWeaponToString(MeleeWeapon meleeWeapon) {
         return gson.toJson(meleeWeapon);
+    }
+    @TypeConverter
+    public static Ally stringToAlly(String data) {
+        if (null == data) {
+            return new Ally("", new AllyClass(""));
+        }
+
+        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String AllyToString(Ally ally) {
+        return gson.toJson(ally);
+    }
+    @TypeConverter
+    public static AllyClass stringToAllyClass(String data) {
+        if (null == data) {
+            return new AllyClass("");
+        }
+
+        Type listType = new TypeToken<MeleeWeapon>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String AllyClassToString(AllyClass allyClass) {
+        return gson.toJson(allyClass);
+    }
+
+    @TypeConverter
+    public static ArrayList<Ally> stringToAllyList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<Ally>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String AllyListToString(ArrayList<Ally> allies) {
+        return gson.toJson(allies);
+    }
+    @TypeConverter
+    public static ArrayList<AllyClass> stringToAllyClassList(String data) {
+        if (null == data) {
+            return new ArrayList<>();
+        }
+
+        Type listType = new TypeToken<ArrayList<AllyClass>>() {}.getType();
+
+        return gson.fromJson(data,listType);
+    }
+
+    @TypeConverter
+    public static String AllyClassListToString(ArrayList<AllyClass> allyClasses) {
+            return gson.toJson(allyClasses);
     }
 }

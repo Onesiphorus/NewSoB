@@ -51,7 +51,7 @@ public class AddSideBagTokenActivity extends AppCompatActivity {
             if (null != token) {
                 if (sobCharacter.getSideBag().size() < sobCharacter.getSideBagSize()) {
                     Intent intent = new Intent(this, SideBagActivity.class);
-                    sobCharacter.getSideBag().add(token);
+                    sobCharacter.addToSideBag(token);
                     intent.putExtra("serializable_object", sobCharacter);
                     startActivity(intent);
                     finish();
