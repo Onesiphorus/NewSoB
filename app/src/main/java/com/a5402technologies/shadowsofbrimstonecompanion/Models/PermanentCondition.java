@@ -32,9 +32,13 @@ public class PermanentCondition implements Serializable{
     @NonNull
     @ColumnInfo(name = "botched")
     private Boolean isBotched = FALSE;
+    @NonNull
+    @ColumnInfo(name = "condition_type")
+    private String type;
 
-    public PermanentCondition(@NonNull String name) {
+    public PermanentCondition(@NonNull String name, @NonNull String type) {
         this.name = name;
+        this.type = type;
         this.penalties = new ArrayList<>(0);
         this.modifiers = new ArrayList<>(0);
     }

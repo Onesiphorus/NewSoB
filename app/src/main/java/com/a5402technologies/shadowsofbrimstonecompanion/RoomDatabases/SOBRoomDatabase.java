@@ -19,6 +19,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.Permanent
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.RangedWeaponDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.SkillDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ConditionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.SetListEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ShopEnum;
@@ -4415,6 +4416,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             Cowboy.setDarkStoneShards(12);
             mCharacterDao.insert(sobCharacter);
             mCharacterDao.insert(Cowboy);
+
+            permanentCondition = new PermanentCondition("Eviscerated", ConditionEnum.INJURY.label());
+            //TODO something with death
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Foreign Object", ConditionEnum.INJURY.label());
+            //TODO code Foreign Object
+            mPermanentConditionDao.insert(permanentCondition);
+
 
             return null;
         }

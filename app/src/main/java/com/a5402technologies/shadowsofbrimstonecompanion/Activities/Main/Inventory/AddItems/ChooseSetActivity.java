@@ -74,10 +74,7 @@ public class ChooseSetActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
-        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
-            onBackPressed();
-        });
+        
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
