@@ -4620,9 +4620,82 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addPenalty(ModifiersEnum.MAX_CORRUPTION.label());
             permanentCondition.addModifier(ModifiersEnum.LORE.label());
             mPermanentConditionDao.insert(permanentCondition);
-
-
-
+        //Madness
+            permanentCondition = new PermanentCondition("Brain Dead", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Egomania", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Chronic Itching", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Utter Despair", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Paranoia", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Sociopathy", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("The Shakes", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Schizophrenia", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Hallucinations", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Obsession", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Claustrophobia", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Traumatic Memory", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Delusions", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Gender Identity Crisis", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Flagellant", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Dark Temptation", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Monsteromania", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Monsterobphobia", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Guilty Conscience", ConditionEnum.MADNESS.label());
+            permanentCondition.addPenalty(ModifiersEnum.WILLPOWER.label());
+            //todo -Willpower, add to?
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Kleptomania", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Unquiet Mind", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Nyctophobia", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Cowardice", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Slow-Witted", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Addiction", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Alcoholism", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Antisociality", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Faithlessness", ConditionEnum.MADNESS.label());
+            //TODO no church with Faithlessness
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Zealotry", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Obsessive Compulsion", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Lecherous", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Plutomania", ConditionEnum.MADNESS.label());
+            //todo code need for sale if value > money for Plutomania
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Berserker", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Panic Attack", ConditionEnum.MADNESS.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Apathy", ConditionEnum.MADNESS.label());
+            permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
 
             return null;
         }

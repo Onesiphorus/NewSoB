@@ -2,6 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 
+import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,11 @@ public enum ModifiersEnum {
     SIDE_BAG_CAPACITY("Side Bag Capacity", CharacterClassEnum.ANY),
     MAX_CORRUPTION("Max Corruption", CharacterClassEnum.ANY),
     MAX_WEIGHT("Max Weight", CharacterClassEnum.ANY),
-    CRITICAL_DAMAGE("Critical_Damage", CharacterClassEnum.ANY);
+    CRITICAL_DAMAGE("Critical Damage", CharacterClassEnum.ANY),
+    WILLPOWER("Willpower", CharacterClassEnum.ANY),
+    DEFENSE("Defense", CharacterClassEnum.ANY),
+    ARMOR("Armor", CharacterClassEnum.ANY),
+    SPIRIT_ARMOR("Spirit Armor", CharacterClassEnum.ANY);
 
 
     private static Map<CharacterClassEnum, ModifiersEnum> lookupByCode = new HashMap<>();
