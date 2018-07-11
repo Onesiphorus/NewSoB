@@ -32,16 +32,16 @@ public class SobCharacter implements Serializable {
     private CharacterClass characterClass;
     @NonNull
     @ColumnInfo(name = "gear_list")
-    private ArrayList<GearBase> gear = new ArrayList<>();
+    private ArrayList<GearBase> gear;
     @NonNull
     @ColumnInfo(name = "clothing_list")
-    private ArrayList<Clothing> clothing = new ArrayList<>();
+    private ArrayList<Clothing> clothing;
     @NonNull
     @ColumnInfo(name = "melee_list")
-    private ArrayList<MeleeWeapon> meleeWeapons = new ArrayList<>();
+    private ArrayList<MeleeWeapon> meleeWeapons;
     @NonNull
     @ColumnInfo(name = "ranged_list")
-    private ArrayList<RangedWeapon> rangedWeapons = new ArrayList<>();
+    private ArrayList<RangedWeapon> rangedWeapons;
     @NonNull
     @ColumnInfo(name = "agility_bonus")
     private Integer agilityBonus = 0;
@@ -68,10 +68,10 @@ public class SobCharacter implements Serializable {
     private Integer sanityBonus = 0;
     @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor = 0;
+    private Integer armor = 7;
     @NonNull
     @ColumnInfo(name = "spirit_armor")
-    private Integer spiritArmor = 0;
+    private Integer spiritArmor = 7;
     @NonNull
     @ColumnInfo(name = "ranged_damage_die")
     private Integer rangedDamageDie = 6;
@@ -887,6 +887,7 @@ public class SobCharacter implements Serializable {
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
         darkStoneCount += darkStoneShards;
         darkStoneCount -= (8 * tombChests);
+        darkStoneCount = darkStoneCount < 0 ? 0 : darkStoneCount;
         if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
             //Spinning Slash Exception
             if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
@@ -1030,8 +1031,8 @@ public class SobCharacter implements Serializable {
         this.setMeleeDamageBonus(0);
         this.setRangedDamageBonus(0);
         this.setMeleeDamageDie(6);
-        this.setArmor(0);
-        this.setSpiritArmor(0);
+        this.setArmor(7);
+        this.setSpiritArmor(7);
         this.setMeleeToHitDie(6);
         this.setMeleeDamageDie(6);
         this.traits = getCharacterClass().getTraits();

@@ -105,6 +105,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, AddGearBaseActivity.class);
                 intent.putExtra("gear_type", gearType);
+                intent.putExtra("card_type", cardType);
                 if (gearBase != null) {
                     sobCharacter.addGear(gearBase);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -152,6 +153,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, AddGearBaseActivity.class);
                 intent.putExtra("gear_type", gearType);
+                intent.putExtra("card_type", cardType);
                 if (attachment != null) {
                     sobCharacter.addAttachment(attachment);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -201,6 +203,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, AddGearBaseActivity.class);
                 intent.putExtra("gear_type", gearType);
+                intent.putExtra("card_type", cardType);
                 if (clothing != null) {
                     sobCharacter.addClothing(clothing);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -250,6 +253,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, AddGearBaseActivity.class);
                 intent.putExtra("gear_type", gearType);
+                intent.putExtra("card_type", cardType);
                 if (meleeWeapon != null) {
                     sobCharacter.addMeleeWeapon(meleeWeapon);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -299,6 +303,7 @@ public class AddGearBaseActivity extends AppCompatActivity {
             findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, AddGearBaseActivity.class);
                 intent.putExtra("gear_type", gearType);
+                intent.putExtra("card_type", cardType);
                 if (rangedWeapon != null) {
                     sobCharacter.addRangedWeapon(rangedWeapon);
                     intent.putExtra("serializable_object", sobCharacter);

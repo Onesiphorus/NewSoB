@@ -181,7 +181,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setText(text);
         tv = findViewById(R.id.defense_value);
         value = (sobCharacter.getCharacterClass().getDefense());
-        tv.setText(String.format(value.toString()));
+        text = value.toString() + "+";
+        tv.setText(text);
         tv = findViewById(R.id.sanity_value);
         value = (sobCharacter.getCharacterClass().getSanity())
                 + (sobCharacter.getSanityBonus());
@@ -189,11 +190,24 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setText(text);
         tv = findViewById(R.id.willpower_value);
         value = (sobCharacter.getCharacterClass().getWillpower());
-        tv.setText(String.format(value.toString()));
+        text = value.toString() + "+";
+        tv.setText(text);
         tv = findViewById(R.id.armor_value);
-        tv.setText(String.format(sobCharacter.getArmor().toString()));
+        if (sobCharacter.getArmor() < 7) {
+            value = sobCharacter.getArmor();
+            text = value.toString() + "+";
+        } else {
+            text = "-";
+        }
+        tv.setText(text);
         tv = findViewById(R.id.spirit_armor_value);
-        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
+        if (sobCharacter.getSpiritArmor() < 7) {
+            value = sobCharacter.getSpiritArmor();
+            text = value.toString() + "+";
+        } else {
+            text = "-";
+        }
+        tv.setText(text);
         tv = findViewById(R.id.sob_character_name);
         tv.setText(sobCharacter.getCharacterName());
 
