@@ -35,6 +35,9 @@ public class PermanentCondition implements Serializable{
     @NonNull
     @ColumnInfo(name = "condition_type")
     private String type;
+    @NonNull
+    @ColumnInfo(name = "armor")
+    private Integer armor = 0;
 
     public PermanentCondition(@NonNull String name, @NonNull String type) {
         this.name = name;
@@ -85,5 +88,23 @@ public class PermanentCondition implements Serializable{
 
     public void setBotched(@NonNull Boolean botched) {
         isBotched = botched;
+    }
+
+    @NonNull
+    public String getType() {
+        return type;
+    }
+
+    public void setType(@NonNull String type) {
+        this.type = type;
+    }
+
+    @NonNull
+    public Integer getArmor() {
+        return armor;
+    }
+
+    public void setArmor(@NonNull Integer armor) {
+        this.armor = armor;
     }
 }
