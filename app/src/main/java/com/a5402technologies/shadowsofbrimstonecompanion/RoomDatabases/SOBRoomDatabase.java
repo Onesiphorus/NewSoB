@@ -36,6 +36,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
+import java.nio.charset.CoderMalfunctionError;
 import java.util.ArrayList;
 
 import static java.lang.Boolean.TRUE;
@@ -4423,6 +4424,94 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Foreign Object", ConditionEnum.INJURY.label());
             //TODO code Foreign Object
             mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Spinal Cord Injury", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.AGILITY.label());
+            permanentCondition.addPenalty(ModifiersEnum.STRENGTH.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Brain Injury", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.CUNNING.label());
+            permanentCondition.addPenalty(ModifiersEnum.LORE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Butchered Genitals", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.SPIRIT.label());
+            permanentCondition.addPenalty(ModifiersEnum.LUCK.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Fractured Hip", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Mangled Hand", ConditionEnum.INJURY.label());
+            //TODO code Mangled Hand to reduce weapons carried
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Gouged Eye", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Fractured Ribs", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.MAX_WEIGHT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Broken Leg", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.MOVE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Abdominal Trauma", ConditionEnum.INJURY.label());
+            //TODO Defense Roll -1 (Defense +1?)
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Concussion", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.INITIATIVE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Internal Bleeding", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Broken Arm", ConditionEnum.INJURY.label());
+            //TODO code no melee crits with Broken Arm
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Cracked Knee", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Crushed Foot", ConditionEnum.INJURY.label());
+            //TODO escape rolls?
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Scalped", ConditionEnum.INJURY.label());
+            //TODO disable hat when Scalped
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Slashed Face", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Broken Teeth", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Broken Collar Bone", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Chest Wound", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.INITIATIVE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Severed Finger", ConditionEnum.INJURY.label());
+            //TODO code -1 shot on ranged weapons when Severed Finger
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Severed Ear", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Swollen Eye", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Pulled Muscle", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Twisted Ankle", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Sprained Wrist", ConditionEnum.INJURY.label());
+            //TODO add Ranged to Hit to Hit modifiers (global)
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Dislocated Shoulder", ConditionEnum.INJURY.label());
+            //TODO add Melee to Hit modifiers (global)
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Rattled", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Photophobia", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Breathing Difficulties", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Puncture Wound", ConditionEnum.INJURY.label());
+            permanentCondition.addPenalty(ModifiersEnum.COMBAT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Busted Jaw", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Wind Knocked Out", ConditionEnum.INJURY.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Scarring", ConditionEnum.INJURY.label());
+            permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+
 
 
             return null;

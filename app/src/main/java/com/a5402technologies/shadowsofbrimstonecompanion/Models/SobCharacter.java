@@ -973,6 +973,8 @@ public class SobCharacter implements Serializable {
             sideBagSize += 1;
         } else if (ModifiersEnum.MAX_CORRUPTION.label().equals(modifier)) {
             maxCorruption += 1;
+        } else if (ModifiersEnum.MAX_WEIGHT.label().equals(modifier)) {
+            maxWeight++;
         }
     }
 
@@ -1007,6 +1009,8 @@ public class SobCharacter implements Serializable {
             sideBagSize -= 1;
         } else if (ModifiersEnum.MAX_CORRUPTION.label().equals(modifier)) {
             maxCorruption -= 1;
+        } else if (ModifiersEnum.MAX_WEIGHT.label().equals(modifier)) {
+            maxWeight--;
         }
     }
 
