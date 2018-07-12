@@ -8,17 +8,18 @@
 
 
     <include layout="@layout/content_character" />
-    <include layout="@layout/content_equip_cancel"/>
+
+    <include layout="@layout/content_equip_cancel" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
-        app:rippleColor="@color/colorPrimary"
-        app:backgroundTint="@color/colorPrimaryDark"
         android:layout_margin="@dimen/fab_margin"
+        android:paddingBottom="48dp"
         android:src="@drawable/ic_add_black_24dp"
-        android:paddingBottom="48dp"/>
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:rippleColor="@color/colorPrimary" />
 
 </android.support.design.widget.CoordinatorLayout>

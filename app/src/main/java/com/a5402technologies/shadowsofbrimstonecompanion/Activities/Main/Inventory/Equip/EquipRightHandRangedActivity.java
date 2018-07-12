@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -26,6 +25,7 @@ import static java.lang.Boolean.FALSE;
 public class EquipRightHandRangedActivity extends AppCompatActivity {
     RangedWeapon rangedWeapon;
     SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +33,9 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
-        for(RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if(rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)) RangedWeaponOptions.add(rangedWeapon);
+        for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
+            if (rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE))
+                RangedWeaponOptions.add(rangedWeapon);
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -48,7 +49,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         btn.setText(text);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
-            if(null != rangedWeapon) {
+            if (null != rangedWeapon) {
                 sobCharacter.equipRightHand(rangedWeapon);
 
                 Intent intent = new Intent(this, CombatViewActivity.class);
@@ -74,20 +75,18 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, CombatViewActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
+    }
+
     class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
-
-        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final Button rangedWeaponItemView;
-
-            private RangedWeaponViewHolder(View itemView) {
-                super(itemView);
-                rangedWeaponItemView = itemView.findViewById(R.id.textView);
-            }
-        }
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
-
         public RangedWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
@@ -112,7 +111,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_equip);
-                    String text ="Equip " + rangedWeapon.getName();
+                    String text = "Equip " + rangedWeapon.getName();
                     btn.setText(text);
                 }
             });
@@ -128,13 +127,14 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
             if (null != mRangedWeapon) return mRangedWeapon.size();
             else return 0;
         }
-    }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, CombatViewActivity.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        startActivity(intent);
-        finish();
+        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
+            private final Button rangedWeaponItemView;
+
+            private RangedWeaponViewHolder(View itemView) {
+                super(itemView);
+                rangedWeaponItemView = itemView.findViewById(R.id.textView);
+            }
+        }
     }
 }

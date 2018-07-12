@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -88,6 +87,7 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
         private List<MeleeWeapon> mMeleeWeapon;
+
         public MeleeWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
@@ -112,7 +112,7 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_equip);
-                    String text ="Equip " + meleeWeapon.getName();
+                    String text = "Equip " + meleeWeapon.getName();
                     btn.setText(text);
                 }
             });

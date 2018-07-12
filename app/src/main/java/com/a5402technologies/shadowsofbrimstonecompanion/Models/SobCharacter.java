@@ -879,10 +879,11 @@ public class SobCharacter implements Serializable {
             meleeToHit = skill.getMeleeToHit() < meleeToHit ? skill.getMeleeToHit() : meleeToHit;
             rangedToHit = skill.getRangedToHit() < rangedToHit ? skill.getRangedToHit() : rangedToHit;
             meleeCritChance = skill.getMeleeCritChance() < meleeCritChance ? skill.getMeleeCritChance() : meleeCritChance;
-            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) spinningSlash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()))
+                spinningSlash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
         }
-        for(PermanentCondition permanentCondition : getInjuries()) {
+        for (PermanentCondition permanentCondition : getInjuries()) {
             for (String string : permanentCondition.getModifiers()) {
                 findBonus(string);
             }
@@ -890,7 +891,7 @@ public class SobCharacter implements Serializable {
                 findPenalty(string);
             }
         }
-        for(PermanentCondition permanentCondition : getMadness()) {
+        for (PermanentCondition permanentCondition : getMadness()) {
             for (String string : permanentCondition.getModifiers()) {
                 findBonus(string);
             }
@@ -898,7 +899,7 @@ public class SobCharacter implements Serializable {
                 findPenalty(string);
             }
         }
-        for(PermanentCondition permanentCondition : getMutations()) {
+        for (PermanentCondition permanentCondition : getMutations()) {
             for (String string : permanentCondition.getModifiers()) {
                 findBonus(string);
             }
@@ -920,16 +921,16 @@ public class SobCharacter implements Serializable {
             //Shield Bash Exception
             Boolean shieldEquipped = FALSE;
             if (null != leftMelee) {
-                for(String trait : leftMelee.getTraits()) {
-                    if(trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
+                for (String trait : leftMelee.getTraits()) {
+                    if (trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
                 }
             }
             if (null != rightMelee) {
-                for(String trait : rightMelee.getTraits()) {
-                    if(trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
+                for (String trait : rightMelee.getTraits()) {
+                    if (trait.equals(TraitsEnum.SHIELD.label())) shieldEquipped = TRUE;
                 }
             }
-            if(shieldBash.equals(TRUE) && shieldEquipped.equals(TRUE)) combatBonus++;
+            if (shieldBash.equals(TRUE) && shieldEquipped.equals(TRUE)) combatBonus++;
         }
     }
 

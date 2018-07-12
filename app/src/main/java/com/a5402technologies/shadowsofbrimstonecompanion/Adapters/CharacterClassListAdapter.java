@@ -19,6 +19,7 @@ public class CharacterClassListAdapter extends RecyclerView.Adapter<CharacterCla
     private final LayoutInflater mInflater;
     private Context mContext;
     private List<CharacterClass> mCharacterClasses;
+
     public CharacterClassListAdapter(Context context) {
         mContext = context;
         mInflater = LayoutInflater.from(context);

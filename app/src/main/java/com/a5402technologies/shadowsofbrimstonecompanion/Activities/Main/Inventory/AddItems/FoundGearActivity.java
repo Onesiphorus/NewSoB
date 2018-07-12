@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;

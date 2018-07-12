@@ -1,11 +1,10 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ManageItemUpgradesActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -74,8 +73,9 @@ public class ChooseSetActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        
+
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

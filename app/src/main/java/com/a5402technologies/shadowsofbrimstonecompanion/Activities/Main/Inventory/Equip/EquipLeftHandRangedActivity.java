@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -115,7 +114,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_equip);
-                    String text ="Equip " + rangedWeapon.getName();
+                    String text = "Equip " + rangedWeapon.getName();
                     btn.setText(text);
                 }
             });

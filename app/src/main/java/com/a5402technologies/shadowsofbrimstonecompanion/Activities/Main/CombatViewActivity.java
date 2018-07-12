@@ -207,8 +207,8 @@ public class CombatViewActivity extends AppCompatActivity {
                         }
                     }
                 } else if (s.equals(TraitsEnum.BOW.label())) {
-                    if(sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
-                        for(Skill skill : sobCharacter.getUpgrades()) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
                             if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
                                 shots++;
                             }
@@ -279,8 +279,8 @@ public class CombatViewActivity extends AppCompatActivity {
                         }
                     }
                 } else if (s.equals(TraitsEnum.BOW.label())) {
-                    if(sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
-                        for(Skill skill : sobCharacter.getUpgrades()) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
                             if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
                                 shots++;
                             }

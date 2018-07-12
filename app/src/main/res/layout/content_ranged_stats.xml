@@ -1,192 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ranged Combat Stats"
-        android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_margin="4dp"
-                android:layout_weight="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Right Hand"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp"/>
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:background="@drawable/button_background"
-                    android:layout_weight="4"
-                    android:textColor="@color/colorPrimary"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:id="@+id/right_hand_ranged_weapon"
-                    android:textSize="12sp"
-                    android:hint="empty"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Range"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/right_hand_range"
-                        android:textSize="20sp"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:hint="@string/NA"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="Shots"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/right_hand_shots"
-                        android:textSize="20sp"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_gravity="center"
-                        android:hint="@string/NA"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="4dp"
-                    android:layout_weight="2">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="To Hit(Crit)"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/right_hand_to_hit"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimary"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:hint="@string/NA"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_gravity="center"
-                        android:text="Damage"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_gravity="center"
-                        android:id="@+id/right_hand_damage"
-                        android:textSize="20sp"
-                        android:hint="@string/NA"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="4dp">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"
-                    android:text="Left Hand"/>
+                    android:text="Right Hand"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp" />
+
                 <Button
+                    android:id="@+id/right_hand_ranged_weapon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textColor="@color/colorPrimary"
-                    android:background="@drawable/button_background"
-                    android:id="@+id/left_hand_ranged_weapon"
                     android:layout_weight="4"
-                    android:hint="empty"/>
+                    android:background="@drawable/button_background"
+                    android:gravity="center"
+                    android:hint="empty"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="12sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,98 +69,262 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:layout_margin="4dp">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:text="Range"
+                        android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:text="Range"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/right_hand_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:id="@+id/left_hand_range"
-                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
+                        android:hint="@string/NA"
                         android:textAlignment="center"
-                        android:hint="@string/NA"/>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:layout_margin="4dp">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:text="Shots"
+                        android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:text="Shots"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/right_hand_shots"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimary"
-                        android:id="@+id/left_hand_shots"
                         android:layout_gravity="center"
+                        android:hint="@string/NA"
                         android:textAlignment="center"
-                        android:hint="@string/NA"/>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_margin="4dp"
                     android:layout_weight="2"
-                    android:layout_margin="4dp">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:text="To Hit(Crit)"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
-                        android:layout_gravity="center"
-                        android:text="To Hit(Crit)"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/right_hand_to_hit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:id="@+id/left_hand_to_hit"
                         android:layout_gravity="center"
-                        android:textColor="@color/colorPrimary"
+                        android:hint="@string/NA"
                         android:textAlignment="center"
-                        android:hint="@string/NA"/>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_margin="4dp"
                     android:layout_weight="1"
-                    android:layout_margin="4dp">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        android:text="Damage"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/right_hand_damage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Damage"/>
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Left Hand"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/left_hand_ranged_weapon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/button_background"
+                    android:hint="empty"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Range"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/left_hand_range"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:text="Shots"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/left_hand_shots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="To Hit(Crit)"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/left_hand_to_hit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Damage"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
                         android:id="@+id/left_hand_damage"
-                        android:hint="@string/NA"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

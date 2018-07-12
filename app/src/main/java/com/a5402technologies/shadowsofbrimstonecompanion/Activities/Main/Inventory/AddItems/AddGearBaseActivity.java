@@ -75,8 +75,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable List<GearBase> gearBase) {
                     ArrayList<GearBase> filtered = new ArrayList<>(0);
-                    for(GearBase item : gearBase) {
-                        if(cardType.equals("mine")) {
+                    for (GearBase item : gearBase) {
+                        if (cardType.equals("mine")) {
                             if (item.getArtifact().equals(TRUE)) filtered.add(item);
                         } else if (cardType.equals("targa")) {
                             if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
@@ -125,8 +125,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable List<Attachment> list) {
                     ArrayList<Attachment> filtered = new ArrayList<>(0);
-                    for(Attachment item : list) {
-                        if(cardType.equals("mine")) {
+                    for (Attachment item : list) {
+                        if (cardType.equals("mine")) {
                             if (item.getArtifact().equals(TRUE)) filtered.add(item);
                         } else if (cardType.equals("targa")) {
                             if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
@@ -173,8 +173,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable List<Clothing> list) {
                     ArrayList<Clothing> filtered = new ArrayList<>(0);
-                    for(Clothing item : list) {
-                        if(cardType.equals("mine")) {
+                    for (Clothing item : list) {
+                        if (cardType.equals("mine")) {
                             if (item.getArtifact().equals(TRUE)) filtered.add(item);
                         } else if (cardType.equals("targa")) {
                             if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
@@ -223,8 +223,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable List<MeleeWeapon> list) {
                     ArrayList<MeleeWeapon> filtered = new ArrayList<>(0);
-                    for(MeleeWeapon item : list) {
-                        if(cardType.equals("mine")) {
+                    for (MeleeWeapon item : list) {
+                        if (cardType.equals("mine")) {
                             if (item.getArtifact().equals(TRUE)) filtered.add(item);
                         } else if (cardType.equals("targa")) {
                             if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);
@@ -273,8 +273,8 @@ public class AddGearBaseActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable List<RangedWeapon> list) {
                     ArrayList<RangedWeapon> filtered = new ArrayList<>(0);
-                    for(RangedWeapon item : list) {
-                        if(cardType.equals("mine")) {
+                    for (RangedWeapon item : list) {
+                        if (cardType.equals("mine")) {
                             if (item.getArtifact().equals(TRUE)) filtered.add(item);
                         } else if (cardType.equals("targa")) {
                             if (item.getTargaArtifact().equals(TRUE)) filtered.add(item);

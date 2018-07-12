@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.ChooseSetActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.FoundGearActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ExamineInventoryActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.ManageExtraTokensActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Town.VisitTownActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -16,6 +14,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class ManagementMenuActivity extends Activity {
     SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/Theme.AppCompat"
     android:background="@android:color/background_dark"
     tools:context=".Activities.Menu.MainActivity">
 
@@ -12,50 +12,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
-        android:textColor="@color/colorAccent"
         android:keepScreenOn="true"
+        android:paddingBottom="96dp"
         android:text="@string/shadows"
+        android:textColor="@color/colorAccent"
         android:textSize="50sp"
-        android:textStyle="bold|italic"
-        android:paddingBottom="96dp"/>
+        android:textStyle="bold|italic" />
+
     <LinearLayout
-        android:paddingTop="192dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="192dp">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimary"
-            android:textSize="24sp"
             android:id="@+id/btn_character"
-            android:text="@string/character_text"/>
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:textColorHighlight="@color/colorPrimary"
+            android:text="@string/character_text"
             android:textColor="@color/colorPrimary"
-            android:id="@+id/btn_settings"
-            android:text="@string/settings"/>
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+            android:textColorHighlight="@color/colorPrimary"
+            android:textSize="24sp" />
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
+        <Button
+            android:id="@+id/btn_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
-        </LinearLayout>
-    </FrameLayout>
+            android:background="@drawable/button_background"
+            android:text="@string/settings"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary" />
+    </LinearLayout>
 </FrameLayout>
 

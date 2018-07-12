@@ -1,117 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Melee Combat Stats"
-        android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
+            android:id="@+id/btn_right_melee"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
             android:background="@drawable/button_background"
-            android:textColorHint="@android:color/darker_gray"
+            android:gravity="center"
             android:hint="Right Hand"
             android:paddingRight="4dp"
-            android:gravity="center"
-            android:id="@+id/btn_right_melee"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@android:color/darker_gray" />
+
         <Button
             android:layout_width="4dp"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
+
         <Button
+            android:id="@+id/btn_left_melee"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_background"
-            android:hint="Left Hand"
-            android:textColorHint="@android:color/darker_gray"
-            android:textColor="@color/colorPrimaryDark"
-            android:paddingLeft="4dp"
             android:gravity="center"
-            android:id="@+id/btn_left_melee"/>
+            android:hint="Left Hand"
+            android:paddingLeft="4dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@android:color/darker_gray" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Combat"
-                android:textColor="@color/colorPrimaryDark"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
             <TextView
+                android:id="@+id/melee_combat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:hint="2"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                android:id="@+id/melee_combat"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="To Hit(Crit)"
-                android:textAlignment="center"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:hint="D6(4+)"
-                android:id="@+id/melee_to_hit"/>
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To Hit(Crit)"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/melee_to_hit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="D6(4+)"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Damage"
-                android:textColor="@color/colorPrimaryDark"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
             <TextView
+                android:id="@+id/melee_damage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary"
                 android:hint="D6+0"
-                android:id="@+id/melee_damage"/>
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 

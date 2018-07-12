@@ -6,97 +6,88 @@
     android:background="@android:color/background_dark"
     tools:context=".Activities.Menu.FinishCharacterActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|bottom"
-        android:keepScreenOn="true"
-        android:textColor="@color/colorPrimary"
-        android:text="@string/dummy_content"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:paddingBottom="96dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="48dp"
-        android:layout_gravity="center|center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_character_name"
-            android:hint="@string/character_text"
-            android:textSize="24sp"
-            android:textAlignment="center"
-            android:textStyle="italic|bold"/>
-        <include layout="@layout/content_character_stats"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_starting_gear"
-            android:text="@string/starting_gear"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/recyclerview_item"
-            />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@android:color/darker_gray"
-            style="?android:borderlessButtonStyle">
-            <Button
-                android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="48dp">
+
+            <TextView
+                android:id="@+id/tv_character_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_background"
-                android:textColor="@android:color/holo_green_dark"
-                android:text="@string/accept"
-                android:id="@+id/btn_accept"
-                style="?android:borderlessButtonStyle"/>
-            <Button
-                android:layout_width="0dp"
+                android:hint="@string/character_text"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="italic|bold" />
+
+            <include layout="@layout/content_character_stats" />
+
+            <TextView
+                android:id="@+id/tv_starting_gear"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_background"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/restart"
-                android:id="@+id/btn_restart"
-                style="?android:borderlessButtonStyle"/>
+                android:text="@string/starting_gear"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/recyclerview_item" />
+
+            <LinearLayout
+                style="?android:borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_accept"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:text="@string/accept"
+                    android:textColor="@android:color/holo_green_dark" />
+
+                <Button
+                    android:id="@+id/btn_restart"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:text="@string/restart"
+                    android:textColor="@color/colorPrimaryDark" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
+    </ScrollView>
+        <!-- This FrameLayout insets its children based on system windows using
+             android:fitsSystemWindows. -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
-
-
-
-        </LinearLayout>
-    </FrameLayout>
-
+            <LinearLayout
+                android:id="@+id/fullscreen_content_controls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@color/black_overlay"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+            </LinearLayout>
+        </FrameLayout>
 </FrameLayout>

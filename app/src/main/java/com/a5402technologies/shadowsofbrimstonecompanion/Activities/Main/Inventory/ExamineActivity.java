@@ -64,7 +64,7 @@ public class ExamineActivity extends AppCompatActivity {
             final GearBaseListAdapter adapter = new GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            if(location.equals("inventory")) {
+            if (location.equals("inventory")) {
                 adapter.setGearBase(sobCharacter.getGear());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.removeGear(gearBase);
@@ -76,7 +76,7 @@ public class ExamineActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 });
-            } else if (location.equals("transport")){
+            } else if (location.equals("transport")) {
                 adapter.setGearBase(sobCharacter.getTransport().getGear());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.addGear(gearBase);
@@ -95,7 +95,7 @@ public class ExamineActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-            if(location.equals("inventory")) {
+            if (location.equals("inventory")) {
                 adapter.setClothing(sobCharacter.getClothing());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.removeClothing(clothing);
@@ -107,7 +107,7 @@ public class ExamineActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 });
-            } else if (location.equals("transport")){
+            } else if (location.equals("transport")) {
                 adapter.setClothing(sobCharacter.getTransport().getClothing());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.addClothing(clothing);
@@ -125,7 +125,7 @@ public class ExamineActivity extends AppCompatActivity {
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            if(location.equals("inventory")) {
+            if (location.equals("inventory")) {
                 adapter.setMeleeWeapon(sobCharacter.getMeleeWeapons());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.removeMeleeWeapon(meleeWeapon);
@@ -137,7 +137,7 @@ public class ExamineActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 });
-            } else if (location.equals("transport")){
+            } else if (location.equals("transport")) {
                 adapter.setMeleeWeapon(sobCharacter.getTransport().getMeleeWeapons());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.addMeleeWeapon(meleeWeapon);
@@ -155,7 +155,7 @@ public class ExamineActivity extends AppCompatActivity {
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            if(location.equals("inventory")) {
+            if (location.equals("inventory")) {
                 adapter.setRangedWeapon(sobCharacter.getRangedWeapons());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.removeRangedWeapon(rangedWeapon);
@@ -167,7 +167,7 @@ public class ExamineActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 });
-            } else if (location.equals("transport")){
+            } else if (location.equals("transport")) {
                 adapter.setRangedWeapon(sobCharacter.getTransport().getRangedWeapons());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.addRangedWeapon(rangedWeapon);
@@ -185,7 +185,7 @@ public class ExamineActivity extends AppCompatActivity {
             final AttachmentListAdapter adapter = new AttachmentListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            if(location.equals("inventory")) {
+            if (location.equals("inventory")) {
                 adapter.setAttachment(sobCharacter.getAttachments());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.removeAttachment(attachment);
@@ -197,7 +197,7 @@ public class ExamineActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 });
-            } else if (location.equals("transport")){
+            } else if (location.equals("transport")) {
                 adapter.setAttachment(sobCharacter.getTransport().getAttachments());
                 findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
                     sobCharacter.addAttachment(attachment);
@@ -258,11 +258,11 @@ public class ExamineActivity extends AppCompatActivity {
                     gearBase = mGearBase.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Send " + gearBase.getName();
-                    if(location.equals("inventory")) {
+                    if (location.equals("inventory")) {
                         text += " to transport";
 
                     }
-                    if(location.equals("transport")) {
+                    if (location.equals("transport")) {
                         text += " to inventory";
                     }
                     btn.setText(text);
@@ -330,11 +330,11 @@ public class ExamineActivity extends AppCompatActivity {
                     clothing = mClothing.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Send " + clothing.getName();
-                    if(location.equals("inventory")) {
+                    if (location.equals("inventory")) {
                         text += " to transport";
 
                     }
-                    if(location.equals("transport")) {
+                    if (location.equals("transport")) {
                         text += " to inventory";
                     }
                     btn.setText(text);
@@ -405,11 +405,11 @@ public class ExamineActivity extends AppCompatActivity {
                     meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Send " + meleeWeapon.getName();
-                    if(location.equals("inventory")) {
+                    if (location.equals("inventory")) {
                         text += " to transport";
 
                     }
-                    if(location.equals("transport")) {
+                    if (location.equals("transport")) {
                         text += " to inventory";
                     }
                     btn.setText(text);
@@ -479,11 +479,11 @@ public class ExamineActivity extends AppCompatActivity {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Send " + rangedWeapon.getName();
-                    if(location.equals("inventory")) {
+                    if (location.equals("inventory")) {
                         text += " to transport";
 
                     }
-                    if(location.equals("transport")) {
+                    if (location.equals("transport")) {
                         text += " to inventory";
                     }
                     btn.setText(text);
@@ -548,11 +548,11 @@ public class ExamineActivity extends AppCompatActivity {
                     attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Send " + attachment.getName();
-                    if(location.equals("inventory")) {
+                    if (location.equals("inventory")) {
                         text += " to transport";
 
                     }
-                    if(location.equals("transport")) {
+                    if (location.equals("transport")) {
                         text += " to inventory";
                     }
                     btn.setText(text);

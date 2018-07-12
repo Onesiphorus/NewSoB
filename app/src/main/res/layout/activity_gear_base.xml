@@ -8,7 +8,8 @@
 
 
     <include layout="@layout/content_choose_item" />
-    <include layout="@layout/content_accept_cancel"/>
+
+    <include layout="@layout/content_accept_cancel" />
 
 
 </android.support.design.widget.CoordinatorLayout>

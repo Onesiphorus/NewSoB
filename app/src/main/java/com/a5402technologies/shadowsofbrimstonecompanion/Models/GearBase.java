@@ -59,10 +59,10 @@ public class GearBase implements Serializable {
     private Boolean artifact = Boolean.FALSE;
     @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor=0;
+    private Integer armor = 0;
     @NonNull
     @ColumnInfo(name = "spirit_armor")
-    private Integer spiritArmor=0;
+    private Integer spiritArmor = 0;
     @NonNull
     @ColumnInfo(name = "trederra_artifact")
     private Boolean trederraArtifact = FALSE;
@@ -320,6 +320,7 @@ public class GearBase implements Serializable {
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
     }
+
     @NonNull
     public ArrayList<String> getTraits() {
         return traits;

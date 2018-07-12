@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/btn_gear"
-        android:text="@string/gear_text"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/gear_text"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/btn_clothing"
-        android:text="@string/clothing_text"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/clothing_text"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/btn_melee"
-        android:text="@string/melee_text"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="@string/melee_text"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/btn_ranged"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/ranged_text"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_attachments"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/attachment_text"/>
+        android:text="@string/ranged_text"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/btn_attachments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="@string/attachment_text"
+        android:textColor="@color/colorPrimaryDark" />
 
 </LinearLayout>
 

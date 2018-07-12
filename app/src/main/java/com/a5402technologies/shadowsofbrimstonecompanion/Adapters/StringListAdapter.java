@@ -15,6 +15,7 @@ public class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.St
 
     private final LayoutInflater mInflater;
     private List<String> mString;
+
     public StringListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }

@@ -1,7 +1,7 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 

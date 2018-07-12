@@ -71,7 +71,7 @@ public class MeleeWeapon implements Serializable {
     private Integer critChance = 6;
     @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor=0;
+    private Integer armor = 0;
     @NonNull
     @ColumnInfo(name = "melee_to_hit_die")
     private Integer meleeToHitDie = 6;
@@ -396,6 +396,7 @@ public class MeleeWeapon implements Serializable {
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
     }
+
     @NonNull
     public ArrayList<String> getTraits() {
         return traits;

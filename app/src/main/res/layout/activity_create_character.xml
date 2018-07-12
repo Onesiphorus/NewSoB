@@ -6,7 +6,6 @@
     tools:context=".Activities.Menu.CreateCharacterActivity">
 
 
-
     <include layout="@layout/content_create_character" />
 
 

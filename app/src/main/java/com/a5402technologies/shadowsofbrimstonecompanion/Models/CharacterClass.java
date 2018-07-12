@@ -84,7 +84,7 @@ public class CharacterClass implements Serializable {
     @TypeConverters(GithubTypeConverters.class)
     private ArrayList<Clothing> startingClothing;
     @NonNull
-    @ColumnInfo(name ="start_skills")
+    @ColumnInfo(name = "start_skills")
     private ArrayList<Skill> startingSkills;
 
     public CharacterClass(@NonNull String className) {

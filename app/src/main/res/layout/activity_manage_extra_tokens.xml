@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,28 +26,30 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/addAntiRad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:id="@+id/addAntiRad"/>
+                    android:text="+" />
 
                 <TextView
+                    android:id="@+id/numAntiRad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/numAntiRad"/>
+                    android:text="0" />
 
                 <Button
+                    android:id="@+id/negAntiRad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-"
-                    android:id="@+id/negAntiRad"/>
+                    android:text="-" />
             </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Send 1 Anti-Rad to Side Bag"/>
+                android:text="Send 1 Anti-Rad to Side Bag" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,6 +78,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

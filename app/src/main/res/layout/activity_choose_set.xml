@@ -3,65 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Main.Inventory.AddItems.ChooseSetActivity"
-    android:orientation="vertical"
     android:background="@android:color/background_dark"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Activities.Main.Inventory.AddItems.ChooseSetActivity">
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/gear_card"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Gear Cards and Shop Items"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Gear Cards and Shop Items"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/mine_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Mine"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Mine"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/targa_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Targa"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Targa"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/jagono_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Jagono"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Jagono"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/derelict_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Derelict Ship"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Derelict Ship"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/trederra_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Trederra"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Trederra"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
         android:id="@+id/cynder_artifact"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Caverns of Cynder"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/personal"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="Personal Item"/>
+        android:text="Caverns of Cynder"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/personal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Personal Item"
+        android:textColor="@color/colorPrimaryDark" />
 
 </LinearLayout>

@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity(tableName = "transport_table")
-public class Transport implements Serializable{
+public class Transport implements Serializable {
 
     @NonNull
     @ColumnInfo(name = "gear_list")

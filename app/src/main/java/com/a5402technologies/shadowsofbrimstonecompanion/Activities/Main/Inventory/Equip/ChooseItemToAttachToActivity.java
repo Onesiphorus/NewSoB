@@ -1,18 +1,12 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -64,74 +58,70 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
         sentAttachment = (Attachment) getIntent().getSerializableExtra("attachment");
 
 
-        if(type.equals("gear")) {
+        if (type.equals("gear")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final GearBaseListAdapter adapter = new GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             ArrayList<GearBase> filteredList = new ArrayList<>(0);
-            for(GearBase item : sobCharacter.getGear()) {
+            for (GearBase item : sobCharacter.getGear()) {
                 Integer slotsUsed = 0;
-                for(Attachment attachment : item.getAttachments())
-                {
+                for (Attachment attachment : item.getAttachments()) {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
+                if (item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
             adapter.setGearBase(filteredList);
-        } else if(type.equals("clothing")) {
+        } else if (type.equals("clothing")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final ClothingListAdapter adapter = new ClothingListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             ArrayList<Clothing> filteredList = new ArrayList<>(0);
-            for(Clothing item : sobCharacter.getClothing()) {
+            for (Clothing item : sobCharacter.getClothing()) {
                 Integer slotsUsed = 0;
-                for(Attachment attachment : item.getAttachments())
-                {
+                for (Attachment attachment : item.getAttachments()) {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
+                if (item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
             adapter.setClothing(filteredList);
-        } else if(type.equals("melee")) {
+        } else if (type.equals("melee")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             ArrayList<MeleeWeapon> filteredList = new ArrayList<>(0);
-            for(MeleeWeapon item : sobCharacter.getMeleeWeapons()) {
+            for (MeleeWeapon item : sobCharacter.getMeleeWeapons()) {
                 Integer slotsUsed = 0;
-                for(Attachment attachment : item.getAttachments())
-                {
+                for (Attachment attachment : item.getAttachments()) {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if(item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
+                if (item.getUpgrades() - slotsUsed > sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
             adapter.setMeleeWeapon(filteredList);
-        } else if(type.equals("ranged")) {
+        } else if (type.equals("ranged")) {
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             ArrayList<RangedWeapon> filteredList = new ArrayList<>(0);
-            for(RangedWeapon item : sobCharacter.getRangedWeapons()) {
+            for (RangedWeapon item : sobCharacter.getRangedWeapons()) {
                 Integer slotsUsed = 0;
-                for(Attachment attachment : item.getAttachments())
-                {
+                for (Attachment attachment : item.getAttachments()) {
                     slotsUsed += attachment.getSlotsRequired();
                 }
-                if((item.getUpgrades() - slotsUsed) >= sentAttachment.getSlotsRequired()) {
+                if ((item.getUpgrades() - slotsUsed) >= sentAttachment.getSlotsRequired()) {
                     filteredList.add(item);
                 }
             }
@@ -144,22 +134,19 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             String toast;
-            if(cost <= ds) {
+            if (cost <= ds) {
                 sobCharacter.setDarkStoneShards(ds - cost);
                 sobCharacter.findAttachmentByName(sentAttachment.getName()).setEquipped(TRUE);
                 if (rangedWeapon != null) {
                     rangedWeapon.addAttachment(sentAttachment);
                     toast = sentAttachment.getName() + " attached to " + rangedWeapon.getName();
-                } else
-                if (meleeWeapon != null) {
+                } else if (meleeWeapon != null) {
                     meleeWeapon.addAttachment(sentAttachment);
                     toast = sentAttachment.getName() + " attached to " + meleeWeapon.getName();
-                } else
-                if (gearBase != null) {
+                } else if (gearBase != null) {
                     gearBase.addAttachment(sentAttachment);
                     toast = sentAttachment.getName() + " attached to " + gearBase.getName();
-                } else
-                if (clothing != null) {
+                } else if (clothing != null) {
                     clothing.addAttachment(sentAttachment);
                     toast = sentAttachment.getName() + " attached to " + clothing.getName();
                 } else {
@@ -173,12 +160,22 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> onBackPressed());
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("attachment", sentAttachment);
+        startActivity(intent);
+        finish();
+    }
+
     class GearBaseListAdapter extends RecyclerView.Adapter<GearBaseListAdapter.GearBaseViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<GearBase> mGearBase;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public GearBaseListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -231,12 +228,14 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             }
         }
     }
+
     class ClothingListAdapter extends RecyclerView.Adapter<ClothingListAdapter.ClothingViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<Clothing> mClothing;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public ClothingListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -289,12 +288,14 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             }
         }
     }
+
     class MeleeWeaponListAdapter extends RecyclerView.Adapter<MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<MeleeWeapon> mMeleeWeapon;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public MeleeWeaponListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -347,11 +348,13 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             }
         }
     }
+
     class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
         private Context mContext;
+
         public RangedWeaponListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -404,12 +407,14 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             }
         }
     }
+
     class AttachmentListAdapter extends RecyclerView.Adapter<AttachmentListAdapter.AttachmentViewHolder> {
 
         private final LayoutInflater mInflater;
         private List<Attachment> mAttachment;
         private Context mContext;
         private Integer RESULT_CODE = 1;
+
         public AttachmentListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
@@ -426,7 +431,7 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
             if (null != mAttachment) {
                 Attachment current = mAttachment.get(position);
                 String label = current.getName() + ": $" + current.getCost();
-                if(current.getDarkstoneCost() > 0) {
+                if (current.getDarkstoneCost() > 0) {
                     label += " + " + current.getDarkstoneCost() + " Dark Stone";
                 }
                 holder.attachmentItemView.setText(label);
@@ -440,10 +445,10 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
                     attachment = mAttachment.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = attachment.getName();
-                    if(attachment.getCost() > 0) {
+                    if (attachment.getCost() > 0) {
                         text += " $" + attachment.getCost();
                     }
-                    if(attachment.getDarkstoneCost() > 0) {
+                    if (attachment.getDarkstoneCost() > 0) {
                         text += " " + attachment.getDarkstoneCost() + " Dark Stone";
                     }
                     btn.setText(text);
@@ -471,14 +476,5 @@ public class ChooseItemToAttachToActivity extends AppCompatActivity {
 
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
-        intent.putExtra("serializable_object", sobCharacter);
-        intent.putExtra("attachment", sentAttachment);
-        startActivity(intent);
-        finish();
     }
 }

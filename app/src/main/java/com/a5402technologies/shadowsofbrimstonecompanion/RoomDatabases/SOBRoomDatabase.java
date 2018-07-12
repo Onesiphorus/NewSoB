@@ -4292,6 +4292,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Battle Plan", SkillTypeEnum.LEADERSHIP.code(), SkillTypeEnum.LEADERSHIP.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
+            //Lawman Determination Upgrades
             skill = new Skill("Man of Action", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
             skill.setLevel(1);
             mSkillDao.insert(skill);
@@ -4304,6 +4305,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Never Gives Up", SkillTypeEnum.DETERMINATION.code(), SkillTypeEnum.DETERMINATION.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
+            //Lawman Justice Upgrades
             skill = new Skill("Cold Stare", SkillTypeEnum.JUSTICE.code(), SkillTypeEnum.JUSTICE.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
@@ -4321,22 +4323,357 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier(ModifiersEnum.INITIATIVE.label());
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
             mSkillDao.insert(skill);
+            //Lawman Law and Order upgrades
             skill = new Skill("Fair Warning", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
             mSkillDao.insert(skill);
             skill = new Skill("Long Arm of the Law", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
             skill.setLevel(2);
-            skill.addModifier(ModifiersEnum.COMBAT.label());
-            skill.addModifier(ModifiersEnum.STRENGTH.label());
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            skill.addModifier(ModifiersEnum.COMBAT.label());
             mSkillDao.insert(skill);
             skill = new Skill("Learning to Live With It", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
             skill.setLevel(3);
             mSkillDao.insert(skill);
-            skill = new Skill("Judge, Jury, and Executioner", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
+            skill = new Skill("Judge, Jury and Executioner", SkillTypeEnum.LAW_AND_ORDER.code(), SkillTypeEnum.LAW_AND_ORDER.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
+            //Rancher Marksmanship
+            skill = new Skill("Iron Concentration", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Rapid Reload", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
+            skill.setLevel(2);
+            //TODO code 2 handed gun gets +1 shot with rapid reload
+            mSkillDao.insert(skill);
+            skill = new Skill("Sharpshooter", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Deadly Shot", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.RANGED_CRIT_DAMAGE.label());
+            skill.addModifier(ModifiersEnum.RANGED_CRIT_DAMAGE.label());
+            skill.addModifier(ModifiersEnum.RANGED_CRIT_DAMAGE.label());
+            mSkillDao.insert(skill);
+            //Rancher Frontier Survival
+            skill = new Skill("Dressed for Adventure", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill.setLevel(1);
+            //TODO code Dressed for Adventure gives +2 Health per clothing item and clothing does not add weight
+            mSkillDao.insert(skill);
+            skill = new Skill("Life Goes On", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            //TODO code +1 Init per mutation with Life Goes On
+            mSkillDao.insert(skill);
+            skill = new Skill("\"I've Seen Worse!\"!", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Up Close and Personal", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill.setLevel(4);
+            skill.setMeleeToHit(3);
+            mSkillDao.insert(skill);
+            //Rancher Toughness
+            skill = new Skill("Ready for Action", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
+            skill.setLevel(1);
+            //TODO Double side bag capacity with Ready for Action
+            mSkillDao.insert(skill);
+            skill = new Skill("Is That All You've Got", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
+            skill.setLevel(2);
+            skill.setWillpower(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Fisticuffs", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Shrug it Off", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
+            skill.setLevel(4);
+            skill.setDefense(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //Rancher Smithing
+            skill = new Skill("Void Enhancement", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Forge Works", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            //TODO code $500 discount at Blacksmith for Upgrades from Dark Stone Forge with Forge Works upgrade
+            mSkillDao.insert(skill);
+            skill = new Skill("Refinement", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
+            skill.setLevel(3);
+            //Todo code Refinement Upgrade (12 Dark Stone and 1 upgrade slot for +1 damage (1DS)
+            mSkillDao.insert(skill);
+            skill = new Skill("Dark Stone Trap", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Indian Scout Tracking
+            skill = new Skill("This Way", SkillTypeEnum.TRACKING.code(), SkillTypeEnum.TRACKING.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Know Your Prey", SkillTypeEnum.TRACKING.code(), SkillTypeEnum.TRACKING.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Eye for Detail", SkillTypeEnum.TRACKING.code(), SkillTypeEnum.TRACKING.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("\"I Smell Death Here!\"", SkillTypeEnum.TRACKING.code(), SkillTypeEnum.TRACKING.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Indian Scout Stealth
+            skill = new Skill("Pass Through", SkillTypeEnum.STEALTH.code(), SkillTypeEnum.STEALTH.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Moves in the Shadows", SkillTypeEnum.STEALTH.code(), SkillTypeEnum.STEALTH.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Duck and Roll", SkillTypeEnum.STEALTH.code(), SkillTypeEnum.STEALTH.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Shadow Strike", SkillTypeEnum.STEALTH.code(), SkillTypeEnum.STEALTH.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Indian Scout Warrior
+            skill = new Skill("Battle Scout", SkillTypeEnum.WARRIOR.code(), SkillTypeEnum.WARRIOR.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Warrior's Spirit", SkillTypeEnum.WARRIOR.code(), SkillTypeEnum.WARRIOR.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.SPIRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Warrior's Heart", SkillTypeEnum.WARRIOR.code(), SkillTypeEnum.WARRIOR.label());
+            skill.setLevel(3);
+            skill.setSpiritArmor(5);
+            mSkillDao.insert(skill);
+            skill = new Skill("Counting Trophies", SkillTypeEnum.WARRIOR.code(), SkillTypeEnum.WARRIOR.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Indian Scout Tribal
+            skill = new Skill("Voices of the Ancestors", SkillTypeEnum.TRIBAL.code(), SkillTypeEnum.TRIBAL.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Guardian Spirit", SkillTypeEnum.TRIBAL.code(), SkillTypeEnum.TRIBAL.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Cleansing Ritual", SkillTypeEnum.TRIBAL.code(), SkillTypeEnum.TRIBAL.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Vengeful Spirits", SkillTypeEnum.TRIBAL.code(), SkillTypeEnum.TRIBAL.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Preacher Devotion
+            skill = new Skill("Belief", SkillTypeEnum.DEVOTION.code(), SkillTypeEnum.DEVOTION.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Chosen", SkillTypeEnum.DEVOTION.code(), SkillTypeEnum.DEVOTION.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Conviction", SkillTypeEnum.DEVOTION.code(), SkillTypeEnum.DEVOTION.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.FAITH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Divine Protection", SkillTypeEnum.DEVOTION.code(), SkillTypeEnum.DEVOTION.label());
+            skill.setLevel(4);
+            skill.setDefense(4);
+            mSkillDao.insert(skill);
+            //Preacher Wrath
+            skill = new Skill("Revelation", SkillTypeEnum.WRATH.code(), SkillTypeEnum.WRATH.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Holy Strike", SkillTypeEnum.WRATH.code(), SkillTypeEnum.WRATH.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Vengeance", SkillTypeEnum.WRATH.code(), SkillTypeEnum.WRATH.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Frothing Rage", SkillTypeEnum.WRATH.code(), SkillTypeEnum.WRATH.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Preacher Fanatic
+            skill = new Skill("Zealot", SkillTypeEnum.FANATIC.code(), SkillTypeEnum.FANATIC.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Martlyr", SkillTypeEnum.FANATIC.code(), SkillTypeEnum.FANATIC.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Salvation", SkillTypeEnum.FANATIC.code(), SkillTypeEnum.FANATIC.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Holy Revolution", SkillTypeEnum.FANATIC.code(), SkillTypeEnum.FANATIC.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Preacher Occult Studies
+            skill = new Skill("", SkillTypeEnum.OCCULT_STUDIES.code(), SkillTypeEnum.OCCULT_STUDIES.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Tools of teh Damned", SkillTypeEnum.OCCULT_STUDIES.code(), SkillTypeEnum.OCCULT_STUDIES.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Stories of the Void", SkillTypeEnum.OCCULT_STUDIES.code(), SkillTypeEnum.OCCULT_STUDIES.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Forbidden Knowledge", SkillTypeEnum.OCCULT_STUDIES.code(), SkillTypeEnum.OCCULT_STUDIES.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            skill.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            skill.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            skill.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            skill.addModifier(ModifiersEnum.MAX_CORRUPTION.label());
+            mSkillDao.insert(skill);
+            //Frontier Doc Healing
+            skill = new Skill("Triage", SkillTypeEnum.HEALING.code(), SkillTypeEnum.HEALING.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Treatment", SkillTypeEnum.HEALING.code(), SkillTypeEnum.HEALING.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Dispassionate", SkillTypeEnum.HEALING.code(), SkillTypeEnum.HEALING.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Heal Thy Self", SkillTypeEnum.HEALING.code(), SkillTypeEnum.HEALING.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            //Frontier Doc Science
+            skill = new Skill("Ingenuity", SkillTypeEnum.SCIENCE.code(), SkillTypeEnum.SCIENCE.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Chemistry", SkillTypeEnum.SCIENCE.code(), SkillTypeEnum.SCIENCE.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Tinkerer", SkillTypeEnum.SCIENCE.code(), SkillTypeEnum.SCIENCE.label());
+            skill.setLevel(3);
+            //TODO code Tinkerer upgrade bonuses item gets keyword tech, +1 damage if weapon else +1 health
+            attachment = new Attachment("Tinkerer Gadget", 1);
+            mAttacmentDao.insert(attachment);
+            mSkillDao.insert(skill);
+            skill = new Skill("Gadgeteer", SkillTypeEnum.SCIENCE.code(), SkillTypeEnum.SCIENCE.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            mSkillDao.insert(skill);
+            //Frontier Doc Field Work
+            skill = new Skill("Antidote", SkillTypeEnum.FIELD_WORK.code(), SkillTypeEnum.FIELD_WORK.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Hold them Down", SkillTypeEnum.FIELD_WORK.code(), SkillTypeEnum.FIELD_WORK.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Do No Harm", SkillTypeEnum.FIELD_WORK.code(), SkillTypeEnum.FIELD_WORK.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.LUCK.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Explorer", SkillTypeEnum.FIELD_WORK.code(), SkillTypeEnum.FIELD_WORK.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //Frontier Doc Research
+            skill = new Skill("Dissection", SkillTypeEnum.RESEARCH.code(), SkillTypeEnum.RESEARCH.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Careful Study", SkillTypeEnum.RESEARCH.code(), SkillTypeEnum.RESEARCH.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Anatomy", SkillTypeEnum.RESEARCH.code(), SkillTypeEnum.RESEARCH.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Conclusions", SkillTypeEnum.RESEARCH.code(), SkillTypeEnum.RESEARCH.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            skill.setDefense(4);
+            mSkillDao.insert(skill);
+            //Dark Stone Shaman Spiritual Warrior
+            skill = new Skill("War Shaman", SkillTypeEnum.SPIRITUAL_WARRIOR.code(), SkillTypeEnum.SPIRITUAL_WARRIOR.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Spirit Sacrifice", SkillTypeEnum.SPIRITUAL_WARRIOR.code(), SkillTypeEnum.SPIRITUAL_WARRIOR.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Battle Chant", SkillTypeEnum.SPIRITUAL_WARRIOR.code(), SkillTypeEnum.SPIRITUAL_WARRIOR.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAGIK.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Spirit Champion", SkillTypeEnum.SPIRITUAL_WARRIOR.code(), SkillTypeEnum.SPIRITUAL_WARRIOR.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            skill.setDefense(3);
+            mSkillDao.insert(skill);
+            //Dark Stone Shaman Transformation
+            skill = new Skill("Call of the Wild", SkillTypeEnum.TRANSFORMATION.code(), SkillTypeEnum.TRANSFORMATION.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Tribal Dance", SkillTypeEnum.TRANSFORMATION.code(), SkillTypeEnum.TRANSFORMATION.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Animal Nature", SkillTypeEnum.TRANSFORMATION.code(), SkillTypeEnum.TRANSFORMATION.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAGIK.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("One with the Spirits", SkillTypeEnum.TRANSFORMATION.code(), SkillTypeEnum.TRANSFORMATION.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            mSkillDao.insert(skill);
+            //Dark Stone Shaman Dark Stone Mastery
+            skill = new Skill("Harmony", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Attuned", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Void Strength", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            //ToDO code +1 Health per dark stone item with Void Strength
+            mSkillDao.insert(skill);
+            skill = new Skill("Light as a Feather", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill.setLevel(4);
+            //TODO code -1 weight on dark stone items with Light as a Feather
+            skill.addModifier(ModifiersEnum.MOVE.label());
+            mSkillDao.insert(skill);
+            //Dark Stone Shaman Tribal Lore
+            skill = new Skill("Storytelling", SkillTypeEnum.TRIBAL_LORE.code(), SkillTypeEnum.TRIBAL_LORE.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAGIK.label());
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Wisdom of Ages", SkillTypeEnum.TRIBAL_LORE.code(), SkillTypeEnum.TRIBAL_LORE.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Ancestral Guide", SkillTypeEnum.TRIBAL_LORE.code(), SkillTypeEnum.TRIBAL_LORE.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Tribal Elder", SkillTypeEnum.TRIBAL_LORE.code(), SkillTypeEnum.TRIBAL_LORE.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAGIK.label());
+            mSkillDao.insert(skill);
+
 
             permanentCondition = new PermanentCondition("Eviscerated", ConditionEnum.INJURY.label());
             //TODO something with death

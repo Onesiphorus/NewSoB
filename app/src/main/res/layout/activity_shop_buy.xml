@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,27 +11,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/content_resources"/>
+        <include layout="@layout/content_resources" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/tv_shop_name"
-            android:hint="Shop Name" />
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_gear_type"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
+            android:hint="Shop Name"
             android:textAlignment="center"
-            android:hint="Gear Type" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
 
-        <include layout="@layout/content_choose_item"/>
-        <include layout="@layout/content_accept_cancel"/>
+        <TextView
+            android:id="@+id/tv_gear_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gear Type"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <include layout="@layout/content_choose_item" />
+
+        <include layout="@layout/content_accept_cancel" />
 
 
     </LinearLayout>

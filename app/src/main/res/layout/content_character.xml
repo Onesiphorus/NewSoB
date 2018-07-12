@@ -14,26 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/pick_a_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_dark"
-            android:textColor="@color/colorPrimary"
-            android:paddingTop="32dp"
-            android:textSize="24sp"
             android:gravity="center"
-            android:id="@+id/pick_a_header"
-            android:text="Pick a Character"/>
+            android:paddingTop="32dp"
+            android:text="Pick a Character"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            tools:listitem="@layout/recyclerview_item"
-            />
+            tools:listitem="@layout/recyclerview_item" />
     </LinearLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>

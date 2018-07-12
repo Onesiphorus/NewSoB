@@ -11,7 +11,7 @@ public enum ConditionEnum {
     private static Map<String, ConditionEnum> lookupByLabel = new HashMap<>();
 
     static {
-        for(ConditionEnum e : ConditionEnum.values()) {
+        for (ConditionEnum e : ConditionEnum.values()) {
             lookupByLabel.put(e.label, e);
         }
     }

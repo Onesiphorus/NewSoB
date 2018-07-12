@@ -6,7 +6,6 @@
     tools:context=".Activities.Menu.FinishCharacterActivity">
 
 
-
     <include layout="@layout/content_finish_character" />
 
 

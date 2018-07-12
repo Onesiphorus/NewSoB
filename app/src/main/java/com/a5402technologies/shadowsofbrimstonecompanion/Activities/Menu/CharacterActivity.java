@@ -9,11 +9,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.CharacterListAdapter;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
@@ -47,8 +45,8 @@ public class CharacterActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((View view) -> {
-                Intent intent = new Intent(CharacterActivity.this, ChooseClassActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(CharacterActivity.this, ChooseClassActivity.class);
+            startActivity(intent);
         });
     }
 

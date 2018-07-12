@@ -1,8 +1,5 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
-
-import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +30,7 @@ public enum ModifiersEnum {
     DEFENSE("Defense", CharacterClassEnum.ANY),
     ARMOR("Armor", CharacterClassEnum.ANY),
     SPIRIT_ARMOR("Spirit Armor", CharacterClassEnum.ANY),
+    RANGED_CRIT_DAMAGE("Ranged Crit Damage", CharacterClassEnum.ANY),
     FORTUNE("Fortune", CharacterClassEnum.GAMBLER);
 
 

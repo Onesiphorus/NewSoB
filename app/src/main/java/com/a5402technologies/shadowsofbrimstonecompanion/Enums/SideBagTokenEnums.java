@@ -30,7 +30,7 @@ public enum SideBagTokenEnums {
     private static Map<String, SideBagTokenEnums> lookupByLabel = new HashMap<>();
 
     static {
-        for(SideBagTokenEnums e : SideBagTokenEnums.values()) {
+        for (SideBagTokenEnums e : SideBagTokenEnums.values()) {
             lookupByLabel.put(e.label, e);
         }
     }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.FALSE;
 
 @Entity(tableName = "permanent_condition_table")
-public class PermanentCondition implements Serializable{
+public class PermanentCondition implements Serializable {
 
     @PrimaryKey
     @NonNull

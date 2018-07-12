@@ -2,9 +2,9 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,19 +15,16 @@ import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddSideBagTokenActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.ChooseClassActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Boolean.FALSE;
-
 public class SideBagActivity extends AppCompatActivity {
     private SobCharacter sobCharacter;
     private String string;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class SideBagActivity extends AppCompatActivity {
         ArrayList<String> StringOptions = new ArrayList<>(0);
         for (String string : sobCharacter.getSideBag()) {
 
-                StringOptions.add(string);
+            StringOptions.add(string);
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
@@ -124,7 +121,7 @@ public class SideBagActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     string = mString.get(position);
                     Button btn = findViewById(R.id.btn_equip);
-                    String text ="Use " + string;
+                    String text = "Use " + string;
                     btn.setText(text);
                     btn = findViewById(R.id.btn_unequip);
                     text = "Destroy " + string;

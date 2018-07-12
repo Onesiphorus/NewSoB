@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/background_dark"
+    android:orientation="vertical"
     tools:context=".Activities.Main.Town.VisitShopActivity">
 
 
@@ -13,19 +13,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/content_resources"/>
+        <include layout="@layout/content_resources" />
 
         <TextView
+            android:id="@+id/tv_shop_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_shop_name"
-            android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
+            android:text="Shop Name"
             android:textAlignment="center"
-            android:textSize="24sp"
-            android:text="Shop Name"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
 
-        <include layout="@layout/content_gear_types"/>
+        <include layout="@layout/content_gear_types" />
 
     </LinearLayout>
 

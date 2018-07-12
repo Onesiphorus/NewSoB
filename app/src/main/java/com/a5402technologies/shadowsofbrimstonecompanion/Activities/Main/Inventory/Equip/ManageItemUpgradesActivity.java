@@ -2,9 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,8 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.RemoveItems.ChooseTypeToRemoveActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -26,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class ManageItemUpgradesActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
@@ -46,12 +42,12 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
 
         ArrayList<Attachment> attachmentList = new ArrayList<>(0);
         for (Attachment attachment : sobCharacter.getAttachments()) {
-            if(attachment.getEquipped().equals(FALSE)) attachmentList.add(attachment);
+            if (attachment.getEquipped().equals(FALSE)) attachmentList.add(attachment);
         }
         adapter.setAttachment(attachmentList);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            if(null != attachment) {
+            if (null != attachment) {
                 Intent intent = new Intent(this, ChooseCategoryForAttachment.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 intent.putExtra("attachment", attachment);
@@ -102,6 +98,7 @@ public class ManageItemUpgradesActivity extends AppCompatActivity {
         private final LayoutInflater mInflater;
         private List<Attachment> mAttachment;
         private Context mContext;
+
         public AttachmentListAdapter(Context context) {
             mContext = context;
             mInflater = LayoutInflater.from(context);

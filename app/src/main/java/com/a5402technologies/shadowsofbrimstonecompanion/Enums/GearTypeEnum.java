@@ -13,7 +13,7 @@ public enum GearTypeEnum {
     private static Map<String, GearTypeEnum> lookupByLabel = new HashMap<>();
 
     static {
-        for(GearTypeEnum e : GearTypeEnum.values()) {
+        for (GearTypeEnum e : GearTypeEnum.values()) {
             lookupByLabel.put(e.label, e);
         }
     }

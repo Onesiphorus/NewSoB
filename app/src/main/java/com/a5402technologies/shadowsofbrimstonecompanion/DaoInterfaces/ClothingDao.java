@@ -6,7 +6,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 import java.util.List;
 

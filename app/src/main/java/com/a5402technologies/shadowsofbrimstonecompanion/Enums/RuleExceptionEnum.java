@@ -23,7 +23,7 @@ public enum RuleExceptionEnum {
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {
-        for(RuleExceptionEnum e : RuleExceptionEnum.values()) {
+        for (RuleExceptionEnum e : RuleExceptionEnum.values()) {
             lookupByLabel.put(e.label, e);
         }
     }

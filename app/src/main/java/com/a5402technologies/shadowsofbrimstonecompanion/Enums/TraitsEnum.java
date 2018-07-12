@@ -97,7 +97,6 @@ public enum TraitsEnum {
     ROBOT("Robot", "ROBOT");
 
 
-
     private static Map<String, TraitsEnum> lookupByCode = new HashMap<>();
     private static Map<String, TraitsEnum> lookupByLabel = new HashMap<>();
 

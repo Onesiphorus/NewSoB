@@ -1,10 +1,5 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
-
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
-
-import java.io.CharConversionException;
-import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +43,26 @@ public enum SkillTypeEnum {
     ROLL_BONES("Roll the Bones", CharacterClassEnum.GAMBLER.male()),
     CIVILIZED("Civilized", CharacterClassEnum.GAMBLER.male()),
     CARD_SHARK("Card Shark", CharacterClassEnum.GAMBLER.male()),
+    MARKSMANSHIP("Marksmanship", CharacterClassEnum.RANCHER.male()),
+    FRONTIER_SURVIVAL("Frontier Survival", CharacterClassEnum.RANCHER.male()),
+    TOUGHNESS("Touchness", CharacterClassEnum.RANCHER.male()),
+    SMITHING("Smithing", CharacterClassEnum.RANCHER.male()),
+    TRACKING("Tracking", CharacterClassEnum.INDIAN_SCOUT.male()),
+    STEALTH("Stealth", CharacterClassEnum.INDIAN_SCOUT.male()),
+    WARRIOR("Warrior", CharacterClassEnum.INDIAN_SCOUT.male()),
+    TRIBAL("Tribal", CharacterClassEnum.INDIAN_SCOUT.male()),
+    DEVOTION("Devotion", CharacterClassEnum.PREACHER.male()),
+    WRATH("Wrath", CharacterClassEnum.PREACHER.male()),
+    FANATIC("Fanatic", CharacterClassEnum.PREACHER.male()),
+    OCCULT_STUDIES("Occult Studies", CharacterClassEnum.PREACHER.male()),
+    HEALING("Healing", CharacterClassEnum.FRONTIER_DOC.male()),
+    SCIENCE("Science", CharacterClassEnum.FRONTIER_DOC.male()),
+    FIELD_WORK("Field Work", CharacterClassEnum.FRONTIER_DOC.male()),
+    RESEARCH("Research", CharacterClassEnum.FRONTIER_DOC.male()),
+    SPIRITUAL_WARRIOR("Spiritual Warrior", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
+    TRANSFORMATION("Transformation", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
+    DARK_STONE_MASTERY("Dark Stone Mastery", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
+    TRIBAL_LORE("Tribal Lore", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
     STARTING("Starting", CharacterClassEnum.ANY.male());
 
 

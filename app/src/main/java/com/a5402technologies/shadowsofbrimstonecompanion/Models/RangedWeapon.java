@@ -416,6 +416,7 @@ public class RangedWeapon implements Serializable {
     public void setDarkstoneCost(@NonNull Integer darkstoneCost) {
         this.darkstoneCost = darkstoneCost;
     }
+
     @NonNull
     public ArrayList<String> getTraits() {
         return traits;

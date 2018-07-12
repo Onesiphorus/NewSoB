@@ -13,26 +13,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/choose_class"
-                android:text="@string/choose_class"
-                android:textAlignment="center"
-                android:background="@android:color/background_dark"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="italic|bold"
-                android:textSize="32sp"/>
+        <TextView
+            android:id="@+id/choose_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:text="@string/choose_class"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:textStyle="italic|bold" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                tools:listitem="@layout/recyclerview_item"
-                />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            tools:listitem="@layout/recyclerview_item" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

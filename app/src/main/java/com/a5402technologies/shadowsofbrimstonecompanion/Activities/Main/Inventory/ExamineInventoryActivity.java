@@ -14,6 +14,7 @@ public class ExamineInventoryActivity extends AppCompatActivity {
 
     SobCharacter sobCharacter;
     String location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

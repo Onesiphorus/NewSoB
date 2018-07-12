@@ -16,7 +16,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 @Database(entities = {SobCharacter.class}, version = 2)
 @TypeConverters({GithubTypeConverters.class})
-public abstract class UserRoomDatabase extends RoomDatabase{
+public abstract class UserRoomDatabase extends RoomDatabase {
     private static UserRoomDatabase INSTANCE;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback =
