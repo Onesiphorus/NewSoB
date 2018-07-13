@@ -9,6 +9,11 @@
     android:background="@color/black_overlay"
     android:orientation="horizontal">
 
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light" />
+
     <Button
         android:id="@+id/btn_accept"
         style="?metaButtonBarButtonStyle"
@@ -20,7 +25,10 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp" />
-
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light" />
     <Button
         android:id="@+id/btn_cancel"
         style="?metaButtonBarButtonStyle"
@@ -32,5 +40,8 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp" />
-
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light" />
 </LinearLayout>

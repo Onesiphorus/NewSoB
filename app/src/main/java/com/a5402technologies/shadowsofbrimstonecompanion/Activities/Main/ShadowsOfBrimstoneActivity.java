@@ -5,11 +5,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.CharacterViewModel;
@@ -24,6 +36,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
     private SobCharacter sobCharacter;
     private CharacterViewModel mCharacterViewModel;
     private TextView tv;
+    private String text;
+    private Integer val;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +47,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         mCharacterViewModel.update(sobCharacter);
         sobCharacter.setBonuses();
-
-        TextView tv = findViewById(R.id.right_hand_weapon);
+        tv = findViewById(R.id.right_hand_weapon);
         if (sobCharacter.getRightHand() != null) {
             tv.setText(sobCharacter.getRightHand().getName());
         } else if (sobCharacter.getRightMelee() != null) {
@@ -56,6 +69,8 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
         setStats();
         setQuickClothes();
+        setWeapons();
+        setHealthSanityStats();
         findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
@@ -95,6 +110,9 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
+        });
+        findViewById(R.id.btn_sob_conditions).setOnClickListener((View view) -> {
+
         });
     }
 
@@ -144,6 +162,168 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         else tv.setHintTextColor(RED);
         tv.setHint(text);
     }
+    private void setWeapons() {
+        if (sobCharacter.getRightHand() != null) {
+            tv = findViewById(R.id.qc_r1_range);
+            Integer range = sobCharacter.getRightHand().getRange();
+            Integer shots = sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.TRUSTY_PISTOL.label())
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
+                    : sobCharacter.getRightHand().getShots();
+            for (String s : sobCharacter.getRightHand().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())
+                                && clothing.getEquipped().equals(TRUE)) {
+                            if (null != sobCharacter.getLeftHand()) {
+                                for (String string : sobCharacter.getLeftHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
+                }
+            }
+            for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                } else if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_BARREL.label())) {
+                    range += 4;
+                }
+            }
+            tv.setText(String.format(range.toString()));
+            tv = findViewById(R.id.qc_r1_shots);
+
+            tv.setText(String.format(shots.toString()));
+            tv = findViewById(R.id.qc_r1_damgage);
+            text = "d" + sobCharacter.getRightHand().getDamageDie().toString();
+            if (sobCharacter.getRightHand().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getRightHand().getDamageBonus().toString();
+            }
+            tv.setText(text);
+            tv = findViewById(R.id.qc_r1_tohit);
+            text = "d"
+                    + sobCharacter.getRightHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getRightHand().getCritChance()
+                    + "+)";
+            tv.setText(text);
+        }
+
+        if (sobCharacter.getLeftHand() != null) {
+            tv = findViewById(R.id.qc_r2_range);
+            tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
+            tv = findViewById(R.id.qc_r2_shots);
+            Integer shots = (sobCharacter.getLeftHand().getName().equals("Trusty Pistol"))
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
+                    : sobCharacter.getLeftHand().getShots();
+            for (String s : sobCharacter.getLeftHand().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
+                            if (null != sobCharacter.getRightHand()) {
+                                for (String string : sobCharacter.getRightHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
+                }
+            }
+            for (Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                }
+            }
+            tv.setText(String.format(shots.toString()));
+            tv = findViewById(R.id.qc_r2_damgage);
+            String text = "d" + sobCharacter.getLeftHand().getDamageDie().toString();
+            if (sobCharacter.getLeftHand().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getLeftHand().getDamageBonus().toString();
+            }
+            tv.setText(text);
+            tv = findViewById(R.id.qc_r2_tohit);
+            text = "d"
+                    + sobCharacter.getLeftHand().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getLeftHand().getCritChance()
+                    + "+)";
+            tv.setText(text);
+        }
+
+        tv = findViewById(R.id.qc_combat);
+        Integer combat = calculateMeleeCombat();
+        tv.setText(String.format(combat.toString()));
+
+        tv = findViewById(R.id.qc_tohit);
+        text = calculateMeleeHitDie();
+        tv.setText(text);
+
+        tv = findViewById(R.id.qc_damage);
+        text = calculateMeleeDamageDie();
+        tv.setText(text);
+    }
+    private String calculateMeleeHitDie() {
+        return "d"
+                + sobCharacter.getMeleeToHitDie()
+                + " : "
+                + sobCharacter.getCharacterClass().getMeleeToHit().toString()
+                + "+("
+                + sobCharacter.getMeleeCritChance()
+                + "+)";
+    }
+
+    private String calculateMeleeDamageDie() {
+        String dmg = "d" + sobCharacter.getMeleeDamageDie().toString();
+        if (sobCharacter.getMeleeDamageBonus() > 0) {
+            dmg += "+" + sobCharacter.getMeleeDamageBonus();
+        }
+        return dmg;
+
+    }
+
+    private Integer calculateMeleeCombat() {
+        Integer combat;
+        combat = sobCharacter.getRightMelee() != null ?
+                sobCharacter.getRightMelee().getName().equals(RuleExceptionEnum.TOOLS_OF_SCIENCE.label()) ?
+                        sobCharacter.getCharacterClass().getCunning() + sobCharacter.getCunningBonus()
+                        : sobCharacter.getCharacterClass().getCombat()
+                : sobCharacter.getLeftMelee() != null ?
+                sobCharacter.getLeftMelee().getName().equals(RuleExceptionEnum.TOOLS_OF_SCIENCE.label()) ?
+                        sobCharacter.getCharacterClass().getCunning() + sobCharacter.getCunningBonus()
+                        : sobCharacter.getCharacterClass().getCombat()
+                : sobCharacter.getCharacterClass().getCombat();
+
+        combat += sobCharacter.getCombatBonus();
+        return combat;
+    }
 
     protected void setStats() {
         String text;
@@ -174,20 +354,12 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         value = (sobCharacter.getCharacterClass().getLuck())
                 + (sobCharacter.getLuckBonus());
         tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.health_value);
-        value = (sobCharacter.getCharacterClass().getHealth())
-                + (sobCharacter.getHealthBonus());
-        text = sobCharacter.getCurrentHealth().toString() + "/" + value.toString();
-        tv.setText(text);
+
         tv = findViewById(R.id.defense_value);
         value = (sobCharacter.getCharacterClass().getDefense());
         text = value.toString() + "+";
         tv.setText(text);
-        tv = findViewById(R.id.sanity_value);
-        value = (sobCharacter.getCharacterClass().getSanity())
-                + (sobCharacter.getSanityBonus());
-        text = sobCharacter.getCurrentSanity().toString() + "/" + value.toString();
-        tv.setText(text);
+
         tv = findViewById(R.id.willpower_value);
         value = (sobCharacter.getCharacterClass().getWillpower());
         text = value.toString() + "+";
@@ -231,15 +403,51 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         }
         tv.setText(text);
 
-        tv = findViewById(R.id.max_grit_value);
-        value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
-        tv.setText(String.format(String.format(value.toString())));
-
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
 
     }
+    private void setHealthSanityStats() {
+        Button health;
+        health = findViewById(R.id.valHealth);
+        Integer maxHealth = sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus();
+        text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+        health.setText(text);
+        Button sanity;
+        sanity = findViewById(R.id.valSanity);
+        Integer maxSanity = sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus();
+        text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+        sanity.setText(text);
 
+        findViewById(R.id.negHealth).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
+            text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+            health.setText(text);
+        });
+        findViewById(R.id.addHealth).setOnClickListener((View view) -> {
+            if (sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
+                sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
+                text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
+                health.setText(text);
+            } else {
+                Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
+            }
+        });
+        findViewById(R.id.negSanity).setOnClickListener((View view) -> {
+            sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
+            text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+            sanity.setText(text);
+        });
+        findViewById(R.id.addSanity).setOnClickListener((View view) -> {
+            if (sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
+                sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
+                text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
+                sanity.setText(text);
+            } else {
+                Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

@@ -14,7 +14,10 @@
         android:background="@color/black_overlay"
         android:orientation="horizontal"
         tools:ignore="UselessParent">
-
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
         <Button
             android:id="@+id/btn_equip"
             style="?metaButtonBarButtonStyle"
@@ -25,7 +28,10 @@
             android:text="@string/equip"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp" />
-
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
         <Button
             android:id="@+id/btn_unequip"
             style="?metaButtonBarButtonStyle"
@@ -36,7 +42,10 @@
             android:text="@string/unequip"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp" />
-
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
         <Button
             android:id="@+id/btn_cancel"
             style="?metaButtonBarButtonStyle"
@@ -47,6 +56,9 @@
             android:text="@string/cancel"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp" />
-
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
     </LinearLayout>
 </FrameLayout>

@@ -31,7 +31,8 @@ public class VisitShopActivity extends AppCompatActivity {
         text = "$" + sobCharacter.getGold().toString();
         tv.setText(text);
         tv = findViewById(R.id.sob_darkstone);
-        tv.setText(String.format(sobCharacter.getDarkStoneShards().toString()));
+        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() + ")";
+        tv.setText(text);
 
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));

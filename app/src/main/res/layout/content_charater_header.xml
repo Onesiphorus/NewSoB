@@ -11,31 +11,89 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/sob_character_name"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/character_text"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@android:color/background_light"
-            android:textSize="24sp"
-            android:textStyle="italic|bold" />
-
-        <TextView
-            android:id="@+id/sob_fullscreen"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:keepScreenOn="true"
-            android:text="@string/dummy_content"
-            android:textAlignment="center"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/initiative"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/init_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:keepScreenOn="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/sob_character_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/character_text"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="24sp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:id="@+id/sob_fullscreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:keepScreenOn="true"
+                android:text="@string/dummy_content"
+                android:textAlignment="center"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:keepScreenOn="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/move"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/move_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="d6"
+                android:paddingTop="3sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/traits_wrapper"
@@ -45,3 +103,4 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="11sp" />
 </LinearLayout>
+

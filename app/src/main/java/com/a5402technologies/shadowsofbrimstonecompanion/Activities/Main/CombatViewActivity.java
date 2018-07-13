@@ -148,13 +148,18 @@ public class CombatViewActivity extends AppCompatActivity {
         val = sobCharacter.getLuckBonus() + sobCharacter.getCharacterClass().getLuck();
         text = "LCK: " + val.toString();
         tv.setText(text);
-        tv = findViewById(R.id.quick_mv);
+        tv = findViewById(R.id.move_value);
         val = sobCharacter.getMoveBonus();
-        text = "MV: +" + val.toString();
+        text = "d6";
+        if(val > 0) {
+            text += "+" + val.toString();
+        } else if (val < 0) {
+            text += val.toString();
+        }
         tv.setText(text);
-        tv = findViewById(R.id.quick_ini);
+        tv = findViewById(R.id.init_value);
         val = sobCharacter.getInitiativeBonus() + sobCharacter.getCharacterClass().getInitiative();
-        text = "INI: " + val.toString();
+        text = val.toString();
         tv.setText(text);
         tv = findViewById(R.id.sob_xp);
         tv.setText(String.format(sobCharacter.getExperience().toString()));
@@ -397,6 +402,31 @@ public class CombatViewActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
             }
         });
+
+        tv = findViewById(R.id.defense_value);
+        val = (sobCharacter.getCharacterClass().getDefense());
+        text = val.toString() + "+";
+        tv.setText(text);
+
+        tv = findViewById(R.id.willpower_value);
+        val = (sobCharacter.getCharacterClass().getWillpower());
+        text = val.toString() + "+";
+        tv.setText(text);
+        tv = findViewById(R.id.armor_value);
+        if (sobCharacter.getArmor() < 7) {
+            val = sobCharacter.getArmor();
+            text = val.toString() + "+";
+        } else {
+            text = "-";
+        }
+        tv.setText(text);
+        tv = findViewById(R.id.spirit_armor_value);
+        if (sobCharacter.getSpiritArmor() < 7) {
+            val = sobCharacter.getSpiritArmor();
+            text = val.toString() + "+";
+        } else {
+            text = "-";
+        }
     }
 
     private String calculateMeleeHitDie() {
