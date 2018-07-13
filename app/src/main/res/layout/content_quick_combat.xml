@@ -53,29 +53,41 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
+            android:textSize="10sp"
             android:text="@string/combat_view"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="2"
             android:id="@+id/qc_combat"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/hit"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="2"
             android:hint="d6: 4+(6+)"
             android:id="@+id/qc_tohit"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/damage"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="d6"
             android:id="@+id/qc_damage"/>
 
@@ -90,37 +102,55 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:text="@string/ranged_one"/>
+            android:textSize="10sp"
+            android:text="@string/range"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="5"
             android:id="@+id/qc_r1_range"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/shots"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="2"
             android:id="@+id/qc_r1_shots"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/hit"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="2"
             android:hint="d6: 4+(6+)"
             android:id="@+id/qc_r1_tohit"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/damage"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="d6"
             android:id="@+id/qc_r1_damgage"/>
 
@@ -135,37 +165,55 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:text="@string/ranged_two"/>
+            android:textSize="10sp"
+            android:text="@string/range"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="5"
             android:id="@+id/qc_r2_range"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/shots"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="2"
             android:id="@+id/qc_r2_shots"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/hit"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="2"
             android:hint="d6: 4+(6+)"
             android:id="@+id/qc_r2_tohit"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/damage"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:hint="d6"
             android:id="@+id/qc_r2_damgage"/>
 

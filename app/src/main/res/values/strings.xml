@@ -30,17 +30,17 @@
     <string name="create">CREATE</string>
     <string name="choose_upgrade">CHOOSE YOUR UPGRADE</string>
     <string name="choose_class">CHOOSE YOUR CLASS</string>
-    <string name="starting_gear">STARTING GEAR</string>
+    <string name="starting_gear">Starting Gear</string>
     <string name="shadows">SHADOWS\nOF\nBRIMSTONE</string>
-    <string name="accept">ACCEPT</string>
-    <string name="restart">RESTART</string>
-    <string name="spoils">SPOILS</string>
-    <string name="cancel">CANCEL</string>
+    <string name="accept">Accept</string>
+    <string name="restart">Restart</string>
+    <string name="spoils">Spoils</string>
+    <string name="cancel">Cance;</string>
     <string name="title_activity_shadows_of_brimstone">ShadowsOfBrimstoneActivity</string>
     <string name="choose_weapon">CHOOSE YOUR WEAPON</string>
-    <string name="equip">EQUIP</string>
+    <string name="equip">Equip</string>
     <string name="combat_view">Combat</string>
-    <string name="unequip">UNEQUIP</string>
+    <string name="unequip">Unequip</string>
     <string name="destroy">Destroy</string>
     <string name="sell">Sell</string>
     <string name="NA">NA</string>
@@ -84,6 +84,8 @@
     <string name="side_bag">Side Bag</string>
     <string name="corruption">Corruption</string>
     <string name="conditions">Conditions</string>
-    <string name="ranged_one">Ranged 1</string>
-    <string name="ranged_two">Ranged 2</string>
+    <string name="range">Range</string>
+    <string name="shots">Shots</string>
+    <string name="hit">Hit</string>
+    <string name="damage">Damage</string>
 </resources>
