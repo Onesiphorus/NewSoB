@@ -1399,5 +1399,41 @@ public class SobCharacter implements Serializable {
     public void setTransport(@NonNull Transport transport) {
         this.transport = transport;
     }
+
+    @NonNull
+    public Integer getDefense() {
+        return defense;
+    }
+
+    public void setDefense(@NonNull Integer defense) {
+        this.defense = defense;
+    }
+
+    @NonNull
+    public Integer getWillpower() {
+        return willpower;
+    }
+
+    public void setWillpower(@NonNull Integer willpower) {
+        this.willpower = willpower;
+    }
+
+    @NonNull
+    public Integer getMeleeToHit() {
+        return meleeToHit;
+    }
+
+    public void setMeleeToHit(@NonNull Integer meleeToHit) {
+        this.meleeToHit = meleeToHit;
+    }
+
+    @NonNull
+    public Integer getRangedToHit() {
+        return rangedToHit;
+    }
+
+    public void setRangedToHit(@NonNull Integer rangedToHit) {
+        this.rangedToHit = rangedToHit;
+    }
 }
 

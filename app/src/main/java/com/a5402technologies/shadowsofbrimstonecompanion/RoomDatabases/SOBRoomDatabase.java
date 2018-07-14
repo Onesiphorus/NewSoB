@@ -4100,7 +4100,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(3);
             skill.addModifier(ModifiersEnum.LUCK.label());
             mSkillDao.insert(skill);
-            skill = new Skill("Dead or Alive", SkillTypeEnum.INFAMY.code(), SkillTypeEnum.INFAMY.label());
+            skill = new Skill("Dead or Alive - Outlaw", SkillTypeEnum.INFAMY.code(), SkillTypeEnum.INFAMY.label());
             skill.setLevel(4);
             skill.setWillpower(3);
             skill.addModifier(ModifiersEnum.MAX_HEALTH.label());
@@ -4774,7 +4774,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setRangedToHit(4);
             mSkillDao.insert(skill);
             //Bandido Explosives
-            skill = new Skill("", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill = new Skill("Strong Arm", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.STRENGTH.label());
             mSkillDao.insert(skill);
@@ -4923,9 +4923,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Fancy Pants", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
             skill.setLevel(3);
             //TODO code +1 Health and Sanity for Fancy Pants
-            mSkillDao.insert(skill);
-            skill = new Skill("", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
-            skill.setLevel(4);
             mSkillDao.insert(skill);
             skill = new Skill("Entourage", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
             skill.setLevel(4);
