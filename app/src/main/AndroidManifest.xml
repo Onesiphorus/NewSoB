@@ -152,6 +152,7 @@
             android:name=".Activities.Main.Inventory.AddItems.ChooseSetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Menu.ChoosePersonalItem"></activity>
     </application>
 
 </manifest>

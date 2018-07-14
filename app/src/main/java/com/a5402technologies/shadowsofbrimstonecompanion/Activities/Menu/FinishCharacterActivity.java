@@ -106,7 +106,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
         adapter.setString(startingGear);
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
-            try {
+
                 mCharacterViewModel.insert(sobCharacter);
                 Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
                 for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
@@ -135,9 +135,7 @@ public class FinishCharacterActivity extends AppCompatActivity {
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);
                 finish();
-            } catch (Exception e) {
-                Toast.makeText(this, "Failed to create character.", Toast.LENGTH_LONG).show();
-            }
+           
 
         });
     }

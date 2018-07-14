@@ -19,7 +19,9 @@ public enum RuleExceptionEnum {
     TOMB_CHEST("Tomb Chest"),
     SPINNING_SLASH("Spinning Slash"),
     SHIELD_BASH("Shield Bash"),
-    QUICK_SHOT("Quick Shot");
+    QUICK_SHOT("Quick Shot"),
+    RIDERS_HAT("Rider's Hat"),
+    SCOUTS_HAT("Scout's Hat");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

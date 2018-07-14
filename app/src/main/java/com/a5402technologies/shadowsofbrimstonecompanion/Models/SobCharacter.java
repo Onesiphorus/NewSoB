@@ -784,6 +784,12 @@ public class SobCharacter implements Serializable {
                 if (clothing.getSpiritArmor() > 0 && clothing.getSpiritArmor() < this.spiritArmor) {
                     this.spiritArmor = clothing.getSpiritArmor();
                 }
+                if(clothing.getName().equals(RuleExceptionEnum.RIDERS_HAT.label())) {
+                    addTrait(TraitsEnum.TRAVELER.label());
+                }
+                if(clothing.getName().equals(RuleExceptionEnum.SCOUTS_HAT.label())) {
+                    addTrait(TraitsEnum.SCOUT.label());
+                }
             }
             if (clothing.getWeight() < 0) {
                 if (clothing.getEquipped().equals(TRUE)) {

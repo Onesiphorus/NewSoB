@@ -31,27 +31,27 @@ public class Skill implements Serializable {
     @ColumnInfo(name = "level")
     private Integer level = 0;
     @ColumnInfo(name = "armor")
-    private Integer armor;
+    private Integer armor = 7;
     @ColumnInfo(name = "spirit_armor")
-    private Integer spiritArmor;
+    private Integer spiritArmor = 7;
     @NonNull
     @ColumnInfo(name = "ranged_to_hit")
-    private Integer rangedToHit = 0;
+    private Integer rangedToHit = 6;
     @NonNull
     @ColumnInfo(name = "melee_to_hit")
-    private Integer meleeToHit = 0;
+    private Integer meleeToHit = 6;
     @NonNull
     @ColumnInfo(name = "melee_crit_chance")
-    private Integer meleeCritChance = 0;
+    private Integer meleeCritChance = 6;
     @NonNull
     @ColumnInfo(name = "ranged_crit_chance")
-    private Integer rangedCritChance = 0;
+    private Integer rangedCritChance = 6;
     @NonNull
     @ColumnInfo(name = "defense")
-    private Integer defense = 0;
+    private Integer defense = 6;
     @NonNull
     @ColumnInfo(name = "willpower")
-    private Integer willpower = 0;
+    private Integer willpower = 6;
     @NonNull
     @ColumnInfo(name = "category")
     private String category;
