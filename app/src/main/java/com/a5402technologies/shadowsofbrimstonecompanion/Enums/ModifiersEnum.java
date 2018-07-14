@@ -32,7 +32,8 @@ public enum ModifiersEnum {
     WILLPOWER("Willpower", CharacterClassEnum.ANY),
     DEFENSE("Defense", CharacterClassEnum.ANY),
     ARMOR("Armor", CharacterClassEnum.ANY),
-    SPIRIT_ARMOR("Spirit Armor", CharacterClassEnum.ANY);
+    SPIRIT_ARMOR("Spirit Armor", CharacterClassEnum.ANY),
+    FORTUNE("Fortune", CharacterClassEnum.GAMBLER);
 
 
     private static Map<CharacterClassEnum, ModifiersEnum> lookupByCode = new HashMap<>();

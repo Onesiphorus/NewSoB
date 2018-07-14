@@ -42,6 +42,12 @@ public class Skill implements Serializable {
     @ColumnInfo(name = "melee_to_hit")
     private Integer meleeToHit = 0;
     @NonNull
+    @ColumnInfo(name = "melee_crit_chance")
+    private Integer meleeCritChance = 0;
+    @NonNull
+    @ColumnInfo(name = "ranged_crit_chance")
+    private Integer rangedCritChance = 0;
+    @NonNull
     @ColumnInfo(name = "defense")
     private Integer defense = 0;
     @NonNull
@@ -170,5 +176,23 @@ public class Skill implements Serializable {
 
     public void setCategory(@NonNull String category) {
         this.category = category;
+    }
+
+    @NonNull
+    public Integer getMeleeCritChance() {
+        return meleeCritChance;
+    }
+
+    public void setMeleeCritChance(@NonNull Integer meleeCritChance) {
+        this.meleeCritChance = meleeCritChance;
+    }
+
+    @NonNull
+    public Integer getRangedCritChance() {
+        return rangedCritChance;
+    }
+
+    public void setRangedCritChance(@NonNull Integer rangedCritChance) {
+        this.rangedCritChance = rangedCritChance;
     }
 }

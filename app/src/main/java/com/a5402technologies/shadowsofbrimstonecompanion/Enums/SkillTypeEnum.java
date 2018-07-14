@@ -3,6 +3,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
 
+import java.io.CharConversionException;
 import java.nio.charset.CharsetEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ public enum SkillTypeEnum {
 
     BLESSING_SERMON("Blessing Sermon", CharacterClassEnum.PREACHER.male()),
     GAMBLING_TRICK("Gambling Trick", CharacterClassEnum.GAMBLER.male()),
-    SHOOTIN("Shootin'", CharacterClassEnum.OUTLAW.male()),
+    OUTLAW_SHOOTIN("Shootin'", CharacterClassEnum.OUTLAW.male()),
     INFAMY("Infamy", CharacterClassEnum.OUTLAW.male()),
     CHARM("Charm", CharacterClassEnum.OUTLAW.male()),
     ON_THE_RUN("On the Run", CharacterClassEnum.OUTLAW.male()),
@@ -27,6 +28,26 @@ public enum SkillTypeEnum {
     DETERMINATION("Determination", CharacterClassEnum.LAWMAN.male()),
     JUSTICE("Justice", CharacterClassEnum.LAWMAN.male()),
     LAW_AND_ORDER("Law and Order", CharacterClassEnum.LAWMAN.male()),
+    TRAVELER("Traveler", CharacterClassEnum.US_MARSHAL.male()),
+    RESOLVE("Resolve", CharacterClassEnum.US_MARSHAL.male()),
+    HONOR("Honor", CharacterClassEnum.US_MARSHAL.male()),
+    BOUNTY_HUNTER("Bounty Hunter", CharacterClassEnum.US_MARSHAL.male()),
+    FIGHTING("Fighting", CharacterClassEnum.SALOON_GIRL.female()),
+    MOXY("Moxy", CharacterClassEnum.SALOON_GIRL.female()),
+    ACROBATICS("Acrobatics", CharacterClassEnum.SALOON_GIRL.female()),
+    SALOON_CHARM("Charm", CharacterClassEnum.SALOON_GIRL.female()),
+    GUNS("Guns", CharacterClassEnum.BANDIDO.male()),
+    EXPLOSIVES("Explosives", CharacterClassEnum.BANDIDO.male()),
+    BRAWLING("Brawling", CharacterClassEnum.BANDIDO.male()),
+    SCOUNDREL("Scoundrel", CharacterClassEnum.BANDIDO.male()),
+    SHOOTIN("Shootin'", CharacterClassEnum.GUNSLINGER.male()),
+    SHOWMANSHIP("Showmanship", CharacterClassEnum.GUNSLINGER.male()),
+    WAY_OF_THE_GUN("Way of the Gun", CharacterClassEnum.GUNSLINGER.male()),
+    REPUTATION("Reputation", CharacterClassEnum.GUNSLINGER.male()),
+    TRICKS_TRADE("Tricks of the Trade", CharacterClassEnum.GAMBLER.male()),
+    ROLL_BONES("Roll the Bones", CharacterClassEnum.GAMBLER.male()),
+    CIVILIZED("Civilized", CharacterClassEnum.GAMBLER.male()),
+    CARD_SHARK("Card Shark", CharacterClassEnum.GAMBLER.male()),
     STARTING("Starting", CharacterClassEnum.ANY.male());
 
 

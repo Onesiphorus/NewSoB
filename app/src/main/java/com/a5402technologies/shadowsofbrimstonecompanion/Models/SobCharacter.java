@@ -208,10 +208,27 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "transport")
     private Transport transport;
 
+    @NonNull
+    @ColumnInfo(name = "defense")
+    private Integer defense;
+    @NonNull
+    @ColumnInfo(name = "willpwower")
+    private Integer willpower;
+    @NonNull
+    @ColumnInfo(name = "melee_to_hit")
+    private Integer meleeToHit;
+    @NonNull
+    @ColumnInfo(name = "ranged_to_hit")
+    private Integer rangedToHit;
+
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
         this.characterName = characterName;
         this.characterClass = characterClass;
+        this.defense = characterClass.getDefense();
+        this.willpower = characterClass.getWillpower();
+        this.meleeToHit = characterClass.getMeleeToHit();
+        this.rangedToHit = characterClass.getRangedToHit();
         clothing = new ArrayList<>(0);
         gear = new ArrayList<>(0);
         meleeWeapons = new ArrayList<>(0);
@@ -855,6 +872,13 @@ public class SobCharacter implements Serializable {
                     }
                 }
             }
+            armor = skill.getArmor() < armor ? skill.getArmor() : armor;
+            spiritArmor = skill.getSpiritArmor() < spiritArmor ? skill.getSpiritArmor() : spiritArmor;
+            defense = skill.getDefense() < defense ? skill.getDefense() : defense;
+            willpower = skill.getWillpower() < willpower ? skill.getWillpower() : willpower;
+            meleeToHit = skill.getMeleeToHit() < meleeToHit ? skill.getMeleeToHit() : meleeToHit;
+            rangedToHit = skill.getRangedToHit() < rangedToHit ? skill.getRangedToHit() : rangedToHit;
+            meleeCritChance = skill.getMeleeCritChance() < meleeCritChance ? skill.getMeleeCritChance() : meleeCritChance;
             if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label())) spinningSlash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
         }
@@ -1041,6 +1065,11 @@ public class SobCharacter implements Serializable {
         this.sideBagSize = 5;
         this.maxCorruption = 5;
         this.darkStoneCount = 0;
+        this.meleeCritChance = 6;
+        this.rangedToHit = getCharacterClass().getRangedToHit();
+        this.meleeToHit = getCharacterClass().getMeleeToHit();
+        this.defense = getCharacterClass().getDefense();
+        this.willpower = getCharacterClass().getWillpower();
     }
 
     public RangedWeapon getRightHand() {

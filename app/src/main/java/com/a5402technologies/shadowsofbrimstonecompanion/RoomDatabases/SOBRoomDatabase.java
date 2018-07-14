@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 39)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 40)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -4068,14 +4068,14 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
             //OUTLAW SHOOTIN' UPGRADES
-            skill = new Skill("Guns Blazing", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill = new Skill("Guns Blazing", SkillTypeEnum.OUTLAW_SHOOTIN.code(), SkillTypeEnum.OUTLAW_SHOOTIN.label());
             skill.setLevel(1);
             mSkillDao.insert(skill);
             skill.setName("Gunfighter(Outlaw)");
             skill.setLevel(2);
             skill.addModifier("Max Grit");
             mSkillDao.insert(skill);
-            skill = new Skill("Wild at Heart", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill = new Skill("Wild at Heart", SkillTypeEnum.OUTLAW_SHOOTIN.code(), SkillTypeEnum.OUTLAW_SHOOTIN.label());
             skill.setLevel(3);
             skill.addModifier("Health");
             skill.addModifier("Health");
@@ -4431,7 +4431,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Scarring", ConditionEnum.INJURY.label());
             permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
             mPermanentConditionDao.insert(permanentCondition);
-        //Mutations
+            //Mutations
             permanentCondition = new PermanentCondition("Chest Portal", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Tentacle Fingers", ConditionEnum.MUTATION.label());
@@ -4541,7 +4541,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addPenalty(ModifiersEnum.MAX_CORRUPTION.label());
             permanentCondition.addModifier(ModifiersEnum.LORE.label());
             mPermanentConditionDao.insert(permanentCondition);
-        //Madness
+            //Madness
             permanentCondition = new PermanentCondition("Brain Dead", ConditionEnum.MADNESS.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Egomania", ConditionEnum.MADNESS.label());
@@ -4617,6 +4617,338 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Apathy", ConditionEnum.MADNESS.label());
             permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
             mPermanentConditionDao.insert(permanentCondition);
+
+            //US Marshall Traveler
+            skill = new Skill("A Story to Tell", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            //TODO code movement +Lore with A Story to Tell
+            mSkillDao.insert(skill);
+            skill = new Skill("Back up Plan", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Saddle Bag", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Been Around", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            //US Marshal Resolve
+            skill = new Skill("No Shame in It", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("No Nonsense", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill.setLevel(2);
+            //TODO code Shotguns get +1 shot with No Nonsense
+            mSkillDao.insert(skill);
+            skill = new Skill("\"I Don't Think So!\"", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("That Does It!", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            //TODO Add +1 Damage per mutation (max +3) with That Does It!
+            mSkillDao.insert(skill);
+            //US Marshal Honor
+            skill = new Skill("\"Look Out!\"", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Whirling Strike", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("One Man Army", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //US Marshal Bounty Hunter
+            skill = new Skill("Focus", SkillTypeEnum.BOUNTY_HUNTER.code(), SkillTypeEnum.BOUNTY_HUNTER.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Hunter", SkillTypeEnum.BOUNTY_HUNTER.code(), SkillTypeEnum.BOUNTY_HUNTER.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Dead or Alive", SkillTypeEnum.BOUNTY_HUNTER.code(), SkillTypeEnum.BOUNTY_HUNTER.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("End of the Line", SkillTypeEnum.BOUNTY_HUNTER.code(), SkillTypeEnum.BOUNTY_HUNTER.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Saloon Girl Fighting
+            skill = new Skill("Spinning Kick", SkillTypeEnum.FIGHTING.code(), SkillTypeEnum.FIGHTING.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Parry", SkillTypeEnum.FIGHTING.code(), SkillTypeEnum.FIGHTING.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("\"I Can Take Care of Myself!\"", SkillTypeEnum.FIGHTING.code(), SkillTypeEnum.FIGHTING.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Rapid Strike", SkillTypeEnum.FIGHTING.code(), SkillTypeEnum.FIGHTING.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Saloon Girl Moxy
+            skill = new Skill("Spunky", SkillTypeEnum.MOXY.code(), SkillTypeEnum.MOXY.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Rough and Tumble", SkillTypeEnum.MOXY.code(), SkillTypeEnum.MOXY.label());
+            skill.setLevel(2);
+            //TODO Restrict Saloon girl to keyword Light guns without Rough and Tumble
+            skill.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            skill.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            skill.addModifier(ModifiersEnum.MAX_HEALTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Never a Dull Momoent", SkillTypeEnum.MOXY.code(), SkillTypeEnum.MOXY.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Hit 'em Where it Hurts", SkillTypeEnum.MOXY.code(), SkillTypeEnum.MOXY.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //Saloon Girl Acrobatics
+            skill = new Skill("Sleight of Hand", SkillTypeEnum.ACROBATICS.code(), SkillTypeEnum.ACROBATICS.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Light on Your Feet", SkillTypeEnum.ACROBATICS.code(), SkillTypeEnum.ACROBATICS.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            skill.addModifier(ModifiersEnum.MOVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Slip By", SkillTypeEnum.ACROBATICS.code(), SkillTypeEnum.ACROBATICS.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Fast as Lightning", SkillTypeEnum.ACROBATICS.code(), SkillTypeEnum.ACROBATICS.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Saloon Girl Charm
+            skill = new Skill("Gentle Manner", SkillTypeEnum.SALOON_CHARM.code(), SkillTypeEnum.SALOON_CHARM.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            skill.addModifier(ModifiersEnum.MAX_SANITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Witty Retort", SkillTypeEnum.SALOON_CHARM.code(), SkillTypeEnum.SALOON_CHARM.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Hidden Pouch", SkillTypeEnum.SALOON_CHARM.code(), SkillTypeEnum.SALOON_CHARM.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            skill.addModifier(ModifiersEnum.SIDE_BAG_CAPACITY.label());
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("What you Least Expect", SkillTypeEnum.SALOON_CHARM.code(), SkillTypeEnum.SALOON_CHARM.label());
+            skill.setLevel(4);
+            skill.setMeleeToHit(3);
+            mSkillDao.insert(skill);
+            //Bandido Guns
+            skill = new Skill("Barrage", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Steel Nerves", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Infamy", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Accuracy", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(4);
+            skill.setRangedToHit(4);
+            mSkillDao.insert(skill);
+            //Bandido Explosives
+            skill = new Skill("", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Destruction Artist", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Dark Stone Dynamite", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Chew on This!", SkillTypeEnum.GUNS.code(), SkillTypeEnum.GUNS.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Bandido Brawling
+            skill = new Skill("Swingin' Fists", SkillTypeEnum.BRAWLING.code(), SkillTypeEnum.BRAWLING.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Charge", SkillTypeEnum.BRAWLING.code(), SkillTypeEnum.BRAWLING.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Rage", SkillTypeEnum.BRAWLING.code(), SkillTypeEnum.BRAWLING.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Deadly", SkillTypeEnum.BRAWLING.code(), SkillTypeEnum.BRAWLING.label());
+            skill.setLevel(4);
+            skill.setMeleeCritChance(5);
+            mSkillDao.insert(skill);
+            //Bandido Scoundrel
+            skill = new Skill("Sinister Laugh", SkillTypeEnum.SCOUNDREL.code(), SkillTypeEnum.SCOUNDREL.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Twitch", SkillTypeEnum.SCOUNDREL.code(), SkillTypeEnum.SCOUNDREL.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Lovable Scoundrel", SkillTypeEnum.SCOUNDREL.code(), SkillTypeEnum.SCOUNDREL.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.SPIRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Won't Stay Dead", SkillTypeEnum.SCOUNDREL.code(), SkillTypeEnum.SCOUNDREL.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Gunslinger Shootin'
+            skill = new Skill("Cool Hand", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Through Shot", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Master of Killin'", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Best Shot in the West", SkillTypeEnum.SHOOTIN.code(), SkillTypeEnum.SHOOTIN.label());
+            skill.setLevel(4);
+            skill.setRangedToHit(2);
+            mSkillDao.insert(skill);
+            //Gunslinger Showmanship
+            skill = new Skill("Catch Phrase", SkillTypeEnum.SHOWMANSHIP.code(), SkillTypeEnum.SHOWMANSHIP.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Character Piece", SkillTypeEnum.SHOWMANSHIP.code(), SkillTypeEnum.SHOWMANSHIP.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Call Your Shot", SkillTypeEnum.SHOWMANSHIP.code(), SkillTypeEnum.SHOWMANSHIP.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Charmed Life", SkillTypeEnum.SHOWMANSHIP.code(), SkillTypeEnum.SHOWMANSHIP.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            //Gunslinger Way of the Gun
+            skill = new Skill("Ricochet Shots", SkillTypeEnum.WAY_OF_THE_GUN.code(), SkillTypeEnum.WAY_OF_THE_GUN.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Cerberus Shots", SkillTypeEnum.WAY_OF_THE_GUN.code(), SkillTypeEnum.WAY_OF_THE_GUN.label());
+            skill.setLevel(2);
+            mSkillDao.insert(skill);
+            skill = new Skill("Hellfire Shots", SkillTypeEnum.WAY_OF_THE_GUN.code(), SkillTypeEnum.WAY_OF_THE_GUN.label());
+            skill.setLevel(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("The Right Tool", SkillTypeEnum.WAY_OF_THE_GUN.code(), SkillTypeEnum.WAY_OF_THE_GUN.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //Gunslinger Reputation
+            skill = new Skill("Hushed Whispers", SkillTypeEnum.REPUTATION.code(), SkillTypeEnum.REPUTATION.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Card Shark", SkillTypeEnum.REPUTATION.code(), SkillTypeEnum.REPUTATION.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            skill.addModifier(ModifiersEnum.LUCK.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Killer", SkillTypeEnum.REPUTATION.code(), SkillTypeEnum.REPUTATION.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Legend of the West", SkillTypeEnum.REPUTATION.code(), SkillTypeEnum.REPUTATION.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Gambler Tricks of the Trade
+            skill = new Skill("Nimble Fingers", SkillTypeEnum.TRICKS_TRADE.code(), SkillTypeEnum.TRICKS_TRADE.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Tell", SkillTypeEnum.TRICKS_TRADE.code(), SkillTypeEnum.TRICKS_TRADE.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.FORTUNE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Old Hand", SkillTypeEnum.TRICKS_TRADE.code(), SkillTypeEnum.TRICKS_TRADE.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Make Your Own Luck", SkillTypeEnum.TRICKS_TRADE.code(), SkillTypeEnum.TRICKS_TRADE.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.LUCK.label());
+            mSkillDao.insert(skill);
+            //Gambler Roll the Bones
+            skill = new Skill("On a Roll", SkillTypeEnum.ROLL_BONES.code(), SkillTypeEnum.ROLL_BONES.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MOVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Box Cars", SkillTypeEnum.ROLL_BONES.code(), SkillTypeEnum.ROLL_BONES.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Blow for Luck", SkillTypeEnum.ROLL_BONES.code(), SkillTypeEnum.ROLL_BONES.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.FORTUNE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Let it Ride", SkillTypeEnum.ROLL_BONES.code(), SkillTypeEnum.ROLL_BONES.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Gambler Civilized
+            skill = new Skill("\"Well, I Say!\"", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Affectation", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Fancy Pants", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
+            skill.setLevel(3);
+            //TODO code +1 Health and Sanity for Fancy Pants
+            mSkillDao.insert(skill);
+            skill = new Skill("", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            skill = new Skill("Entourage", SkillTypeEnum.CIVILIZED.code(), SkillTypeEnum.CIVILIZED.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.FORTUNE.label());
+            mSkillDao.insert(skill);
+            //Gambler Card Shark
+            skill = new Skill("Play to Win", SkillTypeEnum.CARD_SHARK.code(), SkillTypeEnum.CARD_SHARK.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.FORTUNE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Cutthroat", SkillTypeEnum.CARD_SHARK.code(), SkillTypeEnum.CARD_SHARK.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Full House", SkillTypeEnum.CARD_SHARK.code(), SkillTypeEnum.CARD_SHARK.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            skill.setDefense(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Aces High", SkillTypeEnum.CARD_SHARK.code(), SkillTypeEnum.CARD_SHARK.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+
 
             return null;
         }
