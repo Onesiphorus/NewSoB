@@ -74,6 +74,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
+                intent.putExtra("gear_type", gearType);
                 if (gearBase != null) {
                     sobCharacter.removeGear(gearBase);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -107,6 +108,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
+                intent.putExtra("gear_type", gearType);
                 if (attachment != null) {
                     sobCharacter.removeAttachment(attachment);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -142,6 +144,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
+                intent.putExtra("gear_type", gearType);
                 if (clothing != null) {
                     sobCharacter.removeClothing(clothing);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -177,6 +180,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
+                intent.putExtra("gear_type", gearType);
                 if (meleeWeapon != null) {
                     sobCharacter.removeMeleeWeapon(meleeWeapon);
                     intent.putExtra("serializable_object", sobCharacter);
@@ -212,6 +216,7 @@ public class RemoveGearActivity extends AppCompatActivity {
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
+                intent.putExtra("gear_type", gearType);
                 if (gearBase != null) {
                     sobCharacter.removeRangedWeapon(rangedWeapon);
                     intent.putExtra("serializable_object", sobCharacter);

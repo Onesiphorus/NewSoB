@@ -2255,6 +2255,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setCost(150);
@@ -2264,6 +2265,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setCost(425);
@@ -2273,6 +2275,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setCost(1200);
@@ -2285,6 +2288,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setCost(1850);
@@ -2294,6 +2298,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
+            clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setCost(3000);
@@ -2348,11 +2353,15 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.addRestriction(TraitsEnum.FRONTIER.label());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.TORSO.label());
+            clothing.setTorso(TRUE);
             clothing.setWeight(1);
             mClothingDao.insert(clothing);
             clothing = new Clothing("Railworker's Jacket");
             clothing.setSet(SetListEnum.FRONTIER_TOWN.code());
             clothing.setShop(ShopEnum.STREET_MARKET.label());
+            clothing.addTrait(TraitsEnum.CLOTHING.label());
+            clothing.addTrait(TraitsEnum.TORSO.label());
+            clothing.setTorso(TRUE);
             clothing.setWeight(1);
             clothing.setCost(860);
             mClothingDao.insert(clothing);
@@ -5195,7 +5204,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("\"Look Out!\"", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
             skill.setLevel(1);
             mSkillDao.insert(skill);
-            skill = new Skill("", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
+            skill = new Skill("Above the Law", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
             mSkillDao.insert(skill);

@@ -59,7 +59,7 @@ public class SideBagActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != string) {
-                Toast.makeText(this, sobCharacter.getLeftHand().getName() + " used.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, string + " used.", Toast.LENGTH_LONG).show();
                 sobCharacter.removeFromSideBag(string);
                 Intent intent = new Intent(this, CombatViewActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -71,7 +71,7 @@ public class SideBagActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, sobCharacter.getLeftHand().getName() + " removed.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, string + " removed.", Toast.LENGTH_LONG).show();
             sobCharacter.removeFromSideBag(string);
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);

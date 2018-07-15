@@ -62,28 +62,9 @@ public class FinishCharacterActivity extends AppCompatActivity {
         tv = findViewById(R.id.luck_value);
         value = (sobCharacter.getCharacterClass().getLuck()) + (sobCharacter.getLuckBonus());
         tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.health_value);
-        value = (sobCharacter.getCharacterClass().getHealth()) + (sobCharacter.getHealthBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.defense_value);
-        value = (sobCharacter.getCharacterClass().getDefense());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.sanity_value);
-        value = (sobCharacter.getCharacterClass().getSanity()) + (sobCharacter.getSanityBonus());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.willpower_value);
-        value = (sobCharacter.getCharacterClass().getWillpower());
-        tv.setText(String.format(value.toString()));
-        tv = findViewById(R.id.armor_value);
-        tv.setText(String.format(sobCharacter.getArmor().toString()));
-        tv = findViewById(R.id.spirit_armor_value);
-        tv.setText(String.format(sobCharacter.getSpiritArmor().toString()));
         tv = findViewById(R.id.tv_character_name);
         tv.setText(sobCharacter.getCharacterName());
-        tv = findViewById(R.id.init_value);
-        tv.setText(String.format(sobCharacter.getCharacterClass().getInitiative().toString()));
-        tv = findViewById(R.id.max_grit_value);
-        tv.setText(String.format(sobCharacter.getCharacterClass().getMaxGrit().toString()));
+
         ArrayList<String> startingGear = new ArrayList<>(0);
         for (GearBase gear : sobCharacter.getCharacterClass().getStartingGear()) {
             startingGear.add(gear.getName());
