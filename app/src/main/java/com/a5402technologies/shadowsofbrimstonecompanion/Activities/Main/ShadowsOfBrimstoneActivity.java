@@ -112,7 +112,10 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             finish();
         });
         findViewById(R.id.btn_sob_conditions).setOnClickListener((View view) -> {
-
+            Intent intent = new Intent(this, ConditionTypeActivity.class);
+            intent.putExtra("seriazlizable_object", sobCharacter);
+            startActivity(intent);
+            finish();
         });
     }
 

@@ -15,7 +15,7 @@ public enum SideBagTokenEnums {
     HERBS("Herbs"),
     HOLY_WATER("Holy Water"),
     JUNK_BOMB("Junk Bomb"),
-    LANTERN_OIL("Langern Oil"),
+    LANTERN_OIL("Lantern Oil"),
     NECTAR("Nectar"),
     POTION("Potion"),
     SHATTER("Shatter"),

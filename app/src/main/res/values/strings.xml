@@ -88,4 +88,8 @@
     <string name="shots">Shots</string>
     <string name="hit">Hit</string>
     <string name="damage">Damage</string>
+    <string name="injuries">Injuries</string>
+    <string name="madness">Madness</string>
+    <string name="mutations">Mutations</string>
+    <string name="other">Other</string>
 </resources>

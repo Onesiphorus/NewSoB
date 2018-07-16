@@ -6,7 +6,8 @@ import java.util.Map;
 public enum ConditionEnum {
     INJURY("Injury"),
     MADNESS("Madness"),
-    MUTATION("Mutation");
+    MUTATION("Mutation"),
+    OTHER("Other");
 
     private static Map<String, ConditionEnum> lookupByLabel = new HashMap<>();
 
