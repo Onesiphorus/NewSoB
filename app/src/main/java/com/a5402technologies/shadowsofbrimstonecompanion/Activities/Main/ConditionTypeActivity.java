@@ -20,28 +20,28 @@ public class ConditionTypeActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         findViewById(R.id.injuries).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddGearBaseActivity.class);
+            Intent intent = new Intent(this, AddConditionActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.INJURY.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.madness).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddGearBaseActivity.class);
+            Intent intent = new Intent(this, AddConditionActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.MADNESS.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.mutations).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddGearBaseActivity.class);
+            Intent intent = new Intent(this, AddConditionActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.MUTATION.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.other_conditions).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddGearBaseActivity.class);
+            Intent intent = new Intent(this, AddConditionActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.OTHER.label());
             startActivity(intent);

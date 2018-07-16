@@ -62,20 +62,11 @@ public class AddConditionActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             if (null != permanentCondition) {
-                if(permanentCondition.getType().equals(ConditionEnum.INJURY.label())){
-                    sobCharacter.addInjury(permanentCondition);
-                }
-                else if(permanentCondition.getType().equals(ConditionEnum.MADNESS.label())){
-                    sobCharacter.addMadness(permanentCondition);
-                }
-                else if(permanentCondition.getType().equals(ConditionEnum.MUTATION.label())){
-                    sobCharacter.addMutation(permanentCondition);
-                }
-                else if(permanentCondition.getType().equals(ConditionEnum.OTHER.label())){
-                    sobCharacter.addOtherCondition(permanentCondition);
-                }
+                sobCharacter.addInjury(permanentCondition);
                 Intent intent = new Intent(this, ConditionTypeActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
+                startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(this, "Nothing selected", Toast.LENGTH_LONG).show();
             }

@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.DaoInterfaces.CharacterDao;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
-import com.a5402technologies.shadowsofbrimstonecompanion.RoomDatabases.UserRoomDatabase;
+import com.a5402technologies.shadowsofbrimstonecompanion.RoomDatabases.UserDatabase;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CharacterRepository {
     private LiveData<List<SobCharacter>> mAllCharacters;
 
     public CharacterRepository(Application application) {
-        UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
+        UserDatabase db = UserDatabase.getDatabase(application);
         mCharacterDao = db.characterDao();
         mAllCharacterNames = mCharacterDao.getAllCharacterNames();
         mAllCharacters = mCharacterDao.getAllSobCharacters();

@@ -205,9 +205,6 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "mutations")
     private ArrayList<PermanentCondition> mutations;
     @NonNull
-    @ColumnInfo(name = "other_conditions")
-    private ArrayList<PermanentCondition> otherConditions;
-    @NonNull
     @ColumnInfo(name = "transport")
     private Transport transport;
 
@@ -215,7 +212,7 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "defense")
     private Integer defense;
     @NonNull
-    @ColumnInfo(name = "willpwower")
+    @ColumnInfo(name = "willpower")
     private Integer willpower;
     @NonNull
     @ColumnInfo(name = "melee_to_hit")
@@ -246,7 +243,6 @@ public class SobCharacter implements Serializable {
         injuries = new ArrayList<>(0);
         madness = new ArrayList<>(0);
         mutations = new ArrayList<>(0);
-        otherConditions = new ArrayList<>(0);
         transport = new Transport();
     }
 
@@ -1347,13 +1343,6 @@ public class SobCharacter implements Serializable {
     public void removeMadness(PermanentCondition permanentCondition) {
         this.madness.remove(permanentCondition);
     }
-    public void addOtherCondition(PermanentCondition permanentCondition) {
-        this.otherConditions.add(permanentCondition);
-    }
-
-    public void removeOtherCondition(PermanentCondition permanentCondition) {
-        this.otherConditions.remove(permanentCondition);
-    }
 
     @NonNull
     public Integer getMaxCorruption() {
@@ -1452,15 +1441,6 @@ public class SobCharacter implements Serializable {
 
     public void setRangedToHit(@NonNull Integer rangedToHit) {
         this.rangedToHit = rangedToHit;
-    }
-
-    @NonNull
-    public ArrayList<PermanentCondition> getOtherConditions() {
-        return otherConditions;
-    }
-
-    public void setOtherConditions(@NonNull ArrayList<PermanentCondition> otherConditions) {
-        this.otherConditions = otherConditions;
     }
 }
 
