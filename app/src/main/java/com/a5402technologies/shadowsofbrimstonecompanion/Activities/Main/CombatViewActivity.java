@@ -215,7 +215,7 @@ public class CombatViewActivity extends AppCompatActivity {
                     for (Clothing clothing : sobCharacter.getClothing()) {
                         if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())
                                 && clothing.getEquipped().equals(TRUE)) {
-                            if (null != sobCharacter.getLeftHand()) {
+                            if (null != sobCharacter.getLeftHand() || null != sobCharacter.getTailRanged()) {
                                 for (String string : sobCharacter.getLeftHand().getTraits()) {
                                     if (string.equals(TraitsEnum.PISTOL.label())) {
                                         shots++;
@@ -275,7 +275,6 @@ public class CombatViewActivity extends AppCompatActivity {
                 if (rightMelee == null && rightRanged == null) {
                     rightRanged.setHint(sobCharacter.getLeftHand().getName());
                     rightMelee.setHint(sobCharacter.getLeftHand().getName());
-
                 } else {
                     tailRanged.setHint(sobCharacter.getLeftHand().getName());
                     tailMelee.setHint(sobCharacter.getLeftHand().getName());
@@ -298,7 +297,7 @@ public class CombatViewActivity extends AppCompatActivity {
                 if (s.equals(TraitsEnum.PISTOL.label())) {
                     for (Clothing clothing : sobCharacter.getClothing()) {
                         if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
-                            if (null != sobCharacter.getRightHand()) {
+                            if (null != sobCharacter.getRightHand() || null != sobCharacter.getTailRanged()) {
                                 for (String string : sobCharacter.getRightHand().getTraits()) {
                                     if (string.equals(TraitsEnum.PISTOL.label())) {
                                         shots++;
@@ -341,6 +340,84 @@ public class CombatViewActivity extends AppCompatActivity {
         }
         leftRanged.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, EquipLeftHandRangedActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        if (sobCharacter.getTailRanged() != null) {
+            tailRanged = findViewById(R.id.tail_ranged_weapon);
+            tailRanged.setText(sobCharacter.getTailRanged().getName());
+            tailMelee.setHint(sobCharacter.getTailMelee().getName());
+            if (sobCharacter.getTailRanged().getTwoHanded().equals(TRUE)) {
+                if (rightMelee == null && rightRanged == null) {
+                    rightRanged.setHint(sobCharacter.getTailRanged().getName());
+                    rightMelee.setHint(sobCharacter.getTailRanged().getName());
+
+                } else {
+                    leftRanged.setHint(sobCharacter.getTailRanged().getName());
+                    leftMelee.setHint(sobCharacter.getTailRanged().getName());
+                }
+            } else if (sobCharacter.getTailRanged().getThreeHanded().equals(TRUE)) {
+                rightRanged.setHint(sobCharacter.getTailRanged().getName());
+                rightMelee.setHint(sobCharacter.getTailRanged().getName());
+                leftRanged.setHint(sobCharacter.getTailRanged().getName());
+                leftMelee.setHint(sobCharacter.getTailRanged().getName());
+            }
+            tv = findViewById(R.id.tail_range);
+            tv.setText(String.format(sobCharacter.getTailRanged().getRange().toString()));
+            tv = findViewById(R.id.tail_shots);
+            Integer shots = (sobCharacter.getTailRanged().getName().equals("Trusty Pistol"))
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getTailRanged().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
+                    : sobCharacter.getTailRanged().getShots();
+            for (String s : sobCharacter.getTailRanged().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
+                            if (null != sobCharacter.getRightHand() || null != sobCharacter.getLeftHand()) {
+                                for (String string : sobCharacter.getRightHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
+                }
+            }
+            for (Attachment attachment : sobCharacter.getTailRanged().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                }
+            }
+            tv.setText(String.format(shots.toString()));
+            tv = findViewById(R.id.tail_damage);
+            String text = "d" + sobCharacter.getTailRanged().getDamageDie().toString();
+            if (sobCharacter.getTailRanged().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getTailRanged().getDamageBonus().toString();
+            }
+            tv.setText(text);
+            tv = findViewById(R.id.tail_to_hit);
+            text = "d"
+                    + sobCharacter.getTailRanged().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getTailRanged().getCritChance()
+                    + "+)";
+            tv.setText(text);
+        }
+        tailRanged.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipTailRangedActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -390,6 +467,30 @@ public class CombatViewActivity extends AppCompatActivity {
         }
         rightMelee.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, EquipRightMeleeActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+        if (null != sobCharacter.getTailMelee()) {
+            rightMelee.setText(sobCharacter.getTailMelee().getName());
+            rightRanged.setHint(sobCharacter.getTailMelee().getName());
+            if (sobCharacter.getTailMelee().getTwoHanded().equals(TRUE)) {
+                if (sobCharacter.getLeftMelee() == null && sobCharacter.getLeftHand() == null) {
+                    leftRanged.setHint(sobCharacter.getTailMelee().getName());
+                    leftMelee.setHint(sobCharacter.getTailMelee().getName());
+                } else {
+                    rightRanged.setHint(sobCharacter.getTailMelee().getName());
+                    rightMelee.setHint(sobCharacter.getTailMelee().getName());
+                }
+            } else if (sobCharacter.getTailMelee().getThreeHanded().equals(TRUE)) {
+                leftRanged.setHint(sobCharacter.getTailMelee().getName());
+                leftMelee.setHint(sobCharacter.getTailMelee().getName());
+                rightRanged.setHint(sobCharacter.getTailMelee().getName());
+                rightMelee.setHint(sobCharacter.getTailMelee().getName());
+            }
+        }
+        tailMelee.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, EquipTailMeleeAcivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
