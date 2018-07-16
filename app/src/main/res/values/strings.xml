@@ -92,4 +92,6 @@
     <string name="madness">Madness</string>
     <string name="mutations">Mutations</string>
     <string name="other">Other</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
 </resources>

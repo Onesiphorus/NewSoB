@@ -9,11 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Conditions.ConditionTypeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.ChangeLoadoutActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftHandRangedActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
@@ -113,7 +110,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         });
         findViewById(R.id.btn_sob_conditions).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ConditionTypeActivity.class);
-            intent.putExtra("seriazlizable_object", sobCharacter);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });

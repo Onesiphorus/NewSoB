@@ -178,17 +178,30 @@ public class CombatViewActivity extends AppCompatActivity {
         rightRanged.setHint("empty");
         Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
         leftRanged.setHint("empty");
+        Button tailRanged = findViewById(R.id.tail_ranged_weapon);
+        tailRanged.setHint("empty");
         Button rightMelee = findViewById(R.id.btn_right_melee);
         rightMelee.setHint("empty");
         Button leftMelee = findViewById(R.id.btn_left_melee);
         leftMelee.setHint("empty");
-
+        Button tailMelee = findViewById(R.id.btn_tail_melee);
+        tailMelee.setHint("empty");
         if (sobCharacter.getRightHand() != null) {
             rightRanged.setText(sobCharacter.getRightHand().getName());
             rightMelee.setHint(sobCharacter.getRightHand().getName());
             if (sobCharacter.getRightHand().getTwoHanded().equals(TRUE)) {
+                if (sobCharacter.getLeftMelee() == null && sobCharacter.getLeftHand() == null) {
+                    leftRanged.setHint(sobCharacter.getRightHand().getName());
+                    leftMelee.setHint(sobCharacter.getRightHand().getName());
+                } else {
+                    tailRanged.setHint(sobCharacter.getRightHand().getName());
+                    tailMelee.setHint(sobCharacter.getRightHand().getName());
+                }
+            } else if (sobCharacter.getRightHand().getThreeHanded().equals(TRUE)) {
                 leftRanged.setHint(sobCharacter.getRightHand().getName());
                 leftMelee.setHint(sobCharacter.getRightHand().getName());
+                tailRanged.setHint(sobCharacter.getRightHand().getName());
+                tailMelee.setHint(sobCharacter.getRightHand().getName());
             }
             tv = findViewById(R.id.right_hand_range);
             Integer range = sobCharacter.getRightHand().getRange();
@@ -259,8 +272,19 @@ public class CombatViewActivity extends AppCompatActivity {
             leftRanged.setText(sobCharacter.getLeftHand().getName());
             leftMelee.setHint(sobCharacter.getLeftHand().getName());
             if (sobCharacter.getLeftHand().getTwoHanded().equals(TRUE)) {
+                if (rightMelee == null && rightRanged == null) {
+                    rightRanged.setHint(sobCharacter.getLeftHand().getName());
+                    rightMelee.setHint(sobCharacter.getLeftHand().getName());
+
+                } else {
+                    tailRanged.setHint(sobCharacter.getLeftHand().getName());
+                    tailMelee.setHint(sobCharacter.getLeftHand().getName());
+                }
+            } else if (sobCharacter.getLeftHand().getThreeHanded().equals(TRUE)) {
                 rightRanged.setHint(sobCharacter.getLeftHand().getName());
                 rightMelee.setHint(sobCharacter.getLeftHand().getName());
+                tailRanged.setHint(sobCharacter.getLeftHand().getName());
+                tailMelee.setHint(sobCharacter.getLeftHand().getName());
             }
             tv = findViewById(R.id.left_hand_range);
             tv.setText(String.format(sobCharacter.getLeftHand().getRange().toString()));
@@ -325,8 +349,19 @@ public class CombatViewActivity extends AppCompatActivity {
             leftMelee.setText(sobCharacter.getLeftMelee().getName());
             leftRanged.setHint(sobCharacter.getLeftMelee().getName());
             if (sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE)) {
-                rightMelee.setHint(sobCharacter.getLeftMelee().getName());
+                if (rightMelee == null && rightRanged == null) {
+                    rightRanged.setHint(sobCharacter.getLeftMelee().getName());
+                    rightMelee.setHint(sobCharacter.getLeftMelee().getName());
+
+                } else {
+                    tailRanged.setHint(sobCharacter.getLeftMelee().getName());
+                    tailMelee.setHint(sobCharacter.getLeftMelee().getName());
+                }
+            } else if (sobCharacter.getLeftHand().getThreeHanded().equals(TRUE)) {
                 rightRanged.setHint(sobCharacter.getLeftMelee().getName());
+                rightMelee.setHint(sobCharacter.getLeftMelee().getName());
+                tailRanged.setHint(sobCharacter.getLeftMelee().getName());
+                tailMelee.setHint(sobCharacter.getLeftMelee().getName());
             }
         }
         leftMelee.setOnClickListener((View view) -> {
@@ -339,8 +374,18 @@ public class CombatViewActivity extends AppCompatActivity {
             rightMelee.setText(sobCharacter.getRightMelee().getName());
             rightRanged.setHint(sobCharacter.getRightMelee().getName());
             if (sobCharacter.getRightMelee().getTwoHanded().equals(TRUE)) {
-                leftMelee.setHint(sobCharacter.getRightMelee().getName());
+                if (sobCharacter.getLeftMelee() == null && sobCharacter.getLeftHand() == null) {
+                    leftRanged.setHint(sobCharacter.getRightMelee().getName());
+                    leftMelee.setHint(sobCharacter.getRightMelee().getName());
+                } else {
+                    tailRanged.setHint(sobCharacter.getRightMelee().getName());
+                    tailMelee.setHint(sobCharacter.getRightMelee().getName());
+                }
+            } else if (sobCharacter.getRightMelee().getThreeHanded().equals(TRUE)) {
                 leftRanged.setHint(sobCharacter.getRightMelee().getName());
+                leftMelee.setHint(sobCharacter.getRightMelee().getName());
+                tailRanged.setHint(sobCharacter.getRightMelee().getName());
+                tailMelee.setHint(sobCharacter.getRightMelee().getName());
             }
         }
         rightMelee.setOnClickListener((View view) -> {

@@ -28,6 +28,8 @@ public class MeleeWeapon implements Serializable {
     private Integer damageDie = 6;
     @ColumnInfo(name = "is_two_handed")
     private Boolean twoHanded = FALSE;
+    @ColumnInfo(name = "is_three_handed")
+    private Boolean threeHanded = FALSE;
     @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
@@ -412,5 +414,13 @@ public class MeleeWeapon implements Serializable {
 
     public void removeTrait(String trait) {
         this.traits.remove(trait);
+    }
+
+    public Boolean getThreeHanded() {
+        return threeHanded;
+    }
+
+    public void setThreeHanded(Boolean threeHanded) {
+        this.threeHanded = threeHanded;
     }
 }

@@ -17,24 +17,24 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 
 @Database(entities = {SobCharacter.class}, version = 1)
 @TypeConverters({GithubTypeConverters.class})
-public abstract class UserDatabase extends RoomDatabase {
-    private static UserDatabase INSTANCE;
+public abstract class CharacterDatabase extends RoomDatabase {
+    private static CharacterDatabase INSTANCE;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback =
             new RoomDatabase.Callback() {
                 @Override
                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                     super.onOpen(db);
-                    new UserDatabase.PopulateDbAsync(INSTANCE).execute();
+                    new CharacterDatabase.PopulateDbAsync(INSTANCE).execute();
                 }
             };
 
-    public static UserDatabase getDatabase(final Context context) {
+    public static CharacterDatabase getDatabase(final Context context) {
         if (null == INSTANCE) {
-            synchronized (UserDatabase.class) {
+            synchronized (CharacterDatabase.class) {
                 if (null == INSTANCE) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            UserDatabase.class, "user_database")
+                            CharacterDatabase.class, "user_database")
                             .addMigrations()
                             .addCallback(sRoomDatabaseCallback).build();
                 }
@@ -48,7 +48,7 @@ public abstract class UserDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final CharacterDao mCharacterDao;
 
-        PopulateDbAsync(UserDatabase db) {
+        PopulateDbAsync(CharacterDatabase db) {
             mCharacterDao = db.characterDao();
         }
 
@@ -58,4 +58,11 @@ public abstract class UserDatabase extends RoomDatabase {
             return null;
         }
     }
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+
+        }
+    };
 }

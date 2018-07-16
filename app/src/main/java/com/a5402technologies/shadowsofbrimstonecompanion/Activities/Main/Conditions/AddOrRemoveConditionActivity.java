@@ -1,4 +1,4 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Conditions;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ConditionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -25,44 +24,57 @@ import com.a5402technologies.shadowsofbrimstonecompanion.ViewModels.PermanentCon
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
-public class AddConditionActivity extends AppCompatActivity {
+public class AddOrRemoveConditionActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     String conditionType;
     PermanentConditionViewModel mPermanentConditionViewModel;
     PermanentCondition permanentCondition;
+    String action;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_condition);
 
         conditionType = getIntent().getStringExtra("condition_type");
+        action = getIntent().getStringExtra("action");
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final PermanentConditionListAdapter adapter = new PermanentConditionListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mPermanentConditionViewModel = ViewModelProviders.of(this).get(PermanentConditionViewModel.class);
-        mPermanentConditionViewModel.getAllPermanentCondition().observe(this, new Observer<List<PermanentCondition>>() {
-            @Override
-            public void onChanged(@Nullable List<PermanentCondition> permanentConditions) {
-                ArrayList<PermanentCondition> filtered = new ArrayList<>(0);
-                for (PermanentCondition item : permanentConditions) {
-                    if(conditionType.equals(item.getType())) {
-                        filtered.add(item);
+        if(action.equals("add")) {
+            mPermanentConditionViewModel = ViewModelProviders.of(this).get(PermanentConditionViewModel.class);
+            mPermanentConditionViewModel.getAllPermanentCondition().observe(this, new Observer<List<PermanentCondition>>() {
+                @Override
+                public void onChanged(@Nullable List<PermanentCondition> permanentConditions) {
+                    ArrayList<PermanentCondition> filtered = new ArrayList<>(0);
+                    for (PermanentCondition item : permanentConditions) {
+                        if (conditionType.equals(item.getType())) {
+                            filtered.add(item);
+                        }
+                        adapter.setPermanentCondition(filtered);
                     }
-                    adapter.setPermanentCondition(filtered);
+                }
+            });
+        } else if (action.equals("remove")) {
+            ArrayList<PermanentCondition> permanentConditions = new ArrayList<>(0);
+            for(PermanentCondition p : sobCharacter.getConditions()) {
+                if(p.getType().equals(conditionType)) {
+                    permanentConditions.add(p);
                 }
             }
-        });
+            adapter.setPermanentCondition(permanentConditions);
+        }
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             if (null != permanentCondition) {
-                sobCharacter.addInjury(permanentCondition);
+                if (action.equals("add")) {
+                    sobCharacter.addCondition(permanentCondition);
+                } else if (action.equals("remove")) {
+                    sobCharacter.removeCondition(permanentCondition);
+                }
                 Intent intent = new Intent(this, ConditionTypeActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
                 startActivity(intent);
@@ -75,8 +87,9 @@ public class AddConditionActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, ConditionTypeActivity.class);
+        Intent intent = new Intent(this, ChooseAddRemoveActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
+        intent.putExtra("condition_type", conditionType);
         startActivity(intent);
         finish();
     }
@@ -113,7 +126,9 @@ public class AddConditionActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     permanentCondition = mPermanentCondition.get(position);
                     Button btn = findViewById(R.id.btn_accept);
-                    String text = "Gain " + permanentCondition.getName();
+                    String text = "Choose";
+                    if(action.equals("add")) text = "Gain " + permanentCondition.getName();
+                    else if (action.equals("remove")) text = "Remove " + permanentCondition.getName();
                     btn.setText(text);
                 }
             });

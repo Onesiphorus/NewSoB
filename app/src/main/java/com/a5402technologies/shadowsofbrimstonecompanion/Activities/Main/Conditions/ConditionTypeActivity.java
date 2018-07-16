@@ -1,11 +1,11 @@
-package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Conditions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddGearBaseActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ConditionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -20,28 +20,28 @@ public class ConditionTypeActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
         findViewById(R.id.injuries).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddConditionActivity.class);
+            Intent intent = new Intent(this, ChooseAddRemoveActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.INJURY.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.madness).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddConditionActivity.class);
+            Intent intent = new Intent(this, ChooseAddRemoveActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.MADNESS.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.mutations).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddConditionActivity.class);
+            Intent intent = new Intent(this, ChooseAddRemoveActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.MUTATION.label());
             startActivity(intent);
             finish();
         });
         findViewById(R.id.other_conditions).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, AddConditionActivity.class);
+            Intent intent = new Intent(this, ChooseAddRemoveActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("condition_type", ConditionEnum.OTHER.label());
             startActivity(intent);

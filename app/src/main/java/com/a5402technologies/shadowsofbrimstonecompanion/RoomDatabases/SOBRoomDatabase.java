@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 40)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 1)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -2147,6 +2147,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.setWeight(1);
+            rangedWeapon.setThreeHanded(TRUE);
             rangedWeapon.setUpgrades(3);
             mRangedWeaponDao.insert(rangedWeapon);
             //todo setup three handed weapons
@@ -5162,6 +5163,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Apathy", ConditionEnum.MADNESS.label());
             permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Extra Hand Augment", ConditionEnum.OTHER.label());
             mPermanentConditionDao.insert(permanentCondition);
 
             //US Marshall Traveler

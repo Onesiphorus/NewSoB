@@ -35,6 +35,9 @@ public class RangedWeapon implements Serializable {
     @ColumnInfo(name = "is_two_handed")
     private Boolean twoHanded = Boolean.FALSE;
     @NonNull
+    @ColumnInfo(name = "is_three_handed")
+    private Boolean threeHanded = Boolean.FALSE;
+    @NonNull
     @ColumnInfo(name = "cost")
     private Integer cost = 0;
     @NonNull
@@ -432,5 +435,14 @@ public class RangedWeapon implements Serializable {
 
     public void removeTrait(String trait) {
         this.traits.remove(trait);
+    }
+
+    @NonNull
+    public Boolean getThreeHanded() {
+        return threeHanded;
+    }
+
+    public void setThreeHanded(@NonNull Boolean threeHanded) {
+        this.threeHanded = threeHanded;
     }
 }

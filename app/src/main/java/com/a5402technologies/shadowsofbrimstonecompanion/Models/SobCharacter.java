@@ -196,15 +196,8 @@ public class SobCharacter implements Serializable {
     @ColumnInfo(name = "dark_stone_count")
     private Integer darkStoneCount = 0;
     @NonNull
-    @ColumnInfo(name = "injuries")
-    private ArrayList<PermanentCondition> injuries;
-    @NonNull
-    @ColumnInfo(name = "madness")
-    private ArrayList<PermanentCondition> madness;
-    @NonNull
-    @ColumnInfo(name = "mutations")
-    private ArrayList<PermanentCondition> mutations;
-    @NonNull
+    @ColumnInfo(name = "conditions")
+    private ArrayList<PermanentCondition> conditions;
     @ColumnInfo(name = "transport")
     private Transport transport;
 
@@ -220,6 +213,9 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "ranged_to_hit")
     private Integer rangedToHit;
+    @NonNull
+    @ColumnInfo(name = "third_hand")
+    private Boolean thirdHand = FALSE;
 
 
     public SobCharacter(@NonNull String characterName, CharacterClass characterClass) {
@@ -240,9 +236,7 @@ public class SobCharacter implements Serializable {
         modifiers = new ArrayList<>(0);
         traits = characterClass.getTraits();
         sideBag = new ArrayList<>(0);
-        injuries = new ArrayList<>(0);
-        madness = new ArrayList<>(0);
-        mutations = new ArrayList<>(0);
+        conditions = new ArrayList<>(0);
         transport = new Transport();
     }
 
@@ -889,29 +883,27 @@ public class SobCharacter implements Serializable {
                 spinningSlash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
         }
-        for (PermanentCondition permanentCondition : getInjuries()) {
+        Boolean hasAugmentThirdHand = FALSE;
+        Boolean hasMutationForAugmentThirdHand = FALSE;
+        for (PermanentCondition permanentCondition : getConditions()) {
             for (String string : permanentCondition.getModifiers()) {
                 findBonus(string);
             }
             for (String string : permanentCondition.getPenalties()) {
                 findPenalty(string);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.PREHENSILE_TAIL.label())) {
+                thirdHand = TRUE;
+            }
+            if (permanentCondition.getName().contains("Tentacle") || permanentCondition.getName().contains("Tail")) {
+                hasMutationForAugmentThirdHand = TRUE;
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT)) {
+                hasAugmentThirdHand = TRUE;
             }
         }
-        for (PermanentCondition permanentCondition : getMadness()) {
-            for (String string : permanentCondition.getModifiers()) {
-                findBonus(string);
-            }
-            for (String string : permanentCondition.getPenalties()) {
-                findPenalty(string);
-            }
-        }
-        for (PermanentCondition permanentCondition : getMutations()) {
-            for (String string : permanentCondition.getModifiers()) {
-                findBonus(string);
-            }
-            for (String string : permanentCondition.getPenalties()) {
-                findPenalty(string);
-            }
+        if (hasAugmentThirdHand.equals(TRUE) && hasMutationForAugmentThirdHand.equals(TRUE)) {
+            thirdHand = TRUE;
         }
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE))
@@ -1077,6 +1069,7 @@ public class SobCharacter implements Serializable {
         this.meleeToHit = getCharacterClass().getMeleeToHit();
         this.defense = getCharacterClass().getDefense();
         this.willpower = getCharacterClass().getWillpower();
+        this.thirdHand = FALSE;
     }
 
     public RangedWeapon getRightHand() {
@@ -1320,28 +1313,12 @@ public class SobCharacter implements Serializable {
         this.sideBag.remove(string);
     }
 
-    public void addMutation(PermanentCondition permanentCondition) {
-        this.mutations.add(permanentCondition);
+    public void addCondition(PermanentCondition permanentCondition) {
+        this.conditions.add(permanentCondition);
     }
 
-    public void removeMutation(PermanentCondition permanentCondition) {
-        this.mutations.remove(permanentCondition);
-    }
-
-    public void addInjury(PermanentCondition permanentCondition) {
-        this.injuries.add(permanentCondition);
-    }
-
-    public void removeInjury(PermanentCondition permanentCondition) {
-        this.injuries.remove(permanentCondition);
-    }
-
-    public void addMadness(PermanentCondition permanentCondition) {
-        this.madness.add(permanentCondition);
-    }
-
-    public void removeMadness(PermanentCondition permanentCondition) {
-        this.madness.remove(permanentCondition);
+    public void removeCondition(PermanentCondition permanentCondition) {
+        this.conditions.remove(permanentCondition);
     }
 
     @NonNull
@@ -1372,31 +1349,14 @@ public class SobCharacter implements Serializable {
     }
 
     @NonNull
-    public ArrayList<PermanentCondition> getInjuries() {
-        return injuries;
+    public ArrayList<PermanentCondition> getConditions() {
+        return conditions;
     }
 
-    public void setInjuries(@NonNull ArrayList<PermanentCondition> injuries) {
-        this.injuries = injuries;
+    public void setConditions(@NonNull ArrayList<PermanentCondition> conditions) {
+        this.conditions = conditions;
     }
 
-    @NonNull
-    public ArrayList<PermanentCondition> getMadness() {
-        return madness;
-    }
-
-    public void setMadness(@NonNull ArrayList<PermanentCondition> madness) {
-        this.madness = madness;
-    }
-
-    @NonNull
-    public ArrayList<PermanentCondition> getMutations() {
-        return mutations;
-    }
-
-    public void setMutations(@NonNull ArrayList<PermanentCondition> mutations) {
-        this.mutations = mutations;
-    }
 
     @NonNull
     public Transport getTransport() {
@@ -1441,6 +1401,15 @@ public class SobCharacter implements Serializable {
 
     public void setRangedToHit(@NonNull Integer rangedToHit) {
         this.rangedToHit = rangedToHit;
+    }
+
+    @NonNull
+    public Boolean getThirdHand() {
+        return thirdHand;
+    }
+
+    public void setThirdHand(@NonNull Boolean thirdHand) {
+        this.thirdHand = thirdHand;
     }
 }
 

@@ -329,4 +329,156 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tentacle/Tail"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/tail_ranged_weapon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/button_background"
+                    android:hint="empty"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Range"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tail_range"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Shots"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tail_shots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="To Hit(Crit)"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tail_to_hit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Damage"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tail_damage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="@string/NA"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
