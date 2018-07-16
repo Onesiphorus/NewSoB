@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Range;
+import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
@@ -686,6 +687,14 @@ public class SobCharacter implements Serializable {
                     || leftHand.getThreeHanded().equals(TRUE))) {
             unequipLeftHand();
         }
+        if (tailMelee.getThreeHanded().equals(TRUE)) {
+            if (null != tailRanged) {
+                unequipTailRanged();
+            }
+            if (null != tailMelee) {
+                unequipTailMelee();
+            }
+        }
     }
 
     public void equipLeftMelee(MeleeWeapon meleeWeapon) {
@@ -710,14 +719,32 @@ public class SobCharacter implements Serializable {
                     || rightHand.getThreeHanded().equals(TRUE))) {
             unequipRightHand();
         }
+        if (meleeWeapon.getThreeHanded().equals(TRUE)) {
+            if (null != tailRanged) {
+                unequipTailRanged();
+            }
+            if (null != tailMelee) {
+                unequipTailMelee();
+            }
+        }
     }
 
     public void equipTailRanged(RangedWeapon rangedWeapon) {
-        
+        if (null != tailRanged) {
+            unequipTailRanged();
+        }
+        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
+        tailRanged = rangedWeapon;
+        if(null != tailMelee) unequipTailMelee();
     }
 
     public void equipTailMelee(MeleeWeapon meleeWeapon) {
-
+        if (null != tailMelee) {
+            unequipTailMelee();
+        }
+        findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
+        tailMelee = meleeWeapon;
+        if (null != tailRanged) unequipTailRanged();
     }
 
     public void unequipRightHand() {
@@ -738,6 +765,15 @@ public class SobCharacter implements Serializable {
     public void unequipLeftMelee() {
         if (null != leftMelee) findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
         leftMelee = null;
+    }
+
+    public void unequipTailRanged() {
+        if (null != tailRanged) findRangedWeaponByName(tailRanged.getName()).setEquipped(FALSE);
+        tailRanged = null;
+    }
+    public void unequipTailMelee() {
+        if (null != tailMelee) findRangedWeaponByName(tailMelee.getName()).setEquipped(FALSE);
+        tailMelee = null;
     }
 
     public void equipRightHand(RangedWeapon rangedWeapon) {
@@ -763,7 +799,12 @@ public class SobCharacter implements Serializable {
             unequipLeftMelee();
         }
         if (rangedWeapon.getThreeHanded().equals(TRUE)) {
-            if (null != leftHand)
+            if (null != tailRanged) {
+                unequipTailRanged();
+            }
+            if (null != tailMelee) {
+                unequipTailMelee();
+            }
         }
     }
 
@@ -788,6 +829,14 @@ public class SobCharacter implements Serializable {
                     || leftHand.getThreeHanded().equals(TRUE)
                     || rightMelee.getThreeHanded().equals(TRUE))) {
             unequipRightMelee();
+        }
+        if (rangedWeapon.getThreeHanded().equals(TRUE)) {
+            if (null != tailRanged) {
+                unequipTailRanged();
+            }
+            if (null != tailMelee) {
+                unequipTailMelee();
+            }
         }
     }
 
@@ -928,10 +977,11 @@ public class SobCharacter implements Serializable {
             if (permanentCondition.getName().equals(RuleExceptionEnum.PREHENSILE_TAIL.label())) {
                 thirdHand = TRUE;
             }
-            if (permanentCondition.getName().contains("Tentacle") || permanentCondition.getName().contains("Tail")) {
+            if (permanentCondition.getName().contains("Tentacle")
+                    || permanentCondition.getName().toLowerCase().contains("Tail".toLowerCase())) {
                 hasMutationForAugmentThirdHand = TRUE;
             }
-            if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT)) {
+            if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label())) {
                 hasAugmentThirdHand = TRUE;
             }
         }
@@ -1443,5 +1493,11 @@ public class SobCharacter implements Serializable {
     public void setThirdHand(@NonNull Boolean thirdHand) {
         this.thirdHand = thirdHand;
     }
+
+    public void setTailMelee(MeleeWeapon tailMelee) {
+        this.tailMelee = tailMelee;
+    }
+
+
 }
 

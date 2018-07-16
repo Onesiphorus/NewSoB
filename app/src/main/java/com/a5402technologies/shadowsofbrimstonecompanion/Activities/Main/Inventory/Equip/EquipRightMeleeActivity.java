@@ -20,6 +20,9 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class EquipRightMeleeActivity extends AppCompatActivity {
 
     MeleeWeapon meleeWeapon;
@@ -33,7 +36,10 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
 
         ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
         for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
-            if (meleeWeapon.getEquipped().equals(Boolean.FALSE))
+            if (meleeWeapon.getEquipped().equals(Boolean.FALSE)
+                    && meleeWeapon.getFree().equals(Boolean.FALSE)
+                    && (meleeWeapon.getThreeHanded().equals(FALSE)
+                        || sobCharacter.getThirdHand().equals(TRUE)))
                 MeleeWeaponOptions.add(meleeWeapon);
         }
 

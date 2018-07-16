@@ -13,6 +13,8 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipLeftMeleeActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightHandRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipRightMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipTailMeleeActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipTailRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
@@ -25,6 +27,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class CombatViewActivity extends AppCompatActivity {
@@ -186,6 +189,10 @@ public class CombatViewActivity extends AppCompatActivity {
         leftMelee.setHint("empty");
         Button tailMelee = findViewById(R.id.btn_tail_melee);
         tailMelee.setHint("empty");
+        if(sobCharacter.getThirdHand().equals(FALSE)) {
+            tailMelee.setVisibility(View.INVISIBLE);
+            tailRanged.setVisibility(View.INVISIBLE);
+        }
         if (sobCharacter.getRightHand() != null) {
             rightRanged.setText(sobCharacter.getRightHand().getName());
             rightMelee.setHint(sobCharacter.getRightHand().getName());
@@ -347,7 +354,7 @@ public class CombatViewActivity extends AppCompatActivity {
         if (sobCharacter.getTailRanged() != null) {
             tailRanged = findViewById(R.id.tail_ranged_weapon);
             tailRanged.setText(sobCharacter.getTailRanged().getName());
-            tailMelee.setHint(sobCharacter.getTailMelee().getName());
+            tailMelee.setHint(sobCharacter.getTailRanged().getName());
             if (sobCharacter.getTailRanged().getTwoHanded().equals(TRUE)) {
                 if (rightMelee == null && rightRanged == null) {
                     rightRanged.setHint(sobCharacter.getTailRanged().getName());
@@ -472,8 +479,8 @@ public class CombatViewActivity extends AppCompatActivity {
             finish();
         });
         if (null != sobCharacter.getTailMelee()) {
-            rightMelee.setText(sobCharacter.getTailMelee().getName());
-            rightRanged.setHint(sobCharacter.getTailMelee().getName());
+            tailMelee.setText(sobCharacter.getTailMelee().getName());
+            tailRanged.setHint(sobCharacter.getTailMelee().getName());
             if (sobCharacter.getTailMelee().getTwoHanded().equals(TRUE)) {
                 if (sobCharacter.getLeftMelee() == null && sobCharacter.getLeftHand() == null) {
                     leftRanged.setHint(sobCharacter.getTailMelee().getName());
@@ -490,7 +497,7 @@ public class CombatViewActivity extends AppCompatActivity {
             }
         }
         tailMelee.setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, EquipTailMeleeAcivity.class);
+            Intent intent = new Intent(this, EquipTailMeleeActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

@@ -5164,7 +5164,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Apathy", ConditionEnum.MADNESS.label());
             permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Extra Hand Augment", ConditionEnum.OTHER.label());
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label(), ConditionEnum.OTHER.label());
             mPermanentConditionDao.insert(permanentCondition);
 
             //US Marshall Traveler

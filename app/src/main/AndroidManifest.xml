@@ -152,10 +152,24 @@
             android:name=".Activities.Main.Inventory.AddItems.ChooseSetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Menu.ChoosePersonalItem" />
-        <activity android:name=".Activities.Main.Conditions.ConditionTypeActivity" />
-        <activity android:name=".Activities.Main.Conditions.AddOrRemoveConditionActivity" />
-        <activity android:name=".Activities.Main.Conditions.ChooseAddRemoveActivity"></activity>
+        <activity android:name=".Activities.Menu.ChoosePersonalItem"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Conditions.ConditionTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.Main.Conditions.AddOrRemoveConditionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.Main.Conditions.ChooseAddRemoveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipTailMeleeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Main.Inventory.Equip.EquipTailRangedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

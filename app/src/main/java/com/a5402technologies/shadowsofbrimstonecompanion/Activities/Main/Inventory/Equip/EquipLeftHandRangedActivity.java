@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
@@ -35,7 +36,10 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE))
+            if (rangedWeapon.getEquipped().equals(FALSE)
+                    && rangedWeapon.getFree().equals(FALSE)
+                    && (rangedWeapon.getThreeHanded().equals(FALSE)
+                        || sobCharacter.getThirdHand().equals(TRUE)))
                 RangedWeaponOptions.add(rangedWeapon);
         }
 

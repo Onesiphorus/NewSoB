@@ -9,13 +9,13 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class ChooseAddRemoveActivity extends AppCompatActivity {
-
+    SobCharacter sobCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_add_remove);
 
-        SobCharacter sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         String type = getIntent().getStringExtra("condition_type");
 
         findViewById(R.id.btn_add).setOnClickListener((View view) -> {
@@ -36,5 +36,12 @@ public class ChooseAddRemoveActivity extends AppCompatActivity {
             finish();
         });
 
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ConditionTypeActivity.class);
+        intent.putExtra("serializable_object", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 }

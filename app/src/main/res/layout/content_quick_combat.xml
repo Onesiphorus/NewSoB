@@ -218,4 +218,67 @@
             android:id="@+id/qc_r2_damgage"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/range"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:hint="5"
+            android:id="@+id/qc_tail_range"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/shots"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:hint="2"
+            android:id="@+id/qc_tail_shots"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/hit"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="2"
+            android:hint="d6: 4+(6+)"
+            android:id="@+id/qc_tail_tohit"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:text="@string/damage"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:hint="d6"
+            android:id="@+id/qc_tail_damgage"/>
+
+    </LinearLayout>
 </LinearLayout>

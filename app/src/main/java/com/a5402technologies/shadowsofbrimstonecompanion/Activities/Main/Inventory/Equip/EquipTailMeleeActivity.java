@@ -2,8 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
-import com.a5402technologies.shadowsofbrimstonecompanion.Models.RangedWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
-public class EquipRightHandRangedActivity extends AppCompatActivity {
-    RangedWeapon rangedWeapon;
+public class EquipTailMeleeActivity extends AppCompatActivity {
+
+    MeleeWeapon meleeWeapon;
     SobCharacter sobCharacter;
 
     @Override
@@ -33,27 +33,28 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_equip);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
-        ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
-        for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)
-                    && (rangedWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE)))
-                RangedWeaponOptions.add(rangedWeapon);
+        ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
+        for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
+            if (meleeWeapon.getEquipped().equals(FALSE
+                    && meleeWeapon.getTwoHanded().equals(FALSE)
+                    && meleeWeapon.getThreeHanded().equals(FALSE)))
+                MeleeWeaponOptions.add(meleeWeapon);
         }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final RangedWeaponListAdapter adapter = new RangedWeaponListAdapter(this);
+        final MeleeWeaponListAdapter adapter = new MeleeWeaponListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.setRangedWeapon(RangedWeaponOptions);
+        adapter.setMeleeWeapon(MeleeWeaponOptions);
+
         Button btn = findViewById(R.id.btn_unequip);
-        String text = null != sobCharacter.getRightHand() ? "Unequip " + sobCharacter.getRightHand().getName() : "Empty";
+        String text = null != sobCharacter.getTailMelee() ? "Unequip " + sobCharacter.getTailMelee().getName() : "Empty";
         btn.setText(text);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
-            if (null != rangedWeapon) {
-                sobCharacter.equipRightHand(rangedWeapon);
+            if (null != meleeWeapon) {
+                sobCharacter.equipTailMelee(meleeWeapon);
 
                 Intent intent = new Intent(this, CombatViewActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -65,8 +66,8 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, sobCharacter.getRightHand().getName() + " removed.", Toast.LENGTH_LONG).show();
-            sobCharacter.unequipRightHand();
+            Toast.makeText(this, sobCharacter.getTailMelee().getName() + " removed.", Toast.LENGTH_LONG).show();
+            sobCharacter.unequipTailMelee();
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
@@ -86,57 +87,58 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         finish();
     }
 
-    class RangedWeaponListAdapter extends RecyclerView.Adapter<RangedWeaponListAdapter.RangedWeaponViewHolder> {
+    class MeleeWeaponListAdapter extends RecyclerView.Adapter<MeleeWeaponListAdapter.MeleeWeaponViewHolder> {
 
         private final LayoutInflater mInflater;
-        private List<RangedWeapon> mRangedWeapon;
-        public RangedWeaponListAdapter(Context context) {
+        private List<MeleeWeapon> mMeleeWeapon;
+
+        public MeleeWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
 
         @Override
-        public RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public MeleeWeaponListAdapter.MeleeWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new RangedWeaponViewHolder(itemView);
+            return new MeleeWeaponListAdapter.MeleeWeaponViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(RangedWeaponViewHolder holder, int position) {
-            if (null != mRangedWeapon) {
-                RangedWeapon current = mRangedWeapon.get(position);
-                holder.rangedWeaponItemView.setText(current.getName());
+        public void onBindViewHolder(MeleeWeaponListAdapter.MeleeWeaponViewHolder holder, int position) {
+            if (null != mMeleeWeapon) {
+                MeleeWeapon current = mMeleeWeapon.get(position);
+                holder.meleeWeaponItemView.setText(current.getName());
             } else {
-                holder.rangedWeaponItemView.setText("No RangedWeapon");
+                holder.meleeWeaponItemView.setText("No MeleeWeapon");
             }
 
-            holder.rangedWeaponItemView.setOnClickListener(new View.OnClickListener() {
+            holder.meleeWeaponItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    rangedWeapon = mRangedWeapon.get(position);
+                    meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_equip);
-                    String text = "Equip " + rangedWeapon.getName();
+                    String text = "Equip " + meleeWeapon.getName();
                     btn.setText(text);
                 }
             });
         }
 
-        public void setRangedWeapon(List<RangedWeapon> rangedWeapon) {
-            mRangedWeapon = rangedWeapon;
+        public void setMeleeWeapon(List<MeleeWeapon> meleeWeapon) {
+            mMeleeWeapon = meleeWeapon;
             notifyDataSetChanged();
         }
 
         @Override
         public int getItemCount() {
-            if (null != mRangedWeapon) return mRangedWeapon.size();
+            if (null != mMeleeWeapon) return mMeleeWeapon.size();
             else return 0;
         }
 
-        class RangedWeaponViewHolder extends RecyclerView.ViewHolder {
-            private final Button rangedWeaponItemView;
+        class MeleeWeaponViewHolder extends RecyclerView.ViewHolder {
+            private final Button meleeWeaponItemView;
 
-            private RangedWeaponViewHolder(View itemView) {
+            private MeleeWeaponViewHolder(View itemView) {
                 super(itemView);
-                rangedWeaponItemView = itemView.findViewById(R.id.textView);
+                meleeWeaponItemView = itemView.findViewById(R.id.textView);
             }
         }
     }

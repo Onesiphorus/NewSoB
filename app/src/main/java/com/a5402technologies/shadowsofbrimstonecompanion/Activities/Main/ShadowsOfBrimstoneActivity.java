@@ -289,6 +289,61 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv = findViewById(R.id.qc_damage);
         text = calculateMeleeDamageDie();
         tv.setText(text);
+
+        if (sobCharacter.getTailRanged() != null) {
+            tv = findViewById(R.id.qc_tail_range);
+            tv.setText(String.format(sobCharacter.getTailRanged().getRange().toString()));
+            tv = findViewById(R.id.qc_tail_shots);
+            Integer shots = (sobCharacter.getTailRanged().getName().equals("Trusty Pistol"))
+                    ? sobCharacter.getCharacterClass().getAgility() + sobCharacter.getAgilityBonus()
+                    : sobCharacter.getTailRanged().getName().equals(RuleExceptionEnum.SPIRIT_BOW.label())
+                    ? sobCharacter.getCharacterClass().getSpirit() + sobCharacter.getSpiritBonus()
+                    : sobCharacter.getTailRanged().getShots();
+            for (String s : sobCharacter.getTailRanged().getTraits()) {
+                if (s.equals(TraitsEnum.PISTOL.label())) {
+                    for (Clothing clothing : sobCharacter.getClothing()) {
+                        if (clothing.getName().equals(RuleExceptionEnum.DUELISTS_GUNBELT.label())) {
+                            if (null != sobCharacter.getRightHand() || null != sobCharacter.getLeftHand()) {
+                                for (String string : sobCharacter.getRightHand().getTraits()) {
+                                    if (string.equals(TraitsEnum.PISTOL.label())) {
+                                        shots++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.BOW.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
+                }
+            }
+            for (Attachment attachment : sobCharacter.getTailRanged().getAttachments()) {
+                if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
+                    shots++;
+                }
+            }
+            tv.setText(String.format(shots.toString()));
+            tv = findViewById(R.id.qc_tail_damgage);
+            String text = "d" + sobCharacter.getTailRanged().getDamageDie().toString();
+            if (sobCharacter.getTailRanged().getDamageBonus() > 0) {
+                text += "+" + sobCharacter.getTailRanged().getDamageBonus().toString();
+            }
+            tv.setText(text);
+            tv = findViewById(R.id.qc_tail_tohit);
+            text = "d"
+                    + sobCharacter.getTailRanged().getToHitDie().toString()
+                    + " : "
+                    + sobCharacter.getCharacterClass().getRangedToHit().toString()
+                    + "+ ("
+                    + sobCharacter.getTailRanged().getCritChance()
+                    + "+)";
+            tv.setText(text);
+        }
     }
     private String calculateMeleeHitDie() {
         return "d"

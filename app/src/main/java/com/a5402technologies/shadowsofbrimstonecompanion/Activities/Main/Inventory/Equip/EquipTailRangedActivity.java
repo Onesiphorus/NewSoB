@@ -2,8 +2,8 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invent
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
-public class EquipRightHandRangedActivity extends AppCompatActivity {
+public class EquipTailRangedActivity extends AppCompatActivity {
+
     RangedWeapon rangedWeapon;
     SobCharacter sobCharacter;
 
@@ -35,9 +35,9 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)
-                    && (rangedWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE)))
+            if (rangedWeapon.getEquipped().equals(FALSE
+                    && rangedWeapon.getTwoHanded().equals(FALSE)
+                    && rangedWeapon.getThreeHanded().equals(FALSE)))
                 RangedWeaponOptions.add(rangedWeapon);
         }
 
@@ -47,13 +47,14 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter.setRangedWeapon(RangedWeaponOptions);
+
         Button btn = findViewById(R.id.btn_unequip);
-        String text = null != sobCharacter.getRightHand() ? "Unequip " + sobCharacter.getRightHand().getName() : "Empty";
+        String text = null != sobCharacter.getTailRanged() ? "Unequip " + sobCharacter.getTailRanged().getName() : "Empty";
         btn.setText(text);
 
         findViewById(R.id.btn_equip).setOnClickListener((View view) -> {
             if (null != rangedWeapon) {
-                sobCharacter.equipRightHand(rangedWeapon);
+                sobCharacter.equipTailRanged(rangedWeapon);
 
                 Intent intent = new Intent(this, CombatViewActivity.class);
                 intent.putExtra("serializable_object", sobCharacter);
@@ -65,8 +66,8 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, sobCharacter.getRightHand().getName() + " removed.", Toast.LENGTH_LONG).show();
-            sobCharacter.unequipRightHand();
+            Toast.makeText(this, sobCharacter.getTailRanged().getName() + " removed.", Toast.LENGTH_LONG).show();
+            sobCharacter.unequipTailRanged();
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
@@ -90,18 +91,19 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
+
         public RangedWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
 
         @Override
-        public RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RangedWeaponListAdapter.RangedWeaponViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-            return new RangedWeaponViewHolder(itemView);
+            return new RangedWeaponListAdapter.RangedWeaponViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(RangedWeaponViewHolder holder, int position) {
+        public void onBindViewHolder(RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
             if (null != mRangedWeapon) {
                 RangedWeapon current = mRangedWeapon.get(position);
                 holder.rangedWeaponItemView.setText(current.getName());
