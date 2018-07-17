@@ -58,6 +58,7 @@ public class ExamineActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
+        tv = findViewById(R.id.sob_grit);
         Integer value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
         tv.setText(value.toString());
 

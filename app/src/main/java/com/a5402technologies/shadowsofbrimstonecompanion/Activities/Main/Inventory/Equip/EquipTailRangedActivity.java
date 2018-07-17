@@ -35,9 +35,9 @@ public class EquipTailRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(FALSE
+            if (rangedWeapon.getEquipped().equals(FALSE)
                     && rangedWeapon.getTwoHanded().equals(FALSE)
-                    && rangedWeapon.getThreeHanded().equals(FALSE)))
+                    && rangedWeapon.getThreeHanded().equals(FALSE))
                 RangedWeaponOptions.add(rangedWeapon);
         }
 

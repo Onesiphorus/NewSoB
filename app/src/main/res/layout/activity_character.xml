@@ -4,10 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".Activities.Menu.CharacterActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
 
-    <include layout="@layout/content_character" />
+        <TextView
+            android:id="@+id/pick_a_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:gravity="center"
+            android:paddingTop="32dp"
+            android:text="Pick a Character"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp" />
+
+        <include layout="@layout/content_character" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

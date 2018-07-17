@@ -11,5 +11,4 @@
 
     <include layout="@layout/content_accept_cancel" />
 
-
 </android.support.design.widget.CoordinatorLayout>

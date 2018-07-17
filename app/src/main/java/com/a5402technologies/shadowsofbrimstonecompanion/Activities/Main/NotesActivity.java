@@ -2,7 +2,7 @@ package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -23,12 +22,14 @@ public class NotesActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
     ArrayList<String> notes = new ArrayList<>(0);
     String note;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+        mContext = this;
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final StringListAdapter adapter = new StringListAdapter(this);
@@ -41,13 +42,28 @@ public class NotesActivity extends AppCompatActivity {
         }
         adapter.setString(notes);
 
-        findViewById(R.id.btn_add).setOnClickListener((View view) -> {
-
+        findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
         });
 
-        findViewById(R.id.btn_remove).setOnClickListener((View view) -> {
+        findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
             onBackPressed();
         });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, CreateNoteActivity.class);
+            intent.putExtra("serializable_extra", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
+
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        intent.putExtra("serializable_extra", sobCharacter);
+        startActivity(intent);
+        finish();
     }
 
     class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
@@ -73,6 +89,15 @@ public class NotesActivity extends AppCompatActivity {
             } else {
                 holder.stringItemView.setText("No String");
             }
+
+            holder.stringItemView.setOnClickListener((View view) -> {
+                note = mString.get(position);
+                Intent intent = new Intent(mContext, CreateNoteActivity.class);
+                intent.putExtra("serializable_object", sobCharacter);
+                intent.putExtra("note", note);
+                startActivity(intent);
+                finish();
+            });
         }
 
         public void setString(List<String> string) {

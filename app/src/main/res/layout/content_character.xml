@@ -7,24 +7,10 @@
     android:layout_gravity="center"
     android:background="@android:color/background_dark"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu.CharacterActivity"
+    tools:context="com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.NotesActivity"
     tools:showIn="@layout/activity_character">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/pick_a_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:gravity="center"
-            android:paddingTop="32dp"
-            android:text="Pick a Character"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -32,7 +18,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             tools:listitem="@layout/recyclerview_item" />
-    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -176,7 +176,8 @@
             android:name=".Activities.Main.Inventory.Equip.EquipTailRangedActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Main.NotesActivity"></activity>
+        <activity android:name=".Activities.Main.NotesActivity" />
+        <activity android:name=".Activities.Main.CreateNoteActivity"></activity>
     </application>
 
 </manifest>

@@ -35,9 +35,9 @@ public class EquipTailMeleeActivity extends AppCompatActivity {
 
         ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
         for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
-            if (meleeWeapon.getEquipped().equals(FALSE
+            if (meleeWeapon.getEquipped().equals(FALSE)
                     && meleeWeapon.getTwoHanded().equals(FALSE)
-                    && meleeWeapon.getThreeHanded().equals(FALSE)))
+                    && meleeWeapon.getThreeHanded().equals(FALSE))
                 MeleeWeaponOptions.add(meleeWeapon);
         }
 

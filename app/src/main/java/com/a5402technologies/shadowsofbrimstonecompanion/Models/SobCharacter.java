@@ -1016,6 +1016,14 @@ public class SobCharacter implements Serializable {
             }
             if (shieldBash.equals(TRUE) && shieldEquipped.equals(TRUE)) combatBonus++;
         }
+        if(thirdHand.equals(FALSE)) {
+            if (null != rightHand && rightHand.getThreeHanded().equals(TRUE)) unequipRightHand();
+            if (null != leftHand && leftHand.getThreeHanded().equals(TRUE)) unequipLeftHand();
+            if (null != rightMelee && rightMelee.getThreeHanded().equals(TRUE)) unequipRightMelee();
+            if (null != leftMelee && leftMelee.getThreeHanded().equals(TRUE)) unequipLeftMelee();
+            if (null != tailRanged) unequipTailRanged();
+            if (null != tailMelee) unequipTailMelee();
+        }
     }
 
     private void setRanged(RangedWeapon rangedWeapon) {
