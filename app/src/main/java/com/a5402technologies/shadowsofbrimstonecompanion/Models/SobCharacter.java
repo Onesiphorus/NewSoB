@@ -200,6 +200,9 @@ public class SobCharacter implements Serializable {
     @NonNull
     @ColumnInfo(name = "conditions")
     private ArrayList<PermanentCondition> conditions;
+    @NonNull
+    @ColumnInfo(name = "notes")
+    private ArrayList<String> notes;
     @ColumnInfo(name = "transport")
     private Transport transport;
 
@@ -240,6 +243,7 @@ public class SobCharacter implements Serializable {
         sideBag = new ArrayList<>(0);
         conditions = new ArrayList<>(0);
         transport = new Transport();
+        notes = new ArrayList<>(0);
     }
 
     @NonNull
@@ -978,7 +982,7 @@ public class SobCharacter implements Serializable {
                 thirdHand = TRUE;
             }
             if (permanentCondition.getName().contains("Tentacle")
-                    || permanentCondition.getName().toLowerCase().contains("Tail".toLowerCase())) {
+                    || permanentCondition.getName().contains("Tail")) {
                 hasMutationForAugmentThirdHand = TRUE;
             }
             if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label())) {
@@ -1498,6 +1502,21 @@ public class SobCharacter implements Serializable {
         this.tailMelee = tailMelee;
     }
 
+    @NonNull
+    public ArrayList<String> getNotes() {
+        return notes;
+    }
 
+    public void setNotes(@NonNull ArrayList<String> notes) {
+        this.notes = notes;
+    }
+
+    public void addNote(String string) {
+        this.notes.add(string);
+    }
+
+    public void removeNote(String string) {
+        this.notes.remove(string);
+    }
 }
 

@@ -58,6 +58,8 @@ public class ExamineActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
+        Integer value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
+        tv.setText(value.toString());
 
 
         if (type.equals(GearTypeEnum.GEAR.label())) {

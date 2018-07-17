@@ -36,6 +36,8 @@ public class VisitShopActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
+        Integer value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
+        tv.setText(value.toString());
 
         findViewById(R.id.btn_gear).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ShopBuyActivity.class);

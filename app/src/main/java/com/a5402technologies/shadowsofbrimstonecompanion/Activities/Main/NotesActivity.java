@@ -1,0 +1,98 @@
+package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main;
+
+import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
+import com.a5402technologies.shadowsofbrimstonecompanion.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class NotesActivity extends AppCompatActivity {
+    SobCharacter sobCharacter;
+    ArrayList<String> notes = new ArrayList<>(0);
+    String note;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notes);
+
+        sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final StringListAdapter adapter = new StringListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        for (String string : sobCharacter.getNotes()) {
+            notes.add(string);
+        }
+        adapter.setString(notes);
+
+        findViewById(R.id.btn_add).setOnClickListener((View view) -> {
+
+        });
+
+        findViewById(R.id.btn_remove).setOnClickListener((View view) -> {
+            onBackPressed();
+        });
+    }
+
+    class StringListAdapter extends RecyclerView.Adapter<StringListAdapter.StringViewHolder> {
+
+        private final LayoutInflater mInflater;
+        private List<String> mString;
+
+        public StringListAdapter(Context context) {
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public StringListAdapter.StringViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+            return new StringListAdapter.StringViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(StringListAdapter.StringViewHolder holder, int position) {
+            if (null != mString) {
+                String current = mString.get(position);
+                holder.stringItemView.setText(current);
+            } else {
+                holder.stringItemView.setText("No String");
+            }
+        }
+
+        public void setString(List<String> string) {
+            mString = string;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            if (null != mString) return mString.size();
+            else return 0;
+        }
+
+        class StringViewHolder extends RecyclerView.ViewHolder {
+            private final Button stringItemView;
+
+            private StringViewHolder(View itemView) {
+                super(itemView);
+                stringItemView = itemView.findViewById(R.id.textView);
+            }
+        }
+    }
+}

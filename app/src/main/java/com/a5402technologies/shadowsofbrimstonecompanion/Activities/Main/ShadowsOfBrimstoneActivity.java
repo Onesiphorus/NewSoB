@@ -114,6 +114,12 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        findViewById(R.id.btn_notes).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, NotesActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
     }
 
     protected void setQuickClothes() {
@@ -460,6 +466,9 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.sob_level);
         tv.setText(String.format(sobCharacter.getLevel().toString()));
+        tv = findViewById(R.id.sob_grit);
+        value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
+        tv.setText(value.toString());
 
     }
     private void setHealthSanityStats() {
