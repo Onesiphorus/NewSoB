@@ -52,16 +52,18 @@ public class NotesActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CreateNoteActivity.class);
-            intent.putExtra("serializable_extra", sobCharacter);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
 
     }
 
+    @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-        intent.putExtra("serializable_extra", sobCharacter);
+        intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();
     }
