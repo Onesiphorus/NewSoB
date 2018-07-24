@@ -45,7 +45,7 @@ public class SideBagActivity extends AppCompatActivity {
         adapter.setString(StringOptions);
 
         Button btn = findViewById(R.id.btn_unequip);
-        btn.setText("Destroy");
+        btn.setText("Store in Transport");
         btn = findViewById(R.id.btn_equip);
         btn.setText("Use");
 
@@ -71,8 +71,9 @@ public class SideBagActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, string + " removed.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, string + " moved.", Toast.LENGTH_LONG).show();
             sobCharacter.removeFromSideBag(string);
+            sobCharacter.getTransport().getSideBagItems().add(string);
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);

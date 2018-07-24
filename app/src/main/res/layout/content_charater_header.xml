@@ -11,6 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -32,9 +37,10 @@
                 android:layout_height="wrap_content"
                 android:hint="0"
                 android:textAlignment="center"
+                android:textStyle="italic|bold"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="18sp" />
+                android:textSize="32sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -89,10 +95,16 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="18sp" />
+                android:textStyle="bold|italic"
+                android:textSize="28sp" />
         </LinearLayout>
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
 
     </LinearLayout>
+
 
 
     <TextView
@@ -102,5 +114,6 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="11sp" />
+
 </LinearLayout>
 

@@ -162,7 +162,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         else tv.setHintTextColor(RED);
         tv.setHint(text);
         tv = findViewById(R.id.quick_corruption);
-        text = "Corruption: " + sobCharacter.getCurrentCorruption() + "/" + sobCharacter.getMaxCorruption();
+        text = sobCharacter.getCurrentCorruption() + "/" + sobCharacter.getMaxCorruption();
         if (sobCharacter.getMaxCorruption() >= sobCharacter.getCurrentCorruption())
             tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);

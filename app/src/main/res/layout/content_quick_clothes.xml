@@ -14,10 +14,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/quick_hat"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -27,7 +32,8 @@
 
         <TextView
             android:id="@+id/quick_face"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -37,7 +43,8 @@
 
         <TextView
             android:id="@+id/quick_shoulders"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -47,7 +54,8 @@
 
         <TextView
             android:id="@+id/quick_torso"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -57,7 +65,8 @@
 
         <TextView
             android:id="@+id/quick_gloves"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -67,13 +76,18 @@
 
         <TextView
             android:id="@+id/quick_weight"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
             android:hint="@string/weight"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorAccent" />
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
 
     </LinearLayout>
 
@@ -82,10 +96,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/quick_belt"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -95,7 +114,8 @@
 
         <TextView
             android:id="@+id/quick_pants"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -105,7 +125,8 @@
 
         <TextView
             android:id="@+id/quick_boots"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -115,7 +136,8 @@
 
         <TextView
             android:id="@+id/quick_coat"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
@@ -126,13 +148,18 @@
 
         <TextView
             android:id="@+id/quick_side_bag"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@android:color/background_dark"
             android:hint="@string/side_bag"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorAccent" />
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 
 
