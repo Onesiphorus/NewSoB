@@ -691,7 +691,7 @@ public class SobCharacter implements Serializable {
                     || leftHand.getThreeHanded().equals(TRUE))) {
             unequipLeftHand();
         }
-        if (tailMelee.getThreeHanded().equals(TRUE)) {
+        if (meleeWeapon.getThreeHanded().equals(TRUE)) {
             if (null != tailRanged) {
                 unequipTailRanged();
             }

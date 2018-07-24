@@ -112,6 +112,21 @@
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="12sp" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+        <TextView
+            android:id="@+id/quick_corruption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"
+            android:hint="@string/corruption"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorAccent" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"

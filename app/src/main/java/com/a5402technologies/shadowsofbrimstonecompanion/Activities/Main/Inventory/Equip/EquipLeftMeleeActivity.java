@@ -36,10 +36,10 @@ public class EquipLeftMeleeActivity extends AppCompatActivity {
 
         ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
         for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
-            if (meleeWeapon.getEquipped().equals(Boolean.FALSE
+            if (meleeWeapon.getEquipped().equals(Boolean.FALSE)
                     && meleeWeapon.getFree().equals(Boolean.FALSE)
                     && (meleeWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE))))
+                        || sobCharacter.getThirdHand().equals(TRUE)))
                 MeleeWeaponOptions.add(meleeWeapon);
         }
 

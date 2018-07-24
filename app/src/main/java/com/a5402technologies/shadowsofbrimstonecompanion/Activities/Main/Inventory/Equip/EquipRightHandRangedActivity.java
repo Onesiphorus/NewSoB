@@ -35,7 +35,8 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         ArrayList<RangedWeapon> RangedWeaponOptions = new ArrayList<>(0);
         for (RangedWeapon rangedWeapon : sobCharacter.getRangedWeapons()) {
-            if (rangedWeapon.getEquipped().equals(FALSE) && rangedWeapon.getFree().equals(FALSE)
+            if (rangedWeapon.getEquipped().equals(FALSE)
+                    && rangedWeapon.getFree().equals(FALSE)
                     && (rangedWeapon.getThreeHanded().equals(FALSE)
                         || sobCharacter.getThirdHand().equals(TRUE)))
                 RangedWeaponOptions.add(rangedWeapon);
