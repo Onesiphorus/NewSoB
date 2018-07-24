@@ -28,11 +28,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@drawable/realheart"
-            android:textStyle="bold"
+            android:background="@drawable/glowheart_65"
             android:textSize="18sp"
             android:text="0"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/holo_green_light" />
 
         <Button
             android:id="@+id/addHealth"
@@ -62,10 +61,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@drawable/brain"
+            android:background="@drawable/electric_brain_85p"
             android:textSize="18sp"
             android:text="0"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <Button
             android:id="@+id/addSanity"
