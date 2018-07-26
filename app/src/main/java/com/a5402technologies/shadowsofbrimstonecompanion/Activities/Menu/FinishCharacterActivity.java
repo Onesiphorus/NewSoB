@@ -1,18 +1,13 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Adapters.StringListAdapter;
@@ -88,38 +83,39 @@ public class FinishCharacterActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
 
-                mCharacterViewModel.insert(sobCharacter);
-                Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
-                for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
-                    clothing.setStarting(TRUE);
-                    clothing.setSell(0);
-                    sobCharacter.addClothing(clothing);
-                }
-                for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
-                    rangedWeapon.setStarting(TRUE);
-                    rangedWeapon.setSell(0);
-                    sobCharacter.addRangedWeapon(rangedWeapon);
-                }
-                for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
-                    meleeWeapon.setStarting(TRUE);
-                    meleeWeapon.setSell(0);
-                    sobCharacter.addMeleeWeapon(meleeWeapon);
-                }
-                for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
-                    gearBase.setStarting(TRUE);
-                    gearBase.setSell(0);
-                    sobCharacter.addGear(gearBase);
-                }
-                sobCharacter.setTraits(sobCharacter.getCharacterClass().getTraits());
-                mCharacterViewModel.update(sobCharacter);
-                sobCharacter.setBonuses();
-                intent.putExtra("serializable_object", sobCharacter);
-                startActivity(intent);
-                finish();
-           
+            mCharacterViewModel.insert(sobCharacter);
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            for (Clothing clothing : sobCharacter.getCharacterClass().getStartingClothing()) {
+                clothing.setStarting(TRUE);
+                clothing.setSell(0);
+                sobCharacter.addClothing(clothing);
+            }
+            for (RangedWeapon rangedWeapon : sobCharacter.getCharacterClass().getStartingRanged()) {
+                rangedWeapon.setStarting(TRUE);
+                rangedWeapon.setSell(0);
+                sobCharacter.addRangedWeapon(rangedWeapon);
+            }
+            for (MeleeWeapon meleeWeapon : sobCharacter.getCharacterClass().getStartingMelee()) {
+                meleeWeapon.setStarting(TRUE);
+                meleeWeapon.setSell(0);
+                sobCharacter.addMeleeWeapon(meleeWeapon);
+            }
+            for (GearBase gearBase : sobCharacter.getCharacterClass().getStartingGear()) {
+                gearBase.setStarting(TRUE);
+                gearBase.setSell(0);
+                sobCharacter.addGear(gearBase);
+            }
+            sobCharacter.setTraits(sobCharacter.getCharacterClass().getTraits());
+            mCharacterViewModel.update(sobCharacter);
+            sobCharacter.setBonuses();
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+
 
         });
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

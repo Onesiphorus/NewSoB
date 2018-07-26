@@ -26,7 +26,7 @@
 
         <include layout="@layout/content_character" />
 
-        <include layout="@layout/content_accept_cancel"/>
+        <include layout="@layout/content_accept_cancel" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

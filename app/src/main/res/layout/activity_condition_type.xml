@@ -6,6 +6,6 @@
     android:background="@android:color/background_dark"
     tools:context=".Activities.Main.Conditions.ConditionTypeActivity">
 
-    <include layout="@layout/content_condition_types"/>
+    <include layout="@layout/content_condition_types" />
 
 </android.support.constraint.ConstraintLayout>

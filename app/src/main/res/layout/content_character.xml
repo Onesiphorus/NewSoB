@@ -11,13 +11,12 @@
     tools:showIn="@layout/activity_character">
 
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            tools:listitem="@layout/recyclerview_item" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        tools:listitem="@layout/recyclerview_item" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -39,7 +39,7 @@ public class EquipLeftHandRangedActivity extends AppCompatActivity {
             if (rangedWeapon.getEquipped().equals(FALSE)
                     && rangedWeapon.getFree().equals(FALSE)
                     && (rangedWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE)))
+                    || sobCharacter.getThirdHand().equals(TRUE)))
                 RangedWeaponOptions.add(rangedWeapon);
         }
 

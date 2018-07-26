@@ -37,17 +37,19 @@
                 android:layout_height="wrap_content"
                 android:hint="0"
                 android:textAlignment="center"
-                android:textStyle="italic|bold"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:textStyle="italic|bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:keepScreenOn="true"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/sob_character_name"
                 android:layout_width="match_parent"
@@ -71,6 +73,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,16 +98,16 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@android:color/darker_gray"
-                android:textStyle="bold|italic"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
 
     </LinearLayout>
-
 
 
     <TextView

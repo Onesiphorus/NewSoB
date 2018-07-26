@@ -4,9 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +30,7 @@ public class AddOrRemoveConditionActivity extends AppCompatActivity {
     PermanentConditionViewModel mPermanentConditionViewModel;
     PermanentCondition permanentCondition;
     String action;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class AddOrRemoveConditionActivity extends AppCompatActivity {
         final PermanentConditionListAdapter adapter = new PermanentConditionListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        if(action.equals("add")) {
+        if (action.equals("add")) {
             mPermanentConditionViewModel = ViewModelProviders.of(this).get(PermanentConditionViewModel.class);
             mPermanentConditionViewModel.getAllPermanentCondition().observe(this, new Observer<List<PermanentCondition>>() {
                 @Override
@@ -60,8 +61,8 @@ public class AddOrRemoveConditionActivity extends AppCompatActivity {
             });
         } else if (action.equals("remove")) {
             ArrayList<PermanentCondition> permanentConditions = new ArrayList<>(0);
-            for(PermanentCondition p : sobCharacter.getConditions()) {
-                if(p.getType().equals(conditionType)) {
+            for (PermanentCondition p : sobCharacter.getConditions()) {
+                if (p.getType().equals(conditionType)) {
                     permanentConditions.add(p);
                 }
             }
@@ -127,8 +128,9 @@ public class AddOrRemoveConditionActivity extends AppCompatActivity {
                     permanentCondition = mPermanentCondition.get(position);
                     Button btn = findViewById(R.id.btn_accept);
                     String text = "Choose";
-                    if(action.equals("add")) text = "Gain " + permanentCondition.getName();
-                    else if (action.equals("remove")) text = "Remove " + permanentCondition.getName();
+                    if (action.equals("add")) text = "Gain " + permanentCondition.getName();
+                    else if (action.equals("remove"))
+                        text = "Remove " + permanentCondition.getName();
                     btn.setText(text);
                 }
             });

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Activities.Main.Conditions.AddOrRemoveConditionActivity">
 
-    <include layout="@layout/content_choose_item"/>
+    <include layout="@layout/content_choose_item" />
 
     <include layout="@layout/content_accept_cancel" />
 

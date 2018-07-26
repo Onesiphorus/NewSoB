@@ -39,7 +39,7 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
             if (meleeWeapon.getEquipped().equals(Boolean.FALSE)
                     && meleeWeapon.getFree().equals(Boolean.FALSE)
                     && (meleeWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE)))
+                    || sobCharacter.getThirdHand().equals(TRUE)))
                 MeleeWeaponOptions.add(meleeWeapon);
         }
 

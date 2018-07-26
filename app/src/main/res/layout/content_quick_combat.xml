@@ -17,9 +17,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
         android:layout_gravity="center"
+        android:background="@drawable/button_background"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -31,19 +32,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/background_dark"
-            android:text="@string/equip"
             android:paddingEnd="24dp"
+            android:text="@string/equip"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tail_weapon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/background_dark"
-            android:text="@string/equip"
             android:paddingEnd="24dp"
+            android:text="@string/equip"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
@@ -52,282 +54,325 @@
             android:id="@+id/left_hand_weapon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/background_dark"
-            android:text="@string/equip"
             android:paddingStart="24dp"
-            android:layout_gravity="center"
+            android:text="@string/equip"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/combat_view"/>
+            android:text="@string/combat_view"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_combat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="2"
-            android:id="@+id/qc_combat"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/hit"/>
+            android:text="@string/hit"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_tohit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="2"
             android:hint="d6: 4+(6+)"
-            android:id="@+id/qc_tohit"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/damage"/>
+            android:text="@string/damage"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_damage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="d6"
-            android:id="@+id/qc_damage"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/range"/>
+            android:text="@string/range"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r1_range"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="5"
-            android:id="@+id/qc_r1_range"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/shots"/>
+            android:text="@string/shots"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r1_shots"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="2"
-            android:id="@+id/qc_r1_shots"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/hit"/>
+            android:text="@string/hit"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r1_tohit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="2"
             android:hint="d6: 4+(6+)"
-            android:id="@+id/qc_r1_tohit"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/damage"/>
+            android:text="@string/damage"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r1_damgage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="d6"
-            android:id="@+id/qc_r1_damgage"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/range"/>
+            android:text="@string/range"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r2_range"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="5"
-            android:id="@+id/qc_r2_range"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/shots"/>
+            android:text="@string/shots"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r2_shots"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="2"
-            android:id="@+id/qc_r2_shots"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/hit"/>
+            android:text="@string/hit"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r2_tohit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="2"
             android:hint="d6: 4+(6+)"
-            android:id="@+id/qc_r2_tohit"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/damage"/>
+            android:text="@string/damage"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_r2_damgage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="d6"
-            android:id="@+id/qc_r2_damgage"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/range"/>
+            android:text="@string/range"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_tail_range"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="5"
-            android:id="@+id/qc_tail_range"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/shots"/>
+            android:text="@string/shots"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_tail_shots"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="2"
-            android:id="@+id/qc_tail_shots"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/hit"/>
+            android:text="@string/hit"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_tail_tohit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="2"
             android:hint="d6: 4+(6+)"
-            android:id="@+id/qc_tail_tohit"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="@string/damage"/>
+            android:text="@string/damage"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp" />
+
         <TextView
+            android:id="@+id/qc_tail_damgage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
             android:layout_weight="1"
             android:hint="d6"
-            android:id="@+id/qc_tail_damgage"/>
+            android:textColor="@color/colorPrimary" />
+
         <TextView
             android:layout_width="1dp"
             android:layout_height="match_parent"

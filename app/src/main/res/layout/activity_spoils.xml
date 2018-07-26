@@ -7,26 +7,29 @@
     tools:context=".Activities.Main.Inventory.SpoilsActivity">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Experience Earned"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:id="@+id/spoils_xp"
             android:layout_width="wrap_content"
@@ -95,16 +98,19 @@
                 android:text="+50"
                 android:textColor="@android:color/holo_green_dark" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Money Gained"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -178,20 +184,24 @@
                 android:text="+ $100"
                 android:textColor="@android:color/holo_green_dark" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dark Stone Found"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:id="@+id/spoils_ds"
             android:layout_width="match_parent"
@@ -223,20 +233,24 @@
                 android:text="+1 Dark Stone"
                 android:textColor="@android:color/holo_green_dark" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Corruption Suffered"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <TextView
             android:id="@+id/spoils_corruption"
             android:layout_width="match_parent"
@@ -268,11 +282,14 @@
                 android:text="+1 Corruption"
                 android:textColor="@android:color/holo_green_dark" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/background_light" />
+
         <include layout="@layout/content_accept_cancel" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"

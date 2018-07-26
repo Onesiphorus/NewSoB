@@ -1,8 +1,8 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Conditions;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
@@ -12,6 +12,7 @@ import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class ConditionTypeActivity extends AppCompatActivity {
     SobCharacter sobCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

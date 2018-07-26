@@ -18,8 +18,13 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 @Database(entities = {SobCharacter.class}, version = 1)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class CharacterDatabase extends RoomDatabase {
-    private static CharacterDatabase INSTANCE;
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
 
+        }
+    };
+    private static CharacterDatabase INSTANCE;
     private static RoomDatabase.Callback sRoomDatabaseCallback =
             new RoomDatabase.Callback() {
                 @Override
@@ -58,11 +63,4 @@ public abstract class CharacterDatabase extends RoomDatabase {
             return null;
         }
     }
-
-    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-
-        }
-    };
 }

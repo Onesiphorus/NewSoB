@@ -154,7 +154,7 @@ public class CombatViewActivity extends AppCompatActivity {
         tv = findViewById(R.id.move_value);
         val = sobCharacter.getMoveBonus();
         text = "d6";
-        if(val > 0) {
+        if (val > 0) {
             text += "+" + val.toString();
         } else if (val < 0) {
             text += val.toString();
@@ -192,7 +192,7 @@ public class CombatViewActivity extends AppCompatActivity {
         leftMelee.setHint("empty");
         Button tailMelee = findViewById(R.id.btn_tail_melee);
         tailMelee.setHint("empty");
-        if(sobCharacter.getThirdHand().equals(FALSE)) {
+        if (sobCharacter.getThirdHand().equals(FALSE)) {
             tailMelee.setVisibility(View.INVISIBLE);
             tailRanged.setVisibility(View.INVISIBLE);
         }

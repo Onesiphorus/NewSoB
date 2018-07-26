@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="124dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingLeft="124dp">
 
         <Button
             android:id="@+id/btn_equip_hat"
@@ -34,10 +34,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
         android:gravity="left"
+        android:orientation="horizontal"
         android:paddingLeft="24dp"
-        android:orientation="horizontal">
+        android:paddingTop="12dp">
 
         <Button
             android:id="@+id/btn_equip_face"
@@ -127,8 +127,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="24dp"
-        android:gravity="right">
+        android:gravity="right"
+        android:paddingTop="24dp">
 
         <Button
             android:id="@+id/btn_equip_belt"

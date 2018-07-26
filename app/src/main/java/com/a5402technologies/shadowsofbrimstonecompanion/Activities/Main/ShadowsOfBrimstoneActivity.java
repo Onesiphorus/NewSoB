@@ -168,6 +168,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         else tv.setHintTextColor(RED);
         tv.setHint(text);
     }
+
     private void setWeapons() {
         if (sobCharacter.getRightHand() != null) {
             tv = findViewById(R.id.qc_r1_range);
@@ -351,6 +352,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             tv.setText(text);
         }
     }
+
     private String calculateMeleeHitDie() {
         return "d"
                 + sobCharacter.getMeleeToHitDie()
@@ -471,6 +473,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         tv.setText(value.toString());
 
     }
+
     private void setHealthSanityStats() {
         Button health;
         health = findViewById(R.id.valHealth);
@@ -512,6 +515,7 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

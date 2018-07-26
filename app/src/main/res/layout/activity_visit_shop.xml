@@ -16,10 +16,12 @@
 
 
         <include layout="@layout/content_resources" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
+
         <TextView
             android:id="@+id/tv_shop_name"
             android:layout_width="match_parent"
@@ -28,10 +30,12 @@
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
+
         <include layout="@layout/content_gear_types" />
 
     </LinearLayout>

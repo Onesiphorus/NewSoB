@@ -1,18 +1,13 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Menu;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override

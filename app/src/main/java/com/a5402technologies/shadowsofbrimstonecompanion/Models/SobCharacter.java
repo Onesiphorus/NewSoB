@@ -6,8 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.util.Range;
-import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
@@ -678,17 +676,17 @@ public class SobCharacter implements Serializable {
         rightMelee = meleeWeapon;
         if (null != leftMelee
                 && (meleeWeapon.getTwoHanded().equals(TRUE)
-                    || leftMelee.getTwoHanded().equals(TRUE)
-                    || leftMelee.getThreeHanded().equals(TRUE))) {
+                || leftMelee.getTwoHanded().equals(TRUE)
+                || leftMelee.getThreeHanded().equals(TRUE))) {
             unequipLeftMelee();
         }
         if (null != rightHand) {
             unequipRightHand();
         }
         if (null != leftHand && (leftHand.getTwoHanded().equals(TRUE)
-                    || rightMelee.getTwoHanded().equals(TRUE)
-                    || rightMelee.getThreeHanded().equals(TRUE)
-                    || leftHand.getThreeHanded().equals(TRUE))) {
+                || rightMelee.getTwoHanded().equals(TRUE)
+                || rightMelee.getThreeHanded().equals(TRUE)
+                || leftHand.getThreeHanded().equals(TRUE))) {
             unequipLeftHand();
         }
         if (meleeWeapon.getThreeHanded().equals(TRUE)) {
@@ -709,8 +707,8 @@ public class SobCharacter implements Serializable {
         leftMelee = meleeWeapon;
         if (null != rightMelee
                 && (meleeWeapon.getTwoHanded().equals(TRUE)
-                    || rightMelee.getTwoHanded().equals(TRUE)
-                    || rightMelee.getThreeHanded().equals(TRUE))) {
+                || rightMelee.getTwoHanded().equals(TRUE)
+                || rightMelee.getThreeHanded().equals(TRUE))) {
             unequipRightMelee();
         }
         if (null != leftHand) {
@@ -718,9 +716,9 @@ public class SobCharacter implements Serializable {
         }
         if (null != rightHand
                 && (rightHand.getTwoHanded().equals(TRUE)
-                    || leftMelee.getTwoHanded().equals(TRUE)
-                    || leftMelee.getThreeHanded().equals(TRUE)
-                    || rightHand.getThreeHanded().equals(TRUE))) {
+                || leftMelee.getTwoHanded().equals(TRUE)
+                || leftMelee.getThreeHanded().equals(TRUE)
+                || rightHand.getThreeHanded().equals(TRUE))) {
             unequipRightHand();
         }
         if (meleeWeapon.getThreeHanded().equals(TRUE)) {
@@ -739,7 +737,7 @@ public class SobCharacter implements Serializable {
         }
         findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         tailRanged = rangedWeapon;
-        if(null != tailMelee) unequipTailMelee();
+        if (null != tailMelee) unequipTailMelee();
     }
 
     public void equipTailMelee(MeleeWeapon meleeWeapon) {
@@ -775,6 +773,7 @@ public class SobCharacter implements Serializable {
         if (null != tailRanged) findRangedWeaponByName(tailRanged.getName()).setEquipped(FALSE);
         tailRanged = null;
     }
+
     public void unequipTailMelee() {
         if (null != tailMelee) findRangedWeaponByName(tailMelee.getName()).setEquipped(FALSE);
         tailMelee = null;
@@ -788,8 +787,8 @@ public class SobCharacter implements Serializable {
         rightHand = rangedWeapon;
         if (null != leftHand
                 && (rangedWeapon.getTwoHanded().equals(TRUE)
-                    || leftHand.getTwoHanded().equals(TRUE)
-                    || leftHand.getThreeHanded().equals(TRUE))) {
+                || leftHand.getTwoHanded().equals(TRUE)
+                || leftHand.getThreeHanded().equals(TRUE))) {
             unequipLeftHand();
         }
         if (null != rightMelee) {
@@ -797,9 +796,9 @@ public class SobCharacter implements Serializable {
         }
         if (null != leftMelee
                 && (leftMelee.getTwoHanded().equals(TRUE)
-                    || rightHand.getTwoHanded().equals(TRUE)
-                    || rightHand.getThreeHanded().equals(TRUE)
-                    || leftMelee.getThreeHanded().equals(TRUE))) {
+                || rightHand.getTwoHanded().equals(TRUE)
+                || rightHand.getThreeHanded().equals(TRUE)
+                || leftMelee.getThreeHanded().equals(TRUE))) {
             unequipLeftMelee();
         }
         if (rangedWeapon.getThreeHanded().equals(TRUE)) {
@@ -820,8 +819,8 @@ public class SobCharacter implements Serializable {
         leftHand = rangedWeapon;
         if (null != rightHand
                 && (rangedWeapon.getTwoHanded().equals(TRUE)
-                    || rightHand.getTwoHanded().equals(TRUE)
-                    || rightHand.getThreeHanded().equals(TRUE))) {
+                || rightHand.getTwoHanded().equals(TRUE)
+                || rightHand.getThreeHanded().equals(TRUE))) {
             unequipRightHand();
         }
         if (null != leftMelee) {
@@ -829,9 +828,9 @@ public class SobCharacter implements Serializable {
         }
         if (null != rightMelee
                 && (rightMelee.getTwoHanded().equals(TRUE)
-                    || leftHand.getTwoHanded().equals(TRUE)
-                    || leftHand.getThreeHanded().equals(TRUE)
-                    || rightMelee.getThreeHanded().equals(TRUE))) {
+                || leftHand.getTwoHanded().equals(TRUE)
+                || leftHand.getThreeHanded().equals(TRUE)
+                || rightMelee.getThreeHanded().equals(TRUE))) {
             unequipRightMelee();
         }
         if (rangedWeapon.getThreeHanded().equals(TRUE)) {
@@ -864,10 +863,10 @@ public class SobCharacter implements Serializable {
                 if (clothing.getSpiritArmor() > 0 && clothing.getSpiritArmor() < this.spiritArmor) {
                     this.spiritArmor = clothing.getSpiritArmor();
                 }
-                if(clothing.getName().equals(RuleExceptionEnum.RIDERS_HAT.label())) {
+                if (clothing.getName().equals(RuleExceptionEnum.RIDERS_HAT.label())) {
                     addTrait(TraitsEnum.TRAVELER.label());
                 }
-                if(clothing.getName().equals(RuleExceptionEnum.SCOUTS_HAT.label())) {
+                if (clothing.getName().equals(RuleExceptionEnum.SCOUTS_HAT.label())) {
                     addTrait(TraitsEnum.SCOUT.label());
                 }
             }
@@ -996,7 +995,7 @@ public class SobCharacter implements Serializable {
         if (markFaithfulBonus.equals(TRUE)) {
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());
         }
-        darkStoneCount += darkStoneShards - (8* tombChests) > 0 ? darkStoneShards - (8* tombChests) : 0;
+        darkStoneCount += darkStoneShards - (8 * tombChests) > 0 ? darkStoneShards - (8 * tombChests) : 0;
         if (characterClass.getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
             //Spinning Slash Exception
             if ((null != leftMelee && leftMelee.getTwoHanded().equals(TRUE)) || (null != rightMelee && rightMelee.getTwoHanded().equals(TRUE))) {
@@ -1016,7 +1015,7 @@ public class SobCharacter implements Serializable {
             }
             if (shieldBash.equals(TRUE) && shieldEquipped.equals(TRUE)) combatBonus++;
         }
-        if(thirdHand.equals(FALSE)) {
+        if (thirdHand.equals(FALSE)) {
             if (null != rightHand && rightHand.getThreeHanded().equals(TRUE)) unequipRightHand();
             if (null != leftHand && leftHand.getThreeHanded().equals(TRUE)) unequipLeftHand();
             if (null != rightMelee && rightMelee.getThreeHanded().equals(TRUE)) unequipRightMelee();
@@ -1242,6 +1241,10 @@ public class SobCharacter implements Serializable {
         return tailMelee;
     }
 
+    public void setTailMelee(MeleeWeapon tailMelee) {
+        this.tailMelee = tailMelee;
+    }
+
     public void setPrehensileMelee(MeleeWeapon tailMelee) {
         this.tailMelee = tailMelee;
     }
@@ -1259,7 +1262,6 @@ public class SobCharacter implements Serializable {
         }
         return null;
     }
-
 
     @NonNull
     public Integer getDarkStoneShards() {
@@ -1451,7 +1453,6 @@ public class SobCharacter implements Serializable {
         this.conditions = conditions;
     }
 
-
     @NonNull
     public Transport getTransport() {
         return transport;
@@ -1504,10 +1505,6 @@ public class SobCharacter implements Serializable {
 
     public void setThirdHand(@NonNull Boolean thirdHand) {
         this.thirdHand = thirdHand;
-    }
-
-    public void setTailMelee(MeleeWeapon tailMelee) {
-        this.tailMelee = tailMelee;
     }
 
     @NonNull

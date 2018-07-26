@@ -38,7 +38,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
             if (rangedWeapon.getEquipped().equals(FALSE)
                     && rangedWeapon.getFree().equals(FALSE)
                     && (rangedWeapon.getThreeHanded().equals(FALSE)
-                        || sobCharacter.getThirdHand().equals(TRUE)))
+                    || sobCharacter.getThirdHand().equals(TRUE)))
                 RangedWeaponOptions.add(rangedWeapon);
         }
 
@@ -91,6 +91,7 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
         private List<RangedWeapon> mRangedWeapon;
+
         public RangedWeaponListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
         }
