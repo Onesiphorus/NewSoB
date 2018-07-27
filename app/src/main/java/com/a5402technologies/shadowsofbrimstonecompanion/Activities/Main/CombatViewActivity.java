@@ -242,6 +242,14 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
+                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
+                                shots++;
+                            }
+                        }
+                    }
                 }
             }
             for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
@@ -324,6 +332,14 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
+                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
+                                shots++;
+                            }
+                        }
+                    }
                 }
             }
             for (Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
@@ -398,6 +414,14 @@ public class CombatViewActivity extends AppCompatActivity {
                     if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
                         for (Skill skill : sobCharacter.getUpgrades()) {
                             if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
+                                shots++;
+                            }
+                        }
+                    }
+                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
+                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
+                        for (Skill skill : sobCharacter.getUpgrades()) {
+                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
                                 shots++;
                             }
                         }

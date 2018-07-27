@@ -4931,8 +4931,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Crushed Foot", ConditionEnum.INJURY.label());
             //TODO escape rolls?
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Scalped", ConditionEnum.INJURY.label());
-            //TODO disable hat when Scalped
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.SCALPED.label(), ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Slashed Face", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
@@ -4956,7 +4955,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Twisted Ankle", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Sprained Wrist", ConditionEnum.INJURY.label());
-            //TODO add Ranged to Hit to Hit modifiers (global)
+            //TODO add Ranged to Hit modifiers (global)
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Dislocated Shoulder", ConditionEnum.INJURY.label());
             //TODO add Melee to Hit modifiers (global)
@@ -4984,7 +4983,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Tentacle Arm", ConditionEnum.MUTATION.label());
             permanentCondition.addModifier(ModifiersEnum.COMBAT.label());
-            //TODO code weapons for tentacle arm
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Tentacle Leg", ConditionEnum.MUTATION.label());
             permanentCondition.addPenalty(ModifiersEnum.MOVE.label());
@@ -5020,7 +5018,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Prehensile Tail", ConditionEnum.MUTATION.label());
             permanentCondition.addPenalty(ModifiersEnum.MAX_CORRUPTION.label());
-            //TODO code prehensile tail
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Tail with a Face", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
@@ -5032,8 +5029,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Void Plague", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Horns", ConditionEnum.MUTATION.label());
-            //TODO code no hats with Horns
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.HORNS.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Eye Grown Over", ConditionEnum.MUTATION.label());
             permanentCondition.addPenalty(ModifiersEnum.CRITICAL_DAMAGE.label());
@@ -5050,14 +5046,11 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addModifier(ModifiersEnum.INITIATIVE.label());
             //TODO code additional Hat slot with Second Head
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Arm Growth", ConditionEnum.MUTATION.label());
-            //TODO code no coat with Arm Growth
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.ARM_GROWTH.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Leg Growth", ConditionEnum.MUTATION.label());
-            //TODO code no boots with leg growth
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.LEG_GROWTH.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Hand Growth", ConditionEnum.MUTATION.label());
-            //TODO code no gloves with hand growth
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.HAND_GROWTH.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Fused with Item", ConditionEnum.MUTATION.label());
             //todo code fused item on weapon
@@ -5074,8 +5067,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Nose Fallen Off", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Fused Fingers", ConditionEnum.MUTATION.label());
-            //TODO code no non-artifact guns with Fused Fingers
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.FUSED_FINGERS.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Eye Stalks", ConditionEnum.MUTATION.label());
             permanentCondition.addModifier(ModifiersEnum.CRITICAL_DAMAGE.label());
@@ -5167,10 +5159,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
 
             //US Marshall Traveler
-            skill = new Skill("A Story to Tell", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
+            skill = new Skill(RuleExceptionEnum.STORY_TO_TELL.label(), SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.LORE.label());
-            //TODO code movement +Lore with A Story to Tell
             mSkillDao.insert(skill);
             skill = new Skill("Back up Plan", SkillTypeEnum.TRAVELER.code(), SkillTypeEnum.TRAVELER.label());
             skill.setLevel(2);
@@ -5190,17 +5181,15 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.STRENGTH.label());
             mSkillDao.insert(skill);
-            skill = new Skill("No Nonsense", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill = new Skill(RuleExceptionEnum.NO_NONSENSE.label(), SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
             skill.setLevel(2);
-            //TODO code Shotguns get +1 shot with No Nonsense
             mSkillDao.insert(skill);
             skill = new Skill("\"I Don't Think So!\"", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
             skill.setLevel(3);
             mSkillDao.insert(skill);
-            skill = new Skill("That Does It!", SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
+            skill = new Skill(RuleExceptionEnum.THAT_DOES_IT.label(), SkillTypeEnum.RESOLVE.code(), SkillTypeEnum.RESOLVE.label());
             skill.setLevel(4);
             skill.addModifier(ModifiersEnum.STRENGTH.label());
-            //TODO Add +1 Damage per mutation (max +3) with That Does It!
             mSkillDao.insert(skill);
             //US Marshal Honor
             skill = new Skill("\"Look Out!\"", SkillTypeEnum.HONOR.code(), SkillTypeEnum.HONOR.label());

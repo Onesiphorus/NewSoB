@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ConditionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
@@ -849,8 +850,55 @@ public class SobCharacter implements Serializable {
         for (String modifier : this.modifiers) {
             findBonus(modifier);
         }
+        Boolean hasAugmentThirdHand = FALSE;
+        Boolean hasMutationForAugmentThirdHand = FALSE;
+        Boolean noHats = FALSE;
+        Boolean noCoat = FALSE;
+        Boolean noBoots = FALSE;
+        Boolean noGloves = FALSE;
+        Boolean noNonArtifactGuns = FALSE;
+        Integer numMutations = 0;
+        for (PermanentCondition permanentCondition : getConditions()) {
+            if (permanentCondition.getName().equals(RuleExceptionEnum.HORNS.label()) || permanentCondition.getType().equals(RuleExceptionEnum.SCALPED.label())) noHats = TRUE;
+            if (permanentCondition.getName().equals(RuleExceptionEnum.ARM_GROWTH.label()))
+                noCoat = TRUE;
+            if (permanentCondition.getName().equals(RuleExceptionEnum.LEG_GROWTH.label()))
+                noBoots = TRUE;
+            if (permanentCondition.getName().equals(RuleExceptionEnum.HAND_GROWTH.label()))
+                noGloves = TRUE;
+            if (permanentCondition.getName().equals(RuleExceptionEnum.FUSED_FINGERS.label()))
+                noNonArtifactGuns = TRUE;
+            if (permanentCondition.getType().equals(ConditionEnum.MUTATION.label())) numMutations++;
+            for (String string : permanentCondition.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : permanentCondition.getPenalties()) {
+                findPenalty(string);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.PREHENSILE_TAIL.label())) {
+                thirdHand = TRUE;
+            }
+            if (permanentCondition.getName().contains("Tentacle")
+                    || permanentCondition.getName().contains("Tail")) {
+                hasMutationForAugmentThirdHand = TRUE;
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label())) {
+                hasAugmentThirdHand = TRUE;
+            }
+        }
+        if (hasAugmentThirdHand.equals(TRUE) && hasMutationForAugmentThirdHand.equals(TRUE)) {
+            thirdHand = TRUE;
+        }
         for (Clothing clothing : this.getClothing()) {
             if (clothing.getEquipped().equals(TRUE)) {
+                if (clothing.getHat().equals(TRUE) && noHats.equals(TRUE))
+                    unequipClothing(clothing);
+                if (clothing.getCoat().equals(TRUE) && noCoat.equals(TRUE))
+                    unequipClothing(clothing);
+                if (clothing.getBoots().equals(TRUE) && noBoots.equals(TRUE))
+                    unequipClothing(clothing);
+                if (clothing.getGloves().equals(TRUE) && noGloves.equals(TRUE))
+                    unequipClothing(clothing);
                 for (String string : clothing.getModifiers()) {
                     findBonus(string);
                 }
@@ -893,6 +941,11 @@ public class SobCharacter implements Serializable {
 
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
+
+            if (rightHand != null && noNonArtifactGuns.equals(TRUE) && rightHand.getArtifact().equals(FALSE))
+                unequipRightHand();
+            if (leftHand != null && noNonArtifactGuns.equals(TRUE) && leftHand.getArtifact().equals(FALSE))
+                unequipLeftHand();
             if (rangedWeapon.getEquipped().equals(TRUE)) {
                 setRanged(rangedWeapon);
             }
@@ -957,6 +1010,10 @@ public class SobCharacter implements Serializable {
                     }
                 }
             }
+            if (skill.getName().equals(RuleExceptionEnum.THAT_DOES_IT.label())) {
+                rangedDamageBonus += numMutations > 3 ? 3 : numMutations;
+                meleeDamageBonus += numMutations > 3 ? 3 : numMutations;
+            }
             armor = skill.getArmor() < armor ? skill.getArmor() : armor;
             spiritArmor = skill.getSpiritArmor() < spiritArmor ? skill.getSpiritArmor() : spiritArmor;
             defense = skill.getDefense() < defense ? skill.getDefense() : defense;
@@ -967,30 +1024,10 @@ public class SobCharacter implements Serializable {
             if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()))
                 spinningSlash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.STORY_TO_TELL.label()))
+                moveBonus += characterClass.getLore() + loreBonus;
         }
-        Boolean hasAugmentThirdHand = FALSE;
-        Boolean hasMutationForAugmentThirdHand = FALSE;
-        for (PermanentCondition permanentCondition : getConditions()) {
-            for (String string : permanentCondition.getModifiers()) {
-                findBonus(string);
-            }
-            for (String string : permanentCondition.getPenalties()) {
-                findPenalty(string);
-            }
-            if (permanentCondition.getName().equals(RuleExceptionEnum.PREHENSILE_TAIL.label())) {
-                thirdHand = TRUE;
-            }
-            if (permanentCondition.getName().contains("Tentacle")
-                    || permanentCondition.getName().contains("Tail")) {
-                hasMutationForAugmentThirdHand = TRUE;
-            }
-            if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label())) {
-                hasAugmentThirdHand = TRUE;
-            }
-        }
-        if (hasAugmentThirdHand.equals(TRUE) && hasMutationForAugmentThirdHand.equals(TRUE)) {
-            thirdHand = TRUE;
-        }
+
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;
         if (markFaithfulBonus.equals(TRUE)) {
             setHealthBonus(getHealthBonus() + getSanityBonus() + getCharacterClass().getSanity());

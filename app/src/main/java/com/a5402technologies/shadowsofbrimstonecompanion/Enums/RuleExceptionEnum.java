@@ -23,7 +23,16 @@ public enum RuleExceptionEnum {
     RIDERS_HAT("Rider's Hat"),
     SCOUTS_HAT("Scout's Hat"),
     EXTRA_HAND_AUGMENT("Extra Hand Augment"),
-    PREHENSILE_TAIL("Prehensile Tail");
+    PREHENSILE_TAIL("Prehensile Tail"),
+    HORNS("Horns"),
+    ARM_GROWTH("Arm Growth"),
+    LEG_GROWTH("Leg Growth"),
+    HAND_GROWTH("Hand Growth"),
+    FUSED_FINGERS("Fused Fingers"),
+    STORY_TO_TELL("A Story to Tell"),
+    NO_NONSENSE("No Nonsense"),
+    THAT_DOES_IT("That Does It!"),
+    SCALPED("Scalped");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

@@ -1,6 +1,7 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,13 +9,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
 import java.util.ArrayList;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class ChangeLoadoutActivity extends AppCompatActivity {
@@ -41,7 +45,7 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
         setClothing(sobCharacter.getClothing());
         setViews();
         setOnClickButtons();
-
+        disableOnClickButtons();
         findViewById(R.id.btn_manage_item_upgrades).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ManageItemUpgradesActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
@@ -170,6 +174,40 @@ public class ChangeLoadoutActivity extends AppCompatActivity {
         });
     }
 
+    public void disableOnClickButtons() {
+        for (PermanentCondition permanentCondition : sobCharacter.getConditions()) {
+            if (permanentCondition.getName().equals(RuleExceptionEnum.HORNS.label())) {
+                btn = findViewById(R.id.btn_equip_hat);
+                btn.setEnabled(FALSE);
+                btn.setText("HORNS");
+                btn.setTextColor(Color.RED);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.SCALPED.label())) {
+                btn = findViewById(R.id.btn_equip_hat);
+                btn.setEnabled(FALSE);
+                btn.setText("SCALPED");
+                btn.setTextColor(Color.RED);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.ARM_GROWTH.label())) {
+                btn = findViewById(R.id.btn_equip_coat);
+                btn.setEnabled(FALSE);
+                btn.setText("ARM GROWTH");
+                btn.setTextColor(Color.RED);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.LEG_GROWTH.label())) {
+                btn = findViewById(R.id.btn_equip_boots);
+                btn.setEnabled(FALSE);
+                btn.setText("LEG GROWTH");
+                btn.setTextColor(Color.RED);
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.HAND_GROWTH.label())) {
+                btn = findViewById(R.id.btn_equip_gloves);
+                btn.setEnabled(FALSE);
+                btn.setText("HAND GROWTH");
+                btn.setTextColor(Color.RED);
+            }
+        }
+    }
 
     public void setClothing(ArrayList<Clothing> clothingList) {
         for (Clothing clothing : sobCharacter.getClothing()) {
