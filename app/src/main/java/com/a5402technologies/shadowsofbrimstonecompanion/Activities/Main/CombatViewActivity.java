@@ -17,10 +17,12 @@ import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Invento
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.Equip.EquipTailRangedActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.CharacterClassEnum;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ConditionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.TraitsEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.PermanentCondition;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -196,6 +198,20 @@ public class CombatViewActivity extends AppCompatActivity {
             tailMelee.setVisibility(View.INVISIBLE);
             tailRanged.setVisibility(View.INVISIBLE);
         }
+        Integer numMutations = 0;
+        for (PermanentCondition permanentCondition : sobCharacter.getConditions()) {
+            if (permanentCondition.getType().equals(ConditionEnum.MUTATION.label())) {
+                numMutations++;
+            }
+        }
+        Boolean rapidReload = FALSE;
+        Boolean quickShot = FALSE;
+        Boolean noNonsense = FALSE;
+        for (Skill skill : sobCharacter.getUpgrades()) {
+            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) noNonsense = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) quickShot = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.RAPID_RELOAD.label())) rapidReload = TRUE;
+        }
         if (sobCharacter.getRightHand() != null) {
             rightRanged.setText(sobCharacter.getRightHand().getName());
             rightMelee.setHint(sobCharacter.getRightHand().getName());
@@ -234,23 +250,14 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
-                } else if (s.equals(TraitsEnum.BOW.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
-                                shots++;
-                            }
-                        }
-                    }
-                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
-                                shots++;
-                            }
-                        }
-                    }
+                } else if (s.equals(TraitsEnum.BOW.label()) && quickShot.equals(TRUE)) {
+                    shots++;
+                } else if (s.equals(TraitsEnum.SHOTGUN.label()) && noNonsense.equals(TRUE)) {
+                    shots++;
                 }
+            }
+            if (sobCharacter.getRightHand().getTwoHanded().equals(TRUE) && rapidReload.equals(TRUE)) {
+                shots++;
             }
             for (Attachment attachment : sobCharacter.getRightHand().getAttachments()) {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
@@ -258,6 +265,9 @@ public class CombatViewActivity extends AppCompatActivity {
                 } else if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_BARREL.label())) {
                     range += 4;
                 }
+            }
+            if (sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
+                shots += numMutations;
             }
             tv.setText(String.format(range.toString()));
             tv = findViewById(R.id.right_hand_shots);
@@ -324,28 +334,22 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
-                } else if (s.equals(TraitsEnum.BOW.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
-                                shots++;
-                            }
-                        }
-                    }
-                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
-                                shots++;
-                            }
-                        }
-                    }
+                } else if (s.equals(TraitsEnum.BOW.label()) && quickShot.equals(TRUE)) {
+                    shots++;
+                } else if (s.equals(TraitsEnum.SHOTGUN.label()) && noNonsense.equals(TRUE)) {
+                    shots++;
                 }
+            }
+            if (sobCharacter.getLeftHand().getTwoHanded().equals(TRUE) && rapidReload.equals(TRUE)) {
+                shots++;
             }
             for (Attachment attachment : sobCharacter.getLeftHand().getAttachments()) {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
                 }
+            }
+            if (sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
+                shots += numMutations;
             }
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.left_hand_damage);
@@ -410,28 +414,22 @@ public class CombatViewActivity extends AppCompatActivity {
                             }
                         }
                     }
-                } else if (s.equals(TraitsEnum.BOW.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.JARGONO_NATIVE.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) {
-                                shots++;
-                            }
-                        }
-                    }
-                } else if (s.equals(TraitsEnum.SHOTGUN.label())) {
-                    if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.US_MARSHAL.male())) {
-                        for (Skill skill : sobCharacter.getUpgrades()) {
-                            if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) {
-                                shots++;
-                            }
-                        }
-                    }
+                } else if (s.equals(TraitsEnum.BOW.label()) && quickShot.equals(TRUE)) {
+                    shots++;
+                } else if (s.equals(TraitsEnum.SHOTGUN.label()) && noNonsense.equals(TRUE)) {
+                    shots++;
                 }
+            }
+            if (sobCharacter.getTailRanged().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
+                shots += numMutations;
             }
             for (Attachment attachment : sobCharacter.getTailRanged().getAttachments()) {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
                 }
+            }
+            if (sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
+                shots += numMutations;
             }
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.tail_damage);

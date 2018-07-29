@@ -124,6 +124,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             Attachment attachment;
             ArrayList<String> traits = new ArrayList<>(0);
 
+
             //Initialize Classes
             //Cowboy
             traits.add(TraitsEnum.FRONTIER.label());
@@ -664,8 +665,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier(ModifiersEnum.STRENGTH.label());
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
-            skill = new Skill("Quiet Traveler", CharacterClassEnum.WANDERING_SAMARAI.male(), SkillTypeEnum.STARTING.label());
-            //TODO Hard Code Quiet Traveler Skill for TwoHanded melee
+            skill = new Skill(RuleExceptionEnum.QUIET_TRAVELER.label(), CharacterClassEnum.WANDERING_SAMARAI.male(), SkillTypeEnum.STARTING.label());
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
             skill = new Skill("Sword Master", CharacterClassEnum.WANDERING_SAMARAI.male(), SkillTypeEnum.STARTING.label());
@@ -2149,7 +2149,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             rangedWeapon.setThreeHanded(TRUE);
             rangedWeapon.setUpgrades(3);
             mRangedWeaponDao.insert(rangedWeapon);
-            //todo setup three handed weapons
             meleeWeapon = new MeleeWeapon("Rail Spike Driver");
             meleeWeapon.setShop(ShopEnum.MUTANT_QUARTER.label());
             meleeWeapon.setSet(SetListEnum.FRONTIER_TOWN.code());
@@ -2830,8 +2829,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
 
 
             //Scafford Gang
-            rangedWeapon = new RangedWeapon("Scafford Pistol", 8, 1);
-            //TODO Hard Code Scafford Pistol +1 Shot for each mutation
+            rangedWeapon = new RangedWeapon(RuleExceptionEnum.SCAFFORD_PISTOL.label(), 8, 1);
             rangedWeapon.addTrait(TraitsEnum.GUN.label());
             rangedWeapon.addTrait(TraitsEnum.PISTOL.label());
             rangedWeapon.setWeight(1);
@@ -2847,24 +2845,22 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setFace(TRUE);
             clothing.setSell(250);
             mClothingDao.insert(clothing);
-            clothing = new Clothing("Scafford Hat");
+            clothing = new Clothing(RuleExceptionEnum.SCAFFORD_HAT.label());
             clothing.setSet(SetListEnum.SCAFFORD_GANG.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.HAT.label());
-            //TODO Hard Code Scafford Hat +1 Initiative for each mutation
             clothing.setHat(TRUE);
             clothing.setWeight(1);
             clothing.setUpgrades(1);
             clothing.setSell(850);
             mClothingDao.insert(clothing);
-            clothing = new Clothing("Scafford Buckle");
+            clothing = new Clothing(RuleExceptionEnum.SCAFFORD_BELT.label());
             clothing.setSet(SetListEnum.SCAFFORD_GANG.code());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.BELT.label());
             clothing.setBelt(TRUE);
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
             clothing.addModifier(ModifiersEnum.MAX_HEALTH.label());
-            //TODO Hard Code Scafford Belt +1 Health for each mutation
             clothing.setWeight(1);
             clothing.setSell(525);
             mClothingDao.insert(clothing);
@@ -2880,7 +2876,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.setWeight(1);
             gearBase.setSell(725);
             mGearBaseDao.insert(gearBase);
-            clothing = new Clothing("Void Hood");
+            clothing = new Clothing(RuleExceptionEnum.VOID_HOOD.label());
             clothing.addTrait(TraitsEnum.ARTIFACT.label());
             clothing.addTrait(TraitsEnum.CLOTHING.label());
             clothing.addTrait(TraitsEnum.VOID.label());
@@ -2890,7 +2886,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setDarkStone(1);
             clothing.setWeight(1);
             clothing.setSell(550);
-            //TODO Hard code Void Hood to give +1 Spirit for every 2 Mutations
             mClothingDao.insert(clothing);
             meleeWeapon = new MeleeWeapon("Phase Dagger");
             meleeWeapon.addTrait(TraitsEnum.ARTIFACT.label());
@@ -4304,8 +4299,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.CUNNING.label());
             mSkillDao.insert(skill);
-            skill = new Skill("Personal Touch", SkillTypeEnum.INFAMY.code(), SkillTypeEnum.INFAMY.label());
-            //TODO Hardcode Personal Touch to give Outlaw Pistols -1 Weight and +1 Upgrade Slot
+            skill = new Skill(RuleExceptionEnum.PERSONAL_TOUCH.label(), SkillTypeEnum.INFAMY.code(), SkillTypeEnum.INFAMY.label());
             skill.setLevel(3);
             skill.addModifier(ModifiersEnum.LUCK.label());
             mSkillDao.insert(skill);
@@ -4478,7 +4472,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.INITIATIVE.label());
             skill.addModifier(ModifiersEnum.AGILITY.label());
-            //TODO Hard Code Jargono Native with Quick Shot to get +1 Shot with Bows
             mSkillDao.insert(skill);
             skill = new Skill("Deep Cuts", SkillTypeEnum.HUNTING_AND_TRACKING.code(), SkillTypeEnum.HUNTING_AND_TRACKING.label());
             skill.setLevel(3);
@@ -4555,7 +4548,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
             skill = new Skill("Rapid Reload", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
             skill.setLevel(2);
-            //TODO code 2 handed gun gets +1 shot with rapid reload
             mSkillDao.insert(skill);
             skill = new Skill("Sharpshooter", SkillTypeEnum.MARKSMANSHIP.code(), SkillTypeEnum.MARKSMANSHIP.label());
             skill.setLevel(3);
@@ -4858,7 +4850,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Void Strength", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
             skill.setLevel(3);
             skill.addModifier(ModifiersEnum.STRENGTH.label());
-            //ToDO code +1 Health per dark stone item with Void Strength
+            //TODO code +1 Health per dark stone item with Void Strength
             mSkillDao.insert(skill);
             skill = new Skill("Light as a Feather", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
             skill.setLevel(4);
@@ -4881,6 +4873,148 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Tribal Elder", SkillTypeEnum.TRIBAL_LORE.code(), SkillTypeEnum.TRIBAL_LORE.label());
             skill.setLevel(4);
             skill.addModifier(ModifiersEnum.MAGIK.label());
+            mSkillDao.insert(skill);
+            //Drifter Lawless
+            skill = new Skill("Jaded", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            //TODO Lawless skill adds Outlaw Trait
+            mSkillDao.insert(skill);
+            skill = new Skill("Infamous", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Loose Cannon", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Spinning Guns", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Drifter Reluctant Hero
+            skill = new Skill("Sage Advice", SkillTypeEnum.RELUCTANT_HERO.code(), SkillTypeEnum.RELUCTANT_HERO.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Restraint", SkillTypeEnum.RELUCTANT_HERO.code(), SkillTypeEnum.RELUCTANT_HERO.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Weapon of Choice", SkillTypeEnum.RELUCTANT_HERO.code(), SkillTypeEnum.RELUCTANT_HERO.label());
+            skill.setLevel(3);
+            //TODO code choose a keyword and get +1 combat/shot with keyword
+            mSkillDao.insert(skill);
+            skill = new Skill("True Hero", SkillTypeEnum.RELUCTANT_HERO.code(), SkillTypeEnum.RELUCTANT_HERO.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            //Drifter Lone Rider
+            skill = new Skill("Squint", SkillTypeEnum.LONE_RIDER.code(), SkillTypeEnum.LONE_RIDER.label());
+            skill.setLevel(1);
+            skill.setDefense(3);
+            mSkillDao.insert(skill);
+            skill = new Skill("Bad Ass", SkillTypeEnum.LONE_RIDER.code(), SkillTypeEnum.LONE_RIDER.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Unimpressed", SkillTypeEnum.LONE_RIDER.code(), SkillTypeEnum.LONE_RIDER.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Long Stare", SkillTypeEnum.LONE_RIDER.code(), SkillTypeEnum.LONE_RIDER.label());
+            skill.setLevel(4);
+            skill.setRangedToHit(2);
+            mSkillDao.insert(skill);
+            //Drifter Hunter
+            skill = new Skill("Bitter Enemies", SkillTypeEnum.HUNTER.code(), SkillTypeEnum.HUNTER.label());
+            skill.setLevel(1);
+            mSkillDao.insert(skill);
+            skill = new Skill("Sneer", SkillTypeEnum.HUNTER.code(), SkillTypeEnum.HUNTER.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Skilled Fighter", SkillTypeEnum.HUNTER.code(), SkillTypeEnum.HUNTER.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Feared by Evil", SkillTypeEnum.HUNTER.code(), SkillTypeEnum.HUNTER.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Wandering Samarai Battle Tactics
+            skill = new Skill("Battle Ready", SkillTypeEnum.BATTLE_TACTICS.code(), SkillTypeEnum.BATTLE_TACTICS.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.AGILITY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Fighter's Training", SkillTypeEnum.BATTLE_TACTICS.code(), SkillTypeEnum.BATTLE_TACTICS.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Warrior's Resolve", SkillTypeEnum.BATTLE_TACTICS.code(), SkillTypeEnum.BATTLE_TACTICS.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Master of War", SkillTypeEnum.BATTLE_TACTICS.code(), SkillTypeEnum.BATTLE_TACTICS.label());
+            skill.setLevel(4);
+            mSkillDao.insert(skill);
+            //Wandering Samarai Fury
+            skill = new Skill("Battle Yell", SkillTypeEnum.FURY.code(), SkillTypeEnum.FURY.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.MAX_FURY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Extra Effort", SkillTypeEnum.FURY.code(), SkillTypeEnum.FURY.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_FURY.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Unleashed", SkillTypeEnum.FURY.code(), SkillTypeEnum.FURY.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.MAX_FURY.label());
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Master of Fury", SkillTypeEnum.FURY.code(), SkillTypeEnum.FURY.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.INITIATIVE.label());
+            mSkillDao.insert(skill);
+            //Wandering Samarai Way of the Sword
+            skill = new Skill("Control Discipline", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.CUNNING.label());
+            //TODO code D8 damage with two-handed blade weapons with Control Discipline (Needs to work 2hand-1hand)r
+            mSkillDao.insert(skill);
+            skill = new Skill("Power Discipline", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.STRENGTH.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Mental Discipline", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.SPIRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Flashing Steel", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill.setLevel(4);
+            //TODO +1 damage to combat if blade equipped with Flashing Steel
+            mSkillDao.insert(skill);
+            //Wandering Samarai Journeyman
+            mSkillDao.insert(skill);
+            skill = new Skill("On the Road", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
+            skill.setLevel(1);
+            skill.addModifier(ModifiersEnum.LORE.label());
+            skill.addModifier(ModifiersEnum.MOVE.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Calm Exterior", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
+            skill.setLevel(2);
+            skill.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Don't make him Angry", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
+            skill.setLevel(3);
+            skill.addModifier(ModifiersEnum.COMBAT.label());
+            mSkillDao.insert(skill);
+            skill = new Skill("Death before Dishonor", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
+            skill.setLevel(4);
+            skill.addModifier(ModifiersEnum.MAX_FURY.label());
+            skill.addModifier(ModifiersEnum.MAX_FURY.label());
+            skill.setWillpower(3);
             mSkillDao.insert(skill);
 
 

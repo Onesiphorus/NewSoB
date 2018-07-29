@@ -859,7 +859,8 @@ public class SobCharacter implements Serializable {
         Boolean noNonArtifactGuns = FALSE;
         Integer numMutations = 0;
         for (PermanentCondition permanentCondition : getConditions()) {
-            if (permanentCondition.getName().equals(RuleExceptionEnum.HORNS.label()) || permanentCondition.getType().equals(RuleExceptionEnum.SCALPED.label())) noHats = TRUE;
+            if (permanentCondition.getName().equals(RuleExceptionEnum.HORNS.label()) || permanentCondition.getType().equals(RuleExceptionEnum.SCALPED.label()))
+                noHats = TRUE;
             if (permanentCondition.getName().equals(RuleExceptionEnum.ARM_GROWTH.label()))
                 noCoat = TRUE;
             if (permanentCondition.getName().equals(RuleExceptionEnum.LEG_GROWTH.label()))
@@ -889,6 +890,41 @@ public class SobCharacter implements Serializable {
         if (hasAugmentThirdHand.equals(TRUE) && hasMutationForAugmentThirdHand.equals(TRUE)) {
             thirdHand = TRUE;
         }
+        Boolean shieldBash = FALSE;
+        Boolean spinningSlash = FALSE;
+        Boolean personalTouch = FALSE;
+        Boolean quietTraveler = FALSE;
+        for (Skill skill : this.getUpgrades()) {
+            for (String string : skill.getModifiers()) {
+                findBonus(string);
+            }
+            for (String string : skill.getPenalties()) {
+                findPenalty(string);
+            }
+            if (skill.getName().equals(RuleExceptionEnum.PERSONAL_TOUCH.label())) {
+                this.getCharacterClass().setDefense(4);
+                personalTouch = TRUE;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.THAT_DOES_IT.label())) {
+                rangedDamageBonus += numMutations > 3 ? 3 : numMutations;
+                meleeDamageBonus += numMutations > 3 ? 3 : numMutations;
+            }
+            armor = skill.getArmor() < armor ? skill.getArmor() : armor;
+            spiritArmor = skill.getSpiritArmor() < spiritArmor ? skill.getSpiritArmor() : spiritArmor;
+            defense = skill.getDefense() < defense ? skill.getDefense() : defense;
+            willpower = skill.getWillpower() < willpower ? skill.getWillpower() : willpower;
+            meleeToHit = skill.getMeleeToHit() < meleeToHit ? skill.getMeleeToHit() : meleeToHit;
+            rangedToHit = skill.getRangedToHit() < rangedToHit ? skill.getRangedToHit() : rangedToHit;
+            meleeCritChance = skill.getMeleeCritChance() < meleeCritChance ? skill.getMeleeCritChance() : meleeCritChance;
+            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()))
+                spinningSlash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.STORY_TO_TELL.label()))
+                moveBonus += characterClass.getLore() + loreBonus;
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraveler = TRUE;
+            }
+        }
         for (Clothing clothing : this.getClothing()) {
             if (clothing.getEquipped().equals(TRUE)) {
                 if (clothing.getHat().equals(TRUE) && noHats.equals(TRUE))
@@ -917,6 +953,18 @@ public class SobCharacter implements Serializable {
                 if (clothing.getName().equals(RuleExceptionEnum.SCOUTS_HAT.label())) {
                     addTrait(TraitsEnum.SCOUT.label());
                 }
+                if (clothing.getName().equals(RuleExceptionEnum.SCAFFORD_HAT.label())) {
+                    initiativeBonus += numMutations;
+                }
+                if (clothing.getName().equals(RuleExceptionEnum.SCAFFORD_BELT.label())) {
+                    healthBonus += numMutations;
+                }
+                if (clothing.getName().equals(RuleExceptionEnum.VOID_HOOD.label())) {
+                    spiritBonus += numMutations / 2;
+                }
+                if (personalTouch.equals(TRUE) && clothing.getHat().equals(TRUE) && this.getClothing().size() > 3) {
+                    this.getCharacterClass().setDefense(3);
+                }
             }
             if (clothing.getWeight() < 0) {
                 if (clothing.getEquipped().equals(TRUE)) {
@@ -936,18 +984,23 @@ public class SobCharacter implements Serializable {
             if (meleeWeapon.getName().equals(RuleExceptionEnum.DARK_STONE_CLUB.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
+            if (meleeWeapon.getTwoHanded().equals(TRUE) && quietTraveler.equals(TRUE)) {
+                meleeWeapon.setTwoHanded(FALSE);
+            }
             this.weight += meleeWeapon.getWeight();
             darkStoneCount += meleeWeapon.getDarkStone();
-
         }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
-
             if (rightHand != null && noNonArtifactGuns.equals(TRUE) && rightHand.getArtifact().equals(FALSE))
                 unequipRightHand();
             if (leftHand != null && noNonArtifactGuns.equals(TRUE) && leftHand.getArtifact().equals(FALSE))
                 unequipLeftHand();
             if (rangedWeapon.getEquipped().equals(TRUE)) {
                 setRanged(rangedWeapon);
+            }
+            if (personalTouch.equals(TRUE) && rangedWeapon.getName().equals(RuleExceptionEnum.OUTLAW_PISTOL.label())) {
+                rangedWeapon.setWeight(0);
+                rangedWeapon.setUpgrades(4);
             }
             this.weight += rangedWeapon.getWeight();
             darkStoneCount += rangedWeapon.getDarkStone();
@@ -992,40 +1045,6 @@ public class SobCharacter implements Serializable {
             }
             this.weight += attachment.getWeight();
             darkStoneCount += attachment.getDarkStone();
-        }
-        Boolean shieldBash = FALSE;
-        Boolean spinningSlash = FALSE;
-        for (Skill skill : this.getUpgrades()) {
-            for (String string : skill.getModifiers()) {
-                findBonus(string);
-            }
-            for (String string : skill.getPenalties()) {
-                findPenalty(string);
-            }
-            if (skill.getName().equals(RuleExceptionEnum.PERSONAL_TOUCH.label())) {
-                this.getCharacterClass().setDefense(4);
-                for (Clothing clothing : this.getClothing()) {
-                    if (clothing.getHat().equals(TRUE) && this.getClothing().size() > 3) {
-                        this.getCharacterClass().setDefense(3);
-                    }
-                }
-            }
-            if (skill.getName().equals(RuleExceptionEnum.THAT_DOES_IT.label())) {
-                rangedDamageBonus += numMutations > 3 ? 3 : numMutations;
-                meleeDamageBonus += numMutations > 3 ? 3 : numMutations;
-            }
-            armor = skill.getArmor() < armor ? skill.getArmor() : armor;
-            spiritArmor = skill.getSpiritArmor() < spiritArmor ? skill.getSpiritArmor() : spiritArmor;
-            defense = skill.getDefense() < defense ? skill.getDefense() : defense;
-            willpower = skill.getWillpower() < willpower ? skill.getWillpower() : willpower;
-            meleeToHit = skill.getMeleeToHit() < meleeToHit ? skill.getMeleeToHit() : meleeToHit;
-            rangedToHit = skill.getRangedToHit() < rangedToHit ? skill.getRangedToHit() : rangedToHit;
-            meleeCritChance = skill.getMeleeCritChance() < meleeCritChance ? skill.getMeleeCritChance() : meleeCritChance;
-            if (skill.getName().equals(RuleExceptionEnum.SPINNING_SLASH.label()))
-                spinningSlash = TRUE;
-            if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
-            if (skill.getName().equals(RuleExceptionEnum.STORY_TO_TELL.label()))
-                moveBonus += characterClass.getLore() + loreBonus;
         }
 
         this.maxWeight += this.strengthBonus + this.characterClass.getStrength() + 4;

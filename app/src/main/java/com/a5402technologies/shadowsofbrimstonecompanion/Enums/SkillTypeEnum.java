@@ -1,5 +1,7 @@
 package com.a5402technologies.shadowsofbrimstonecompanion.Enums;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.CharacterClass;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +65,14 @@ public enum SkillTypeEnum {
     TRANSFORMATION("Transformation", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
     DARK_STONE_MASTERY("Dark Stone Mastery", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
     TRIBAL_LORE("Tribal Lore", CharacterClassEnum.DARK_STONE_SHAMAN.male()),
+    LAWLESS("Lawless", CharacterClassEnum.DRIFTER.male()),
+    RELUCTANT_HERO("Reluctant Hero", CharacterClassEnum.DRIFTER.male()),
+    LONE_RIDER("Lone Rider", CharacterClassEnum.DRIFTER.male()),
+    HUNTER("Hunter", CharacterClassEnum.DRIFTER.male()),
+    BATTLE_TACTICS("Battle Tactics", CharacterClassEnum.WANDERING_SAMARAI.male()),
+    FURY("Fury", CharacterClassEnum.WANDERING_SAMARAI.male()),
+    WAY_OF_THE_SWORD("Way of the Sword", CharacterClassEnum.WANDERING_SAMARAI.male()),
+    JOURNEYMAN("Journeyman", CharacterClassEnum.WANDERING_SAMARAI.male()),
     STARTING("Starting", CharacterClassEnum.ANY.male());
 
 

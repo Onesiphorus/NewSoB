@@ -32,7 +32,14 @@ public enum RuleExceptionEnum {
     STORY_TO_TELL("A Story to Tell"),
     NO_NONSENSE("No Nonsense"),
     THAT_DOES_IT("That Does It!"),
-    SCALPED("Scalped");
+    SCALPED("Scalped"),
+    SCAFFORD_HAT("Scafford Hat"),
+    SCAFFORD_BELT("Scafford Belt"),
+    SCAFFORD_PISTOL("Scafford Pistol"),
+    VOID_HOOD("Void Hood"),
+    OUTLAW_PISTOL("Outlaw Pistol"),
+    RAPID_RELOAD("Rapid Reload"),
+    QUIET_TRAVELER("Quiet Traveler");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {
