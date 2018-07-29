@@ -4996,7 +4996,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             //TODO +1 damage to combat if blade equipped with Flashing Steel
             mSkillDao.insert(skill);
             //Wandering Samarai Journeyman
-            mSkillDao.insert(skill);
             skill = new Skill("On the Road", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.LORE.label());
@@ -5292,13 +5291,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.DARK_ROAD.label(), ConditionEnum.OTHER.label());
             permanentCondition.addModifier(ModifiersEnum.LUCK.label());
-            //todo Down a Dark Road adds trait Outlaw
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.ONE_WITH_SPIRITS.label(), ConditionEnum.OTHER.label());
-            //todo One with the Spirits adds trait Tribal
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.DEPUTIZED.label(), ConditionEnum.OTHER.label());
-            //todo Become Deputized adds Law trait and removes Outlaw
             permanentCondition.addModifier(ModifiersEnum.CUNNING.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Red Dragon Injection", ConditionEnum.OTHER.label());
@@ -5334,7 +5330,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.CONVERSION.label(), ConditionEnum.OTHER.label());
             permanentCondition.addModifier(ModifiersEnum.SPIRIT.label());
-            //TODO Conversion gives trait Holy
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Aura of Endurance", ConditionEnum.OTHER.label());
             permanentCondition.setTemporaryBoost(TRUE);
