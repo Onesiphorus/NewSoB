@@ -37,7 +37,19 @@ public class PermanentCondition implements Serializable {
     private String type;
     @NonNull
     @ColumnInfo(name = "armor")
-    private Integer armor = 0;
+    private Integer armor = 7;
+    @NonNull
+    @ColumnInfo(name = "spirit_armor")
+    private Integer spiritArmor = 7;
+    @NonNull
+    @ColumnInfo(name = "defense")
+    private Integer defense = 7;
+    @NonNull
+    @ColumnInfo(name = "willpower")
+    private Integer willpwer = 7;
+    @NonNull
+    @ColumnInfo(name = "temporary_boost")
+    private Boolean temporaryBoost = FALSE;
 
     public PermanentCondition(@NonNull String name, @NonNull String type) {
         this.name = name;
@@ -106,5 +118,41 @@ public class PermanentCondition implements Serializable {
 
     public void setArmor(@NonNull Integer armor) {
         this.armor = armor;
+    }
+
+    @NonNull
+    public Integer getSpiritArmor() {
+        return spiritArmor;
+    }
+
+    public void setSpiritArmor(@NonNull Integer spiritArmor) {
+        this.spiritArmor = spiritArmor;
+    }
+
+    @NonNull
+    public Integer getDefense() {
+        return defense;
+    }
+
+    public void setDefense(@NonNull Integer defense) {
+        this.defense = defense;
+    }
+
+    @NonNull
+    public Integer getWillpwer() {
+        return willpwer;
+    }
+
+    public void setWillpwer(@NonNull Integer willpwer) {
+        this.willpwer = willpwer;
+    }
+
+    @NonNull
+    public Boolean getTemporaryBoost() {
+        return temporaryBoost;
+    }
+
+    public void setTemporaryBoost(@NonNull Boolean temporaryBoost) {
+        this.temporaryBoost = temporaryBoost;
     }
 }

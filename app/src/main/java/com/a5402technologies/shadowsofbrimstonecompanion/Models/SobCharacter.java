@@ -886,6 +886,22 @@ public class SobCharacter implements Serializable {
             if (permanentCondition.getName().equals(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label())) {
                 hasAugmentThirdHand = TRUE;
             }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.DEPUTIZED.label())) {
+                traits.add(TraitsEnum.LAW.label());
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.CONVERSION.label())) {
+                traits.add(TraitsEnum.HOLY.label());
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.DARK_ROAD.label())) {
+                traits.add(TraitsEnum.OUTLAW.label());
+            }
+            if (permanentCondition.getName().equals(RuleExceptionEnum.ONE_WITH_SPIRITS.label())) {
+                traits.add(TraitsEnum.TRIBAL.label());
+            }
+            armor = permanentCondition.getArmor() < armor ? permanentCondition.getArmor() : armor;
+            spiritArmor = permanentCondition.getSpiritArmor() < armor ? permanentCondition.getSpiritArmor() : spiritArmor;
+            defense = permanentCondition.getDefense() < defense ? permanentCondition.getDefense() : defense;
+            willpower = permanentCondition.getWillpwer() < willpower ? permanentCondition.getWillpwer() : willpower;
         }
         if (hasAugmentThirdHand.equals(TRUE) && hasMutationForAugmentThirdHand.equals(TRUE)) {
             thirdHand = TRUE;

@@ -39,7 +39,11 @@ public enum RuleExceptionEnum {
     VOID_HOOD("Void Hood"),
     OUTLAW_PISTOL("Outlaw Pistol"),
     RAPID_RELOAD("Rapid Reload"),
-    QUIET_TRAVELER("Quiet Traveler");
+    QUIET_TRAVELER("Quiet Traveler"),
+    DARK_ROAD("Down a Dark Road"),
+    ONE_WITH_SPIRITS("One with the Spirits"),
+    DEPUTIZED("Become Deputized"),
+    CONVERSION("Conversion");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

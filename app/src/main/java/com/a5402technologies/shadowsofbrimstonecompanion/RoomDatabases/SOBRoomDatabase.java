@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import static java.lang.Boolean.TRUE;
 
 @Database(entities = {CharacterClass.class, GearBase.class, MeleeWeapon.class,
-        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 1)
+        RangedWeapon.class, Clothing.class, Skill.class, Attachment.class, PermanentCondition.class}, version = 2)
 @TypeConverters({GithubTypeConverters.class})
 public abstract class SOBRoomDatabase extends RoomDatabase {
     private static SOBRoomDatabase INSTANCE;
@@ -5017,7 +5017,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setWillpower(3);
             mSkillDao.insert(skill);
 
-
             permanentCondition = new PermanentCondition("Eviscerated", ConditionEnum.INJURY.label());
             //TODO something with death
             mPermanentConditionDao.insert(permanentCondition);
@@ -5290,6 +5289,68 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.EXTRA_HAND_AUGMENT.label(), ConditionEnum.OTHER.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.DARK_ROAD.label(), ConditionEnum.OTHER.label());
+            permanentCondition.addModifier(ModifiersEnum.LUCK.label());
+            //todo Down a Dark Road adds trait Outlaw
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.ONE_WITH_SPIRITS.label(), ConditionEnum.OTHER.label());
+            //todo One with the Spirits adds trait Tribal
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.DEPUTIZED.label(), ConditionEnum.OTHER.label());
+            //todo Become Deputized adds Law trait and removes Outlaw
+            permanentCondition.addModifier(ModifiersEnum.CUNNING.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Red Dragon Injection", ConditionEnum.OTHER.label());
+            permanentCondition.addModifier(ModifiersEnum.INITIATIVE.label());
+            permanentCondition.setSpiritArmor(5);
+            permanentCondition.setTemporaryBoost(TRUE);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Dark STone Bullets", ConditionEnum.OTHER.label());
+            permanentCondition.addModifier(ModifiersEnum.RANGED_DAMAGE.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Anti-Venom Injection", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Sycorath Injection", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.addModifier(ModifiersEnum.MOVE.label());
+            permanentCondition.addModifier(ModifiersEnum.INITIATIVE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Sycorath Withdrawal", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.addPenalty(ModifiersEnum.INITIATIVE.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Void Vapor Injection", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.addModifier(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Dark Stone Injection", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Resurrected", ConditionEnum.OTHER.label());
+            permanentCondition.addPenalty(ModifiersEnum.MAX_GRIT.label());
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition(RuleExceptionEnum.CONVERSION.label(), ConditionEnum.OTHER.label());
+            permanentCondition.addModifier(ModifiersEnum.SPIRIT.label());
+            //TODO Conversion gives trait Holy
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Aura of Endurance", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.setArmor(5);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Aura of Wrath", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Aura of Fortitude", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.setSpiritArmor(5);
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Aura of Protection", ConditionEnum.OTHER.label());
+            permanentCondition.setTemporaryBoost(TRUE);
+            permanentCondition.setArmor(6);
+            permanentCondition.setSpiritArmor(6);
             mPermanentConditionDao.insert(permanentCondition);
 
             //US Marshall Traveler
