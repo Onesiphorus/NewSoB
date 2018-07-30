@@ -182,6 +182,12 @@ public class CombatViewActivity extends AppCompatActivity {
     }
 
     private void setWeapons() {
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : sobCharacter.getUpgrades()) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         Button rightRanged = findViewById(R.id.right_hand_ranged_weapon);
         rightRanged.setHint("empty");
         Button leftRanged = findViewById(R.id.left_hand_ranged_weapon);
@@ -194,6 +200,7 @@ public class CombatViewActivity extends AppCompatActivity {
         leftMelee.setHint("empty");
         Button tailMelee = findViewById(R.id.btn_tail_melee);
         tailMelee.setHint("empty");
+
         if (sobCharacter.getThirdHand().equals(FALSE)) {
             tailMelee.setVisibility(View.INVISIBLE);
             tailRanged.setVisibility(View.INVISIBLE);
@@ -207,10 +214,17 @@ public class CombatViewActivity extends AppCompatActivity {
         Boolean rapidReload = FALSE;
         Boolean quickShot = FALSE;
         Boolean noNonsense = FALSE;
+        Boolean preacherGuns = FALSE;
         for (Skill skill : sobCharacter.getUpgrades()) {
             if (skill.getName().equals(RuleExceptionEnum.NO_NONSENSE.label())) noNonsense = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.QUICK_SHOT.label())) quickShot = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.RAPID_RELOAD.label())) rapidReload = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.REDEMPTIONIST.label())) preacherGuns = TRUE;
+        }
+        if (sobCharacter.getCharacterClass().getClassName().equals(CharacterClassEnum.PREACHER.male()) && preacherGuns.equals(FALSE)) {
+            findViewById(R.id.right_hand_weapon).setEnabled(FALSE);
+            findViewById(R.id.left_hand_weapon).setEnabled(FALSE);
+            findViewById(R.id.tail_ranged_weapon).setEnabled(FALSE);
         }
         if (sobCharacter.getRightHand() != null) {
             rightRanged.setText(sobCharacter.getRightHand().getName());
@@ -457,7 +471,7 @@ public class CombatViewActivity extends AppCompatActivity {
         if (null != sobCharacter.getLeftMelee()) {
             leftMelee.setText(sobCharacter.getLeftMelee().getName());
             leftRanged.setHint(sobCharacter.getLeftMelee().getName());
-            if (sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getLeftMelee().getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)) {
                 if (rightMelee == null && rightRanged == null) {
                     rightRanged.setHint(sobCharacter.getLeftMelee().getName());
                     rightMelee.setHint(sobCharacter.getLeftMelee().getName());
@@ -466,7 +480,7 @@ public class CombatViewActivity extends AppCompatActivity {
                     tailRanged.setHint(sobCharacter.getLeftMelee().getName());
                     tailMelee.setHint(sobCharacter.getLeftMelee().getName());
                 }
-            } else if (sobCharacter.getLeftHand().getThreeHanded().equals(TRUE)) {
+            } else if (sobCharacter.getLeftMelee().getThreeHanded().equals(TRUE)) {
                 rightRanged.setHint(sobCharacter.getLeftMelee().getName());
                 rightMelee.setHint(sobCharacter.getLeftMelee().getName());
                 tailRanged.setHint(sobCharacter.getLeftMelee().getName());
@@ -482,7 +496,7 @@ public class CombatViewActivity extends AppCompatActivity {
         if (null != sobCharacter.getRightMelee()) {
             rightMelee.setText(sobCharacter.getRightMelee().getName());
             rightRanged.setHint(sobCharacter.getRightMelee().getName());
-            if (sobCharacter.getRightMelee().getTwoHanded().equals(TRUE)) {
+            if (sobCharacter.getRightMelee().getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)) {
                 if (sobCharacter.getLeftMelee() == null && sobCharacter.getLeftHand() == null) {
                     leftRanged.setHint(sobCharacter.getRightMelee().getName());
                     leftMelee.setHint(sobCharacter.getRightMelee().getName());

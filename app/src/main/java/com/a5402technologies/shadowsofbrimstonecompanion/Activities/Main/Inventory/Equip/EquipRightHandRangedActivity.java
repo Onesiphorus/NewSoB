@@ -66,12 +66,17 @@ public class EquipRightHandRangedActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, sobCharacter.getRightHand().getName() + " removed.", Toast.LENGTH_LONG).show();
-            sobCharacter.unequipRightHand();
-            Intent intent = new Intent(this, CombatViewActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
+            if (null != sobCharacter.getRightHand()) {
+                Toast.makeText(this, sobCharacter.getRightHand().getName() + " removed.", Toast.LENGTH_LONG).show();
+                sobCharacter.unequipRightHand();
+                Intent intent = new Intent(this, CombatViewActivity.class);
+                intent.putExtra("serializable_object", sobCharacter);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Nothing equipped.", Toast.LENGTH_LONG).show();
+
+            }
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.CombatViewActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Enums.RuleExceptionEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.MeleeWeapon;
+import com.a5402technologies.shadowsofbrimstonecompanion.Models.Skill;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
 
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class EquipTailMeleeActivity extends AppCompatActivity {
 
@@ -32,11 +35,16 @@ public class EquipTailMeleeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equip);
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
-
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : sobCharacter.getUpgrades()) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         ArrayList<MeleeWeapon> MeleeWeaponOptions = new ArrayList<>(0);
         for (MeleeWeapon meleeWeapon : sobCharacter.getMeleeWeapons()) {
             if (meleeWeapon.getEquipped().equals(FALSE)
-                    && meleeWeapon.getTwoHanded().equals(FALSE)
+                    && (meleeWeapon.getTwoHanded().equals(FALSE) || quietTraverler.equals(TRUE))
                     && meleeWeapon.getThreeHanded().equals(FALSE))
                 MeleeWeaponOptions.add(meleeWeapon);
         }

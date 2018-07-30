@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +27,10 @@ public class LevelUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_up);
         ArrayList<String> tempMods = new ArrayList<>(0);
-        Button btn = findViewById(R.id.btn_cancel);
-        btn.setText("Reset");
+        Button btn = findViewById(R.id.btn_unequip);
+        btn.setText("Increase By");
+        btn = findViewById(R.id.btn_cancel);
+        btn.setText("Decrease By");
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
 
 
@@ -148,7 +151,7 @@ public class LevelUpActivity extends AppCompatActivity {
             }
             tv.setText(String.format(i.toString()));
         });
-        btn = findViewById(R.id.btn_accept);
+        btn = findViewById(R.id.btn_equip);
         String text = "Accept and select new Upgrade";
         btn.setText(text);
         btn.setOnClickListener((View view) -> {
@@ -203,8 +206,21 @@ public class LevelUpActivity extends AppCompatActivity {
                 Toast.makeText(this, "You need " + diff.toString() + "xp to level up!", Toast.LENGTH_LONG).show();
             }
         });
+        findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
+            for (String modifier : tempMods) {
+                sobCharacter.addModifier(modifier);
+            }
+            sobCharacter.setBonuses();
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, LevelUpActivity.class);
+            for (String modifier : tempMods) {
+                sobCharacter.removeModifier(modifier);
+            }
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

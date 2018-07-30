@@ -65,12 +65,17 @@ public class EquipRightMeleeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_unequip).setOnClickListener((View view) -> {
-            Toast.makeText(this, sobCharacter.getRightMelee().getName() + " removed.", Toast.LENGTH_LONG).show();
-            sobCharacter.unequipRightMelee();
-            Intent intent = new Intent(this, CombatViewActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
+            if (null != sobCharacter.getRightMelee()) {
+                Toast.makeText(this, sobCharacter.getRightMelee().getName() + " removed.", Toast.LENGTH_LONG).show();
+                sobCharacter.unequipRightMelee();
+                Intent intent = new Intent(this, CombatViewActivity.class);
+                intent.putExtra("serializable_object", sobCharacter);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Nothing equipped.", Toast.LENGTH_LONG).show();
+
+            }
         });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {

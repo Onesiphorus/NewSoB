@@ -398,8 +398,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Firebrand", CharacterClassEnum.PREACHER.male(), SkillTypeEnum.STARTING.label());
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
-            skill = new Skill("Redemptionist", CharacterClassEnum.PREACHER.male(), SkillTypeEnum.STARTING.label());
-            //TODO hard code no guns for preacher without this skill
+            skill = new Skill(RuleExceptionEnum.REDEMPTIONIST.label(), CharacterClassEnum.PREACHER.male(), SkillTypeEnum.STARTING.label());
             characterClass.addStartingSkill(skill);
             mSkillDao.insert(skill);
             skill = new Skill("Missionary", CharacterClassEnum.PREACHER.male(), SkillTypeEnum.STARTING.label());
@@ -1096,7 +1095,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             gearBase.addModifier(ModifiersEnum.LORE.label());
             gearBase.addModifier(ModifiersEnum.MAX_GRIT.label());
             mGearBaseDao.insert(gearBase);
-            //TODO Need solution for Trait enforcement Authority of O'Tar give Law when in Otherworld
             gearBase = new GearBase("Authority of O'Tar");
             gearBase.addTrait(TraitsEnum.ARTIFACT.label());
             gearBase.addTrait(TraitsEnum.TARGA.label());
@@ -3003,6 +3001,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             meleeWeapon.setDarkStone(1);
             meleeWeapon.setWeight(1);
             meleeWeapon.setUpgrades(4);
+            meleeWeapon.setDamageDie(1);
             meleeWeapon.setSell(650);
             mMeleeWeaponDao.insert(meleeWeapon);
             //TODO hard code peril die for Forgesmith's Hammer
@@ -4358,8 +4357,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
             skill = new Skill("Close Companion", SkillTypeEnum.ON_THE_RANGE.code(), SkillTypeEnum.ON_THE_RANGE.label());
             skill.setLevel(3);
+            skill.setWillpower(3);
             mSkillDao.insert(skill);
-            //TODO Hard code When Cowboy has Close Companion and a Transport Animal, set Willpower 3+
             skill = new Skill("Wilderness Mastered", SkillTypeEnum.ON_THE_RANGE.code(), SkillTypeEnum.ON_THE_RANGE.label());
             skill.setLevel(4);
             mSkillDao.insert(skill);
@@ -4559,14 +4558,12 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier(ModifiersEnum.RANGED_CRIT_DAMAGE.label());
             mSkillDao.insert(skill);
             //Rancher Frontier Survival
-            skill = new Skill("Dressed for Adventure", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill = new Skill(RuleExceptionEnum.DRESSED_FOR_ADVENTURE.label(), SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
             skill.setLevel(1);
-            //TODO code Dressed for Adventure gives +2 Health per clothing item and clothing does not add weight
             mSkillDao.insert(skill);
-            skill = new Skill("Life Goes On", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
+            skill = new Skill(RuleExceptionEnum.LIFE_GOES_ON.label(), SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
             skill.setLevel(2);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
-            //TODO code +1 Init per mutation with Life Goes On
             mSkillDao.insert(skill);
             skill = new Skill("\"I've Seen Worse!\"!", SkillTypeEnum.FRONTIER_SURVIVAL.code(), SkillTypeEnum.FRONTIER_SURVIVAL.label());
             skill.setLevel(3);
@@ -4576,9 +4573,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setMeleeToHit(3);
             mSkillDao.insert(skill);
             //Rancher Toughness
-            skill = new Skill("Ready for Action", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
+            skill = new Skill(RuleExceptionEnum.READY_FOR_ACTION.label(), SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
             skill.setLevel(1);
-            //TODO Double side bag capacity with Ready for Action
             mSkillDao.insert(skill);
             skill = new Skill("Is That All You've Got", SkillTypeEnum.TOUGHNESS.code(), SkillTypeEnum.TOUGHNESS.label());
             skill.setLevel(2);
@@ -4604,7 +4600,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
             skill = new Skill("Refinement", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
             skill.setLevel(3);
-            //Todo code Refinement Upgrade (12 Dark Stone and 1 upgrade slot for +1 damage (1DS)
+            attachment = new Attachment("Refinement", 1);
+            attachment.setDarkStone(1);
+            attachment.setDarkstoneCost(12);
+            //TODO code refinement give 1 damage to item attached
             mSkillDao.insert(skill);
             skill = new Skill("Dark Stone Trap", SkillTypeEnum.SMITHING.code(), SkillTypeEnum.SMITHING.label());
             skill.setLevel(4);
@@ -4847,14 +4846,12 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill = new Skill("Attuned", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
             skill.setLevel(2);
             mSkillDao.insert(skill);
-            skill = new Skill("Void Strength", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill = new Skill(RuleExceptionEnum.VOID_STRENGTH.label(), SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
             skill.setLevel(3);
             skill.addModifier(ModifiersEnum.STRENGTH.label());
-            //TODO code +1 Health per dark stone item with Void Strength
             mSkillDao.insert(skill);
-            skill = new Skill("Light as a Feather", SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
+            skill = new Skill(RuleExceptionEnum.LIGHT_AS_A_FEATHER.label(), SkillTypeEnum.DARK_STONE_MASTERY.code(), SkillTypeEnum.DARK_STONE_MASTERY.label());
             skill.setLevel(4);
-            //TODO code -1 weight on dark stone items with Light as a Feather
             skill.addModifier(ModifiersEnum.MOVE.label());
             mSkillDao.insert(skill);
             //Dark Stone Shaman Tribal Lore
@@ -4875,11 +4872,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier(ModifiersEnum.MAGIK.label());
             mSkillDao.insert(skill);
             //Drifter Lawless
-            skill = new Skill("Jaded", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
+            skill = new Skill(RuleExceptionEnum.JADED.label(), SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
             skill.addModifier(ModifiersEnum.MAX_GRIT.label());
-            //TODO Lawless skill adds Outlaw Trait
             mSkillDao.insert(skill);
             skill = new Skill("Infamous", SkillTypeEnum.LAWLESS.code(), SkillTypeEnum.LAWLESS.label());
             skill.setLevel(2);
@@ -4978,10 +4974,9 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.addModifier(ModifiersEnum.INITIATIVE.label());
             mSkillDao.insert(skill);
             //Wandering Samarai Way of the Sword
-            skill = new Skill("Control Discipline", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill = new Skill(RuleExceptionEnum.CONTROL_DISCIPLINE.label(), SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
             skill.setLevel(1);
             skill.addModifier(ModifiersEnum.CUNNING.label());
-            //TODO code D8 damage with two-handed blade weapons with Control Discipline (Needs to work 2hand-1hand)r
             mSkillDao.insert(skill);
             skill = new Skill("Power Discipline", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
             skill.setLevel(2);
@@ -4991,9 +4986,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             skill.setLevel(3);
             skill.addModifier(ModifiersEnum.SPIRIT.label());
             mSkillDao.insert(skill);
-            skill = new Skill("Flashing Steel", SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
+            skill = new Skill(RuleExceptionEnum.FLASHING_STEEL.label(), SkillTypeEnum.WAY_OF_THE_SWORD.code(), SkillTypeEnum.WAY_OF_THE_SWORD.label());
             skill.setLevel(4);
-            //TODO +1 damage to combat if blade equipped with Flashing Steel
             mSkillDao.insert(skill);
             //Wandering Samarai Journeyman
             skill = new Skill("On the Road", SkillTypeEnum.JOURNEYMAN.code(), SkillTypeEnum.JOURNEYMAN.label());
@@ -5017,7 +5011,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mSkillDao.insert(skill);
 
             permanentCondition = new PermanentCondition("Eviscerated", ConditionEnum.INJURY.label());
-            //TODO something with death
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Foreign Object", ConditionEnum.INJURY.label());
             //TODO code Foreign Object
@@ -5036,7 +5029,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Fractured Hip", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Mangled Hand", ConditionEnum.INJURY.label());
+            permanentCondition = new PermanentCondition("Mangled Hand (Right)", ConditionEnum.INJURY.label());
+            //TODO code Mangled Hand to reduce weapons carried
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Mangled Hand (Left)", ConditionEnum.INJURY.label());
             //TODO code Mangled Hand to reduce weapons carried
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Gouged Eye", ConditionEnum.INJURY.label());
@@ -5061,7 +5057,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Cracked Knee", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Crushed Foot", ConditionEnum.INJURY.label());
-            //TODO escape rolls?
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition(RuleExceptionEnum.SCALPED.label(), ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
@@ -5075,7 +5070,10 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Chest Wound", ConditionEnum.INJURY.label());
             permanentCondition.addPenalty(ModifiersEnum.INITIATIVE.label());
             mPermanentConditionDao.insert(permanentCondition);
-            permanentCondition = new PermanentCondition("Severed Finger", ConditionEnum.INJURY.label());
+            permanentCondition = new PermanentCondition("Severed Finger (Right)", ConditionEnum.INJURY.label());
+            //TODO code -1 shot on ranged weapons when Severed Finger
+            mPermanentConditionDao.insert(permanentCondition);
+            permanentCondition = new PermanentCondition("Severed Finger (Left)", ConditionEnum.INJURY.label());
             //TODO code -1 shot on ranged weapons when Severed Finger
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Severed Ear", ConditionEnum.INJURY.label());
@@ -5087,10 +5085,8 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition("Twisted Ankle", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Sprained Wrist", ConditionEnum.INJURY.label());
-            //TODO add Ranged to Hit modifiers (global)
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Dislocated Shoulder", ConditionEnum.INJURY.label());
-            //TODO add Melee to Hit modifiers (global)
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Rattled", ConditionEnum.INJURY.label());
             mPermanentConditionDao.insert(permanentCondition);
@@ -5133,7 +5129,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addModifier(ModifiersEnum.MAX_HEALTH.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Slippery Skin", ConditionEnum.MUTATION.label());
-            //TODO Escape tests
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Melty Skin", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
@@ -5185,7 +5180,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition = new PermanentCondition(RuleExceptionEnum.HAND_GROWTH.label(), ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Fused with Item", ConditionEnum.MUTATION.label());
-            //todo code fused item on weapon
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Fused with Rock", ConditionEnum.MUTATION.label());
             permanentCondition.setArmor(4);
@@ -5193,7 +5187,6 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             permanentCondition.addPenalty(ModifiersEnum.MOVE.label());
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Fused with Dark Stone", ConditionEnum.MUTATION.label());
-            //TODO Fuse Dark Stone
             mPermanentConditionDao.insert(permanentCondition);
             permanentCondition = new PermanentCondition("Dark Stone Allergy", ConditionEnum.MUTATION.label());
             mPermanentConditionDao.insert(permanentCondition);

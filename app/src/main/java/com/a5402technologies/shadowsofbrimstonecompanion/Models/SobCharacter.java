@@ -670,14 +670,21 @@ public class SobCharacter implements Serializable {
     }
 
     public void equipRightMelee(MeleeWeapon meleeWeapon) {
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : upgrades) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         if (null != rightMelee) {
             unequipRightMelee();
         }
         findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
         rightMelee = meleeWeapon;
+        meleeWeapons.remove(meleeWeapon);
         if (null != leftMelee
-                && (meleeWeapon.getTwoHanded().equals(TRUE)
-                || leftMelee.getTwoHanded().equals(TRUE)
+                && (meleeWeapon.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
+                || leftMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || leftMelee.getThreeHanded().equals(TRUE))) {
             unequipLeftMelee();
         }
@@ -685,8 +692,8 @@ public class SobCharacter implements Serializable {
             unequipRightHand();
         }
         if (null != leftHand && (leftHand.getTwoHanded().equals(TRUE)
-                || rightMelee.getTwoHanded().equals(TRUE)
-                || rightMelee.getThreeHanded().equals(TRUE)
+                || rightMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
+                || rightMelee.getThreeHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || leftHand.getThreeHanded().equals(TRUE))) {
             unequipLeftHand();
         }
@@ -701,14 +708,20 @@ public class SobCharacter implements Serializable {
     }
 
     public void equipLeftMelee(MeleeWeapon meleeWeapon) {
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : upgrades) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         if (null != leftMelee) {
             unequipLeftMelee();
         }
-        findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
         leftMelee = meleeWeapon;
+        meleeWeapons.remove(meleeWeapon);
         if (null != rightMelee
-                && (meleeWeapon.getTwoHanded().equals(TRUE)
-                || rightMelee.getTwoHanded().equals(TRUE)
+                && (meleeWeapon.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
+                || rightMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || rightMelee.getThreeHanded().equals(TRUE))) {
             unequipRightMelee();
         }
@@ -716,8 +729,8 @@ public class SobCharacter implements Serializable {
             unequipLeftHand();
         }
         if (null != rightHand
-                && (rightHand.getTwoHanded().equals(TRUE)
-                || leftMelee.getTwoHanded().equals(TRUE)
+                && (rightHand.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
+                || leftMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || leftMelee.getThreeHanded().equals(TRUE)
                 || rightHand.getThreeHanded().equals(TRUE))) {
             unequipRightHand();
@@ -736,8 +749,8 @@ public class SobCharacter implements Serializable {
         if (null != tailRanged) {
             unequipTailRanged();
         }
-        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         tailRanged = rangedWeapon;
+        rangedWeapons.remove(rangedWeapon);
         if (null != tailMelee) unequipTailMelee();
     }
 
@@ -745,47 +758,53 @@ public class SobCharacter implements Serializable {
         if (null != tailMelee) {
             unequipTailMelee();
         }
-        findMeleeWeaponByName(meleeWeapon.getName()).setEquipped(TRUE);
         tailMelee = meleeWeapon;
+        meleeWeapons.remove(meleeWeapon);
         if (null != tailRanged) unequipTailRanged();
     }
 
     public void unequipRightHand() {
-        if (null != rightHand) findRangedWeaponByName(rightHand.getName()).setEquipped(FALSE);
+        rangedWeapons.add(rightHand);
         rightHand = null;
     }
 
     public void unequipLeftHand() {
-        if (null != leftHand) findRangedWeaponByName(leftHand.getName()).setEquipped(FALSE);
+        rangedWeapons.add(leftHand);
         leftHand = null;
     }
 
     public void unequipRightMelee() {
-        if (null != rightMelee) findMeleeWeaponByName(rightMelee.getName()).setEquipped(FALSE);
+        meleeWeapons.add(rightMelee);
         rightMelee = null;
     }
 
     public void unequipLeftMelee() {
-        if (null != leftMelee) findMeleeWeaponByName(leftMelee.getName()).setEquipped(FALSE);
+        meleeWeapons.add(leftMelee);
         leftMelee = null;
     }
 
     public void unequipTailRanged() {
-        if (null != tailRanged) findRangedWeaponByName(tailRanged.getName()).setEquipped(FALSE);
+        rangedWeapons.add(tailRanged);
         tailRanged = null;
     }
 
     public void unequipTailMelee() {
-        if (null != tailMelee) findRangedWeaponByName(tailMelee.getName()).setEquipped(FALSE);
+        meleeWeapons.add(tailMelee);
         tailMelee = null;
     }
 
     public void equipRightHand(RangedWeapon rangedWeapon) {
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : upgrades) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         if (null != rightHand) {
             unequipRightHand();
         }
-        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         rightHand = rangedWeapon;
+        rangedWeapons.remove(rangedWeapon);
         if (null != leftHand
                 && (rangedWeapon.getTwoHanded().equals(TRUE)
                 || leftHand.getTwoHanded().equals(TRUE)
@@ -796,7 +815,7 @@ public class SobCharacter implements Serializable {
             unequipRightMelee();
         }
         if (null != leftMelee
-                && (leftMelee.getTwoHanded().equals(TRUE)
+                && (leftMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || rightHand.getTwoHanded().equals(TRUE)
                 || rightHand.getThreeHanded().equals(TRUE)
                 || leftMelee.getThreeHanded().equals(TRUE))) {
@@ -813,11 +832,17 @@ public class SobCharacter implements Serializable {
     }
 
     public void equipLeftHand(RangedWeapon rangedWeapon) {
+        Boolean quietTraverler = FALSE;
+        for (Skill skill : upgrades) {
+            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
+                quietTraverler = TRUE;
+            }
+        }
         if (null != leftHand) {
             unequipLeftHand();
         }
-        findRangedWeaponByName(rangedWeapon.getName()).setEquipped(TRUE);
         leftHand = rangedWeapon;
+        rangedWeapons.remove(rangedWeapon);
         if (null != rightHand
                 && (rangedWeapon.getTwoHanded().equals(TRUE)
                 || rightHand.getTwoHanded().equals(TRUE)
@@ -828,7 +853,7 @@ public class SobCharacter implements Serializable {
             unequipLeftMelee();
         }
         if (null != rightMelee
-                && (rightMelee.getTwoHanded().equals(TRUE)
+                && (rightMelee.getTwoHanded().equals(TRUE) && quietTraverler.equals(FALSE)
                 || leftHand.getTwoHanded().equals(TRUE)
                 || leftHand.getThreeHanded().equals(TRUE)
                 || rightMelee.getThreeHanded().equals(TRUE))) {
@@ -909,7 +934,12 @@ public class SobCharacter implements Serializable {
         Boolean shieldBash = FALSE;
         Boolean spinningSlash = FALSE;
         Boolean personalTouch = FALSE;
-        Boolean quietTraveler = FALSE;
+        Boolean dressedForAdventrue = FALSE;
+        Boolean readyForAction = FALSE;
+        Boolean voidStrength = FALSE;
+        Boolean lightAsAFeather= FALSE;
+        Boolean controlDiscipline = FALSE;
+        Boolean flashingSteel = FALSE;
         for (Skill skill : this.getUpgrades()) {
             for (String string : skill.getModifiers()) {
                 findBonus(string);
@@ -925,6 +955,21 @@ public class SobCharacter implements Serializable {
                 rangedDamageBonus += numMutations > 3 ? 3 : numMutations;
                 meleeDamageBonus += numMutations > 3 ? 3 : numMutations;
             }
+            if (skill.getName().equals(RuleExceptionEnum.LIFE_GOES_ON.label())) {
+                initiativeBonus += numMutations;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.READY_FOR_ACTION.label())) {
+                readyForAction = TRUE;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.VOID_STRENGTH.label())) {
+                voidStrength = TRUE;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.LIGHT_AS_A_FEATHER.label())) {
+                lightAsAFeather = TRUE;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.CONTROL_DISCIPLINE.label())) {
+                controlDiscipline = TRUE;
+            }
             armor = skill.getArmor() < armor ? skill.getArmor() : armor;
             spiritArmor = skill.getSpiritArmor() < spiritArmor ? skill.getSpiritArmor() : spiritArmor;
             defense = skill.getDefense() < defense ? skill.getDefense() : defense;
@@ -937,11 +982,23 @@ public class SobCharacter implements Serializable {
             if (skill.getName().equals(RuleExceptionEnum.SHIELD_BASH.label())) shieldBash = TRUE;
             if (skill.getName().equals(RuleExceptionEnum.STORY_TO_TELL.label()))
                 moveBonus += characterClass.getLore() + loreBonus;
-            if (skill.getName().equals(RuleExceptionEnum.QUIET_TRAVELER.label())) {
-                quietTraveler = TRUE;
+            if (skill.getName().equals(RuleExceptionEnum.DRESSED_FOR_ADVENTURE.label())) {
+                dressedForAdventrue = TRUE;
+            }
+            if (skill.getName().equals(RuleExceptionEnum.JADED.label())) {
+                traits.add(TraitsEnum.OUTLAW.label());
+            }
+            if (skill.getName().equals(RuleExceptionEnum.FLASHING_STEEL.label())) {
+                flashingSteel = TRUE;
             }
         }
         for (Clothing clothing : this.getClothing()) {
+            if (voidStrength.equals(TRUE) && clothing.getDarkStone() > 0) {
+                healthBonus++;
+            }
+            if (lightAsAFeather.equals(TRUE) && clothing.getDarkStone() > 0 && clothing.getWeight() > 0) {
+                weight -= 1;
+            }
             if (clothing.getEquipped().equals(TRUE)) {
                 if (clothing.getHat().equals(TRUE) && noHats.equals(TRUE))
                     unequipClothing(clothing);
@@ -951,6 +1008,10 @@ public class SobCharacter implements Serializable {
                     unequipClothing(clothing);
                 if (clothing.getGloves().equals(TRUE) && noGloves.equals(TRUE))
                     unequipClothing(clothing);
+                if (dressedForAdventrue.equals(TRUE)) {
+                    weight -= clothing.getWeight();
+                    healthBonus += 2;
+                }
                 for (String string : clothing.getModifiers()) {
                     findBonus(string);
                 }
@@ -990,38 +1051,97 @@ public class SobCharacter implements Serializable {
             darkStoneCount += clothing.getDarkStone();
 
         }
+        Boolean bladeEquipped = FALSE;
         for (MeleeWeapon meleeWeapon : this.getMeleeWeapons()) {
-            if (meleeWeapon.getEquipped().equals(TRUE)) {
-                this.setCombat(meleeWeapon);
+            if (controlDiscipline.equals(TRUE) && meleeWeapon.getTwoHanded().equals(TRUE)) {
+                meleeWeapon.setDamageDie(8);
             }
-            if (meleeWeapon.getArmor() > 0 && meleeWeapon.getArmor() < this.armor) {
-                this.armor = meleeWeapon.getArmor();
+            if (voidStrength.equals(TRUE) && meleeWeapon.getDarkStone() > 0) {
+                healthBonus++;
+            }
+            if (lightAsAFeather.equals(TRUE) && meleeWeapon.getDarkStone() > 0 && meleeWeapon.getWeight() > 0) {
+                weight -= 1;
             }
             if (meleeWeapon.getName().equals(RuleExceptionEnum.DARK_STONE_CLUB.label())) {
                 traits.add(TraitsEnum.TRIBAL.label());
             }
-            if (meleeWeapon.getTwoHanded().equals(TRUE) && quietTraveler.equals(TRUE)) {
-                meleeWeapon.setTwoHanded(FALSE);
-            }
             this.weight += meleeWeapon.getWeight();
             darkStoneCount += meleeWeapon.getDarkStone();
         }
+        if (null != leftMelee) {
+            setCombat(leftMelee);
+            weight += leftMelee.getWeight();
+            darkStoneCount += leftMelee.getDarkStone();
+            for (String trait : leftMelee.getTraits()) {
+                if (trait.equals(TraitsEnum.BLADE.label())) {
+                    bladeEquipped = TRUE;
+                }
+            }
+        }
+        if (null != rightMelee) {
+            setCombat(rightMelee);
+            weight += rightMelee.getWeight();
+            darkStoneCount += rightMelee.getDarkStone();
+            for (String trait : rightMelee.getTraits()) {
+                if (trait.equals(TraitsEnum.BLADE.label())) {
+                    bladeEquipped = TRUE;
+                }
+            }
+        }
+        if (null != tailMelee) {
+            setCombat (tailMelee);
+            weight += tailMelee.getWeight();
+            darkStoneCount += tailMelee.getDarkStone();
+            for (String trait : tailMelee.getTraits()) {
+                if (trait.equals(TraitsEnum.BLADE.label())) {
+                    bladeEquipped = TRUE;
+                }
+            }
+        }
+        if (bladeEquipped.equals(TRUE) && flashingSteel.equals(TRUE)) {
+            meleeDamageBonus += 1;
+        }
         for (RangedWeapon rangedWeapon : this.getRangedWeapons()) {
+            if (voidStrength.equals(TRUE) && rangedWeapon.getDarkStone() > 0) {
+                healthBonus++;
+            }
+            if (lightAsAFeather.equals(TRUE) && rangedWeapon.getDarkStone() > 0 && rangedWeapon.getWeight() > 0) {
+                weight -= 1;
+            }
             if (rightHand != null && noNonArtifactGuns.equals(TRUE) && rightHand.getArtifact().equals(FALSE))
                 unequipRightHand();
             if (leftHand != null && noNonArtifactGuns.equals(TRUE) && leftHand.getArtifact().equals(FALSE))
                 unequipLeftHand();
-            if (rangedWeapon.getEquipped().equals(TRUE)) {
-                setRanged(rangedWeapon);
-            }
             if (personalTouch.equals(TRUE) && rangedWeapon.getName().equals(RuleExceptionEnum.OUTLAW_PISTOL.label())) {
                 rangedWeapon.setWeight(0);
                 rangedWeapon.setUpgrades(4);
             }
+
             this.weight += rangedWeapon.getWeight();
             darkStoneCount += rangedWeapon.getDarkStone();
         }
+        if (null != leftHand) {
+            setRanged(leftHand);
+            weight += leftHand.getWeight();
+            darkStoneCount += leftHand.getDarkStone();
+        }
+        if (null != rightHand) {
+            setRanged(rightHand);
+            weight += rightHand.getWeight();
+            darkStoneCount += rightHand.getDarkStone();
+        }
+        if (null != tailRanged) {
+            setRanged(tailRanged);
+            weight += tailRanged.getWeight();
+            darkStoneCount += tailRanged.getDarkStone();
+        }
         for (GearBase gearBase : this.getGear()) {
+            if (voidStrength.equals(TRUE) && gearBase.getDarkStone() > 0) {
+                healthBonus++;
+            }
+            if (lightAsAFeather.equals(TRUE) && gearBase.getDarkStone() > 0 && gearBase.getWeight() > 0) {
+                weight -= 1;
+            }
             for (String string : gearBase.getModifiers()) {
                 findBonus(string);
             }
@@ -1048,6 +1168,9 @@ public class SobCharacter implements Serializable {
         }
         Boolean markFaithfulBonus = FALSE;
         for (Attachment attachment : this.getAttachments()) {
+            if (voidStrength.equals(TRUE) && attachment.getDarkStone() > 0) {
+                healthBonus++;
+            }
             if (attachment.getEquipped().equals(TRUE)) {
                 for (String string : attachment.getModifiers()) {
                     findBonus(string);
@@ -1095,6 +1218,9 @@ public class SobCharacter implements Serializable {
             if (null != tailRanged) unequipTailRanged();
             if (null != tailMelee) unequipTailMelee();
         }
+        if (readyForAction.equals(TRUE)) {
+            sideBagSize *= 2;
+        }
     }
 
     private void setRanged(RangedWeapon rangedWeapon) {
@@ -1112,6 +1238,9 @@ public class SobCharacter implements Serializable {
             if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                 this.combatBonus++;
             }
+        }
+        if (meleeWeapon.getArmor() > 0 && meleeWeapon.getArmor() < this.armor) {
+            this.armor = meleeWeapon.getArmor();
         }
         if (this.meleeDamageDie < meleeWeapon.getDamageDie()) {
             this.setMeleeDamageDie(meleeWeapon.getDamageDie());

@@ -43,7 +43,16 @@ public enum RuleExceptionEnum {
     DARK_ROAD("Down a Dark Road"),
     ONE_WITH_SPIRITS("One with the Spirits"),
     DEPUTIZED("Become Deputized"),
-    CONVERSION("Conversion");
+    CONVERSION("Conversion"),
+    REDEMPTIONIST("Redemptionist"),
+    DRESSED_FOR_ADVENTURE("Dressed for Adventure"),
+    LIFE_GOES_ON("Life Goes On"),
+    READY_FOR_ACTION("Ready for Action"),
+    VOID_STRENGTH("Void Strength"),
+    LIGHT_AS_A_FEATHER("Light as a Feather"),
+    JADED("Jaded"),
+    CONTROL_DISCIPLINE("Control Discipline"),
+    FLASHING_STEEL("Flashing Steel");
     private static Map<String, RuleExceptionEnum> lookupByLabel = new HashMap<>();
 
     static {

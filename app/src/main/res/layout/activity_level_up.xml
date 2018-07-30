@@ -373,6 +373,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/content_accept_cancel" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light" />
 
+    <include layout="@layout/content_equip_cancel" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light" />
 </LinearLayout>
