@@ -217,7 +217,7 @@ public class RemoveGearActivity extends AppCompatActivity {
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
-                if (gearBase != null) {
+                if (rangedWeapon != null) {
                     sobCharacter.removeRangedWeapon(rangedWeapon);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, rangedWeapon.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
