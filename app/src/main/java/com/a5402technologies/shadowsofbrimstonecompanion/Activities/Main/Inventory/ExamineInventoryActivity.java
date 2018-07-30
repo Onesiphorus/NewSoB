@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ManagementMenuActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -60,6 +61,13 @@ public class ExamineInventoryActivity extends AppCompatActivity {
             intent.putExtra("serializable_object", sobCharacter);
             intent.putExtra("gear_type", GearTypeEnum.GEAR_UPGRADES.label());
             intent.putExtra("location", location);
+            startActivity(intent);
+            finish();
+        });
+
+        findViewById(R.id.btn_home).setOnClickListener((View view ) -> {
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });

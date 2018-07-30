@@ -2,45 +2,41 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_gear"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:text="@string/gear_text"
+        android:background="@drawable/button_background_gear"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btn_clothing"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:text="@string/clothing_text"
+        android:background="@drawable/button_background_clothing"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btn_melee"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:text="@string/melee_text"
+        android:background="@drawable/button_background_melee"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btn_ranged"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:text="@string/ranged_text"
+        android:background="@drawable/button_background_revolver"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btn_attachments"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:text="@string/attachment_text"
