@@ -67,9 +67,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.addGold(gearBase.getSell());
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, gearBase.getName() + " sold for $" + gearBase.getSell() + ".", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
@@ -79,9 +81,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.removeGear(gearBase);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, gearBase.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
         }
         if (gearType.equals(GearTypeEnum.GEAR_UPGRADES.label())) {
@@ -101,9 +105,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.addGold(attachment.getSell());
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, attachment.getName() + " sold for $" + attachment.getSell() + ".", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
@@ -113,9 +119,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.removeAttachment(attachment);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, attachment.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
         }
         if (gearType.equals(GearTypeEnum.CLOTHING.label())) {
@@ -137,9 +145,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.addGold(clothing.getSell());
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, clothing.getName() + " sold for $" + clothing.getSell() + ".", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
@@ -149,9 +159,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.removeClothing(clothing);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, clothing.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
         }
         if (gearType.equals(GearTypeEnum.HAND_WEAPONS.label())) {
@@ -173,9 +185,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.addGold(meleeWeapon.getSell());
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, meleeWeapon.getName() + " sold for $" + meleeWeapon.getSell() + ".", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
@@ -185,9 +199,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.removeMeleeWeapon(meleeWeapon);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, meleeWeapon.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
         }
         if (gearType.equals(GearTypeEnum.RANGED_WEAPONS.label())) {
@@ -209,9 +225,12 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.addGold(rangedWeapon.getSell());
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, rangedWeapon.getName() + " sold for $" + rangedWeapon.getSell() + ".", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
+
             });
 
             findViewById(R.id.btn_destroy).setOnClickListener((View view) -> {
@@ -221,9 +240,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                     sobCharacter.removeRangedWeapon(rangedWeapon);
                     intent.putExtra("serializable_object", sobCharacter);
                     Toast.makeText(this, rangedWeapon.getName() + " removed from inventory.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Nothing selected.", Toast.LENGTH_LONG).show();
                 }
-                startActivity(intent);
-                finish();
             });
         }
 

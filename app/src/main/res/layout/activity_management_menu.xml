@@ -13,29 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:gravity="center"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_inventory"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/button_background"
-            android:text="Inventory"
+            android:background="@drawable/button_background_inventory"
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
             android:id="@+id/btn_new_gear"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/button_background"
-            android:text="FOUND NEW STUFF"
+            android:background="@drawable/button_background_treasure"
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
             android:id="@+id/btn_remove_gear"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:background="@drawable/button_background"
@@ -44,7 +43,7 @@
 
         <Button
             android:id="@+id/btn_visit_town"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:background="@drawable/button_background"
@@ -53,11 +52,10 @@
 
         <Button
             android:id="@+id/btn_transport"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/button_background"
-            android:text="Transport"
+            android:background="@drawable/button_background_transport"
             android:textColor="@color/colorPrimaryDark" />
 
 

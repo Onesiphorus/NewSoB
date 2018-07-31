@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -14,10 +19,9 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="16" />
-                            <entry key="outputName" value="ic_orange_gears" />
+                            <entry key="outputName" value="ic_yellow_chest" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\pmars\Dropbox\app resources\orange_gears.svg" />
+                            <entry key="sourceFile" value="C:\Users\Paul\Dropbox\app resources\yellow_chest.svg" />
                             <entry key="width" value="32" />
                           </map>
                         </option>
