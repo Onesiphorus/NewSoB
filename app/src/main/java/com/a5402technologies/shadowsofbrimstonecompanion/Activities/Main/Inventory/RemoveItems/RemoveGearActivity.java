@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.GearTypeEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Attachment;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.Clothing;
@@ -247,6 +248,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 }
             });
         }
+
+        findViewById(R.id.btn_home).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
 
         findViewById(R.id.btn_cancel).setOnClickListener((View view) -> {
             onBackPressed();

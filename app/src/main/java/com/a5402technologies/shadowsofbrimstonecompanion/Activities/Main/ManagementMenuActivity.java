@@ -24,7 +24,7 @@ public class ManagementMenuActivity extends Activity {
 
         findViewById(R.id.btn_inventory).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ExamineInventoryActivity.class);
-            intent.putExtra("location", "inventory");
+            intent.putExtra("location", "Inventory");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -52,7 +52,7 @@ public class ManagementMenuActivity extends Activity {
         });
         findViewById(R.id.btn_transport).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ExamineInventoryActivity.class);
-            intent.putExtra("location", "transport");
+            intent.putExtra("location", "Transport");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

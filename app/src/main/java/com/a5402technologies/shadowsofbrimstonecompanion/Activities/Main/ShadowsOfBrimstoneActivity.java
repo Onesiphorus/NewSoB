@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +70,31 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         setQuickClothes();
         setWeapons();
         setHealthSanityStats();
+        TextView tvLevel = findViewById(R.id.sob_level);
+        TextView tvNumLevel = findViewById(R.id.text_level);
+        Integer level = sobCharacter.getLevel();
+        Integer exp = sobCharacter.getExperience();
+        if (level.equals(1) && exp >= 500
+                || level.equals(2) && exp >= 1000
+                || level.equals(3) && exp >= 2000
+                || level.equals(4) && exp >= 3000
+                || level.equals(5) && exp >= 4500
+                || level.equals(6) && exp >= 6000
+                || level.equals(7) && exp >= 8000) {
+            blinkText(tvLevel);
+            blinkText(tvNumLevel);
+        }
+        TextView tvNumCorruption = findViewById(R.id.quick_corruption);
+        TextView tvCorruption = findViewById(R.id.quick_corruption_text);
+        if (sobCharacter.getMaxCorruption() <= sobCharacter.getCurrentCorruption()) {
+            blinkText(tvNumCorruption);
+            blinkText(tvCorruption);
+        }
+        TextView tvNumWeight = findViewById(R.id.quick_weight);
+        if (sobCharacter.getMaxWeight() < sobCharacter.getWeight()) {
+            blinkText(tvNumWeight);
+        }
+
         findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CombatViewActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
@@ -98,12 +125,6 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
 
         findViewById(R.id.layout_quick_combat).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CombatViewActivity.class);
-            intent.putExtra("serializable_object", sobCharacter);
-            startActivity(intent);
-            finish();
-        });
-        findViewById(R.id.btn_levelup).setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, LevelUpActivity.class);
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
@@ -167,6 +188,17 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             tv.setHintTextColor(GREEN);
         else tv.setHintTextColor(RED);
         tv.setHint(text);
+    }
+
+    private void blinkText(TextView tv) {
+
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(50);
+        animation.setStartOffset(20);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(Animation.INFINITE);
+        tv.startAnimation(animation);
     }
 
     private void setWeapons() {

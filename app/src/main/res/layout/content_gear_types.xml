@@ -2,15 +2,29 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
+    android:layout_height="match_parent"
+    android:gravity="center|bottom"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Gear Type"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/found_gear_header"
+        android:textAlignment="center"
+        android:paddingBottom="32dp"
+        android:layout_gravity="top"
+        android:textSize="32sp"/>
 
     <Button
         android:id="@+id/btn_gear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background_gear"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:layout_margin="16dp"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
@@ -18,6 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background_clothing"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:layout_margin="16dp"
+        android:drawableTint="@color/colorPrimaryDark"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
@@ -25,6 +43,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background_melee"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:layout_margin="16dp"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
@@ -32,6 +53,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background_revolver"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:layout_margin="16dp"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
@@ -41,6 +65,16 @@
         android:background="@drawable/button_background"
         android:text="@string/attachment_text"
         android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light"/>
+    <include layout="@layout/content_home_button"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/background_light"/>
 
 </LinearLayout>
 

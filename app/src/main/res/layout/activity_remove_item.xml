@@ -15,7 +15,17 @@
 
         <include layout="@layout/content_choose_item" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light"/>
 
+        <include layout="@layout/content_home_button"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_light"/>
     </LinearLayout>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

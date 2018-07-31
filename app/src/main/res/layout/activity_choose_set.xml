@@ -71,5 +71,16 @@
         android:background="@drawable/button_background"
         android:text="Personal Item"
         android:textColor="@color/colorPrimaryDark" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <include layout="@layout/content_home_button" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.LevelUpActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.ShadowsOfBrimstoneActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -112,6 +113,12 @@ public class SpoilsActivity extends AppCompatActivity {
             tvCorruption.setText(corruption.toString());
         });
 
+        findViewById(R.id.btn_levelup).setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, LevelUpActivity.class);
+            intent.putExtra("serializable_object", sobCharacter);
+            startActivity(intent);
+            finish();
+        });
         findViewById(R.id.btn_accept).setOnClickListener((View view) -> {
             sobCharacter.addDarkstoneShards(Integer.parseInt(tvDarkstone.getText().toString()));
             sobCharacter.addGold(Integer.parseInt(tvMoney.getText().toString()));
@@ -129,7 +136,7 @@ public class SpoilsActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        Intent intent = new Intent(this, SpoilsActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();

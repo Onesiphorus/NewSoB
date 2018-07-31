@@ -37,8 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/button_background"
-            android:text="Sell or Destroy Items"
+            android:background="@drawable/button_background_sell_destroy"
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
@@ -46,8 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:background="@drawable/button_background"
-            android:text="Visit Town"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:background="@drawable/button_background_town"
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
@@ -55,6 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:scaleX="2"
+            android:scaleY="2"
             android:background="@drawable/button_background_transport"
             android:textColor="@color/colorPrimaryDark" />
 
