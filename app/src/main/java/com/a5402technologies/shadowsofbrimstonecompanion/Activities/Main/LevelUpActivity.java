@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.AddItems.AddSkillActivity;
+import com.a5402technologies.shadowsofbrimstonecompanion.Activities.Main.Inventory.SpoilsActivity;
 import com.a5402technologies.shadowsofbrimstonecompanion.Enums.ModifiersEnum;
 import com.a5402technologies.shadowsofbrimstonecompanion.Models.SobCharacter;
 import com.a5402technologies.shadowsofbrimstonecompanion.R;
@@ -228,7 +229,7 @@ public class LevelUpActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
+        Intent intent = new Intent(this, SpoilsActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();

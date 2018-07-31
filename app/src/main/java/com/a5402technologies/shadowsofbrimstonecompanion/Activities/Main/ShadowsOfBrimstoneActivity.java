@@ -512,22 +512,33 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
         Integer maxHealth = sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus();
         text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
         health.setText(text);
+        if (sobCharacter.getCurrentHealth() * 100 / maxHealth <= 20) {
+            blinkText(health);
+        }
         Button sanity;
         sanity = findViewById(R.id.valSanity);
         Integer maxSanity = sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus();
         text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
         sanity.setText(text);
-
+        if (sobCharacter.getCurrentSanity() * 100 / maxSanity <= 20) {
+            blinkText(sanity);
+        }
         findViewById(R.id.negHealth).setOnClickListener((View view) -> {
             sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() - 1);
             text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
             health.setText(text);
+            if (sobCharacter.getCurrentHealth() * 100 / maxHealth <= 20) {
+                blinkText(health);
+            }
         });
         findViewById(R.id.addHealth).setOnClickListener((View view) -> {
             if (sobCharacter.getCurrentHealth() < sobCharacter.getCharacterClass().getHealth() + sobCharacter.getHealthBonus()) {
                 sobCharacter.setCurrentHealth(sobCharacter.getCurrentHealth() + 1);
                 text = sobCharacter.getCurrentHealth().toString() + "/" + maxHealth.toString();
                 health.setText(text);
+                if (sobCharacter.getCurrentHealth() * 100 / maxHealth > 20) {
+                    health.clearAnimation();
+                }
             } else {
                 Toast.makeText(this, "Health at full!", Toast.LENGTH_LONG).show();
             }
@@ -536,12 +547,18 @@ public class ShadowsOfBrimstoneActivity extends AppCompatActivity {
             sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() - 1);
             text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
             sanity.setText(text);
+            if (sobCharacter.getCurrentSanity() * 100 / maxSanity <= 20) {
+                blinkText(sanity);
+            }
         });
         findViewById(R.id.addSanity).setOnClickListener((View view) -> {
             if (sobCharacter.getCurrentSanity() < sobCharacter.getCharacterClass().getSanity() + sobCharacter.getSanityBonus()) {
                 sobCharacter.setCurrentSanity(sobCharacter.getCurrentSanity() + 1);
                 text = sobCharacter.getCurrentSanity().toString() + "/" + maxSanity;
                 sanity.setText(text);
+                if (sobCharacter.getCurrentSanity() * 100 / maxSanity > 20) {
+                    sanity.clearAnimation();
+                }
             } else {
                 Toast.makeText(this, "Sanity at full!", Toast.LENGTH_LONG).show();
             }

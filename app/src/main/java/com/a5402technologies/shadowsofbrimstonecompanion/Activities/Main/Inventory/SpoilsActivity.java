@@ -136,7 +136,7 @@ public class SpoilsActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, SpoilsActivity.class);
+        Intent intent = new Intent(this, ShadowsOfBrimstoneActivity.class);
         intent.putExtra("serializable_object", sobCharacter);
         startActivity(intent);
         finish();
