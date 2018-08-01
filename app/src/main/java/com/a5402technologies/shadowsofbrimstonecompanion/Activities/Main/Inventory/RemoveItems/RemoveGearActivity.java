@@ -49,6 +49,7 @@ public class RemoveGearActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         gearType = getIntent().getStringExtra("gear_type");
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        setResourceBar();
         if (gearType.equals(GearTypeEnum.GEAR.label())) {
             final RemoveGearActivity.GearBaseListAdapter adapter = new RemoveGearActivity.GearBaseListAdapter(this);
             recyclerView.setAdapter(adapter);
@@ -64,10 +65,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
                 if (gearBase != null) {
+                    Integer sellPrice;
+                    sellPrice = gearBase.getSell() > 0 ? gearBase.getSell() :
+                            calculateSellPrice(gearBase.getCost());
                     sobCharacter.removeGear(gearBase);
-                    sobCharacter.addGold(gearBase.getSell());
+                    sobCharacter.addGold(sellPrice);
                     intent.putExtra("serializable_object", sobCharacter);
-                    Toast.makeText(this, gearBase.getName() + " sold for $" + gearBase.getSell() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, gearBase.getName() + " sold for $" + sellPrice + ".", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 } else {
@@ -102,10 +106,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
                 if (attachment != null) {
+                    Integer sellPrice;
+                    sellPrice = attachment.getSell() > 0 ? attachment.getSell() :
+                            calculateSellPrice(attachment.getCost());
                     sobCharacter.removeAttachment(attachment);
-                    sobCharacter.addGold(attachment.getSell());
+                    sobCharacter.addGold(sellPrice);
                     intent.putExtra("serializable_object", sobCharacter);
-                    Toast.makeText(this, attachment.getName() + " sold for $" + attachment.getSell() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, attachment.getName() + " sold for $" + sellPrice + ".", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 } else {
@@ -142,10 +149,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
                 if (clothing != null) {
+                    Integer sellPrice;
+                    sellPrice = clothing.getSell() > 0 ? clothing.getSell() :
+                            calculateSellPrice(clothing.getCost());
                     sobCharacter.removeClothing(clothing);
-                    sobCharacter.addGold(clothing.getSell());
+                    sobCharacter.addGold(sellPrice);
                     intent.putExtra("serializable_object", sobCharacter);
-                    Toast.makeText(this, clothing.getName() + " sold for $" + clothing.getSell() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, clothing.getName() + " sold for $" + sellPrice + ".", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 } else {
@@ -182,10 +192,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
                 if (meleeWeapon != null) {
+                    Integer sellPrice;
+                    sellPrice = meleeWeapon.getSell() > 0 ? meleeWeapon.getSell() :
+                            calculateSellPrice(meleeWeapon.getCost());
                     sobCharacter.removeMeleeWeapon(meleeWeapon);
-                    sobCharacter.addGold(meleeWeapon.getSell());
+                    sobCharacter.addGold(sellPrice);
                     intent.putExtra("serializable_object", sobCharacter);
-                    Toast.makeText(this, meleeWeapon.getName() + " sold for $" + meleeWeapon.getSell() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, meleeWeapon.getName() + " sold for $" + sellPrice + ".", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 } else {
@@ -222,10 +235,13 @@ public class RemoveGearActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, RemoveGearActivity.class);
                 intent.putExtra("gear_type", gearType);
                 if (rangedWeapon != null) {
+                    Integer sellPrice;
+                    sellPrice = rangedWeapon.getSell() > 0 ? rangedWeapon.getSell() :
+                            calculateSellPrice(rangedWeapon.getCost());
                     sobCharacter.removeRangedWeapon(rangedWeapon);
-                    sobCharacter.addGold(rangedWeapon.getSell());
+                    sobCharacter.addGold(sellPrice);
                     intent.putExtra("serializable_object", sobCharacter);
-                    Toast.makeText(this, rangedWeapon.getName() + " sold for $" + rangedWeapon.getSell() + ".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, rangedWeapon.getName() + " sold for $" + sellPrice + ".", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                     finish();
                 } else {
@@ -291,6 +307,28 @@ public class RemoveGearActivity extends AppCompatActivity {
         finish();
     }
 
+    private Integer calculateSellPrice(Integer cost) {
+        return cost > 0 ? cost / 10 / 3 * 10 : 0;
+    }
+
+    private void setResourceBar() {
+        TextView tv;
+        String text;
+        tv = findViewById(R.id.sob_xp);
+        tv.setText(String.format(sobCharacter.getExperience().toString()));
+        tv = findViewById(R.id.sob_money);
+        text = "$" + sobCharacter.getGold().toString();
+        tv.setText(text);
+        tv = findViewById(R.id.sob_darkstone);
+        text = sobCharacter.getDarkStoneShards().toString() + "(" + sobCharacter.getDarkStoneCount() + ")";
+        tv.setText(text);
+        tv = findViewById(R.id.sob_level);
+        tv.setText(String.format(sobCharacter.getLevel().toString()));
+        tv = findViewById(R.id.sob_grit);
+        Integer value = sobCharacter.getCharacterClass().getMaxGrit() + sobCharacter.getMaxGritBonus();
+        tv.setText(value.toString());
+    }
+
     class GearBaseListAdapter extends RecyclerView.Adapter<RemoveGearActivity.GearBaseListAdapter.GearBaseViewHolder> {
 
         private final LayoutInflater mInflater;
@@ -308,9 +346,13 @@ public class RemoveGearActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(RemoveGearActivity.GearBaseListAdapter.GearBaseViewHolder holder, int position) {
+
             if (null != mGearBase) {
                 GearBase current = mGearBase.get(position);
-                String text = current.getName() + ": $" + current.getSell();
+                Integer sellPrice;
+                sellPrice = current.getSell() > 0 ? current.getSell() :
+                        calculateSellPrice(current.getCost());
+                String text = current.getName() + ": $" + sellPrice;
                 holder.gearBaseItemView.setText(text);
             } else {
                 holder.gearBaseItemView.setText("No Gear");
@@ -320,8 +362,11 @@ public class RemoveGearActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     gearBase = mGearBase.get(position);
+                    Integer sellPrice;
+                    sellPrice = gearBase.getSell() > 0 ? gearBase.getSell() :
+                            calculateSellPrice(gearBase.getCost());
                     Button btn = findViewById(R.id.btn_sell);
-                    String text = "Sell " + gearBase.getName() + " for $" + gearBase.getSell();
+                    String text = "Sell " + gearBase.getName() + " for $" + sellPrice;
                     btn.setText(text);
                 }
             });
@@ -370,7 +415,10 @@ public class RemoveGearActivity extends AppCompatActivity {
         public void onBindViewHolder(AttachmentListAdapter.AttachmentViewHolder holder, int position) {
             if (null != mAttachment) {
                 Attachment current = mAttachment.get(position);
-                String text = current.getName() + ": $" + current.getSell();
+                Integer sellPrice;
+                sellPrice = current.getSell() > 0 ? current.getSell() :
+                        calculateSellPrice(current.getCost());
+                String text = current.getName() + ": $" + sellPrice;
                 holder.attachmentItemView.setText(text);
             } else {
                 holder.attachmentItemView.setText("No Attachment");
@@ -380,6 +428,12 @@ public class RemoveGearActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     attachment = mAttachment.get(position);
+                    Integer sellPrice;
+                    sellPrice = attachment.getSell() > 0 ? attachment.getSell() :
+                            calculateSellPrice(attachment.getCost());
+                    Button btn = findViewById(R.id.btn_sell);
+                    String text = "Sell " + attachment.getName() + " for $" + sellPrice;
+                    btn.setText(text);
                 }
             });
         }
@@ -427,7 +481,10 @@ public class RemoveGearActivity extends AppCompatActivity {
         public void onBindViewHolder(ClothingListAdapter.ClothingViewHolder holder, int position) {
             if (null != mClothing) {
                 Clothing current = mClothing.get(position);
-                String text = current.getName() + ": $" + current.getSell();
+                Integer sellPrice;
+                sellPrice = current.getSell() > 0 ? current.getSell() :
+                        calculateSellPrice(current.getCost());
+                String text = current.getName() + ": $" + sellPrice;
                 holder.clothingItemView.setText(text);
             } else {
                 holder.clothingItemView.setText("No Clothing");
@@ -438,7 +495,10 @@ public class RemoveGearActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     clothing = mClothing.get(position);
                     Button btn = findViewById(R.id.btn_sell);
-                    String text = "Sell " + clothing.getName() + " for $" + clothing.getSell();
+                    Integer sellPrice;
+                    sellPrice = clothing.getSell() > 0 ? clothing.getSell() :
+                            calculateSellPrice(clothing.getCost());
+                    String text = "Sell " + clothing.getName() + " for $" + sellPrice;
                     btn.setText(text);
                 }
             });
@@ -488,7 +548,10 @@ public class RemoveGearActivity extends AppCompatActivity {
         public void onBindViewHolder(MeleeWeaponListAdapter.MeleeWeaponViewHolder holder, int position) {
             if (null != mMeleeWeapon) {
                 MeleeWeapon current = mMeleeWeapon.get(position);
-                String text = current.getName() + ": $" + current.getSell();
+                Integer sellPrice;
+                sellPrice = current.getSell() > 0 ? current.getSell() :
+                        calculateSellPrice(current.getCost());
+                String text = current.getName() + ": $" + sellPrice;
                 holder.meleeWeaponItemView.setText(text);
             } else {
                 holder.meleeWeaponItemView.setText("No Melee");
@@ -499,7 +562,10 @@ public class RemoveGearActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     meleeWeapon = mMeleeWeapon.get(position);
                     Button btn = findViewById(R.id.btn_sell);
-                    String text = "Sell " + meleeWeapon.getName() + " for $" + meleeWeapon.getSell();
+                    Integer sellPrice;
+                    sellPrice = meleeWeapon.getSell() > 0 ? meleeWeapon.getSell() :
+                            calculateSellPrice(meleeWeapon.getCost());
+                    String text = "Sell " + meleeWeapon.getName() + " for $" + sellPrice;
                     btn.setText(text);
                 }
             });
@@ -546,7 +612,10 @@ public class RemoveGearActivity extends AppCompatActivity {
         public void onBindViewHolder(RangedWeaponListAdapter.RangedWeaponViewHolder holder, int position) {
             if (null != mRangedWeapon) {
                 RangedWeapon current = mRangedWeapon.get(position);
-                String text = current.getName() + ": $" + current.getSell();
+                Integer sellPrice;
+                sellPrice = current.getSell() > 0 ? current.getSell() :
+                        calculateSellPrice(current.getCost());
+                String text = current.getName() + ": $" + sellPrice;
                 holder.rangedWeaponItemView.setText(text);
             } else {
                 holder.rangedWeaponItemView.setText("No Ranged");
@@ -557,7 +626,10 @@ public class RemoveGearActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     rangedWeapon = mRangedWeapon.get(position);
                     Button btn = findViewById(R.id.btn_sell);
-                    String text = "Sell " + rangedWeapon.getName() + " for $" + rangedWeapon.getSell();
+                    Integer sellPrice;
+                    sellPrice = rangedWeapon.getSell() > 0 ? rangedWeapon.getSell() :
+                            calculateSellPrice(rangedWeapon.getCost());
+                    String text = "Sell " + rangedWeapon.getName() + " for $" + sellPrice;
                     btn.setText(text);
                 }
             });

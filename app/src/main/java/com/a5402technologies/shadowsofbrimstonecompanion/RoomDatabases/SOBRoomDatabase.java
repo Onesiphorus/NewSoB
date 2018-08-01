@@ -2486,6 +2486,7 @@ public abstract class SOBRoomDatabase extends RoomDatabase {
             clothing.setCoat(TRUE);
             clothing.setUpgrades(1);
             clothing.setWeight(1);
+            //TODO add cost to Cavalry Jacket
             mClothingDao.insert(clothing);
             gearBase = new GearBase("Scout Bag");
             gearBase.setShop(ShopEnum.INDIAN_TRADING_POST.label());
