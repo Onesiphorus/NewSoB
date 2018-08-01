@@ -280,7 +280,7 @@ public class CombatViewActivity extends AppCompatActivity {
                     range += 4;
                 }
             }
-            if (sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
+            if (sobCharacter.getRightHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
                 shots += numMutations;
             }
             tv.setText(String.format(range.toString()));
@@ -441,9 +441,6 @@ public class CombatViewActivity extends AppCompatActivity {
                 if (attachment.getName().equals(RuleExceptionEnum.DARK_STONE_GRIP.label())) {
                     shots++;
                 }
-            }
-            if (sobCharacter.getLeftHand().getName().equals(RuleExceptionEnum.SCAFFORD_PISTOL.label())) {
-                shots += numMutations;
             }
             tv.setText(String.format(shots.toString()));
             tv = findViewById(R.id.tail_damage);

@@ -238,7 +238,10 @@ public class SobCharacter implements Serializable {
         currentHealth = characterClass.getHealth();
         currentSanity = characterClass.getSanity();
         modifiers = new ArrayList<>(0);
-        traits = characterClass.getTraits();
+        traits = new ArrayList<>(0);
+        for (String trait : characterClass.getTraits()) {
+            traits.add(trait);
+        }
         sideBag = new ArrayList<>(0);
         conditions = new ArrayList<>(0);
         transport = new Transport();
@@ -915,7 +918,7 @@ public class SobCharacter implements Serializable {
                 traits.add(TraitsEnum.LAW.label());
             }
             if (permanentCondition.getName().equals(RuleExceptionEnum.CONVERSION.label())) {
-                traits.add(TraitsEnum.HOLY.label());
+                this.traits.add(TraitsEnum.HOLY.label());
             }
             if (permanentCondition.getName().equals(RuleExceptionEnum.DARK_ROAD.label())) {
                 traits.add(TraitsEnum.OUTLAW.label());
@@ -1352,7 +1355,10 @@ public class SobCharacter implements Serializable {
         this.setSpiritArmor(7);
         this.setMeleeToHitDie(6);
         this.setMeleeDamageDie(6);
-        this.traits = getCharacterClass().getTraits();
+        this.traits = new ArrayList<>(0);
+        for (String trait : characterClass.getTraits()) {
+            traits.add(trait);
+        }
         this.weight = 0;
         this.maxWeight = 0;
         this.sideBagSize = 5;
