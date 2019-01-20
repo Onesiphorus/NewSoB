@@ -20,56 +20,56 @@ public class ChooseSetActivity extends AppCompatActivity {
         sobCharacter = (SobCharacter) getIntent().getSerializableExtra("serializable_object");
         findViewById(R.id.gear_card).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Standard Equipment");
+            intent.putExtra("card_type", "standard");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.mine_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Mines");
+            intent.putExtra("card_type", "mine");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.targa_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Ancient City of Targa");
+            intent.putExtra("card_type", "targa");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.jagono_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Swamps of Jargono");
+            intent.putExtra("card_type", "jargono");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.derelict_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Derelict Ship");
+            intent.putExtra("card_type", "derelict");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.trederra_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Trederran War Zone");
+            intent.putExtra("card_type", "trederra");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.cynder_artifact).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Caverns of Cynder");
+            intent.putExtra("card_type", "cynder");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();
         });
         findViewById(R.id.personal).setOnClickListener((View view) -> {
             Intent intent = new Intent(this, FoundGearActivity.class);
-            intent.putExtra("card_type", "Personal");
+            intent.putExtra("card_type", "personal");
             intent.putExtra("serializable_object", sobCharacter);
             startActivity(intent);
             finish();

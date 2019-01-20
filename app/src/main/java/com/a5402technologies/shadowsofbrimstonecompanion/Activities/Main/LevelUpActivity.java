@@ -161,31 +161,31 @@ public class LevelUpActivity extends AppCompatActivity {
             Integer cost = 0;
             switch (level) {
                 case 1:
-                    levelUp = sobCharacter.getExperience() > 500 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 500 ? TRUE : FALSE;
                     cost = 500;
                     break;
                 case 2:
-                    levelUp = sobCharacter.getExperience() > 1000 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 1000 ? TRUE : FALSE;
                     cost = 1000;
                     break;
                 case 3:
-                    levelUp = sobCharacter.getExperience() > 2000 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 2000 ? TRUE : FALSE;
                     cost = 2000;
                     break;
                 case 4:
-                    levelUp = sobCharacter.getExperience() > 3000 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 3000 ? TRUE : FALSE;
                     cost = 3000;
                     break;
                 case 5:
-                    levelUp = sobCharacter.getExperience() > 4500 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 4500 ? TRUE : FALSE;
                     cost = 4500;
                     break;
                 case 6:
-                    levelUp = sobCharacter.getExperience() > 6000 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 6000 ? TRUE : FALSE;
                     cost = 6000;
                     break;
                 case 7:
-                    levelUp = sobCharacter.getExperience() > 8000 ? TRUE : FALSE;
+                    levelUp = sobCharacter.getExperience() >= 8000 ? TRUE : FALSE;
                     cost = 8000;
                     break;
             }
